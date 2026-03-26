@@ -1,0 +1,197 @@
+/* === Paper Cards (left panel list) === */
+.paper-card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  cursor: grab;
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+  position: relative;
+}
+
+.paper-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+
+.paper-card:active { cursor: grabbing; }
+
+.paper-card.on-board::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+/* Remove-from-board button (replaces dot indicator on hover) */
+.card-remove-btn {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  border: none;
+  border-radius: 50%;
+  background: var(--danger);
+  color: #fff;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: 2;
+  padding: 0;
+}
+
+.paper-card:hover .card-remove-btn {
+  opacity: 1;
+}
+
+.paper-card:hover.on-board::after {
+  display: none;
+}
+
+.paper-card-name {
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: -0.2px;
+}
+
+.paper-card-meta {
+  font-size: 10px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 3px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.badge-year {
+  background: var(--surface-alt);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+}
+
+.badge-venue {
+  background: var(--accent);
+  color: #fff;
+}
+
+.paper-card-tags {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 9px;
+  background: var(--accent-soft);
+  color: var(--text-secondary);
+  line-height: 14px;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Category border colors */
+.paper-card[data-cat="World Model"] { border-left-color: var(--cat-world-model); }
+.paper-card[data-cat="Video Generation"] { border-left-color: var(--cat-video); }
+.paper-card[data-cat="3D Scene Understanding"] { border-left-color: var(--cat-3d-scene); }
+.paper-card[data-cat="Motion Planning"] { border-left-color: var(--cat-motion-planning); }
+.paper-card[data-cat="End-to-End Driving"] { border-left-color: var(--cat-e2e-driving); }
+.paper-card[data-cat="Simulation"] { border-left-color: var(--cat-simulation); }
+.paper-card[data-cat="Occupancy Prediction"] { border-left-color: var(--cat-occupancy); }
+.paper-card[data-cat="Neural Rendering"] { border-left-color: var(--cat-neural-rendering); }
+
+/* === Whiteboard Paper Blocks === */
+.paper-block {
+  position: absolute;
+  width: var(--card-width);
+  min-height: var(--card-height);
+  background: var(--surface);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent);
+  padding: 8px 10px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition), opacity var(--transition);
+  z-index: 10;
+  user-select: none;
+  font-size: 11px;
+}
+
+.paper-block:hover {
+  box-shadow: var(--shadow-hover);
+  z-index: 20;
+}
+
+.paper-block.selected {
+  box-shadow: 0 0 0 2px var(--accent), var(--shadow-hover);
+  z-index: 25;
+}
+
+.paper-block.dragging {
+  opacity: 0.7;
+  z-index: 100;
+}
+
+.paper-block .block-name {
+  font-weight: 700;
+  font-size: 11px;
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: -0.2px;
+}
+
+.paper-block .block-meta {
+  font-size: 9px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 3px;
+}
+
+.paper-block .block-category {
+  font-size: 8px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Category border colors for blocks */
+.paper-block[data-cat="World Model"] { border-left-color: var(--cat-world-model); }
+.paper-block[data-cat="Video Generation"] { border-left-color: var(--cat-video); }
+.paper-block[data-cat="3D Scene Understanding"] { border-left-color: var(--cat-3d-scene); }
+.paper-block[data-cat="Motion Planning"] { border-left-color: var(--cat-motion-planning); }
+.paper-block[data-cat="End-to-End Driving"] { border-left-color: var(--cat-e2e-driving); }
+.paper-block[data-cat="Simulation"] { border-left-color: var(--cat-simulation); }
+.paper-block[data-cat="Occupancy Prediction"] { border-left-color: var(--cat-occupancy); }
+.paper-block[data-cat="Neural Rendering"] { border-left-color: var(--cat-neural-rendering); }

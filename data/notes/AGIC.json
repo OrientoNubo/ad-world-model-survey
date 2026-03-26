@@ -1,0 +1,20 @@
+{
+ "sections": {
+  "basic_info": "## 1. 基本資訊\n\n\n| 項目 | 內容 |\n|------|------|\n| **論文簡稱** | AGIC |\n| **論文全稱** | MagicDrive: Street View Generation with Diverse 3D Geometry Control |\n| **arXiv ID** | 2310.02601 |\n| **PDF 檔案** | [PDF](../papers/2310_AGIC/2310_AGIC.pdf) |\n| **釋出日期** | 2023-10 |\n| **發表會議/期刊** | 預印本 |\n| **論文連結** | https://arxiv.org/abs/ |\n| **程式碼連結** | (待補充) |\n| **專案主頁** | (待補充) |\n\n### 1.1 作者資訊\n\n(待補充)\n\n### 1.2 關鍵詞\n\n- (待補充)\n\n---",
+  "research_overview": "## 2. 研究概述\n\n\n### 2.1 研究主題\n\n> 本文提出 MagicDrive，一個新穎的街景生成框架，提供多樣的 3D 幾何控制，包括相機姿態、道路地圖和 3D 邊界框，以及文本描述。該框架通過跨視角注意力模組確保多相機視角間的一致性，生成高保真的街景圖像和視頻，增強 BEV 分割和 3D 物體檢測等下游任務。\n\n### 2.2 研究領域分類\n\n- [ ] World Model (世界模型)\n- [x] Video Generation (影片生成)\n- [x] 3D Scene Understanding (3D場景理解)\n- [ ] Motion Planning (運動規劃)\n- [ ] End-to-End Driving (端到端駕駛)\n- [x] Simulation (模擬器)\n- [ ] Occupancy Prediction (佔用預測)\n- [ ] Neural Rendering (神經渲染)\n\n### 2.3 所使用的自動駕駛架構\n\n- [ ] **Modular Pipeline** (模組化管線)\n- [ ] **End-to-End** (端到端)\n- [ ] **World Model + Planner** (世界模型 + 規劃器)\n- [ ] **Foundation Model** (基石模型)\n\n---",
+  "paper_assessment": "## 3. 論文評價\n\n\n### 3.1 影響程度評級\n\n| 評分維度 | 分數 (1-5) | 說明 |\n|---------|-----------|------|\n| **創新性** | ⭐⭐⭐ | |\n| **技術深度** | ⭐⭐⭐ | |\n| **實驗完整度** | ⭐⭐⭐ | |\n| **寫作品質** | ⭐⭐⭐ | |\n| **實用價值** | ⭐⭐⭐ | |\n| **綜合評分** | ⭐⭐⭐ | |\n\n### 3.2 論文亮點\n\n1.\n2.\n3.\n\n### 3.3 論文不足\n\n1.\n2.\n3.\n\n---",
+  "problems_motivation": "## 4. 問題與動機\n\n\n### 4.1 故事線 (Introduction 脈絡)\n\n>\n\n### 4.2 現有方法的痛點/局限性\n\n| 痛點 | 具體描述 | 影響 |\n|-----|---------|------|\n| | | |\n\n### 4.3 本文提出的核心觀點\n\n>\n\n### 4.4 研究問題 (Research Questions)\n\n1. **RQ1**:\n2. **RQ2**:\n3. **RQ3**:\n\n---",
+  "contributions": "## 5. 貢獻點\n\n\n### 5.1 主要貢獻 (論文原文列出)\n\n1. 提出 MagicDrive，一個創新框架，根據 BEV 和 3D 數據生成多視角相機視圖和視頻\n2. 開發簡單有效的策略管理 3D 幾何數據，解決街景生成中的多相機視角一致性挑戰\n3. 通過嚴格實驗證明 MagicDrive 在多維可控性方面優於現有街景生成技術\n4. 合成數據在 3D 感知任務上帶來顯著改進 \n\n### 5.2 技術貢獻分析\n\n| 貢獻類型 | 具體內容 | 創新程度 |\n|---------|---------|---------|\n| 新框架/架構 | | |\n| 新模組/組件 | | |\n| 新訓練策略 | | |\n| 新損失函數 | | |\n| 新資料集/基準 | | |\n| 新評估指標 | | |\n\n---",
+  "related_work": "## 6. 相關工作\n\n\n### 6.1 涉及領域\n\n- [ ] Driving World Models\n- [ ] Video Diffusion Models\n- [ ] 3D Gaussian Splatting\n- [ ] Occupancy Networks\n- [ ] Neural Radiance Fields (NeRF)\n- [ ] Vision-Language Models\n- [ ] Motion Prediction\n- [ ] Trajectory Planning\n- [ ] Autonomous Driving Simulation\n\n### 6.2 相關工作簡述\n\n(待補充)\n\n---",
+  "methodology": "## 7. 方法論\n\n\n### 7.1 方法概述\n\n> (待補充)\n\n### 7.2 整體框架圖\n\n```\n(參見論文 Figure 2 或 Method 章節)\n```\n\n### 7.3 核心模組詳解\n\n(待補充)\n\n### 7.4 損失函數\n\n(待補充)\n\n---",
+  "model_details": "## 8. 模型細節\n\n\n(待補充)\n\n---",
+  "training_settings": "## 9. 訓練設定\n\n\n(待補充)\n\n---",
+  "experiments": "## 10. 實驗評估\n\n\n### 10.1 評估資料集/基準 (Benchmark)\n\n| 資料集 | 任務 | 資料規模 | 評估指標 |\n|--------|-----|---------|---------|\n\n### 10.2 評估指標\n\n| 指標名稱 | 全稱 | 計算方式 | 越高/低越好 |\n|---------|-----|---------|------------|\n\n---",
+  "results": "## 11. 實驗結果\n\n\n(待補充主要實驗數據)\n\n---",
+  "discussion": "## 12. 討論與分析\n\n\n### 12.1 方法優勢分析\n\n1.\n2.\n3.\n\n### 12.2 局限性 (Limitations)\n\n1.\n2.\n3.\n\n### 12.3 未來工作 (Future Work)\n\n1.\n2.\n3.\n\n---",
+  "personal_thoughts": "## 13. 個人思考\n\n\n(待補充)\n\n---",
+  "key_citations": "## 14. 重要引用\n\n\n(待補充)\n\n---",
+  "appendix": "## 15. 附錄\n\n\n### 15.1 Markdown 全文\n\n[閱讀完整 Markdown](../papers/2310_AGIC/2310_AGIC.md)\n\n---\n\n**閱讀完成日期**：\n\n**推薦指數**：⭐⭐⭐⭐⭐\n\n---"
+ },
+ "short_name": "AGIC"
+}

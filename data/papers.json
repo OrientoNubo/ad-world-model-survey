@@ -1,0 +1,3116 @@
+[
+ {
+  "id": 1,
+  "short_name": "TrafficBots",
+  "title": "TrafficBots: Towards World Models for Autonomous Driving Simulation and Motion Prediction",
+  "date": "2023-03",
+  "year": "2303",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Traffic Simulation",
+   "Motion Prediction",
+   "Multi-agent Policy",
+   "Autonomous Driving",
+   "CVAE (Conditional Variational Autoencoder)"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2303.04116",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 2,
+  "short_name": "CTG++",
+  "title": "Language-Guided Traffic Simulation via Scene-Level Diffusion",
+  "date": "2023-06",
+  "year": "2306",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Motion Planning",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2306.06344",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 3,
+  "short_name": "UniSim",
+  "title": "UniSim: A Neural Closed-Loop Sensor Simulator",
+  "date": "2023-08",
+  "year": "2308",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2308.01898",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 4,
+  "short_name": "UniWorld",
+  "title": "UniWorld: Autonomous Driving Pre-training via World Models",
+  "date": "2023-08",
+  "year": "2308",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "4D Occupancy Prediction",
+   "Pre-training",
+   "Multi-camera 3D Perception",
+   "BEV (Bird's Eye View)",
+   "Label-free Learning"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2308.07234",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 5,
+  "short_name": "DriveDreamer",
+  "title": "DriveDreamer: Towards Real-world-driven World Models for Autonomous Driving",
+  "date": "2023-09",
+  "year": "2309",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Diffusion Model",
+   "Video Generation",
+   "Autonomous Driving",
+   "Motion Planning",
+   "Traffic Constraints"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2309.09777",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 6,
+  "short_name": "GAIA-1",
+  "title": "GAIA-1: A Generative World Model for Autonomous Driving",
+  "date": "2023-09",
+  "year": "2309",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Generative AI",
+   "Video Generation",
+   "Autonomous Driving",
+   "Next Token Prediction",
+   "Video Diffusion",
+   "Multimodal Learning"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2309.17080",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 7,
+  "short_name": "AGIC",
+  "title": "MagicDrive: Street View Generation with Diverse 3D Geometry Control",
+  "date": "2023-10",
+  "year": "2310",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2310.02601",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 8,
+  "short_name": "UniSim-Interactive",
+  "title": "Learning Interactive Real-World Simulators",
+  "date": "2023-10",
+  "year": "2310",
+  "venue": "預印本",
+  "keywords": [
+   "Universal Simulator",
+   "Real-world Interaction",
+   "Video Diffusion",
+   "POMDP (Partially Observable MDP)",
+   "Vision-Language Policy",
+   "Reinforcement Learning",
+   "Hindsight Relabeling"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2310.06114",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 9,
+  "short_name": "Waymax",
+  "title": "Waymax: An Accelerated, Data-Driven Simulator for Large-Scale Autonomous Driving Research",
+  "date": "2023-10",
+  "year": "2310",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Motion Planning",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2310.08710",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 10,
+  "short_name": "ADriver-I",
+  "title": "ADriver-I: A General World Model for Autonomous Driving",
+  "date": "2023-11",
+  "year": "2311",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "MLLM (Multimodal Large Language Model)",
+   "Video Diffusion Model (VDM)",
+   "Autonomous Driving",
+   "Control Signal Prediction",
+   "Interleaved Vision-Action Pair",
+   "Infinite Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2311.13549",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 11,
+  "short_name": "Cam4DOcc",
+  "title": "Cam4DOcc: Benchmark for Camera-Only 4D Occupancy Forecasting in Autonomous Driving Applications",
+  "date": "2023-11",
+  "year": "2311",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "3D Scene Understanding",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2311.17663",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 12,
+  "short_name": "Drive-WM",
+  "title": "Driving into the Future: Multiview Visual Forecasting and Planning with World Model for Autonomous Driving",
+  "date": "2023-11",
+  "year": "2311",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Multiview Video Generation",
+   "Video Diffusion",
+   "End-to-end Planning",
+   "Autonomous Driving",
+   "View Factorization",
+   "Tree-based Rollout"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2311.17918",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 13,
+  "short_name": "MUVO",
+  "title": "MUVO: A Multimodal Generative World Model for Autonomous Driving with Geometric Representations",
+  "date": "2023-11",
+  "year": "2311",
+  "venue": "預印本",
+  "keywords": [
+   "World Model, Multimodal Fusion, Sensor Fusion, LiDAR, Camera, 3D Occupancy, Autonomous Driving, BEV"
+  ],
+  "task_category": [
+   "World Model",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2311.11762",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 14,
+  "short_name": "NeuRAD",
+  "title": "NeuRAD: Neural Rendering for Autonomous Driving",
+  "date": "2023-11",
+  "year": "2311",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2311.15260",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 15,
+  "short_name": "Copilot4D",
+  "title": "Copilot4D: Learning Unsupervised World Models for Autonomous Driving via Discrete Diffusion",
+  "date": "2023-11",
+  "year": "2311",
+  "venue": "預印本",
+  "keywords": [
+   "World Model, Discrete Diffusion, VQVAE, MaskGIT, Point Cloud Forecasting, LiDAR, BEV, Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2311.01017",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 16,
+  "short_name": "OccWorld",
+  "title": "OccWorld: Learning a 3D Occupancy World Model for Autonomous Driving",
+  "date": "2023-11",
+  "year": "2311",
+  "venue": "預印本",
+  "keywords": [
+   "World Model, 3D Occupancy, GPT, VQ-VAE, Scene Tokenizer, Motion Planning, Autonomous Driving, nuScenes"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Motion Planning",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2311.16038",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 17,
+  "short_name": "Panacea",
+  "title": "Panacea: Panoramic and Controllable Video Generation for Autonomous Driving",
+  "date": "2023-11",
+  "year": "2311",
+  "venue": "預印本",
+  "keywords": [
+   "Panoramic Video Generation",
+   "Multi-view Consistency",
+   "BEV Layout Control",
+   "Diffusion Models",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2311.16813",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 18,
+  "short_name": "DrivingGaussian",
+  "title": "DrivingGaussian: Composite Gaussian Splatting for Surrounding Dynamic Autonomous Driving Scenes",
+  "date": "2023-12",
+  "year": "2312",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "|",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 19,
+  "short_name": "ViDAR",
+  "title": "Visual Point Cloud Forecasting enables Scalable Autonomous Driving",
+  "date": "2023-12",
+  "year": "2312",
+  "venue": "預印本",
+  "keywords": [
+   "Pre-training, Visual Point Cloud Forecasting, Latent Rendering, BEV Encoder, 3D Detection, End-to-End Driving, UniAD"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "End-to-End Driving",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2312.17655",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 20,
+  "short_name": "WoVoGen",
+  "title": "WoVoGen: World Volume-aware Diffusion for Controllable Multi-camera Driving Scene Generation",
+  "date": "2023-12",
+  "year": "2312",
+  "venue": "預印本",
+  "keywords": [
+   "World Volume, Diffusion Model, Multi-camera Video Generation, 4D Occupancy, Scene Editing, ControlNet, Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2312.02934",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 21,
+  "short_name": "StreetGaussians",
+  "title": "Street Gaussians: Modeling Dynamic Urban Scenes with Gaussian Splatting",
+  "date": "2024-01",
+  "year": "2401",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "|",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 22,
+  "short_name": "GenAD",
+  "title": "GenAD: Generative End-to-End Autonomous Driving",
+  "date": "2024-02",
+  "year": "2402",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "|",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 23,
+  "short_name": "Think2Drive",
+  "title": "Think2Drive: Efficient Reinforcement Learning by Thinking with Latent World Model for Autonomous Driving (in CARLA-v2)",
+  "date": "2024-02",
+  "year": "2402",
+  "venue": "預印本",
+  "keywords": [
+   "Model-based RL, World Model, CARLA v2, DreamerV3, RSSM, Autonomous Driving, Planning, Neural Simulator"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2402.16720",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 24,
+  "short_name": "DriveDreamer-2",
+  "title": "DriveDreamer-2: LLM-Enhanced World Models for Diverse Driving Video Generation",
+  "date": "2024-03",
+  "year": "2403",
+  "venue": "預印本",
+  "keywords": [
+   "World Model, LLM, Video Generation, Multi-view, Traffic Simulation, HDMap, Trajectory"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2403.06845",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 25,
+  "short_name": "NuPlanBenchmark",
+  "title": "Towards learning-based planning: The nuPlan benchmark for real-world autonomous driving",
+  "date": "2024-03",
+  "year": "2403",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "|",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 26,
+  "short_name": "PALM",
+  "title": "3D-VLA: A 3D Vision-Language-Action Generative World Model",
+  "date": "2024-03",
+  "year": "2403",
+  "venue": "預印本",
+  "keywords": [
+   "3D Vision-Language-Action",
+   "World Model",
+   "Embodied AI",
+   "Goal Generation",
+   "Diffusion Model"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2403.09631",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 27,
+  "short_name": "SGD",
+  "title": "SGD: Street View Synthesis with Gaussian Splatting and Diffusion Prior",
+  "date": "2024-03",
+  "year": "2403",
+  "venue": "預印本",
+  "keywords": [
+   "3D Gaussian Splatting",
+   "Novel View Synthesis",
+   "Diffusion Prior",
+   "Street View Synthesis",
+   "Sparse View Reconstruction"
+  ],
+  "task_category": [
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2403.20079",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 28,
+  "short_name": "SubjectDrive",
+  "title": "SubjectDrive: Scaling Generative Data in Autonomous Driving via Subject Control",
+  "date": "2024-03",
+  "year": "2403",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "|",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 29,
+  "short_name": "WorldModelSurvey",
+  "title": "World Models for Autonomous Driving: An Initial Survey",
+  "date": "2024-03",
+  "year": "2403",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Autonomous Driving",
+   "Foundational Model",
+   "Model-based Reinforcement Learning",
+   "RSSM",
+   "JEPA"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2403.02622",
+  "has_notes": true,
+  "relevance": "Survey"
+ },
+ {
+  "id": 30,
+  "short_name": "LidarDM",
+  "title": "LidarDM: Generative LiDAR Simulation in a Generated World",
+  "date": "2024-04",
+  "year": "2404",
+  "venue": "預印本",
+  "keywords": [
+   "LiDAR Generation",
+   "Latent Diffusion Model",
+   "4D World Generation",
+   "Autonomous Driving Simulation",
+   "Physics-based Raycasting"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2404.02903",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 31,
+  "short_name": "DriveWorld",
+  "title": "DriveWorld: 4D Pre-trained Scene Understanding via World Models for Autonomous Driving",
+  "date": "2024-05",
+  "year": "2405",
+  "venue": "預印本",
+  "keywords": [
+   "World Model, 4D Pre-training, Occupancy, State-Space Model, Memory Bank, Task Prompt"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Motion Planning",
+   "End-to-End Driving",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2405.04390",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 32,
+  "short_name": "MagicDrive3D",
+  "title": "MagicDrive3D : Controllable 3D Generation for Any-View Rendering in Street Scenes",
+  "date": "2024-05",
+  "year": "2405",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "|",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 33,
+  "short_name": "OccSora",
+  "title": "OccSora: 4D Occupancy Generation Models as World Simulators for Autonomous Driving",
+  "date": "2024-05",
+  "year": "2405",
+  "venue": "預印本",
+  "keywords": [
+   "4D Occupancy Generation",
+   "Diffusion Transformer",
+   "Scene Tokenizer",
+   "Trajectory Conditioning",
+   "World Simulator"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Simulation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2405.20337",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 34,
+  "short_name": "Vista",
+  "title": "Vista: A Generalizable Driving World Model with High Fidelity and Versatile Controllability",
+  "date": "2024-05",
+  "year": "2405",
+  "venue": "NeurIPS 2024",
+  "keywords": [
+   "Driving World Model",
+   "Video Diffusion",
+   "Action Controllability",
+   "High-Fidelity Prediction",
+   "Reward Function"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2405.17398",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 35,
+  "short_name": "SoraWMSurvey",
+  "title": "Is Sora a World Simulator? A Comprehensive Survey on General World Models and Beyond",
+  "date": "2024-05",
+  "year": "2405",
+  "venue": "預印本",
+  "keywords": [
+   "Sora",
+   "World Model",
+   "Video Generation",
+   "Autonomous Driving",
+   "Autonomous Agent",
+   "AGI"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2405.03520",
+  "has_notes": true,
+  "relevance": "Survey"
+ },
+ {
+  "id": 36,
+  "short_name": "VideoDiffSurvey",
+  "title": "Video Diffusion Models: A Survey",
+  "date": "2024-05",
+  "year": "2405",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Video Generation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "|",
+  "has_notes": true,
+  "relevance": "Survey"
+ },
+ {
+  "id": 37,
+  "short_name": "LAW-AD",
+  "title": "Enhancing End-to-End Autonomous Driving with Latent World Model",
+  "date": "2024-06",
+  "year": "2406",
+  "venue": "ICLR 2025",
+  "keywords": [
+   "Latent World Model, Self-supervised Learning, End-to-End Autonomous Driving, Scene Feature Representation, Trajectory Prediction"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2406.08481",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 38,
+  "short_name": "UnO",
+  "title": "UnO: Unsupervised Occupancy Fields for Perception and Forecasting",
+  "date": "2024-06",
+  "year": "2406",
+  "venue": "預印本",
+  "keywords": [
+   "Unsupervised Occupancy, 4D Occupancy Field, Point Cloud Forecasting, Self-supervised Learning, LiDAR, World Model"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2406.08691",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 39,
+  "short_name": "BEVWorld",
+  "title": "BEVWorld: A Multimodal World Model for Autonomous Driving via Unified BEV Latent Space",
+  "date": "2024-07",
+  "year": "2407",
+  "venue": "預印本",
+  "keywords": [
+   "World Model, BEV, Multi-modal, Diffusion, LiDAR, Point Cloud, Future Prediction"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2407.05679",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 40,
+  "short_name": "CarFormer",
+  "title": "CarFormer: Self-Driving with Learned Object-Centric Representations",
+  "date": "2024-07",
+  "year": "2407",
+  "venue": "TIP (IEEE Transactions on Image Processing)",
+  "keywords": [
+   "Object-Centric Learning, Slot Attention, Self-Driving, World Model, Transformer, BEV"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2407.15843",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 41,
+  "short_name": "GUMP",
+  "title": "Solving Motion Planning Tasks with a Scalable Generative Model",
+  "date": "2024-07",
+  "year": "2407",
+  "venue": "預印本",
+  "keywords": [
+   "Generative World Model, Motion Planning, Traffic Simulation, Key-Value Tokenization, Scene Generation, Reinforcement Learning"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2407.02797",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 42,
+  "short_name": "Drive-OccWorld",
+  "title": "Driving in the Occupancy World: Vision-Centric 4D Occupancy Forecasting and Planning via World Models for Autonomous Driving",
+  "date": "2024-08",
+  "year": "2408",
+  "venue": "預印本",
+  "keywords": [
+   "World Model, Occupancy Forecasting, End-to-End Planning, 4D Prediction, Vision-Centric, Action-Controllable"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2408.14197",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 43,
+  "short_name": "Panacea+",
+  "title": "Panacea+: Panoramic and Controllable Video Generation for Autonomous Driving",
+  "date": "2024-08",
+  "year": "2408",
+  "venue": "IEEE TPAMI",
+  "keywords": [
+   "Multi-view Video Generation",
+   "Diffusion Models",
+   "BEV Perception",
+   "Data Augmentation",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2408.07605",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 44,
+  "short_name": "DriveArena",
+  "title": "DriveArena: A Closed-loop Generative Simulation Platform for Autonomous Driving",
+  "date": "2024-08",
+  "year": "2408",
+  "venue": "預印本",
+  "keywords": [
+   "Closed-loop Simulation",
+   "Generative Simulation",
+   "Traffic Simulation",
+   "Diffusion Model",
+   "Autonomous Driving Evaluation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2408.00415",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 45,
+  "short_name": "OccLLaMA",
+  "title": "OccLLaMA: An Occupancy-Language-Action Generative World Model for Autonomous Driving",
+  "date": "2024-09",
+  "year": "2409",
+  "venue": "IEEE TIP (Transactions on Image Processing)",
+  "keywords": [
+   "World Model, 3D Occupancy, LLM, LLaMA, VQ-VAE, Scene Tokenizer, Unified Vocabulary, Autoregressive, Motion Planning, Visual Question Answering, Autonomous Driving, nuScenes"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Motion Planning",
+   "Occupancy Prediction"
+  ],
+  "architecture": [
+   "World Model + Planner",
+   "Foundation Model"
+  ],
+  "ratings": {
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 4
+  },
+  "arxiv_id": "2409.03272",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 46,
+  "short_name": "DOME",
+  "title": "DOME: Taming Diffusion Model into High-Fidelity Controllable Occupancy World Model",
+  "date": "2024-10",
+  "year": "2410",
+  "venue": "預印本",
+  "keywords": [
+   "Occupancy World Model, Diffusion, Spatial-Temporal Transformer, Trajectory Control, 4D Prediction"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Simulation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2410.10429",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 47,
+  "short_name": "DriveDreamer4D",
+  "title": "DriveDreamer4D: World Models Are Effective Data Machines for 4D Driving Scene Representation",
+  "date": "2024-10",
+  "year": "2410",
+  "venue": "預印本",
+  "keywords": [
+   "4D Gaussian Splatting (4DGS)",
+   "World Model Prior",
+   "Novel Trajectory Synthesis",
+   "Closed-loop Simulation",
+   "Autonomous Driving",
+   "Video Diffusion"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 4,
+   "practical_value": 4,
+   "overall": 4
+  },
+  "arxiv_id": "2410.13571",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 48,
+  "short_name": "DrivingDojo",
+  "title": "DrivingDojo Dataset: Advancing Interactive and Knowledge-Enriched Driving World Model",
+  "date": "2024-10",
+  "year": "2410",
+  "venue": "NeurIPS 2024",
+  "keywords": [
+   "Driving World Model",
+   "Action Instruction Following (AIF)",
+   "Multi-agent Interplay",
+   "Open-world Knowledge",
+   "Video Generation Dataset",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 4,
+   "technical_depth": 3,
+   "experiment_completeness": 4,
+   "writing_quality": 4,
+   "practical_value": 5,
+   "overall": 4
+  },
+  "arxiv_id": "2410.10738",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 49,
+  "short_name": "DynamicCity",
+  "title": "DynamicCity: Large-Scale 4D Occupancy Generation from Dynamic Scenes",
+  "date": "2024-10",
+  "year": "2410",
+  "venue": "ICLR 2025 Spotlight",
+  "keywords": [
+   "4D Generation",
+   "LiDAR",
+   "HexPlane",
+   "DiT",
+   "Occupancy Generation"
+  ],
+  "task_category": [],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2410.18084",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 50,
+  "short_name": "SyntheOcc",
+  "title": "SyntheOcc: Synthesize Geometric-Controlled Street View Images through 3D Semantic MPIs",
+  "date": "2024-10",
+  "year": "2410",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "|",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 51,
+  "short_name": "MagicDrive-V2",
+  "title": "MagicDrive-V2: High-Resolution Long Video Generation for Autonomous Driving with Adaptive Control",
+  "date": "2024-11",
+  "year": "2411",
+  "venue": "ICCV 2025",
+  "keywords": [
+   "World Model",
+   "Video Generation",
+   "Multi-View",
+   "DiT",
+   "Autonomous Driving"
+  ],
+  "task_category": [],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2411.13807",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 52,
+  "short_name": "MagicDriveDiT",
+  "title": "MagicDrive-V2 : High-Resolution Long Video Generation for Autonomous Driving with Adaptive Control",
+  "date": "2024-11",
+  "year": "2411",
+  "venue": "預印本",
+  "keywords": [
+   "DiT (Diffusion Transformer)",
+   "3D VAE",
+   "Multi-View Video Generation",
+   "Spatial-Temporal Conditional Encoding",
+   "High-Resolution Long Video",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2411.13807",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 53,
+  "short_name": "DrivingGPT",
+  "title": "DrivingGPT: Unifying Driving World Modeling and Planning with Multi-modal Autoregressive Transformers",
+  "date": "2024-12",
+  "year": "2412",
+  "venue": "CVPR 2025",
+  "keywords": [
+   "World Model",
+   "Autoregressive",
+   "Planning",
+   "Video Generation",
+   "Next Token Prediction"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2412.18607",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 54,
+  "short_name": "DrivingWorld",
+  "title": "DrivingWorld: Constructing World Model for Autonomous Driving via Video GPT",
+  "date": "2024-12",
+  "year": "2412",
+  "venue": "預印本",
+  "keywords": [
+   "GPT-style World Model",
+   "Autoregressive Video Generation",
+   "Temporal-aware VQVAE",
+   "Next-state Prediction",
+   "Controllable Generation",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2412.19505",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 55,
+  "short_name": "GEM",
+  "title": "GEM: A Generalizable Ego-Vision Multimodal World Model for Fine-Grained Ego-Motion, Object Dynamics, and Scene Composition Control",
+  "date": "2024-12",
+  "year": "2412",
+  "venue": "預印本",
+  "keywords": [
+   "(待補充)"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "|",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 56,
+  "short_name": "GaussianWorld",
+  "title": "GaussianWorld: Gaussian World Model for Streaming 3D Occupancy Prediction",
+  "date": "2024-12",
+  "year": "2412",
+  "venue": "預印本",
+  "keywords": [
+   "3D Gaussian Splatting",
+   "World Model for Perception",
+   "Streaming 3D Occupancy Prediction",
+   "Scene Evolution Modeling",
+   "Temporal Modeling",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2412.10373",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 57,
+  "short_name": "InfiniCube",
+  "title": "InfiniCube: Unbounded and Controllable Dynamic 3D Driving Scene Generation with World-Guided Video Models",
+  "date": "2024-12",
+  "year": "2412",
+  "venue": "預印本",
+  "keywords": [
+   "3D Gaussian Splatting",
+   "Voxel World Generation",
+   "Video Diffusion Model",
+   "Dynamic Scene Generation",
+   "HD Map Conditioning"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2412.03934",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 58,
+  "short_name": "InfinityDrive",
+  "title": "InfinityDrive: Breaking Time Limits in Driving World Models",
+  "date": "2024-12",
+  "year": "2412",
+  "venue": "IEEE TIP",
+  "keywords": [
+   "Driving World Model",
+   "Long-term Video Generation",
+   "Spatio-Temporal Co-Modeling",
+   "Memory Injection and Retention",
+   "Diffusion Transformer (DiT)"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2412.01522",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 59,
+  "short_name": "SceneDiffuser",
+  "title": "SceneDiffuser: Efficient and Controllable Driving Simulation Initialization and Rollout",
+  "date": "2024-12",
+  "year": "2412",
+  "venue": "NeurIPS 2024",
+  "keywords": [
+   "Scene-level Diffusion",
+   "Traffic Simulation",
+   "Amortized Diffusion",
+   "Controllable Scene Generation",
+   "Closed-loop Simulation"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2412.12129",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 60,
+  "short_name": "UniScene",
+  "title": "UniScene: Unified Occupancy-centric Driving Scene Generation",
+  "date": "2024-12",
+  "year": "2412",
+  "venue": "IEEE TIP",
+  "keywords": [
+   "Occupancy-centric Generation",
+   "Multi-modal Data Generation",
+   "Gaussian Splatting Rendering",
+   "Sparse Modeling",
+   "Diffusion Transformer"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Occupancy Prediction",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2412.05435",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 61,
+  "short_name": "AdaWM",
+  "title": "AdaWM: Adaptive World Model based Planning for Autonomous Driving",
+  "date": "2025-01",
+  "year": "2501",
+  "venue": "ICLR 2025",
+  "keywords": [
+   "World Model",
+   "Reinforcement Learning",
+   "Adaptive Planning",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2501.13072",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 62,
+  "short_name": "DAPTIVE",
+  "title": "AdaWM: Adaptive World Model based Planning for Autonomous Driving",
+  "date": "2025-01",
+  "year": "2501",
+  "venue": "ICLR 2025",
+  "keywords": [
+   "World Model based Reinforcement Learning",
+   "Pretrain-Finetune",
+   "Distribution Shift",
+   "Dynamics Model Mismatch",
+   "Policy Mismatch",
+   "Low-rank Adaptation (LoRA)",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [
+   "End-to-End",
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 4,
+   "practical_value": 4,
+   "overall": 4
+  },
+  "arxiv_id": "2501.13072",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 63,
+  "short_name": "HERMES",
+  "title": "HERMES: A Unified Self-Driving World Model for Simultaneous 3D Scene Understanding and Generation",
+  "date": "2025-01",
+  "year": "2501",
+  "venue": "預印本",
+  "keywords": [
+   "Unified World Model",
+   "3D Scene Understanding",
+   "Point Cloud Generation",
+   "Bird's Eye View (BEV)",
+   "Large Language Model"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding"
+  ],
+  "architecture": [
+   "World Model + Planner",
+   "Foundation Model"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2501.14729",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 64,
+  "short_name": "MaskGWM",
+  "title": "MaskGWM: A Generalizable Driving World Model with Video Mask Reconstruction",
+  "date": "2025-02",
+  "year": "2502",
+  "venue": "預印本",
+  "keywords": [
+   "Driving World Model",
+   "Video Mask Reconstruction",
+   "Diffusion Transformer (DiT)",
+   "Generalizable Generation",
+   "Long-horizon Prediction"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2502.11663",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 65,
+  "short_name": "OccProphet",
+  "title": "OccProphet: Pushing Efficiency Frontier of Camera-Only 4D Occupancy Forecasting with Observer-Forecaster-Refiner Framework",
+  "date": "2025-02",
+  "year": "2502",
+  "venue": "ICLR 2025",
+  "keywords": [
+   "Occupancy Prediction",
+   "4D Forecasting",
+   "Efficiency",
+   "Camera-Only",
+   "Autonomous Driving"
+  ],
+  "task_category": [],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2502.15180",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 66,
+  "short_name": "PreWorld",
+  "title": "PreWorld: Semi-Supervised Vision-Centric 3D Occupancy World Model for Autonomous Driving",
+  "date": "2025-02",
+  "year": "2502",
+  "venue": "ICLR 2025",
+  "keywords": [
+   "World Model",
+   "Occupancy Prediction",
+   "Semi-Supervised",
+   "3D Scene Understanding"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2502.07309",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 67,
+  "short_name": "Role",
+  "title": "The Role of World Models in Shaping Autonomous Driving: A Comprehensive Survey",
+  "date": "2025-02",
+  "year": "2502",
+  "venue": "預印本",
+  "keywords": [
+   "Driving World Model (DWM)",
+   "Scene Evolution Prediction",
+   "2D/3D Scene Generation",
+   "Autonomous Driving Survey",
+   "Simulation and Data Generation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2502.10498",
+  "has_notes": true,
+  "relevance": "Survey"
+ },
+ {
+  "id": 68,
+  "short_name": "DiST-4D",
+  "title": "DiST-4D: Disentangled Spatiotemporal Diffusion with Metric Depth for 4D Driving Scene Generation",
+  "date": "2025-03",
+  "year": "2503",
+  "venue": "預印本",
+  "keywords": [
+   "4D Driving Scene Generation",
+   "Disentangled Spatiotemporal Diffusion",
+   "Metric Depth",
+   "Novel View Synthesis (NVS)",
+   "Temporal Prediction",
+   "Self-supervised Cycle Consistency"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 5,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 4,
+   "practical_value": 4,
+   "overall": 4
+  },
+  "arxiv_id": "2503.15208",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 69,
+  "short_name": "GAIA-2",
+  "title": "GAIA-2: A Controllable Multi-View Generative World Model for Autonomous Driving",
+  "date": "2025-03",
+  "year": "2503",
+  "venue": "預印本 (Waymo)",
+  "keywords": [
+   "Multi-View Video Generation",
+   "Latent Diffusion Model",
+   "Flow Matching",
+   "Controllable Generation",
+   "Autonomous Driving Simulation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner",
+   "Foundation Model"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2503.20523",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 70,
+  "short_name": "MiLA",
+  "title": "MiLA: Multi-view Intensive-fidelity Long-term Video Generation World Model for Autonomous Driving",
+  "date": "2025-03",
+  "year": "2503",
+  "venue": "預印本",
+  "keywords": [
+   "Long-term Video Generation",
+   "Coarse-to-Refine Framework",
+   "Temporal Progressive Denoising",
+   "Joint Denoising and Correcting Flow",
+   "Multi-view Driving World Model"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2503.15875",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 71,
+  "short_name": "UniFuture",
+  "title": "Seeing the Future, Perceiving the Future: A Unified Driving World Model for Future Generation and Perception",
+  "date": "2025-03",
+  "year": "2503",
+  "venue": "IEEE TIP",
+  "keywords": [
+   "Unified World Model",
+   "Future Generation and Perception",
+   "Dual-Latent Sharing",
+   "Depth Estimation",
+   "Diffusion Model"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2503.13587",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 72,
+  "short_name": "SimWorld",
+  "title": "SimWorld: A Unified Benchmark for Simulator-Conditioned Scene Generation via World Model",
+  "date": "2025-03",
+  "year": "2503",
+  "venue": "預印本",
+  "keywords": [
+   "Simulator-Conditioned Generation",
+   "World Model",
+   "Autonomous Driving Data Generation",
+   "ControlNet",
+   "Parallel Mining Simulation"
+  ],
+  "task_category": [
+   "World Model",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2503.13952",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 73,
+  "short_name": "FutureSightDrive",
+  "title": "FutureSightDrive: Thinking Visually with Spatio-Temporal CoT for Autonomous Driving",
+  "date": "2025-05",
+  "year": "2505",
+  "venue": "NeurIPS 2025 Spotlight",
+  "keywords": [
+   "World Model",
+   "VLA",
+   "Visual CoT",
+   "Future Prediction",
+   "Planning"
+  ],
+  "task_category": [],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2505.17685",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 74,
+  "short_name": "GeoDrive",
+  "title": "GeoDrive: 3D Geometry-Informed Driving World Model with Precise Action Control",
+  "date": "2025-05",
+  "year": "2505",
+  "venue": "預印本",
+  "keywords": [
+   "3D Geometry-Informed World Model",
+   "MonST3R",
+   "Dynamic Editing",
+   "Trajectory Control",
+   "Video Diffusion"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2505.22421",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 75,
+  "short_name": "ProphetDWM",
+  "title": "ProphetDWM: A Driving World Model for Rolling Out Future Actions and Videos",
+  "date": "2025-05",
+  "year": "2505",
+  "venue": "IEEE TIP",
+  "keywords": [
+   "Driving World Model",
+   "Joint Video-Action Prediction",
+   "Diffusion Model",
+   "POMDP",
+   "Latent Action Learning"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2505.18650",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 76,
+  "short_name": "Cosmos-Drive-Dreams",
+  "title": "Cosmos-Drive-Dreams : Scalable Synthetic Driving Data Generation with World Foundation Models",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "World Foundation Model (WFM)",
+   "Synthetic Driving Data Generation (SDG)",
+   "Multi-view Video Generation",
+   "HDMap Conditioning",
+   "LiDAR Generation",
+   "Autonomous Driving Simulation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "Foundation Model"
+  ],
+  "ratings": {
+   "innovation": 5,
+   "technical_depth": 5,
+   "experiment_completeness": 5,
+   "writing_quality": 4,
+   "practical_value": 5,
+   "overall": 5
+  },
+  "arxiv_id": "2506.09042",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 77,
+  "short_name": "Epona",
+  "title": "Epona: Autoregressive Diffusion World Model for Autonomous Driving",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "Autoregressive Diffusion",
+   "Driving World Model",
+   "Long-horizon Video Generation",
+   "Trajectory Planning",
+   "Flow Matching"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [
+   "End-to-End",
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2506.24113",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 78,
+  "short_name": "LongDWM",
+  "title": "LongDWM: Cross-Granularity Distillation for Building a Long-Term Driving World Model",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "Driving World Model",
+   "Long Video Generation",
+   "Diffusion Transformer (DiT)",
+   "Cross-Granularity Distillation",
+   "Error Accumulation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2506.01546",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 79,
+  "short_name": "ReSim",
+  "title": "ReSim: Reliable World Simulation for Autonomous Driving",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "Driving World Model",
+   "Action Controllability",
+   "Simulator Data Integration",
+   "Video2Reward",
+   "Non-expert Behaviors",
+   "CARLA Simulation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2506.09981",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 80,
+  "short_name": "STAGE",
+  "title": "STAGE: A Stream-Centric Generative World Model for Long-Horizon Driving-Scene Simulation",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "Streaming Video Generation",
+   "Driving World Model",
+   "Hierarchical Temporal Feature Transfer (HTFT)",
+   "Multi-stage Training",
+   "Infinite Video Generation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2506.13138",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 81,
+  "short_name": "World4Drive",
+  "title": "World4Drive: End-to-End Autonomous Driving via Intention-aware Physical Latent World Model",
+  "date": "2025-07",
+  "year": "2507",
+  "venue": "預印本",
+  "keywords": [
+   "End-to-End Autonomous Driving",
+   "Latent World Model",
+   "Intention-aware Planning",
+   "Vision Foundation Model",
+   "Self-supervised Learning"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "End-to-End",
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2507.00603",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 82,
+  "short_name": "TeraSim-World",
+  "title": "TeraSim-World: Worldwide Safety-Critical Data Synthesis for End-to-End Autonomous Driving",
+  "date": "2025-09",
+  "year": "2509",
+  "venue": "預印本 (Mcity/UMich)",
+  "keywords": [
+   "Safety-Critical",
+   "Data Synthesis",
+   "Long-Tail",
+   "Cosmos-Drive",
+   "Corner Cases"
+  ],
+  "task_category": [],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2509.13164",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 83,
+  "short_name": "DriveVLA-W0",
+  "title": "DriveVLA-W0: World Models Amplify Data Scaling Law in Autonomous Driving",
+  "date": "2025-10",
+  "year": "2510",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "VLA",
+   "Data Scaling",
+   "Autonomous Driving",
+   "Self-Supervised"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2510.12796",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 84,
+  "short_name": "DriveLaW",
+  "title": "DriveLaW: Unifying Planning and Video Generation in a Latent Driving World",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Latent Space",
+   "Video Generation",
+   "Planning",
+   "Diffusion Transformer"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.23421",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 85,
+  "short_name": "GaussianDWM",
+  "title": "GaussianDWM: 3D Gaussian Driving World Model for Unified Scene Understanding and Multi-Modal Generation",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "3D Gaussian Splatting",
+   "Driving World Model",
+   "Scene Understanding",
+   "Multi-modal Generation",
+   "Vision-Language Model",
+   "Novel View Synthesis"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Neural Rendering"
+  ],
+  "architecture": [
+   "World Model + Planner",
+   "Foundation Model"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.23180",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 86,
+  "short_name": "InDRiVE",
+  "title": "InDRiVE: Reward-Free World-Model Pretraining for Autonomous Driving via Latent Disagreement",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Reinforcement Learning",
+   "Reward-Free",
+   "Exploration",
+   "CARLA"
+  ],
+  "task_category": [
+   "World Model",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.18850",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 87,
+  "short_name": "WorldRFT",
+  "title": "WorldRFT: Latent World Model Planning with Reinforcement Fine-Tuning for Autonomous Driving",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "AAAI 2026",
+  "keywords": [
+   "World Model",
+   "Reinforcement Learning",
+   "Planning",
+   "Safety-Aware"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.19133",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 88,
+  "short_name": "DrivingGen",
+  "title": "DrivingGen: A Comprehensive Benchmark for Generative Video World Models in Autonomous Driving",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "預印本",
+  "keywords": [
+   "Benchmark",
+   "World Model",
+   "Video Generation",
+   "Evaluation",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.01528",
+  "has_notes": true,
+  "relevance": "Survey"
+ },
+ {
+  "id": 89,
+  "short_name": "AD-L-JEPA",
+  "title": "Value-guided JEPA for Action Planning",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "預印本",
+  "keywords": [
+   "JEPA (Joint-Embedded Predictive Architectures)",
+   "World Model",
+   "Action Planning",
+   "Value Function",
+   "Implicit Q-Learning (IQL)",
+   "Quasimetric Distance"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.00844",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 90,
+  "short_name": "NeoVerse",
+  "title": "NeoVerse: Enhancing 4D World Model with in-the-wild Monocular Videos",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "CVPR 2026",
+  "keywords": [
+   "4D World Model",
+   "Monocular Video",
+   "3D Reconstruction",
+   "Novel View Synthesis"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.00393",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ },
+ {
+  "id": 91,
+  "short_name": "UniDrive-WM",
+  "title": "UniDrive-WM: Unified Understanding, Planning and Generation World Model For Autonomous Driving",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "VLM",
+   "Planning",
+   "Generation",
+   "Unified"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.04453",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 92,
+  "short_name": "RAYNOVA",
+  "title": "RAYNOVA: Scale-Temporal Autoregressive World Modeling in Ray Space",
+  "date": "2026-02",
+  "year": "2602",
+  "venue": "CVPR 2026",
+  "keywords": [
+   "World Model",
+   "Multi-View Video Generation",
+   "Ray Space",
+   "Autoregressive"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2602.20685",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 93,
+  "short_name": "RaWMPC",
+  "title": "Risk-Aware World Model Predictive Control for Generalizable End-to-End Autonomous Driving",
+  "date": "2026-02",
+  "year": "2602",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Model Predictive Control",
+   "Risk-Aware",
+   "End-to-End Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2602.23259",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 94,
+  "short_name": "ResWorld",
+  "title": "ResWorld: Temporal Residual World Model for End-to-End Autonomous Driving",
+  "date": "2026-02",
+  "year": "2602",
+  "venue": "ICLR 2026",
+  "keywords": [
+   "World Model",
+   "Temporal Residual",
+   "Planning",
+   "Dynamic Object Modeling"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2602.10884",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 95,
+  "short_name": "WaymoWM",
+  "title": "The Waymo World Model: A New Frontier For Autonomous Driving Simulation",
+  "date": "2026-02",
+  "year": "2602",
+  "venue": "Waymo Blog (2026-02-06)",
+  "keywords": [
+   "World Model",
+   "Simulation",
+   "Genie 3",
+   "Multi-Sensor",
+   "Long-Tail"
+  ],
+  "task_category": [
+   "World Model",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "N/A (Industry Blog)",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 96,
+  "short_name": "LatentWMSurvey",
+  "title": "Latent World Models for Automated Driving: A Unified Taxonomy, Evaluation Framework, and Open Challenges",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Survey",
+   "Latent World Model",
+   "Autonomous Driving",
+   "Taxonomy"
+  ],
+  "task_category": [
+   "World Model"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.09086",
+  "has_notes": true,
+  "relevance": "Survey"
+ },
+ {
+  "id": 97,
+  "short_name": "Raw2Drive",
+  "title": "Raw2Drive: Reinforcement Learning with Aligned World Models for End-to-End Autonomous Driving (in CARLA v2)",
+  "date": "2025-05",
+  "year": "2505",
+  "venue": "NeurIPS 2025",
+  "keywords": [
+   "Model-based Reinforcement Learning",
+   "End-to-End Autonomous Driving",
+   "World Model",
+   "Dual-stream Architecture",
+   "Guidance Mechanism",
+   "CARLA Leaderboard 2.0",
+   "Bench2Drive",
+   "DreamerV3",
+   "RSSM",
+   "BEVFormer"
+  ],
+  "task_category": [
+   "World Model",
+   "End-to-End Driving",
+   "Motion Planning"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 4,
+   "practical_value": 3,
+   "overall": 4
+  },
+  "arxiv_id": "2505.16394",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 98,
+  "short_name": "I2-World",
+  "title": "I²-World: Intra-Inter Tokenization for Efficient Dynamic 4D Scene Forecasting",
+  "date": "2025-07",
+  "year": "2507",
+  "venue": "ICCV 2025",
+  "keywords": [
+   "4D Occupancy Forecasting",
+   "Scene Tokenization",
+   "World Model",
+   "Intra-Inter Tokenization",
+   "Transformation Matrix",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 3,
+   "practical_value": 4,
+   "overall": 4
+  },
+  "arxiv_id": "2507.09144",
+  "has_notes": true,
+  "relevance": "World Model Core"
+ },
+ {
+  "id": 99,
+  "short_name": "LiDARCrafter",
+  "title": "LiDARCrafter: Dynamic 4D World Modeling from LiDAR Sequences",
+  "date": "2025-08",
+  "year": "2508",
+  "venue": "AAAI 2026",
+  "keywords": [
+   "World Model",
+   "LiDAR Point Cloud Generation",
+   "4D Scene Generation",
+   "Diffusion Model",
+   "Autoregressive Generation",
+   "Scene Graph",
+   "Autonomous Driving",
+   "Controllable Generation"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 5,
+   "writing_quality": 4,
+   "practical_value": 4,
+   "overall": 4
+  },
+  "arxiv_id": "2508.03692",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case"
+ }
+]

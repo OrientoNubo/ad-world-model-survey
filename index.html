@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AD World Model - Paper Relationship Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/paper-card.css">
+  <link rel="stylesheet" href="css/whiteboard.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" onerror="
+    var s=document.createElement('script');
+    s.src='lib/marked.min.js';
+    document.head.appendChild(s);
+  "></script>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <span class="header-title">AD World Model Map</span>
+  <input type="text" class="header-search" id="searchBox" placeholder="Search papers...">
+  <div class="header-spacer"></div>
+  <button class="header-btn" id="placeAllBtn" title="Auto-place all papers on whiteboard">Place All</button>
+  <button class="header-btn" id="connectBtn" title="Toggle connect mode">Connect</button>
+  <button class="header-btn" id="exportBtn" title="Export layout">Export</button>
+  <button class="header-btn" id="importBtn" title="Import layout">Import</button>
+  <button class="header-btn" id="resetBtn" title="Clear whiteboard">Reset</button>
+  <button class="header-btn" id="themeBtn">Dark</button>
+  <button class="header-btn" id="fullscreenBtn" title="Toggle fullscreen">FS</button>
+</div>
+
+<!-- Main Layout -->
+<div class="main-container">
+  <!-- Left Panel -->
+  <div class="left-panel" id="leftPanel">
+    <div class="filter-area" id="filterArea">
+      <div class="filter-toggle" id="filterToggle">Filters</div>
+      <div class="filter-content" id="filterContent"></div>
+    </div>
+    <div class="card-list-header">
+      <span id="cardCount">0 papers</span>
+      <span id="boardCount">0 on board</span>
+    </div>
+    <div class="card-list" id="cardList"></div>
+  </div>
+
+  <!-- Resizable divider -->
+  <div class="panel-resizer" id="panelResizer"></div>
+
+  <!-- Right Panel: Whiteboard -->
+  <div class="right-panel" id="rightPanel">
+    <div class="map-wrapper" id="mapWrapper">
+      <div class="mapboard" id="mapboard">
+        <svg class="connections-svg" id="connectionsSvg"></svg>
+        <div class="drop-hint" id="dropHint">Drag papers here or double-click to add text</div>
+      </div>
+    </div>
+    <div class="zoom-indicator" id="zoomIndicator">100%</div>
+  </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-body">
+    <div class="modal-header">
+      <div class="modal-header-title">
+        <h2 id="modalTitle"></h2>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+      </div>
+      <button class="modal-close" id="modalClose">&times;</button>
+    </div>
+    <div class="modal-content-wrapper">
+      <nav class="modal-nav" id="modalNav"></nav>
+      <div class="modal-content" id="modalContent">
+        <div class="modal-loading">Loading...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Connection Edit Popup -->
+<div class="edit-popup" id="connEditPopup" style="display:none">
+  <input type="text" id="connEditText" placeholder="Connection label...">
+  <div class="popup-actions">
+    <button class="danger" id="connDeleteBtn">Delete</button>
+    <button class="primary" id="connSaveBtn">Save</button>
+  </div>
+</div>
+
+<!-- Annotation Edit Popup -->
+<div class="edit-popup" id="annEditPopup" style="display:none">
+  <textarea id="annEditText" rows="3" placeholder="Text content..."></textarea>
+  <div class="popup-actions">
+    <button class="danger" id="annDeleteBtn">Delete</button>
+    <button class="primary" id="annSaveBtn">Save</button>
+  </div>
+</div>
+
+<!-- Context Menu -->
+<div class="context-menu" id="contextMenu" style="display:none"></div>
+
+<!-- Import/Export Modal -->
+<div class="modal-overlay" id="ioOverlay">
+  <div class="modal-body" style="width:500px;height:auto;max-height:300px">
+    <div class="modal-header">
+      <div class="modal-header-title"><h2 id="ioTitle">Export Layout</h2></div>
+      <button class="modal-close" id="ioClose">&times;</button>
+    </div>
+    <div style="padding:16px">
+      <textarea id="layoutCode" rows="6" style="width:100%;font-family:var(--font-mono);font-size:11px;padding:10px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);color:var(--text);resize:vertical"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+        <button class="header-btn" id="ioCopyBtn">Copy</button>
+        <button class="header-btn" id="ioApplyBtn">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
