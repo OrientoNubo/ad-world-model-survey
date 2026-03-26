@@ -172,24 +172,70 @@ html, body {
   letter-spacing: 0.6px;
 }
 
-.filter-group label {
+/* Tri-state filter items */
+.filter-item {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 11px;
-  padding: 2px 0;
-  cursor: pointer;
-  border-radius: var(--radius-sm);
-  transition: color var(--transition);
+  padding: 1px 0;
 }
 
-.filter-group label:hover { color: var(--accent); }
+.filter-btn {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
 
-.filter-group input[type="checkbox"] {
-  width: 14px;
-  height: 14px;
-  margin: 0;
-  accent-color: var(--accent);
+.filter-btn:hover {
+  border-color: var(--text-muted);
+}
+
+/* Include state: green checkmark */
+.filter-btn[data-state="include"] {
+  background: #22c55e;
+  border-color: #22c55e;
+}
+
+.filter-btn[data-state="include"] .filter-icon::after {
+  content: '✓';
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Exclude state: red cross */
+.filter-btn[data-state="exclude"] {
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+.filter-btn[data-state="exclude"] .filter-icon::after {
+  content: '✗';
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.filter-label {
+  font-size: 11px;
+  cursor: default;
+  user-select: none;
+}
+
+.filter-btn[data-state="exclude"] + .filter-label {
+  color: var(--text-muted);
+  text-decoration: line-through;
 }
 
 /* Card list */

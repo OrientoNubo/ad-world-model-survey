@@ -1,5 +1,13 @@
 /**
  * Left panel: filter UI + paper card list.
+ *
+ * Filter logic:
+ *   - Tri-state per value: neutral / include (✓) / exclude (✗)
+ *   - Include = AND: paper must satisfy ALL include constraints
+ *   - Exclude = AND: paper is hidden if it matches ANY exclude value
+ *   - Within a single filter group with multiple includes, category uses
+ *     AND (paper must have every selected category), venue/relevance use
+ *     AND as well (single-value fields, so multiple includes = intersection).
  */
 
 import { state, notify } from './state.js';
@@ -36,10 +44,11 @@ function buildFilters(papers) {
     if (p.relevance) relevances.add(p.relevance);
   }
 
+  // Each filter key maps to { include: Set, exclude: Set }
   state.filters = {
-    category: new Set(),
-    venue: new Set(),
-    relevance: new Set(),
+    category:  { include: new Set(), exclude: new Set() },
+    venue:     { include: new Set(), exclude: new Set() },
+    relevance: { include: new Set(), exclude: new Set() },
   };
 
   let html = '';
@@ -58,16 +67,29 @@ function buildFilters(papers) {
 
   container.innerHTML = html;
 
-  // Wire up checkbox events
-  container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-    cb.addEventListener('change', () => {
-      const key = cb.dataset.filterKey;
-      const val = cb.dataset.filterVal;
-      if (cb.checked) {
-        state.filters[key].add(val);
+  // Wire up tri-state click events
+  container.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.filterKey;
+      const val = btn.dataset.filterVal;
+      const f = state.filters[key];
+      const cur = btn.dataset.state || 'neutral';
+
+      if (cur === 'neutral') {
+        // → include
+        btn.dataset.state = 'include';
+        f.include.add(val);
+      } else if (cur === 'include') {
+        // → exclude
+        btn.dataset.state = 'exclude';
+        f.include.delete(val);
+        f.exclude.add(val);
       } else {
-        state.filters[key].delete(val);
+        // → neutral
+        btn.dataset.state = 'neutral';
+        f.exclude.delete(val);
       }
+
       renderCards();
       notify('filter');
     });
@@ -77,29 +99,39 @@ function buildFilters(papers) {
 function filterGroupHTML(title, key, values) {
   let html = `<div class="filter-group"><div class="filter-group-title">${title}</div>`;
   for (const v of values) {
-    const id = `f_${key}_${v.replace(/\W/g, '_')}`;
-    html += `<label><input type="checkbox" id="${id}" data-filter-key="${key}" data-filter-val="${v}"> ${v}</label>`;
+    html += `<div class="filter-item">
+      <button class="filter-btn" data-filter-key="${key}" data-filter-val="${v}" data-state="neutral">
+        <span class="filter-icon"></span>
+      </button>
+      <span class="filter-label">${v}</span>
+    </div>`;
   }
   html += '</div>';
   return html;
 }
 
 function matchesFilters(paper) {
-  // Category filter (OR within category)
-  if (state.filters.category.size > 0) {
-    const cats = paper.task_category || [];
-    if (!cats.some(c => state.filters.category.has(c))) return false;
+  // --- Category (multi-value field, AND for includes) ---
+  const catF = state.filters.category;
+  const cats = paper.task_category || [];
+  // Exclude: if paper has ANY excluded category → hide
+  if (catF.exclude.size > 0 && cats.some(c => catF.exclude.has(c))) return false;
+  // Include (AND): paper must have EVERY included category
+  if (catF.include.size > 0) {
+    for (const inc of catF.include) {
+      if (!cats.includes(inc)) return false;
+    }
   }
 
-  // Venue filter
-  if (state.filters.venue.size > 0) {
-    if (!state.filters.venue.has(paper.venue)) return false;
-  }
+  // --- Venue (single-value field) ---
+  const venF = state.filters.venue;
+  if (venF.exclude.size > 0 && venF.exclude.has(paper.venue)) return false;
+  if (venF.include.size > 0 && !venF.include.has(paper.venue)) return false;
 
-  // Relevance filter
-  if (state.filters.relevance.size > 0) {
-    if (!state.filters.relevance.has(paper.relevance)) return false;
-  }
+  // --- Relevance (single-value field) ---
+  const relF = state.filters.relevance;
+  if (relF.exclude.size > 0 && relF.exclude.has(paper.relevance)) return false;
+  if (relF.include.size > 0 && !relF.include.has(paper.relevance)) return false;
 
   // Search
   if (state.searchQuery) {
