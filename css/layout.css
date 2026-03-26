@@ -163,13 +163,44 @@ html, body {
   margin-bottom: 8px;
 }
 
+.filter-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
 .filter-group-title {
   font-weight: 600;
   font-size: 10px;
   color: var(--text-muted);
-  margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 0.6px;
+}
+
+.filter-mode-toggle {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--surface-alt);
+  color: var(--text-muted);
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  line-height: 16px;
+  transition: all var(--transition);
+}
+
+.filter-mode-toggle:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.filter-mode-toggle[data-mode="and"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* Tri-state filter items */

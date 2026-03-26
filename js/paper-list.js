@@ -1,13 +1,13 @@
 /**
  * Left panel: filter UI + paper card list.
  *
- * Filter logic (faceted search):
+ * Filter logic:
  *   - Tri-state per value: neutral / include (✓) / exclude (✗)
- *   - ACROSS groups: AND (paper must pass every group's filter)
- *   - WITHIN a group (includes): OR (paper matches if it has any included value)
- *   - WITHIN a group (excludes): AND (paper hidden if it matches any excluded value)
- *   - Category is multi-value: OR for includes, any excluded cat hides paper
- *   - Venue/Relevance are single-value: OR for includes within group
+ *   - ACROSS groups: AND (paper must pass every group)
+ *   - WITHIN a group: toggleable AND/OR mode per group
+ *     - OR:  paper matches if it has ANY included value (union, broadens)
+ *     - AND: paper matches only if it has ALL included values (intersection, narrows)
+ *   - Excludes always use OR (any excluded value hides the paper)
  */
 
 import { state, notify } from './state.js';
@@ -44,11 +44,11 @@ function buildFilters(papers) {
     if (p.relevance) relevances.add(p.relevance);
   }
 
-  // Each filter key maps to { include: Set, exclude: Set }
+  // Each filter key: { include, exclude, mode }
   state.filters = {
-    category:  { include: new Set(), exclude: new Set() },
-    venue:     { include: new Set(), exclude: new Set() },
-    relevance: { include: new Set(), exclude: new Set() },
+    category:  { include: new Set(), exclude: new Set(), mode: 'or' },
+    venue:     { include: new Set(), exclude: new Set(), mode: 'or' },
+    relevance: { include: new Set(), exclude: new Set(), mode: 'or' },
   };
 
   let html = '';
@@ -76,16 +76,13 @@ function buildFilters(papers) {
       const cur = btn.dataset.state || 'neutral';
 
       if (cur === 'neutral') {
-        // → include
         btn.dataset.state = 'include';
         f.include.add(val);
       } else if (cur === 'include') {
-        // → exclude
         btn.dataset.state = 'exclude';
         f.include.delete(val);
         f.exclude.add(val);
       } else {
-        // → neutral
         btn.dataset.state = 'neutral';
         f.exclude.delete(val);
       }
@@ -94,10 +91,27 @@ function buildFilters(papers) {
       notify('filter');
     });
   });
+
+  // Wire up AND/OR toggle buttons
+  container.querySelectorAll('.filter-mode-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const key = toggle.dataset.filterKey;
+      const f = state.filters[key];
+      f.mode = f.mode === 'or' ? 'and' : 'or';
+      toggle.dataset.mode = f.mode;
+      toggle.textContent = f.mode.toUpperCase();
+      renderCards();
+      notify('filter');
+    });
+  });
 }
 
 function filterGroupHTML(title, key, values) {
-  let html = `<div class="filter-group"><div class="filter-group-title">${title}</div>`;
+  let html = `<div class="filter-group">
+    <div class="filter-group-header">
+      <div class="filter-group-title">${title}</div>
+      <button class="filter-mode-toggle" data-filter-key="${key}" data-mode="or" title="Toggle AND/OR logic">OR</button>
+    </div>`;
   for (const v of values) {
     html += `<div class="filter-item">
       <button class="filter-btn" data-filter-key="${key}" data-filter-val="${v}" data-state="neutral">
@@ -110,24 +124,40 @@ function filterGroupHTML(title, key, values) {
   return html;
 }
 
+/**
+ * Check if a paper's values pass a filter group.
+ * @param {string[]} paperValues - the paper's values for this field (array)
+ * @param {{ include: Set, exclude: Set, mode: string }} filter
+ */
+function passesGroup(paperValues, filter) {
+  // Exclude: paper hidden if ANY value is excluded
+  if (filter.exclude.size > 0 && paperValues.some(v => filter.exclude.has(v))) return false;
+
+  // Include
+  if (filter.include.size > 0) {
+    if (filter.mode === 'and') {
+      // AND: paper must contain ALL included values
+      for (const inc of filter.include) {
+        if (!paperValues.includes(inc)) return false;
+      }
+    } else {
+      // OR: paper must contain at least ONE included value
+      if (!paperValues.some(v => filter.include.has(v))) return false;
+    }
+  }
+
+  return true;
+}
+
 function matchesFilters(paper) {
-  // --- Category (multi-value field) ---
-  const catF = state.filters.category;
-  const cats = paper.task_category || [];
-  // Exclude: if paper has ANY excluded category → hide
-  if (catF.exclude.size > 0 && cats.some(c => catF.exclude.has(c))) return false;
-  // Include (OR within group): paper must have at least one included category
-  if (catF.include.size > 0 && !cats.some(c => catF.include.has(c))) return false;
+  // Category (multi-value)
+  if (!passesGroup(paper.task_category || [], state.filters.category)) return false;
 
-  // --- Venue (single-value field) ---
-  const venF = state.filters.venue;
-  if (venF.exclude.size > 0 && venF.exclude.has(paper.venue)) return false;
-  if (venF.include.size > 0 && !venF.include.has(paper.venue)) return false;
+  // Venue (single-value → wrap in array)
+  if (!passesGroup(paper.venue ? [paper.venue] : [], state.filters.venue)) return false;
 
-  // --- Relevance (single-value field) ---
-  const relF = state.filters.relevance;
-  if (relF.exclude.size > 0 && relF.exclude.has(paper.relevance)) return false;
-  if (relF.include.size > 0 && !relF.include.has(paper.relevance)) return false;
+  // Relevance (single-value → wrap in array)
+  if (!passesGroup(paper.relevance ? [paper.relevance] : [], state.filters.relevance)) return false;
 
   // Search
   if (state.searchQuery) {
