@@ -1540,39 +1540,6 @@
  },
  {
   "id": 52,
-  "short_name": "MagicDriveDiT",
-  "title": "MagicDrive-V2 : High-Resolution Long Video Generation for Autonomous Driving with Adaptive Control",
-  "date": "2024-11",
-  "year": "2411",
-  "venue": "預印本",
-  "keywords": [
-   "DiT (Diffusion Transformer)",
-   "3D VAE",
-   "Multi-View Video Generation",
-   "Spatial-Temporal Conditional Encoding",
-   "High-Resolution Long Video",
-   "Autonomous Driving"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Simulation"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2411.13807",
-  "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
- },
- {
-  "id": 53,
   "short_name": "DrivingGPT",
   "title": "DrivingGPT: Unifying Driving World Modeling and Planning with Multi-modal Autoregressive Transformers",
   "date": "2024-12",
@@ -1605,7 +1572,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 54,
+  "id": 53,
   "short_name": "DrivingWorld",
   "title": "DrivingWorld: Constructing World Model for Autonomous Driving via Video GPT",
   "date": "2024-12",
@@ -1638,7 +1605,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 55,
+  "id": 54,
   "short_name": "GEM",
   "title": "GEM: A Generalizable Ego-Vision Multimodal World Model for Fine-Grained Ego-Motion, Object Dynamics, and Scene Composition Control",
   "date": "2024-12",
@@ -1666,7 +1633,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 56,
+  "id": 55,
   "short_name": "GaussianWorld",
   "title": "GaussianWorld: Gaussian World Model for Streaming 3D Occupancy Prediction",
   "date": "2024-12",
@@ -1699,7 +1666,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 57,
+  "id": 56,
   "short_name": "InfiniCube",
   "title": "InfiniCube: Unbounded and Controllable Dynamic 3D Driving Scene Generation with World-Guided Video Models",
   "date": "2024-12",
@@ -1735,7 +1702,7 @@
   "relevance": "Long Tail & Corner Case"
  },
  {
-  "id": 58,
+  "id": 57,
   "short_name": "InfinityDrive",
   "title": "InfinityDrive: Breaking Time Limits in Driving World Models",
   "date": "2024-12",
@@ -1767,7 +1734,7 @@
   "relevance": "Long Tail & Corner Case"
  },
  {
-  "id": 59,
+  "id": 58,
   "short_name": "SceneDiffuser",
   "title": "SceneDiffuser: Efficient and Controllable Driving Simulation Initialization and Rollout",
   "date": "2024-12",
@@ -1799,7 +1766,7 @@
   "relevance": "Long Tail & Corner Case"
  },
  {
-  "id": 60,
+  "id": 59,
   "short_name": "UniScene",
   "title": "UniScene: Unified Occupancy-centric Driving Scene Generation",
   "date": "2024-12",
@@ -1834,7 +1801,7 @@
   "relevance": "Long Tail & Corner Case"
  },
  {
-  "id": 61,
+  "id": 60,
   "short_name": "AdaWM",
   "title": "AdaWM: Adaptive World Model based Planning for Autonomous Driving",
   "date": "2025-01",
@@ -1865,45 +1832,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 62,
-  "short_name": "DAPTIVE",
-  "title": "AdaWM: Adaptive World Model based Planning for Autonomous Driving",
-  "date": "2025-01",
-  "year": "2501",
-  "venue": "ICLR 2025",
-  "keywords": [
-   "World Model based Reinforcement Learning",
-   "Pretrain-Finetune",
-   "Distribution Shift",
-   "Dynamics Model Mismatch",
-   "Policy Mismatch",
-   "Low-rank Adaptation (LoRA)",
-   "Autonomous Driving"
-  ],
-  "task_category": [
-   "World Model",
-   "Motion Planning",
-   "End-to-End Driving",
-   "Simulation"
-  ],
-  "architecture": [
-   "End-to-End",
-   "World Model + Planner"
-  ],
-  "ratings": {
-   "innovation": 4,
-   "technical_depth": 4,
-   "experiment_completeness": 4,
-   "writing_quality": 4,
-   "practical_value": 4,
-   "overall": 4
-  },
-  "arxiv_id": "2501.13072",
-  "has_notes": true,
-  "relevance": "World Model Core"
- },
- {
-  "id": 63,
+  "id": 61,
   "short_name": "HERMES",
   "title": "HERMES: A Unified Self-Driving World Model for Simultaneous 3D Scene Understanding and Generation",
   "date": "2025-01",
@@ -1937,7 +1866,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 64,
+  "id": 62,
   "short_name": "MaskGWM",
   "title": "MaskGWM: A Generalizable Driving World Model with Video Mask Reconstruction",
   "date": "2025-02",
@@ -1969,7 +1898,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 65,
+  "id": 63,
   "short_name": "OccProphet",
   "title": "OccProphet: Pushing Efficiency Frontier of Camera-Only 4D Occupancy Forecasting with Observer-Forecaster-Refiner Framework",
   "date": "2025-02",
@@ -1997,7 +1926,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 66,
+  "id": 64,
   "short_name": "PreWorld",
   "title": "PreWorld: Semi-Supervised Vision-Centric 3D Occupancy World Model for Autonomous Driving",
   "date": "2025-02",
@@ -2028,7 +1957,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 67,
+  "id": 65,
   "short_name": "Role",
   "title": "The Role of World Models in Shaping Autonomous Driving: A Comprehensive Survey",
   "date": "2025-02",
@@ -2062,7 +1991,7 @@
   "relevance": "Survey"
  },
  {
-  "id": 68,
+  "id": 66,
   "short_name": "DiST-4D",
   "title": "DiST-4D: Disentangled Spatiotemporal Diffusion with Metric Depth for 4D Driving Scene Generation",
   "date": "2025-03",
@@ -2099,7 +2028,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 69,
+  "id": 67,
   "short_name": "GAIA-2",
   "title": "GAIA-2: A Controllable Multi-View Generative World Model for Autonomous Driving",
   "date": "2025-03",
@@ -2134,7 +2063,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 70,
+  "id": 68,
   "short_name": "MiLA",
   "title": "MiLA: Multi-view Intensive-fidelity Long-term Video Generation World Model for Autonomous Driving",
   "date": "2025-03",
@@ -2166,7 +2095,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 71,
+  "id": 69,
   "short_name": "UniFuture",
   "title": "Seeing the Future, Perceiving the Future: A Unified Driving World Model for Future Generation and Perception",
   "date": "2025-03",
@@ -2198,7 +2127,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 72,
+  "id": 70,
   "short_name": "SimWorld",
   "title": "SimWorld: A Unified Benchmark for Simulator-Conditioned Scene Generation via World Model",
   "date": "2025-03",
@@ -2229,7 +2158,7 @@
   "relevance": "Long Tail & Corner Case"
  },
  {
-  "id": 73,
+  "id": 71,
   "short_name": "FutureSightDrive",
   "title": "FutureSightDrive: Thinking Visually with Spatio-Temporal CoT for Autonomous Driving",
   "date": "2025-05",
@@ -2257,7 +2186,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 74,
+  "id": 72,
   "short_name": "GeoDrive",
   "title": "GeoDrive: 3D Geometry-Informed Driving World Model with Precise Action Control",
   "date": "2025-05",
@@ -2293,7 +2222,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 75,
+  "id": 73,
   "short_name": "ProphetDWM",
   "title": "ProphetDWM: A Driving World Model for Rolling Out Future Actions and Videos",
   "date": "2025-05",
@@ -2325,7 +2254,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 76,
+  "id": 74,
   "short_name": "Cosmos-Drive-Dreams",
   "title": "Cosmos-Drive-Dreams : Scalable Synthetic Driving Data Generation with World Foundation Models",
   "date": "2025-06",
@@ -2360,7 +2289,7 @@
   "relevance": "Long Tail & Corner Case"
  },
  {
-  "id": 77,
+  "id": 75,
   "short_name": "Epona",
   "title": "Epona: Autoregressive Diffusion World Model for Autonomous Driving",
   "date": "2025-06",
@@ -2397,7 +2326,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 78,
+  "id": 76,
   "short_name": "LongDWM",
   "title": "LongDWM: Cross-Granularity Distillation for Building a Long-Term Driving World Model",
   "date": "2025-06",
@@ -2429,7 +2358,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 79,
+  "id": 77,
   "short_name": "ReSim",
   "title": "ReSim: Reliable World Simulation for Autonomous Driving",
   "date": "2025-06",
@@ -2465,7 +2394,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 80,
+  "id": 78,
   "short_name": "STAGE",
   "title": "STAGE: A Stream-Centric Generative World Model for Long-Horizon Driving-Scene Simulation",
   "date": "2025-06",
@@ -2499,7 +2428,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 81,
+  "id": 79,
   "short_name": "World4Drive",
   "title": "World4Drive: End-to-End Autonomous Driving via Intention-aware Physical Latent World Model",
   "date": "2025-07",
@@ -2534,7 +2463,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 82,
+  "id": 80,
   "short_name": "TeraSim-World",
   "title": "TeraSim-World: Worldwide Safety-Critical Data Synthesis for End-to-End Autonomous Driving",
   "date": "2025-09",
@@ -2562,7 +2491,7 @@
   "relevance": "Long Tail & Corner Case"
  },
  {
-  "id": 83,
+  "id": 81,
   "short_name": "DriveVLA-W0",
   "title": "DriveVLA-W0: World Models Amplify Data Scaling Law in Autonomous Driving",
   "date": "2025-10",
@@ -2594,7 +2523,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 84,
+  "id": 82,
   "short_name": "DriveLaW",
   "title": "DriveLaW: Unifying Planning and Video Generation in a Latent Driving World",
   "date": "2025-12",
@@ -2626,7 +2555,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 85,
+  "id": 83,
   "short_name": "GaussianDWM",
   "title": "GaussianDWM: 3D Gaussian Driving World Model for Unified Scene Understanding and Multi-Modal Generation",
   "date": "2025-12",
@@ -2663,7 +2592,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 86,
+  "id": 84,
   "short_name": "InDRiVE",
   "title": "InDRiVE: Reward-Free World-Model Pretraining for Autonomous Driving via Latent Disagreement",
   "date": "2025-12",
@@ -2695,7 +2624,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 87,
+  "id": 85,
   "short_name": "WorldRFT",
   "title": "WorldRFT: Latent World Model Planning with Reinforcement Fine-Tuning for Autonomous Driving",
   "date": "2025-12",
@@ -2726,7 +2655,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 88,
+  "id": 86,
   "short_name": "DrivingGen",
   "title": "DrivingGen: A Comprehensive Benchmark for Generative Video World Models in Autonomous Driving",
   "date": "2026-01",
@@ -2758,7 +2687,7 @@
   "relevance": "Survey"
  },
  {
-  "id": 89,
+  "id": 87,
   "short_name": "AD-L-JEPA",
   "title": "Value-guided JEPA for Action Planning",
   "date": "2026-01",
@@ -2792,7 +2721,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 90,
+  "id": 88,
   "short_name": "NeoVerse",
   "title": "NeoVerse: Enhancing 4D World Model with in-the-wild Monocular Videos",
   "date": "2026-01",
@@ -2824,7 +2753,7 @@
   "relevance": "Long Tail & Corner Case"
  },
  {
-  "id": 91,
+  "id": 89,
   "short_name": "UniDrive-WM",
   "title": "UniDrive-WM: Unified Understanding, Planning and Generation World Model For Autonomous Driving",
   "date": "2026-01",
@@ -2857,7 +2786,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 92,
+  "id": 90,
   "short_name": "RAYNOVA",
   "title": "RAYNOVA: Scale-Temporal Autoregressive World Modeling in Ray Space",
   "date": "2026-02",
@@ -2888,7 +2817,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 93,
+  "id": 91,
   "short_name": "RaWMPC",
   "title": "Risk-Aware World Model Predictive Control for Generalizable End-to-End Autonomous Driving",
   "date": "2026-02",
@@ -2919,7 +2848,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 94,
+  "id": 92,
   "short_name": "ResWorld",
   "title": "ResWorld: Temporal Residual World Model for End-to-End Autonomous Driving",
   "date": "2026-02",
@@ -2950,7 +2879,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 95,
+  "id": 93,
   "short_name": "WaymoWM",
   "title": "The Waymo World Model: A New Frontier For Autonomous Driving Simulation",
   "date": "2026-02",
@@ -2981,7 +2910,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 96,
+  "id": 94,
   "short_name": "LatentWMSurvey",
   "title": "Latent World Models for Automated Driving: A Unified Taxonomy, Evaluation Framework, and Open Challenges",
   "date": "2026-03",
@@ -3010,7 +2939,7 @@
   "relevance": "Survey"
  },
  {
-  "id": 97,
+  "id": 95,
   "short_name": "Raw2Drive",
   "title": "Raw2Drive: Reinforcement Learning with Aligned World Models for End-to-End Autonomous Driving (in CARLA v2)",
   "date": "2025-05",
@@ -3047,7 +2976,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 98,
+  "id": 96,
   "short_name": "I2-World",
   "title": "I²-World: Intra-Inter Tokenization for Efficient Dynamic 4D Scene Forecasting",
   "date": "2025-07",
@@ -3079,7 +3008,7 @@
   "relevance": "World Model Core"
  },
  {
-  "id": 99,
+  "id": 97,
   "short_name": "LiDARCrafter",
   "title": "LiDARCrafter: Dynamic 4D World Modeling from LiDAR Sequences",
   "date": "2025-08",
