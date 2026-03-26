@@ -1,13 +1,13 @@
 /**
  * Left panel: filter UI + paper card list.
  *
- * Filter logic:
+ * Filter logic (faceted search):
  *   - Tri-state per value: neutral / include (✓) / exclude (✗)
- *   - Include = AND: paper must satisfy ALL include constraints
- *   - Exclude = AND: paper is hidden if it matches ANY exclude value
- *   - Within a single filter group with multiple includes, category uses
- *     AND (paper must have every selected category), venue/relevance use
- *     AND as well (single-value fields, so multiple includes = intersection).
+ *   - ACROSS groups: AND (paper must pass every group's filter)
+ *   - WITHIN a group (includes): OR (paper matches if it has any included value)
+ *   - WITHIN a group (excludes): AND (paper hidden if it matches any excluded value)
+ *   - Category is multi-value: OR for includes, any excluded cat hides paper
+ *   - Venue/Relevance are single-value: OR for includes within group
  */
 
 import { state, notify } from './state.js';
@@ -111,17 +111,13 @@ function filterGroupHTML(title, key, values) {
 }
 
 function matchesFilters(paper) {
-  // --- Category (multi-value field, AND for includes) ---
+  // --- Category (multi-value field) ---
   const catF = state.filters.category;
   const cats = paper.task_category || [];
   // Exclude: if paper has ANY excluded category → hide
   if (catF.exclude.size > 0 && cats.some(c => catF.exclude.has(c))) return false;
-  // Include (AND): paper must have EVERY included category
-  if (catF.include.size > 0) {
-    for (const inc of catF.include) {
-      if (!cats.includes(inc)) return false;
-    }
-  }
+  // Include (OR within group): paper must have at least one included category
+  if (catF.include.size > 0 && !cats.some(c => catF.include.has(c))) return false;
 
   // --- Venue (single-value field) ---
   const venF = state.filters.venue;
