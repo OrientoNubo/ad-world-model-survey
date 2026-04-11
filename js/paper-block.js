@@ -39,6 +39,11 @@ export function placePaper(shortName, x, y) {
   el.style.left = x + 'px';
   el.style.top = y + 'px';
 
+  // Apply saved width if any
+  if (state.positions[shortName]?.width) {
+    el.style.width = state.positions[shortName].width + 'px';
+  }
+
   el.innerHTML = `
     <div class="block-name">${shortName}</div>
     <div class="block-meta">
@@ -46,7 +51,38 @@ export function placePaper(shortName, x, y) {
       ${paper.venue ? `<span class="badge badge-venue">${paper.venue}</span>` : ''}
     </div>
     <div class="block-category">${cat}</div>
+    <div class="block-resize"></div>
   `;
+
+  // Width resize
+  const resizer = el.querySelector('.block-resize');
+  resizer.addEventListener('pointerdown', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    resizer.setPointerCapture(e.pointerId);
+    const startX = e.clientX;
+    const origW = el.offsetWidth;
+    const zoom = state.viewport.zoom;
+
+    const onMove = (ev) => {
+      const dw = (ev.clientX - startX) / zoom;
+      const newW = Math.max(100, origW + dw);
+      el.style.width = newW + 'px';
+    };
+
+    const onUp = (ev) => {
+      const dw = (ev.clientX - startX) / zoom;
+      const newW = Math.max(100, origW + dw);
+      el.style.width = newW + 'px';
+      state.positions[shortName].width = newW;
+      document.removeEventListener('pointermove', onMove);
+      document.removeEventListener('pointerup', onUp);
+      renderConnections();
+    };
+
+    document.addEventListener('pointermove', onMove);
+    document.addEventListener('pointerup', onUp);
+  });
 
   // Drag to reposition
   el.addEventListener('pointerdown', onBlockPointerDown);
@@ -105,6 +141,7 @@ function onBlockPointerDown(e) {
   if (e.button !== 0) return;
   e.stopPropagation();
 
+  if (e.target.closest('.block-resize')) return;
   const el = e.currentTarget;
   const name = el.dataset.name;
   const zoom = state.viewport.zoom;

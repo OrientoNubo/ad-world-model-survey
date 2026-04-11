@@ -67,51 +67,21 @@ function createTextBoxElement(ann, idx) {
   bar.style.background = color.bar;
   el.appendChild(bar);
 
-  // Font size controls
-  const fontControls = document.createElement('div');
-  fontControls.className = 'tb-font-controls';
-  const btnMinus = document.createElement('button');
-  btnMinus.className = 'tb-font-btn';
-  btnMinus.textContent = '−';
-  btnMinus.title = 'Decrease font size';
-  btnMinus.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const cur = state.annotations[idx].fontSize || 14;
-    const next = Math.max(8, cur - 2);
-    state.annotations[idx].fontSize = next;
-    el.style.fontSize = next + 'px';
-  });
-  const btnPlus = document.createElement('button');
-  btnPlus.className = 'tb-font-btn';
-  btnPlus.textContent = '+';
-  btnPlus.title = 'Increase font size';
-  btnPlus.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const cur = state.annotations[idx].fontSize || 14;
-    const next = Math.min(72, cur + 2);
-    state.annotations[idx].fontSize = next;
-    el.style.fontSize = next + 'px';
-  });
-  fontControls.appendChild(btnMinus);
-  fontControls.appendChild(btnPlus);
-  el.appendChild(fontControls);
-
   // Content
   const content = document.createElement('div');
   content.className = 'tb-content';
   content.textContent = ann.text || '';
   el.appendChild(content);
 
-  // Click to select (skip if clicking font buttons)
+  // Click to select
   el.addEventListener('click', (e) => {
-    if (e.target.closest('.tb-font-btn')) return;
     e.stopPropagation();
     document.querySelectorAll('.text-box.selected').forEach(b => b.classList.remove('selected'));
     el.classList.add('selected');
   });
 
+  // Double-click to edit
   el.addEventListener('dblclick', (e) => {
-    if (e.target.closest('.tb-font-btn')) return;
     e.stopPropagation();
     editingAnnIdx = idx;
     openAnnEdit(e.clientX, e.clientY, ann);
@@ -128,7 +98,6 @@ function setupDrag(el, idx) {
 
   el.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;
-    if (e.target.closest('.tb-font-btn')) return;
     e.stopPropagation();
     dragging = false;
     el.setPointerCapture(e.pointerId);
@@ -191,8 +160,46 @@ function openAnnEdit(x, y, ann) {
     });
   });
 
-  popup.style.left = Math.min(x, window.innerWidth - 260) + 'px';
-  popup.style.top = Math.min(y, window.innerHeight - 200) + 'px';
+  // Font size control
+  let fontRow = popup.querySelector('.tb-font-row');
+  if (!fontRow) {
+    fontRow = document.createElement('div');
+    fontRow.className = 'tb-font-row';
+    fontRow.innerHTML = `
+      <span style="font-size:11px;color:var(--text-secondary);margin-right:6px">Size</span>
+      <button class="tb-font-dec" type="button" style="width:26px;height:26px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);font-size:14px;font-weight:700;cursor:pointer">−</button>
+      <span class="tb-font-val" style="display:inline-block;width:36px;text-align:center;font-size:12px;font-weight:600"></span>
+      <button class="tb-font-inc" type="button" style="width:26px;height:26px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);font-size:14px;font-weight:700;cursor:pointer">+</button>
+    `;
+    fontRow.style.cssText = 'display:flex;align-items:center;margin-bottom:8px';
+    popup.insertBefore(fontRow, popup.querySelector('.popup-actions'));
+  }
+
+  const currentFontSize = ann ? (ann.fontSize || 14) : 14;
+  const valSpan = fontRow.querySelector('.tb-font-val');
+  valSpan.textContent = currentFontSize + 'px';
+
+  // Replace buttons to remove old listeners
+  const decBtn = fontRow.querySelector('.tb-font-dec');
+  const incBtn = fontRow.querySelector('.tb-font-inc');
+  const newDec = decBtn.cloneNode(true);
+  const newInc = incBtn.cloneNode(true);
+  decBtn.replaceWith(newDec);
+  incBtn.replaceWith(newInc);
+
+  newDec.addEventListener('click', () => {
+    let v = parseInt(valSpan.textContent) || 14;
+    v = Math.max(8, v - 2);
+    valSpan.textContent = v + 'px';
+  });
+  newInc.addEventListener('click', () => {
+    let v = parseInt(valSpan.textContent) || 14;
+    v = Math.min(72, v + 2);
+    valSpan.textContent = v + 'px';
+  });
+
+  popup.style.left = Math.min(x, window.innerWidth - 280) + 'px';
+  popup.style.top = Math.min(y, window.innerHeight - 240) + 'px';
   popup.style.display = 'block';
   document.getElementById('annEditText').focus();
 }
@@ -209,6 +216,12 @@ function saveAnn() {
   const activeSwatch = popup.querySelector('.tb-color-swatch.active');
   if (activeSwatch) {
     state.annotations[editingAnnIdx].colorIdx = parseInt(activeSwatch.dataset.colorIdx) || 0;
+  }
+
+  // Get font size
+  const fontVal = popup.querySelector('.tb-font-val');
+  if (fontVal) {
+    state.annotations[editingAnnIdx].fontSize = parseInt(fontVal.textContent) || 14;
   }
 
   popup.style.display = 'none';

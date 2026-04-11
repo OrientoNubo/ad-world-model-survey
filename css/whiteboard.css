@@ -130,46 +130,6 @@
   box-shadow: 0 0 0 2px var(--accent), var(--shadow-hover);
 }
 
-/* Font size controls */
-.text-box .tb-font-controls {
-  position: absolute;
-  top: -28px;
-  right: 0;
-  display: flex;
-  gap: 2px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s;
-}
-
-.text-box:hover .tb-font-controls,
-.text-box.selected .tb-font-controls {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.text-box .tb-font-btn {
-  width: 22px;
-  height: 22px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: var(--surface);
-  color: var(--text-secondary);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  box-shadow: var(--shadow);
-}
-
-.text-box .tb-font-btn:hover {
-  background: var(--accent-soft);
-  color: var(--accent);
-  border-color: var(--accent);
-}
 
 /* Color indicator strip on top */
 .text-box .tb-color-bar {
