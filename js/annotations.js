@@ -102,14 +102,16 @@ function createTextBoxElement(ann, idx) {
   content.textContent = ann.text || '';
   el.appendChild(content);
 
-  // Click to edit
+  // Click to select (skip if clicking font buttons)
   el.addEventListener('click', (e) => {
+    if (e.target.closest('.tb-font-btn')) return;
     e.stopPropagation();
     document.querySelectorAll('.text-box.selected').forEach(b => b.classList.remove('selected'));
     el.classList.add('selected');
   });
 
   el.addEventListener('dblclick', (e) => {
+    if (e.target.closest('.tb-font-btn')) return;
     e.stopPropagation();
     editingAnnIdx = idx;
     openAnnEdit(e.clientX, e.clientY, ann);
@@ -126,7 +128,7 @@ function setupDrag(el, idx) {
 
   el.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;
-    if (e.target.classList.contains('tb-resize')) return;
+    if (e.target.closest('.tb-font-btn')) return;
     e.stopPropagation();
     dragging = false;
     el.setPointerCapture(e.pointerId);
