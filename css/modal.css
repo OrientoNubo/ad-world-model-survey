@@ -62,6 +62,36 @@
   color: var(--text-secondary);
 }
 
+/* Phyra report buttons */
+.phyra-btns {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.phyra-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+
+.phyra-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
 .modal-close {
   width: 32px;
   height: 32px;

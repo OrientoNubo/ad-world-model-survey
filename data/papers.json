@@ -30,7 +30,9 @@
   },
   "arxiv_id": "2303.04116",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2303_TrafficBots_2303_TrafficBots.html",
+  "phyra_notes": "phyra-read/notes/2303_TrafficBots_2303_TrafficBots.html"
  },
  {
   "id": 2,
@@ -57,7 +59,9 @@
   },
   "arxiv_id": "2306.06344",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2306_CTG++_2306_NVIDIA.html",
+  "phyra_notes": "phyra-read/notes/2306_CTG++_2306_NVIDIA.html"
  },
  {
   "id": 3,
@@ -84,7 +88,9 @@
   },
   "arxiv_id": "2308.01898",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2308_UniSim_2308_UniSim.html",
+  "phyra_notes": "phyra-read/notes/2308_UniSim_2308_UniSim.html"
  },
  {
   "id": 4,
@@ -117,7 +123,9 @@
   },
   "arxiv_id": "2308.07234",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2308_UniWorld_2308_UniWorld.html",
+  "phyra_notes": "phyra-read/notes/2308_UniWorld_2308_UniWorld.html"
  },
  {
   "id": 5,
@@ -150,7 +158,9 @@
   },
   "arxiv_id": "2309.09777",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2309_DriveDreamer_2309_DriveDreamer.html",
+  "phyra_notes": "phyra-read/notes/2309_DriveDreamer_2309_DriveDreamer.html"
  },
  {
   "id": 6,
@@ -183,7 +193,9 @@
   },
   "arxiv_id": "2309.17080",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2309_GAIA-1_2309_GAIA.html",
+  "phyra_notes": "phyra-read/notes/2309_GAIA-1_2309_GAIA.html"
  },
  {
   "id": 7,
@@ -211,7 +223,9 @@
   },
   "arxiv_id": "2310.02601",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2310_AGIC_2310_AGIC.html",
+  "phyra_notes": "phyra-read/notes/2310_AGIC_2310_AGIC.html"
  },
  {
   "id": 8,
@@ -245,7 +259,9 @@
   },
   "arxiv_id": "2310.06114",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2310_UniSim-Interactive_2310_EARNING.html",
+  "phyra_notes": "phyra-read/notes/2310_UniSim-Interactive_2310_EARNING.html"
  },
  {
   "id": 9,
@@ -272,7 +288,9 @@
   },
   "arxiv_id": "2310.08710",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2310_Waymax_2310_Waymax.html",
+  "phyra_notes": "phyra-read/notes/2310_Waymax_2310_Waymax.html"
  },
  {
   "id": 10,
@@ -305,7 +323,9 @@
   },
   "arxiv_id": "2311.13549",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2311_ADriver-I_2311_MEGVII.html",
+  "phyra_notes": "phyra-read/notes/2311_ADriver-I_2311_MEGVII.html"
  },
  {
   "id": 11,
@@ -332,7 +352,9 @@
   },
   "arxiv_id": "2311.17663",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2311_Cam4DOcc_2311_Cam4DOcc.html",
+  "phyra_notes": "phyra-read/notes/2311_Cam4DOcc_2311_Cam4DOcc.html"
  },
  {
   "id": 12,
@@ -366,7 +388,9 @@
   },
   "arxiv_id": "2311.17918",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2311_Drive-WM_2311_CASIA.html",
+  "phyra_notes": "phyra-read/notes/2311_Drive-WM_2311_CASIA.html"
  },
  {
   "id": 13,
@@ -393,7 +417,9 @@
   },
   "arxiv_id": "2311.11762",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2311_MUVO_2311_MUVO.html",
+  "phyra_notes": "phyra-read/notes/2311_MUVO_2311_MUVO.html"
  },
  {
   "id": 14,
@@ -420,7 +446,9 @@
   },
   "arxiv_id": "2311.15260",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2311_NeuRAD_2311_NeuRAD.html",
+  "phyra_notes": "phyra-read/notes/2311_NeuRAD_2311_NeuRAD.html"
  },
  {
   "id": 15,
@@ -447,7 +475,9 @@
   },
   "arxiv_id": "2311.01017",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2311_Copilot4D_2311_OPILOT.html",
+  "phyra_notes": "phyra-read/notes/2311_Copilot4D_2311_OPILOT.html"
  },
  {
   "id": 16,
@@ -476,7 +506,9 @@
   },
   "arxiv_id": "2311.16038",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2311_OccWorld_2311_OccWorld.html",
+  "phyra_notes": "phyra-read/notes/2311_OccWorld_2311_OccWorld.html"
  },
  {
   "id": 17,
@@ -507,7 +539,9 @@
   },
   "arxiv_id": "2311.16813",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2311_Panacea_2311_MEGVII.html",
+  "phyra_notes": "phyra-read/notes/2311_Panacea_2311_MEGVII.html"
  },
  {
   "id": 18,
@@ -535,7 +569,9 @@
   },
   "arxiv_id": "|",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2312_DrivingGaussian_2312_DrivingGaussian.html",
+  "phyra_notes": "phyra-read/notes/2312_DrivingGaussian_2312_DrivingGaussian.html"
  },
  {
   "id": 19,
@@ -564,7 +600,9 @@
   },
   "arxiv_id": "2312.17655",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2312_ViDAR_2312_ViDAR.html",
+  "phyra_notes": "phyra-read/notes/2312_ViDAR_2312_ViDAR.html"
  },
  {
   "id": 20,
@@ -594,7 +632,9 @@
   },
   "arxiv_id": "2312.02934",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2312_WoVoGen_2312_WoVoGen.html",
+  "phyra_notes": "phyra-read/notes/2312_WoVoGen_2312_WoVoGen.html"
  },
  {
   "id": 21,
@@ -622,7 +662,9 @@
   },
   "arxiv_id": "|",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2401_StreetGaussians_2401_Street.html",
+  "phyra_notes": "phyra-read/notes/2401_StreetGaussians_2401_Street.html"
  },
  {
   "id": 22,
@@ -649,7 +691,9 @@
   },
   "arxiv_id": "|",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2402_GenAD_2402_GenAD.html",
+  "phyra_notes": "phyra-read/notes/2402_GenAD_2402_GenAD.html"
  },
  {
   "id": 23,
@@ -680,7 +724,9 @@
   },
   "arxiv_id": "2402.16720",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2402_Think2Drive_2402_Think2Drive.html",
+  "phyra_notes": "phyra-read/notes/2402_Think2Drive_2402_Think2Drive.html"
  },
  {
   "id": 24,
@@ -708,7 +754,9 @@
   },
   "arxiv_id": "2403.06845",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2403_DriveDreamer-2_2403_DriveDreamer.html",
+  "phyra_notes": "phyra-read/notes/2403_DriveDreamer-2_2403_DriveDreamer.html"
  },
  {
   "id": 25,
@@ -736,7 +784,9 @@
   },
   "arxiv_id": "|",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2403_NuPlanBenchmark_2403_Towards.html",
+  "phyra_notes": "phyra-read/notes/2403_NuPlanBenchmark_2403_Towards.html"
  },
  {
   "id": 26,
@@ -767,7 +817,9 @@
   },
   "arxiv_id": "2403.09631",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2403_PALM_2403_PALM.html",
+  "phyra_notes": "phyra-read/notes/2403_PALM_2403_PALM.html"
  },
  {
   "id": 27,
@@ -799,7 +851,9 @@
   },
   "arxiv_id": "2403.20079",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2403_SGD_2403_SGD.html",
+  "phyra_notes": "phyra-read/notes/2403_SGD_2403_SGD.html"
  },
  {
   "id": 28,
@@ -826,7 +880,9 @@
   },
   "arxiv_id": "|",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2403_SubjectDrive_2403_SubjectDrive.html",
+  "phyra_notes": "phyra-read/notes/2403_SubjectDrive_2403_SubjectDrive.html"
  },
  {
   "id": 29,
@@ -863,7 +919,9 @@
   },
   "arxiv_id": "2403.02622",
   "has_notes": true,
-  "relevance": "Survey"
+  "relevance": "Survey",
+  "phyra_slides": "phyra-read/slides/2403_WorldModelSurvey_2403_World.html",
+  "phyra_notes": "phyra-read/notes/2403_WorldModelSurvey_2403_World.html"
  },
  {
   "id": 30,
@@ -895,7 +953,9 @@
   },
   "arxiv_id": "2404.02903",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2404_LidarDM_2404_LidarDM.html",
+  "phyra_notes": "phyra-read/notes/2404_LidarDM_2404_LidarDM.html"
  },
  {
   "id": 31,
@@ -925,7 +985,9 @@
   },
   "arxiv_id": "2405.04390",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2405_DriveWorld_2405_DriveWorld.html",
+  "phyra_notes": "phyra-read/notes/2405_DriveWorld_2405_DriveWorld.html"
  },
  {
   "id": 32,
@@ -954,7 +1016,9 @@
   },
   "arxiv_id": "|",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2405_MagicDrive3D_2405_MagicDrive3D.html",
+  "phyra_notes": "phyra-read/notes/2405_MagicDrive3D_2405_MagicDrive3D.html"
  },
  {
   "id": 33,
@@ -987,7 +1051,9 @@
   },
   "arxiv_id": "2405.20337",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2405_OccSora_2405_OccSora.html",
+  "phyra_notes": "phyra-read/notes/2405_OccSora_2405_OccSora.html"
  },
  {
   "id": 34,
@@ -1019,7 +1085,9 @@
   },
   "arxiv_id": "2405.17398",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2405_Vista_2405_OpenDriveLab.html",
+  "phyra_notes": "phyra-read/notes/2405_Vista_2405_OpenDriveLab.html"
  },
  {
   "id": 35,
@@ -1053,7 +1121,9 @@
   },
   "arxiv_id": "2405.03520",
   "has_notes": true,
-  "relevance": "Survey"
+  "relevance": "Survey",
+  "phyra_slides": "phyra-read/slides/2405_SoraWMSurvey_2405_Sora.html",
+  "phyra_notes": "phyra-read/notes/2405_SoraWMSurvey_2405_Sora.html"
  },
  {
   "id": 36,
@@ -1079,7 +1149,9 @@
   },
   "arxiv_id": "|",
   "has_notes": true,
-  "relevance": "Survey"
+  "relevance": "Survey",
+  "phyra_slides": "phyra-read/slides/2405_VideoDiffSurvey_2405_Video.html",
+  "phyra_notes": "phyra-read/notes/2405_VideoDiffSurvey_2405_Video.html"
  },
  {
   "id": 37,
@@ -1107,7 +1179,9 @@
   },
   "arxiv_id": "2406.08481",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2406_LAW-AD_2406_NHANCING.html",
+  "phyra_notes": "phyra-read/notes/2406_LAW-AD_2406_NHANCING.html"
  },
  {
   "id": 38,
@@ -1135,7 +1209,9 @@
   },
   "arxiv_id": "2406.08691",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2406_UnO_2406_UnO.html",
+  "phyra_notes": "phyra-read/notes/2406_UnO_2406_UnO.html"
  },
  {
   "id": 39,
@@ -1165,7 +1241,9 @@
   },
   "arxiv_id": "2407.05679",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2407_BEVW_2407_BEVW.html",
+  "phyra_notes": "phyra-read/notes/2407_BEVW_2407_BEVW.html"
  },
  {
   "id": 40,
@@ -1195,7 +1273,9 @@
   },
   "arxiv_id": "2407.15843",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2407_CarFormer_2407_CarFormer.html",
+  "phyra_notes": "phyra-read/notes/2407_CarFormer_2407_CarFormer.html"
  },
  {
   "id": 41,
@@ -1223,7 +1303,9 @@
   },
   "arxiv_id": "2407.02797",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2407_GUMP_2407_Solving.html",
+  "phyra_notes": "phyra-read/notes/2407_GUMP_2407_Solving.html"
  },
  {
   "id": 42,
@@ -1254,7 +1336,9 @@
   },
   "arxiv_id": "2408.14197",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2408_Drive-OccWorld_2408_Driving.html",
+  "phyra_notes": "phyra-read/notes/2408_Drive-OccWorld_2408_Driving.html"
  },
  {
   "id": 43,
@@ -1285,7 +1369,9 @@
   },
   "arxiv_id": "2408.07605",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2408_Panacea+_2408_Panacea+.html",
+  "phyra_notes": "phyra-read/notes/2408_Panacea+_2408_Panacea+.html"
  },
  {
   "id": 44,
@@ -1318,7 +1404,9 @@
   },
   "arxiv_id": "2408.00415",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2408_RIVE_2408_RIVE.html",
+  "phyra_notes": "phyra-read/notes/2408_RIVE_2408_RIVE.html"
  },
  {
   "id": 45,
@@ -1350,7 +1438,9 @@
   },
   "arxiv_id": "2409.03272",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2409_OccLLaMA_2409_OccLLaMA.html",
+  "phyra_notes": "phyra-read/notes/2409_OccLLaMA_2409_OccLLaMA.html"
  },
  {
   "id": 46,
@@ -1379,7 +1469,9 @@
   },
   "arxiv_id": "2410.10429",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2410_DOME_2410_DOME.html",
+  "phyra_notes": "phyra-read/notes/2410_DOME_2410_DOME.html"
  },
  {
   "id": 47,
@@ -1416,7 +1508,9 @@
   },
   "arxiv_id": "2410.13571",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2410_DriveDreamer4D_2410_DriveDreamer4D.html",
+  "phyra_notes": "phyra-read/notes/2410_DriveDreamer4D_2410_DriveDreamer4D.html"
  },
  {
   "id": 48,
@@ -1451,7 +1545,9 @@
   },
   "arxiv_id": "2410.10738",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2410_DrivingDojo_2410_DrivingDojo.html",
+  "phyra_notes": "phyra-read/notes/2410_DrivingDojo_2410_DrivingDojo.html"
  },
  {
   "id": 49,
@@ -1479,7 +1575,9 @@
   },
   "arxiv_id": "2410.18084",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2410_DynamicCity_2410_DynamicCity.html",
+  "phyra_notes": "phyra-read/notes/2410_DynamicCity_2410_DynamicCity.html"
  },
  {
   "id": 50,
@@ -1508,7 +1606,9 @@
   },
   "arxiv_id": "|",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2410_SyntheOcc_2410_SyntheOcc.html",
+  "phyra_notes": "phyra-read/notes/2410_SyntheOcc_2410_SyntheOcc.html"
  },
  {
   "id": 51,
@@ -1536,7 +1636,9 @@
   },
   "arxiv_id": "2411.13807",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2411_MagicDrive-V2_2411_MagicDrive-V2.html",
+  "phyra_notes": "phyra-read/notes/2411_MagicDrive-V2_2411_MagicDrive-V2.html"
  },
  {
   "id": 52,
@@ -1569,7 +1671,9 @@
   },
   "arxiv_id": "2412.18607",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2412_DrivingGPT_2412_DrivingGPT.html",
+  "phyra_notes": "phyra-read/notes/2412_DrivingGPT_2412_DrivingGPT.html"
  },
  {
   "id": 53,
@@ -1602,7 +1706,9 @@
   },
   "arxiv_id": "2412.19505",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2412_DrivingWorld_2412_DrivingWorld.html",
+  "phyra_notes": "phyra-read/notes/2412_DrivingWorld_2412_DrivingWorld.html"
  },
  {
   "id": 54,
@@ -1630,7 +1736,9 @@
   },
   "arxiv_id": "|",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2412_GEM_2412_GEM.html",
+  "phyra_notes": "phyra-read/notes/2412_GEM_2412_GEM.html"
  },
  {
   "id": 55,
@@ -1663,7 +1771,9 @@
   },
   "arxiv_id": "2412.10373",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2412_GaussianWorld_2412_GaussianWorld.html",
+  "phyra_notes": "phyra-read/notes/2412_GaussianWorld_2412_GaussianWorld.html"
  },
  {
   "id": 56,
@@ -1699,7 +1809,9 @@
   },
   "arxiv_id": "2412.03934",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2412_InfiniCube_2412_InfiniCube.html",
+  "phyra_notes": "phyra-read/notes/2412_InfiniCube_2412_InfiniCube.html"
  },
  {
   "id": 57,
@@ -1731,7 +1843,9 @@
   },
   "arxiv_id": "2412.01522",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2412_InfinityDrive_2412_InfinityDrive.html",
+  "phyra_notes": "phyra-read/notes/2412_InfinityDrive_2412_InfinityDrive.html"
  },
  {
   "id": 58,
@@ -1763,7 +1877,9 @@
   },
   "arxiv_id": "2412.12129",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2412_SceneDiffuser_2412_SceneDiffuser.html",
+  "phyra_notes": "phyra-read/notes/2412_SceneDiffuser_2412_SceneDiffuser.html"
  },
  {
   "id": 59,
@@ -1798,7 +1914,9 @@
   },
   "arxiv_id": "2412.05435",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2412_UniScene_2412_UniScene.html",
+  "phyra_notes": "phyra-read/notes/2412_UniScene_2412_UniScene.html"
  },
  {
   "id": 60,
@@ -1829,7 +1947,9 @@
   },
   "arxiv_id": "2501.13072",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2501_AdaWM_2501_AdaWM.html",
+  "phyra_notes": "phyra-read/notes/2501_AdaWM_2501_AdaWM.html"
  },
  {
   "id": 61,
@@ -1863,7 +1983,9 @@
   },
   "arxiv_id": "2501.14729",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2501_HERMES_2501_MEGVII.html",
+  "phyra_notes": "phyra-read/notes/2501_HERMES_2501_MEGVII.html"
  },
  {
   "id": 62,
@@ -1895,7 +2017,9 @@
   },
   "arxiv_id": "2502.11663",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2502_MaskGWM_2502_MaskGWM.html",
+  "phyra_notes": "phyra-read/notes/2502_MaskGWM_2502_MaskGWM.html"
  },
  {
   "id": 63,
@@ -1923,7 +2047,9 @@
   },
   "arxiv_id": "2502.15180",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2502_OccProphet_2502_OccProphet.html",
+  "phyra_notes": "phyra-read/notes/2502_OccProphet_2502_OccProphet.html"
  },
  {
   "id": 64,
@@ -1954,7 +2080,9 @@
   },
   "arxiv_id": "2502.07309",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2502_PreWorld_2502_PreWorld.html",
+  "phyra_notes": "phyra-read/notes/2502_PreWorld_2502_PreWorld.html"
  },
  {
   "id": 65,
@@ -1988,7 +2116,9 @@
   },
   "arxiv_id": "2502.10498",
   "has_notes": true,
-  "relevance": "Survey"
+  "relevance": "Survey",
+  "phyra_slides": "phyra-read/slides/2502_Role_2502_Role.html",
+  "phyra_notes": "phyra-read/notes/2502_Role_2502_Role.html"
  },
  {
   "id": 66,
@@ -2025,7 +2155,9 @@
   },
   "arxiv_id": "2503.15208",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2503_DiST-4D_2503_DiST.html",
+  "phyra_notes": "phyra-read/notes/2503_DiST-4D_2503_DiST.html"
  },
  {
   "id": 67,
@@ -2060,7 +2192,9 @@
   },
   "arxiv_id": "2503.20523",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2503_GAIA-2_2503_GAIA.html",
+  "phyra_notes": "phyra-read/notes/2503_GAIA-2_2503_GAIA.html"
  },
  {
   "id": 68,
@@ -2092,7 +2226,9 @@
   },
   "arxiv_id": "2503.15875",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2503_MiLA_2503_MiLA.html",
+  "phyra_notes": "phyra-read/notes/2503_MiLA_2503_MiLA.html"
  },
  {
   "id": 69,
@@ -2124,7 +2260,9 @@
   },
   "arxiv_id": "2503.13587",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2503_Seeing_2503_Seeing.html",
+  "phyra_notes": "phyra-read/notes/2503_Seeing_2503_Seeing.html"
  },
  {
   "id": 70,
@@ -2155,7 +2293,9 @@
   },
   "arxiv_id": "2503.13952",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2503_SimWorld_2503_SimWorld.html",
+  "phyra_notes": "phyra-read/notes/2503_SimWorld_2503_SimWorld.html"
  },
  {
   "id": 71,
@@ -2183,7 +2323,9 @@
   },
   "arxiv_id": "2505.17685",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2505_FutureSightDrive_2505_FutureSightDrive.html",
+  "phyra_notes": "phyra-read/notes/2505_FutureSightDrive_2505_FutureSightDrive.html"
  },
  {
   "id": 72,
@@ -2219,7 +2361,9 @@
   },
   "arxiv_id": "2505.22421",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2505_GeoDrive_2505_GeoDrive.html",
+  "phyra_notes": "phyra-read/notes/2505_GeoDrive_2505_GeoDrive.html"
  },
  {
   "id": 73,
@@ -2251,7 +2395,9 @@
   },
   "arxiv_id": "2505.18650",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2505_ProphetDWM_2505_ProphetDWM.html",
+  "phyra_notes": "phyra-read/notes/2505_ProphetDWM_2505_ProphetDWM.html"
  },
  {
   "id": 74,
@@ -2286,7 +2432,9 @@
   },
   "arxiv_id": "2506.09042",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html",
+  "phyra_notes": "phyra-read/notes/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html"
  },
  {
   "id": 75,
@@ -2323,7 +2471,9 @@
   },
   "arxiv_id": "2506.24113",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2506_Epona_2506_Epona.html",
+  "phyra_notes": "phyra-read/notes/2506_Epona_2506_Epona.html"
  },
  {
   "id": 76,
@@ -2355,7 +2505,9 @@
   },
   "arxiv_id": "2506.01546",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2506_LongDWM_2506_LongDWM.html",
+  "phyra_notes": "phyra-read/notes/2506_LongDWM_2506_LongDWM.html"
  },
  {
   "id": 77,
@@ -2391,7 +2543,9 @@
   },
   "arxiv_id": "2506.09981",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2506_ReSim_2506_ReSim.html",
+  "phyra_notes": "phyra-read/notes/2506_ReSim_2506_ReSim.html"
  },
  {
   "id": 78,
@@ -2425,7 +2579,9 @@
   },
   "arxiv_id": "2506.13138",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2506_STAGE_2506_STAGE.html",
+  "phyra_notes": "phyra-read/notes/2506_STAGE_2506_STAGE.html"
  },
  {
   "id": 79,
@@ -2460,7 +2616,9 @@
   },
   "arxiv_id": "2507.00603",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2507_World4Drive_2507_World4Drive.html",
+  "phyra_notes": "phyra-read/notes/2507_World4Drive_2507_World4Drive.html"
  },
  {
   "id": 80,
@@ -2488,7 +2646,9 @@
   },
   "arxiv_id": "2509.13164",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2509_TeraSim-World_2509_TeraSim-World.html",
+  "phyra_notes": "phyra-read/notes/2509_TeraSim-World_2509_TeraSim-World.html"
  },
  {
   "id": 81,
@@ -2520,7 +2680,9 @@
   },
   "arxiv_id": "2510.12796",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2510_DriveVLA-W0_2510_DriveVLA-W0.html",
+  "phyra_notes": "phyra-read/notes/2510_DriveVLA-W0_2510_DriveVLA-W0.html"
  },
  {
   "id": 82,
@@ -2552,7 +2714,9 @@
   },
   "arxiv_id": "2512.23421",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2512_DriveLaW_2512_DriveLaW.html",
+  "phyra_notes": "phyra-read/notes/2512_DriveLaW_2512_DriveLaW.html"
  },
  {
   "id": 83,
@@ -2589,7 +2753,9 @@
   },
   "arxiv_id": "2512.23180",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2512_GaussianDWM_2512_GaussianDWM.html",
+  "phyra_notes": "phyra-read/notes/2512_GaussianDWM_2512_GaussianDWM.html"
  },
  {
   "id": 84,
@@ -2621,7 +2787,9 @@
   },
   "arxiv_id": "2512.18850",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2512_InDRiVE_2512_InDRiVE.html",
+  "phyra_notes": "phyra-read/notes/2512_InDRiVE_2512_InDRiVE.html"
  },
  {
   "id": 85,
@@ -2652,7 +2820,9 @@
   },
   "arxiv_id": "2512.19133",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2512_WorldRFT_2512_WorldRFT.html",
+  "phyra_notes": "phyra-read/notes/2512_WorldRFT_2512_WorldRFT.html"
  },
  {
   "id": 86,
@@ -2684,7 +2854,9 @@
   },
   "arxiv_id": "2601.01528",
   "has_notes": true,
-  "relevance": "Survey"
+  "relevance": "Survey",
+  "phyra_slides": "phyra-read/slides/2601_DrivingGen_2601_DrivingGen.html",
+  "phyra_notes": "phyra-read/notes/2601_DrivingGen_2601_DrivingGen.html"
  },
  {
   "id": 87,
@@ -2718,7 +2890,9 @@
   },
   "arxiv_id": "2601.00844",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2601_JEPA_2601_JEPA.html",
+  "phyra_notes": "phyra-read/notes/2601_JEPA_2601_JEPA.html"
  },
  {
   "id": 88,
@@ -2750,7 +2924,9 @@
   },
   "arxiv_id": "2601.00393",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2601_NeoVerse_2601_NeoVerse.html",
+  "phyra_notes": "phyra-read/notes/2601_NeoVerse_2601_NeoVerse.html"
  },
  {
   "id": 89,
@@ -2783,7 +2959,9 @@
   },
   "arxiv_id": "2601.04453",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2601_UniDrive-WM_2601_UniDrive-WM.html",
+  "phyra_notes": "phyra-read/notes/2601_UniDrive-WM_2601_UniDrive-WM.html"
  },
  {
   "id": 90,
@@ -2814,7 +2992,9 @@
   },
   "arxiv_id": "2602.20685",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2602_RAYNOVA_2602_RAYNOVA.html",
+  "phyra_notes": "phyra-read/notes/2602_RAYNOVA_2602_RAYNOVA.html"
  },
  {
   "id": 91,
@@ -2845,7 +3025,9 @@
   },
   "arxiv_id": "2602.23259",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2602_RaWMPC_2602_RaWMPC.html",
+  "phyra_notes": "phyra-read/notes/2602_RaWMPC_2602_RaWMPC.html"
  },
  {
   "id": 92,
@@ -2876,7 +3058,9 @@
   },
   "arxiv_id": "2602.10884",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2602_ResWorld_2602_ResWorld.html",
+  "phyra_notes": "phyra-read/notes/2602_ResWorld_2602_ResWorld.html"
  },
  {
   "id": 93,
@@ -2907,7 +3091,9 @@
   },
   "arxiv_id": "N/A (Industry Blog)",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2602_WaymoWM_2602_WaymoWM.html",
+  "phyra_notes": "phyra-read/notes/2602_WaymoWM_2602_WaymoWM.html"
  },
  {
   "id": 94,
@@ -2936,7 +3122,9 @@
   },
   "arxiv_id": "2603.09086",
   "has_notes": true,
-  "relevance": "Survey"
+  "relevance": "Survey",
+  "phyra_slides": "phyra-read/slides/2603_LatentWMSurvey_2603_LatentWMSurvey.html",
+  "phyra_notes": "phyra-read/notes/2603_LatentWMSurvey_2603_LatentWMSurvey.html"
  },
  {
   "id": 95,
@@ -2973,7 +3161,9 @@
   },
   "arxiv_id": "2505.16394",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2505_Raw2Drive_2505_Raw2Drive.html",
+  "phyra_notes": "phyra-read/notes/2505_Raw2Drive_2505_Raw2Drive.html"
  },
  {
   "id": 96,
@@ -3005,7 +3195,9 @@
   },
   "arxiv_id": "2507.09144",
   "has_notes": true,
-  "relevance": "World Model Core"
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2507_I2-World_2507_I2-World.html",
+  "phyra_notes": "phyra-read/notes/2507_I2-World_2507_I2-World.html"
  },
  {
   "id": 97,
@@ -3040,6 +3232,8 @@
   },
   "arxiv_id": "2508.03692",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case"
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2508_LiDARCrafter_2508_LiDARCrafter.html",
+  "phyra_notes": "phyra-read/notes/2508_LiDARCrafter_2508_LiDARCrafter.html"
  }
 ]

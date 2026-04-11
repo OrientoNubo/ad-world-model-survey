@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phyra Paper Read | Latent World Models for Automated Driving</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+    /* === Semantic aliases === */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 900px;
+    }
+
+    /* === Light mode derived === */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255, 255, 255, 0.92);
+      --p-formula-bg     : rgba(255, 255, 255, 0.92);
+      --p-border         : rgba(28, 28, 28, 0.12);
+      --p-text-secondary : rgba(28, 28, 28, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+      --p-gloss-top      : 0.22;
+      --p-gloss-mid      : 0.06;
+    }
+
+    /* === Dark mode derived === */
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0, 0, 0, 0.35);
+      --p-formula-bg     : rgba(0, 0, 0, 0.35);
+      --p-border         : rgba(245, 242, 235, 0.12);
+      --p-text-secondary : rgba(245, 242, 235, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+      --p-gloss-top      : 0.10;
+      --p-gloss-mid      : 0.03;
+    }
+
+    /* === Light Themes === */
+    [data-theme="nadeshiko"] { --theme-primary:#DC9FB4;--theme-light:#F3E6EB;--theme-accent:#92E566;--theme-dark:#471727;--theme-neutral:#E7E3E4;--theme-text:#1C1C1C; }
+    [data-theme="taikoh"] { --theme-primary:#F8C3CD;--theme-light:#F3E6E9;--theme-accent:#6EFE4C;--theme-dark:#600D1D;--theme-neutral:#E8E2E3;--theme-text:#1C1C1C; }
+    [data-theme="momo"] { --theme-primary:#F596AA;--theme-light:#F3E6E9;--theme-accent:#72FE4C;--theme-dark:#560C1B;--theme-neutral:#E8E2E4;--theme-text:#1C1C1C; }
+    [data-theme="toki"] { --theme-primary:#EEA9A9;--theme-light:#F3E6E6;--theme-accent:#50FA50;--theme-dark:#580D0D;--theme-neutral:#E8E2E2;--theme-text:#1C1C1C; }
+    [data-theme="jinzamomi"] { --theme-primary:#EB7A77;--theme-light:#F3E7E6;--theme-accent:#4CFE51;--theme-dark:#4D0C0B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C; }
+    [data-theme="haizakura"] { --theme-primary:#D7C4BB;--theme-light:#F1EBE8;--theme-accent:#7CCE97;--theme-dark:#402D23;--theme-neutral:#E6E5E4;--theme-text:#1C1C1C; }
+    [data-theme="akebono"] { --theme-primary:#F19483;--theme-light:#F3E8E6;--theme-accent:#4CFE68;--theme-dark:#51160B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C; }
+    [data-theme="sangosyu"] { --theme-primary:#F17C67;--theme-light:#F3E8E6;--theme-accent:#4CFE67;--theme-dark:#4B140A;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C; }
+    [data-theme="araisyu"] { --theme-primary:#FB966E;--theme-light:#F3EAE6;--theme-accent:#4CFE7F;--theme-dark:#4E1E0B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C; }
+    [data-theme="akakoh"] { --theme-primary:#E3916E;--theme-light:#F3EAE6;--theme-accent:#4FFB83;--theme-dark:#491D0A;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C; }
+    [data-theme="kokikuchinashi"] { --theme-primary:#FB9966;--theme-light:#F3EBE6;--theme-accent:#4CFE89;--theme-dark:#4D210B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C; }
+    [data-theme="kanzo"] { --theme-primary:#FC9F4D;--theme-light:#F3ECE6;--theme-accent:#4AFE9E;--theme-dark:#47270A;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C; }
+    [data-theme="beniukon"] { --theme-primary:#E98B2A;--theme-light:#F3EDE6;--theme-accent:#14FE8B;--theme-dark:#3C2208;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C; }
+    [data-theme="kuchiba"] { --theme-primary:#E2943B;--theme-light:#F3EDE6;--theme-accent:#1EFF95;--theme-dark:#3E2508;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C; }
+    [data-theme="yamabuki"] { --theme-primary:#FFB11B;--theme-light:#F3EFE6;--theme-accent:#1BFFB0;--theme-dark:#3D2B08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="hajizome"] { --theme-primary:#DDA52D;--theme-light:#F3EFE6;--theme-accent:#0BFEB1;--theme-dark:#3A2A08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tamago"] { --theme-primary:#F9BF45;--theme-light:#F3EFE6;--theme-accent:#3FFFC1;--theme-dark:#453209;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tamamorokoshi"] { --theme-primary:#E8B647;--theme-light:#F3EFE6;--theme-accent:#30FFBE;--theme-dark:#423009;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="usuki"] { --theme-primary:#FAD689;--theme-light:#F3EFE6;--theme-accent:#4CFEC6;--theme-dark:#543D0C;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="kuchinashi"] { --theme-primary:#F6C555;--theme-light:#F3EFE6;--theme-accent:#4CFEC8;--theme-dark:#48350A;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tohoh"] { --theme-primary:#FFC408;--theme-light:#F3F0E6;--theme-accent:#07FFC4;--theme-dark:#392D08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="ukon"] { --theme-primary:#EFBB24;--theme-light:#F3F0E6;--theme-accent:#14FEC2;--theme-dark:#3C2E08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tonoko"] { --theme-primary:#D7B98E;--theme-light:#F3EEE6;--theme-accent:#65E6B1;--theme-dark:#443015;--theme-neutral:#E7E5E3;--theme-text:#1C1C1C; }
+    [data-theme="kariyasu"] { --theme-primary:#E9CD4C;--theme-light:#F3F1E6;--theme-accent:#35FFDB;--theme-dark:#433909;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C; }
+    [data-theme="hiwa"] { --theme-primary:#BEC23F;--theme-light:#F3F3E6;--theme-accent:#1EDCE2;--theme-dark:#31320D;--theme-neutral:#E7E7E3;--theme-text:#1C1C1C; }
+    [data-theme="hiwamoegi"] { --theme-primary:#90B44B;--theme-light:#EFF3E6;--theme-accent:#2D99D1;--theme-dark:#242E11;--theme-neutral:#E6E7E3;--theme-text:#1C1C1C; }
+    [data-theme="yanagizome"] { --theme-primary:#91AD70;--theme-light:#EDF1E8;--theme-accent:#5992C3;--theme-dark:#242E19;--theme-neutral:#E5E6E4;--theme-text:#1C1C1C; }
+    [data-theme="nae"] { --theme-primary:#86C166;--theme-light:#EBF3E6;--theme-accent:#4C7EDA;--theme-dark:#1F3613;--theme-neutral:#E4E7E3;--theme-text:#1C1C1C; }
+    [data-theme="wakatake"] { --theme-primary:#5DAC81;--theme-light:#E7F2EC;--theme-accent:#7E42C6;--theme-dark:#152C20;--theme-neutral:#E4E6E5;--theme-text:#1C1C1C; }
+    [data-theme="byakuroku"] { --theme-primary:#A8D8B9;--theme-light:#E6F3EB;--theme-accent:#956FDB;--theme-dark:#1B442A;--theme-neutral:#E3E7E4;--theme-text:#1C1C1C; }
+    [data-theme="seiji"] { --theme-primary:#69B0AC;--theme-light:#E7F2F2;--theme-accent:#C150C8;--theme-dark:#172F2D;--theme-neutral:#E4E6E6;--theme-text:#1C1C1C; }
+    [data-theme="mizuasagi"] { --theme-primary:#66BAB7;--theme-light:#E6F3F2;--theme-accent:#CE4CD3;--theme-dark:#153231;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="byakugun"] { --theme-primary:#78C2C4;--theme-light:#E6F3F3;--theme-accent:#DA61D6;--theme-dark:#163738;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="kamenozoki"] { --theme-primary:#A5DEE4;--theme-light:#E6F2F3;--theme-accent:#EC5EDF;--theme-dark:#14484E;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="mizu"] { --theme-primary:#81C7D4;--theme-light:#E6F1F3;--theme-accent:#E763D3;--theme-dark:#133A41;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="sora"] { --theme-primary:#58B2DC;--theme-light:#E6EFF3;--theme-accent:#F83BBC;--theme-dark:#0A3042;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="wasurenagusa"] { --theme-primary:#7DB9DE;--theme-light:#E6EEF3;--theme-accent:#F258B8;--theme-dark:#0E3247;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="tsuyukusa"] { --theme-primary:#2EA9DF;--theme-light:#E6EFF3;--theme-accent:#FE0EB5;--theme-dark:#082B3A;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="gunjyo"] { --theme-primary:#51A8DD;--theme-light:#E6EEF3;--theme-accent:#FA33AF;--theme-dark:#092C41;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="usu"] { --theme-primary:#B28FCE;--theme-light:#EDE6F3;--theme-accent:#DDAB6E;--theme-dark:#2D183E;--theme-neutral:#E5E3E7;--theme-text:#1C1C1C; }
+    [data-theme="shironeri"] { --theme-primary:#FCFAF2;--theme-light:#F3F0E6;--theme-accent:#55F6D5;--theme-dark:#685713;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C; }
+    [data-theme="shironezumi"] { --theme-primary:#BDC0BA;--theme-light:#EDEDEC;--theme-accent:#93A5B8;--theme-dark:#2F312C;--theme-neutral:#E5E5E5;--theme-text:#1C1C1C; }
+
+    /* === Dark Themes === */
+    [data-theme="kohbai"] { --theme-primary:#E16B8C;--theme-light:#F3E6EA;--theme-accent:#80FA51;--theme-dark:#470B1C;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB; }
+    [data-theme="suoh"] { --theme-primary:#8E354A;--theme-light:#F3E6E9;--theme-accent:#3DA51D;--theme-dark:#260C12;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB; }
+    [data-theme="ichigo"] { --theme-primary:#B5495B;--theme-light:#F3E6E8;--theme-accent:#47D22B;--theme-dark:#2E1015;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB; }
+    [data-theme="karakurenai"] { --theme-primary:#D0104C;--theme-light:#F3E6EA;--theme-accent:#46E000;--theme-dark:#300714;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB; }
+    [data-theme="kurenai"] { --theme-primary:#CB1B45;--theme-light:#F3E6E9;--theme-accent:#36E500;--theme-dark:#320711;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB; }
+    [data-theme="kokiake"] { --theme-primary:#86473F;--theme-light:#F3E8E6;--theme-accent:#299B36;--theme-dark:#23110F;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="azuki"] { --theme-primary:#954A45;--theme-light:#F3E7E6;--theme-accent:#2CAD34;--theme-dark:#261110;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="akabeni"] { --theme-primary:#CB4042;--theme-light:#F3E6E7;--theme-accent:#22EB1F;--theme-dark:#360C0C;--theme-neutral:#E8E2E3;--theme-text:#F5F2EB; }
+    [data-theme="syojyohi"] { --theme-primary:#E83015;--theme-light:#F3E8E6;--theme-accent:#00FD20;--theme-dark:#370D07;--theme-neutral:#E8E3E2;--theme-text:#F5F2EB; }
+    [data-theme="entan"] { --theme-primary:#D75455;--theme-light:#F3E6E6;--theme-accent:#38F337;--theme-dark:#3E0B0C;--theme-neutral:#E8E2E2;--theme-text:#F5F2EB; }
+    [data-theme="benihi"] { --theme-primary:#F75C2F;--theme-light:#F3E9E6;--theme-accent:#26FF57;--theme-dark:#401509;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB; }
+    [data-theme="terigaki"] { --theme-primary:#C46243;--theme-light:#F3E9E6;--theme-accent:#23E351;--theme-dark:#33170D;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="ohni"] { --theme-primary:#F05E1C;--theme-light:#F3EAE6;--theme-accent:#0DFE58;--theme-dark:#3A1808;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB; }
+    [data-theme="sohi"] { --theme-primary:#ED784A;--theme-light:#F3EAE6;--theme-accent:#38FF70;--theme-dark:#441A09;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB; }
+    [data-theme="ensyucha"] { --theme-primary:#CA7853;--theme-light:#F3EAE6;--theme-accent:#36E66D;--theme-dark:#381B0E;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="kogecha"] { --theme-primary:#563F2E;--theme-light:#F2ECE7;--theme-accent:#2F9259;--theme-dark:#221810;--theme-neutral:#E6E5E4;--theme-text:#F5F2EB; }
+    [data-theme="taisya"] { --theme-primary:#A36336;--theme-light:#F3ECE6;--theme-accent:#1ABE5E;--theme-dark:#2A180C;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB; }
+    [data-theme="kohaku"] { --theme-primary:#CA7A2C;--theme-light:#F3EDE6;--theme-accent:#09EC79;--theme-dark:#341E09;--theme-neutral:#E8E5E2;--theme-text:#F5F2EB; }
+    [data-theme="kenpohzome"] { --theme-primary:#43341B;--theme-light:#F3EEE6;--theme-accent:#20A070;--theme-dark:#251C0D;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB; }
+    [data-theme="koke"] { --theme-primary:#838A2D;--theme-light:#F2F3E6;--theme-accent:#179FAA;--theme-dark:#25270B;--theme-neutral:#E7E7E3;--theme-text:#F5F2EB; }
+    [data-theme="moegi"] { --theme-primary:#7BA23F;--theme-light:#EEF3E6;--theme-accent:#2480BC;--theme-dark:#1F290E;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB; }
+    [data-theme="matsuba"] { --theme-primary:#42602D;--theme-light:#ECF3E6;--theme-accent:#285699;--theme-dark:#17230F;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB; }
+    [data-theme="tokiwa"] { --theme-primary:#1B813E;--theme-light:#E6F3EB;--theme-accent:#4406BB;--theme-dark:#072B13;--theme-neutral:#E2E8E4;--theme-text:#F5F2EB; }
+    [data-theme="midori"] { --theme-primary:#227D51;--theme-light:#E6F3ED;--theme-accent:#630FB1;--theme-dark:#09291A;--theme-neutral:#E2E8E5;--theme-text:#F5F2EB; }
+    [data-theme="tokusa"] { --theme-primary:#2D6D4B;--theme-light:#E6F3EC;--theme-accent:#5C229F;--theme-dark:#0D2518;--theme-neutral:#E3E7E5;--theme-text:#F5F2EB; }
+    [data-theme="rokusyoh"] { --theme-primary:#24936E;--theme-light:#E6F3EF;--theme-accent:#7D0BB5;--theme-dark:#082A1F;--theme-neutral:#E2E8E6;--theme-text:#F5F2EB; }
+    [data-theme="aomidori"] { --theme-primary:#00AA90;--theme-light:#E6F3F1;--theme-accent:#A400C1;--theme-dark:#062C26;--theme-neutral:#E2E8E7;--theme-text:#F5F2EB; }
+    [data-theme="asagi"] { --theme-primary:#33A6B8;--theme-light:#E6F1F3;--theme-accent:#D614BC;--theme-dark:#0B2A2F;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB; }
+    [data-theme="shinbashi"] { --theme-primary:#0089A7;--theme-light:#E6F1F3;--theme-accent:#C1009E;--theme-dark:#06252C;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB; }
+    [data-theme="hanaasagi"] { --theme-primary:#1E88A8;--theme-light:#E6F0F3;--theme-accent:#C40197;--theme-dark:#06232C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB; }
+    [data-theme="chigusa"] { --theme-primary:#3A8FB7;--theme-light:#E6EFF3;--theme-accent:#D51B9A;--theme-dark:#0C242F;--theme-neutral:#E3E6E7;--theme-text:#F5F2EB; }
+    [data-theme="hanada"] { --theme-primary:#006284;--theme-light:#E6F0F3;--theme-accent:#C1008F;--theme-dark:#06222C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB; }
+    [data-theme="ruri"] { --theme-primary:#005CAF;--theme-light:#E6EDF3;--theme-accent:#C10065;--theme-dark:#061A2C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB; }
+    [data-theme="rurikon"] { --theme-primary:#0B346E;--theme-light:#E6ECF3;--theme-accent:#C10050;--theme-dark:#06162C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB; }
+    [data-theme="benimidori"] { --theme-primary:#7B90D2;--theme-light:#E6E9F3;--theme-accent:#E76383;--theme-dark:#131D40;--theme-neutral:#E3E4E7;--theme-text:#F5F2EB; }
+    [data-theme="fujinezumi"] { --theme-primary:#6E75A4;--theme-light:#E9EAF1;--theme-accent:#BB5663;--theme-dark:#191B2A;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB; }
+    [data-theme="benikakehana"] { --theme-primary:#4E4F97;--theme-light:#E7E7F2;--theme-accent:#AF3537;--theme-dark:#121226;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB; }
+    [data-theme="konjyo"] { --theme-primary:#113285;--theme-light:#E6EAF3;--theme-accent:#C10037;--theme-dark:#06112C;--theme-neutral:#E2E4E8;--theme-text:#F5F2EB; }
+    [data-theme="kon"] { --theme-primary:#0F2540;--theme-light:#E6ECF3;--theme-accent:#B70A58;--theme-dark:#08172A;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB; }
+    [data-theme="konkikyo"] { --theme-primary:#211E55;--theme-light:#E7E6F3;--theme-accent:#A7221A;--theme-dark:#0D0C26;--theme-neutral:#E3E3E7;--theme-text:#F5F2EB; }
+    [data-theme="kurotsurubami"] { --theme-primary:#0B1013;--theme-light:#E8EEF1;--theme-accent:#8E336C;--theme-dark:#121B20;--theme-neutral:#E4E5E6;--theme-text:#F5F2EB; }
+    [data-theme="fuji"] { --theme-primary:#8B81C3;--theme-light:#E8E6F3;--theme-accent:#D77C6C;--theme-dark:#1D1838;--theme-neutral:#E4E3E7;--theme-text:#F5F2EB; }
+    [data-theme="fujimurasaki"] { --theme-primary:#8A6BBE;--theme-light:#EBE6F3;--theme-accent:#D68352;--theme-dark:#211535;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB; }
+    [data-theme="kikyo"] { --theme-primary:#6A4C9C;--theme-light:#EBE6F3;--theme-accent:#B56332;--theme-dark:#1A1228;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB; }
+    [data-theme="shion"] { --theme-primary:#8F77B5;--theme-light:#EBE7F2;--theme-accent:#CA8A61;--theme-dark:#221931;--theme-neutral:#E5E4E6;--theme-text:#F5F2EB; }
+    [data-theme="edomurasaki"] { --theme-primary:#77428D;--theme-light:#EFE6F3;--theme-accent:#A4802A;--theme-dark:#1E0F24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB; }
+    [data-theme="murasaki"] { --theme-primary:#592C63;--theme-light:#F1E6F3;--theme-accent:#9C8625;--theme-dark:#200E24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB; }
+    [data-theme="benifuji"] { --theme-primary:#B481BB;--theme-light:#F1E7F2;--theme-accent:#CFC36C;--theme-dark:#311A34;--theme-neutral:#E6E4E6;--theme-text:#F5F2EB; }
+    [data-theme="botan"] { --theme-primary:#C1328E;--theme-light:#F3E6EE;--theme-accent:#97E111;--theme-dark:#320A24;--theme-neutral:#E8E2E6;--theme-text:#F5F2EB; }
+    [data-theme="tsutsuji"] { --theme-primary:#E03C8A;--theme-light:#F3E6EC;--theme-accent:#88FF1D;--theme-dark:#3E0822;--theme-neutral:#E8E2E5;--theme-text:#F5F2EB; }
+    [data-theme="ginnezumi"] { --theme-primary:#91989F;--theme-light:#EBEDEE;--theme-accent:#AF8098;--theme-dark:#232628;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="namari"] { --theme-primary:#787878;--theme-light:#EDEDED;--theme-accent:#668966;--theme-dark:#1D1D1D;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="hai"] { --theme-primary:#828282;--theme-light:#EDEDED;--theme-accent:#6F946F;--theme-dark:#202020;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="nibi"] { --theme-primary:#656765;--theme-light:#ECEDEC;--theme-accent:#555576;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="aonibi"] { --theme-primary:#535953;--theme-light:#ECEDEC;--theme-accent:#4E4E73;--theme-dark:#181A18;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="keshizumi"] { --theme-primary:#434343;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="sumi"] { --theme-primary:#1C1C1C;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="kuro"] { --theme-primary:#080808;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+
+    /* === Background layers === */
+    .phyra-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+    .phyra-gloss {
+      position: fixed; top: 0; left: 0; width: 100%; height: 478px;
+      z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none;
+      transition: opacity 2s ease-in;
+    }
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative; z-index: 2;
+    }
+
+    /* === Base === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px; line-height: 1.7;
+      color: var(--p-text);
+      min-height: 100vh;
+    }
+
+    /* === Content width === */
+    main, #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto; padding: 40px 20px 60px;
+      box-sizing: border-box;
+      transition: max-width 0.15s ease;
+    }
+
+    /* === Width handle === */
+    .phyra-width-handle {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 6px; height: 60px;
+      background: rgba(128,128,128,0.3); border-radius: 3px;
+      cursor: col-resize; z-index: 99;
+      transition: background 0.2s, opacity 0.3s; opacity: 0.4;
+    }
+    .phyra-width-handle:hover, .phyra-width-handle.dragging {
+      background: var(--p-accent); opacity: 1;
+    }
+
+    /* === Card === */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 28px 32px;
+      color: var(--p-text);
+      margin-bottom: 28px;
+    }
+
+    /* === Headings === */
+    h1 { font-size: 1.8rem; margin-bottom: 8px; color: var(--p-text); }
+    h2 { font-size: 1.4rem; border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin-bottom: 16px; color: var(--p-text); }
+    h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--p-text); }
+
+    /* === Bold highlight === */
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px; border-radius: 3px; font-weight: 700;
+    }
+
+    /* === Table === */
+    table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin: 12px 0; }
+    th {
+      background: var(--p-primary); padding: 8px 12px; text-align: left;
+    }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--p-border); color: var(--p-text); }
+    tr:hover td { background: rgba(128,128,128,0.08); }
+
+    /* === Formula === */
+    .formula, .katex-display, pre.math {
+      background: var(--p-formula-bg); color: var(--p-text);
+      padding: 12px 16px; border-radius: 6px;
+      border: 1px solid var(--p-border); overflow-x: auto; margin: 12px 0;
+    }
+    .katex, code.math { color: var(--p-text); background: transparent; }
+
+    /* === Tag === */
+    .tag {
+      display: inline-block; padding: 2px 10px; border-radius: 12px;
+      font-size: 0.75em; font-weight: 600;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text); margin: 2px 4px 2px 0;
+    }
+
+    /* === Score bar === */
+    .score-row { display: flex; align-items: center; gap: 12px; margin: 6px 0; }
+    .score-label { min-width: 160px; font-size: 0.9em; }
+    .score-bar { flex: 1; height: 8px; border-radius: 4px; background: var(--p-border); }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+    .score-value { min-width: 36px; text-align: right; font-size: 0.9em; font-weight: 600; }
+
+    /* === Lists === */
+    ul, ol { padding-left: 20px; margin: 8px 0; }
+    li { margin-bottom: 6px; }
+
+    /* === Subtitle === */
+    .subtitle { font-size: 0.95em; color: var(--p-text-secondary); margin-bottom: 4px; }
+
+    /* === Paradigm grid === */
+    .paradigm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
+    .paradigm-item {
+      background: var(--p-bg-card); border: 1px solid var(--p-border);
+      border-radius: 6px; padding: 16px;
+    }
+    .paradigm-item h3 { font-size: 1rem; margin-bottom: 6px; }
+
+    /* === Mechanic row === */
+    .mechanic-row { display: flex; gap: 12px; margin: 10px 0; align-items: flex-start; }
+    .mechanic-icon {
+      min-width: 40px; height: 40px; border-radius: 50%;
+      background: color-mix(in srgb, var(--p-accent) 25%, transparent);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9em;
+    }
+    .mechanic-body { flex: 1; }
+    .mechanic-body h3 { margin-bottom: 4px; }
+
+    /* === Switcher === */
+    .phyra-switcher {
+      position: fixed; bottom: 20px; right: 20px; z-index: 100;
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128,128,128,0.15);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128,128,128,0.2);
+      border-radius: 24px; transition: background 0.3s;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px; background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(128,128,128,0.3); border-radius: 12px;
+      color: #1C1C1C; font-size: 12px; cursor: pointer; outline: none; max-width: 200px;
+    }
+    .phyra-switcher select option { color: #1C1C1C; background: #fff; }
+    .phyra-switcher select optgroup { font-weight: bold; color: #1C1C1C; }
+    .phyra-switcher button {
+      padding: 4px 12px; background: rgba(128,128,128,0.2);
+      border: 1px solid rgba(128,128,128,0.3); border-radius: 12px;
+      color: var(--p-text); cursor: pointer; font-size: 12px; transition: background 0.2s;
+    }
+    .phyra-switcher button:hover { background: rgba(128,128,128,0.35); }
+
+    /* === Footer === */
+    .phyra-footer {
+      text-align: center; padding: 24px 20px; font-size: 12px;
+      color: var(--p-text); opacity: 0.5; letter-spacing: 0.05em;
+      position: relative; z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="phyra-bg"></div>
+  <div class="phyra-gloss"></div>
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <main id="phyra-main">
+
+    <!-- ===== SLIDE 1: Title ===== -->
+    <section class="slide-card">
+      <h1>Latent World Models for Automated Driving</h1>
+      <p class="subtitle">A Unified Taxonomy, Evaluation Framework, and Open Challenges</p>
+      <p style="margin-top:12px;">
+        <span class="tag">Survey</span>
+        <span class="tag">World Models</span>
+        <span class="tag">Automated Driving</span>
+        <span class="tag">Latent Representations</span>
+        <span class="tag">IEEE T-ITS</span>
+      </p>
+      <table style="margin-top:16px;">
+        <tr><th>Authors</th><td>Rongxiang Zeng, Yongqi Dong (RWTH Aachen University)</td></tr>
+        <tr><th>Venue</th><td>IEEE Transactions on Intelligent Transportation Systems, March 2026</td></tr>
+        <tr><th>Scope</th><td>40+ methods, 4 paradigms, 5 internal mechanics, 3 proposed metrics</td></tr>
+      </table>
+    </section>
+
+    <!-- ===== SLIDE 2: Core Thesis ===== -->
+    <section class="slide-card">
+      <h2>Core Thesis</h2>
+      <p>Current world models for automated driving can generate visually plausible sensor observations yet fail to guarantee physically consistent, safety-aligned behavior in closed-loop deployment. This paper argues that the root cause is treating neural simulation, latent planning, data synthesis, and cognitive reasoning as disconnected paradigms with misaligned evaluation criteria.</p>
+      <p style="margin-top:12px;">The proposed solution: a <strong>unified latent-space framework</strong> that organizes methods by their representation properties and cross-cutting internal mechanics, bridging the gap between open-loop perceptual scores and closed-loop safety outcomes.</p>
+    </section>
+
+    <!-- ===== SLIDE 3: Taxonomy ===== -->
+    <section class="slide-card">
+      <h2>Four-Paradigm Taxonomy</h2>
+      <p class="subtitle">Organized by latent representation form, modeling objective, and downstream decision task (Section II, Fig. 2, Table I)</p>
+      <div class="paradigm-grid">
+        <div class="paradigm-item">
+          <h3>A. Spatiotemporal World Modeling</h3>
+          <p>Neural simulators generating spatiotemporally consistent video/occupancy rollouts. Key: BEV unification, ray-casting reconstruction, occupancy flows.</p>
+          <p style="margin-top:6px;font-size:0.85em;color:var(--p-text-secondary);">BEVWorld, OmniGen, DriveX, Epona, Orbis, LongDWM, DriveWorld</p>
+        </div>
+        <div class="paradigm-item">
+          <h3>B. Latent-Centric Planning + RL</h3>
+          <p>Compressing structured latent spaces for trajectory planning and policy learning. Key: shared latent futures, RL in latent space, deliberative rollouts.</p>
+          <p style="margin-top:6px;font-size:0.85em;color:var(--p-text-secondary);">GenAD, DriveLAW, Think2Drive, LatentDriver, EGADS</p>
+        </div>
+        <div class="paradigm-item">
+          <h3>C. Data Synthesis + Scene Editing</h3>
+          <p>Generative models for synthesizing or editing driving scenarios. Key: subject-targeted prompts, controllable layout manipulation, safety-critical augmentation.</p>
+          <p style="margin-top:6px;font-size:0.85em;color:var(--p-text-secondary);">SubjectDrive, LatEditGAN, Safety-Critical, Construct</p>
+        </div>
+        <div class="paradigm-item">
+          <h3>D. Cognitive Reasoning + Latent CoT</h3>
+          <p>Integrating VLM/LLM reasoning into latent dynamics. Key: reasoning distillation, Chain-of-Causation, cross-modal grounding.</p>
+          <p style="margin-top:6px;font-size:0.85em;color:var(--p-text-secondary);">VERDI, LCDrive, FutureX, OmniDrive-RI, MindEye</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 4: Internal Mechanics ===== -->
+    <section class="slide-card">
+      <h2>Five Cross-Cutting Internal Mechanics</h2>
+      <p class="subtitle">Structural and computational properties that govern rollout stability and closed-loop performance (Section III, Fig. 3)</p>
+
+      <div class="mechanic-row">
+        <div class="mechanic-icon">A</div>
+        <div class="mechanic-body">
+          <h3>Structural Isomorphism and Geometric Priors</h3>
+          <p>Transition from unstructured 1D bottlenecks to spatially isomorphic latent representations preserving geometric fidelity. Methods like OmniGen and SharedBEV demonstrate that topology-preserving grid structures outperform flat embeddings for multi-view consistency (p. 6).</p>
+        </div>
+      </div>
+
+      <div class="mechanic-row">
+        <div class="mechanic-icon">B</div>
+        <div class="mechanic-body">
+          <h3>Temporal Dynamics for Stable Rollouts</h3>
+          <p>Decoupling spatiotemporal factorization (Epona), memory state-space models (DriveWorld), and cross-granularity distillation (LongDWM) reduce autoregressive error accumulation. Orbis provides controlled evidence that continuous flow-matching dynamics outperform discrete tokenization for long-horizon stability (p. 7).</p>
+        </div>
+      </div>
+
+      <div class="mechanic-row">
+        <div class="mechanic-icon">C</div>
+        <div class="mechanic-body">
+          <h3>Semantic and Reasoning Alignment</h3>
+          <p>Extending latent space beyond reconstruction to include cognitive reasoning. VERDI distills VLM reasoning into latent features without inference-time overhead; VASE aligns representations via GRPO; Apamor-RI introduces Chain of Causation for logical grounding (p. 7-8).</p>
+        </div>
+      </div>
+
+      <div class="mechanic-row">
+        <div class="mechanic-icon">D</div>
+        <div class="mechanic-body">
+          <h3>Value-Aligned Objectives and Post-Training</h3>
+          <p>Shifting from reconstruction-centric to value-aligned training. WorldRF applies reinforcement fine-tuning with GRPO for scene representation alignment; RawDrive uses collision-aware rewards; value-aligned training introduces new failure modes where models are less visible under perceptual metrics (p. 8-9).</p>
+        </div>
+      </div>
+
+      <div class="mechanic-row">
+        <div class="mechanic-icon">E</div>
+        <div class="mechanic-body">
+          <h3>Adaptive Computation and Deliberation</h3>
+          <p>Dynamically allocating computational resources based on scenario complexity. FutureX's "Auto-Think Switch" lets the agent choose between reactive and deliberative modes; CoALVA provides higher-level latent interfaces for multi-objective evaluation and candidate selection (p. 9).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SLIDE 5: Evaluation Framework ===== -->
+    <section class="slide-card">
+      <h2>Evaluation Framework: Three New Closed-Loop Metrics</h2>
+      <p class="subtitle">Bridging the gap between open-loop fidelity and closed-loop safety (Section IV, Eqs. 1-4)</p>
+
+      <h3 style="margin-top:16px;">CSG: Closed-loop Safety Gap</h3>
+      <div class="formula">$$\text{CSG} = F_{OL}(s) - F_{CL}(s)$$</div>
+      <p>Quantifies the discrepancy between a model's open-loop perceptual fidelity score ($F_{OL}$, e.g., inverse ADE or widened FVD) and its closed-loop safety score ($F_{CL}$). A high CSG indicates that perceptual quality does not translate into safe behavior (p. 10).</p>
+
+      <h3 style="margin-top:16px;">TCS: Temporal Coherence Score</h3>
+      <div class="formula">$$S_{CL} = 1 - \frac{1}{T}\sum_{t}\Delta_t$$</div>
+      <p>Measures frame-to-frame trajectory smoothness. Higher TCS values indicate reduced temporal oscillation and improved planning stability. Derived from trajectory derivatives to capture both smoothness and stability of planned actions (p. 10).</p>
+
+      <h3 style="margin-top:16px;">DC: Deliberation Cost</h3>
+      <div class="formula">$$\text{DC} = \frac{w_T \bar{T} + w_B \bar{B} + w_E \bar{E} + w_M \bar{M}}{\Delta G}$$</div>
+      <p>Measures the computational profile of deliberation: inference latency ($\bar{T}$), branching factor ($\bar{B}$), energy per decision ($\bar{E}$), and working memory ($\bar{M}$), normalized by the marginal safety improvement ($\Delta G$) over a reactive baseline. Lower DC indicates more efficient deliberation (p. 10-11).</p>
+    </section>
+
+    <!-- ===== SLIDE 6: Benchmarks ===== -->
+    <section class="slide-card">
+      <h2>Evaluation Ecosystem</h2>
+      <p class="subtitle">Key datasets and simulation platforms organized by fidelity-interactivity trade-offs (Table II, p. 10-11)</p>
+      <table>
+        <tr>
+          <th>Category</th>
+          <th>Platform / Dataset</th>
+          <th>Characteristics</th>
+        </tr>
+        <tr>
+          <td>Static Real-World</td>
+          <td>nuScenes, Waymo Open Dataset</td>
+          <td>Open-loop perception and prediction; primary benchmarks for ADE/FID/FVD</td>
+        </tr>
+        <tr>
+          <td>Interactive Simulation</td>
+          <td>CARLA Leaderboard 2.0</td>
+          <td>Closed-loop decision making in simulated urban environments; primary for SR/RC</td>
+        </tr>
+        <tr>
+          <td>Hybrid</td>
+          <td>NAVSIM</td>
+          <td>Bridges static log-replay and synthetic engines; enables both open and closed-loop evaluation</td>
+        </tr>
+        <tr>
+          <td>Scaling</td>
+          <td>Waymo Open Dataset (WOD)</td>
+          <td>Larger-scale, diverse geographies for cross-domain robustness</td>
+        </tr>
+        <tr>
+          <td>Data-Driven Neural Sim</td>
+          <td>GAIA-1, MagicDrive-V2</td>
+          <td>Hybrid log-data + simulation for bridging fidelity-interactivity gap</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ===== SLIDE 7: Open Challenges ===== -->
+    <section class="slide-card">
+      <h2>Five Open Challenge Clusters</h2>
+      <p class="subtitle">Persistent bottlenecks organized by deployment criticality (Section V, Fig. 5)</p>
+      <ol>
+        <li><strong>Hallucination Consistency and Long-Horizon Drift:</strong> Stability degradation through compounding latent-state errors, distributional shift, and geometric/structural violations during extended rollouts (p. 11)</li>
+        <li><strong>Long-Horizon Rollout Stability with Closed-Loop Alignment:</strong> Perceptual metric improvements do not guarantee safer closed-loop behavior; training objectives must align with rollout-time constraints (p. 12)</li>
+        <li><strong>Latent Actions and VLA Interfaces:</strong> Bridging language-groundable representations with controller-compatible action spaces; standardizing action token representations across platforms (p. 14)</li>
+        <li><strong>Sim-to-Real Generalization and Adaptation:</strong> In-distribution models degrade across cities, sensor configurations, and traffic norms; learning domain-invariant causal factors remains open (p. 14)</li>
+        <li><strong>Systems and Real-Time Deployment:</strong> Diffusion/Transformer-based models face latency, memory, and power budget constraints; practical deployment requires reduced rollouts, hardware-aware compression, and modular scheduling (p. 14)</li>
+      </ol>
+    </section>
+
+    <!-- ===== SLIDE 8: Future Horizons ===== -->
+    <section class="slide-card">
+      <h2>Future Research Directions</h2>
+      <p class="subtitle">Five forward-looking directions from Section VI (p. 13-15)</p>
+      <table>
+        <tr><th>Direction</th><th>Core Idea</th></tr>
+        <tr>
+          <td>Grounded Structured Latent Worlds</td>
+          <td>Learn factorized latent states with explicit geometric anchors (e.g., BEV with occupancy primitives) that are identifiable and controllable for planning-time constraints</td>
+        </tr>
+        <tr>
+          <td>Closed-Loop Aligned Rollout</td>
+          <td>Align training objectives with rollout-time constraints through multi-step supervision, uncertainty-aware rollouts, and simulator-in-the-loop validation that penalizes safety-critical failures</td>
+        </tr>
+        <tr>
+          <td>Latent Actions and VLA Interface</td>
+          <td>Hybrid action spaces combining discrete semantic tokens with continuous latent variables for control; standardized action token representations across platforms</td>
+        </tr>
+        <tr>
+          <td>Sim-to-Real Transfer</td>
+          <td>Privileged-to-raw distillation strategies with explicit validity checks; test-time adaptation gated by calibrated uncertainty and safety monitors</td>
+        </tr>
+        <tr>
+          <td>Efficient Real-Time Deployment</td>
+          <td>Few-step/reduced diffusion samplers, hardware-aware compression, modular scheduling for asynchronous world-model updates while maintaining safety-critical fallback</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ===== SLIDE 9: Evaluation ===== -->
+    <section class="slide-card">
+      <h2>Phyra Assessment</h2>
+      <p class="subtitle">Overall score: 4 / 5</p>
+
+      <div class="score-row">
+        <span class="score-label">Novelty</span>
+        <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+        <span class="score-value">4/5</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Technical Depth</span>
+        <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+        <span class="score-value">4/5</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Experiment Completeness</span>
+        <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+        <span class="score-value">3/5</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Writing Quality</span>
+        <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+        <span class="score-value">4/5</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Practical Value</span>
+        <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+        <span class="score-value">4/5</span>
+      </div>
+
+      <h3 style="margin-top:20px;">Key Strengths</h3>
+      <ul>
+        <li>Unified latent-space taxonomy connecting four paradigms with shared structural choices across 40+ methods</li>
+        <li>Five cross-cutting internal mechanics provide a deeper analytical lens than surface-level architecture comparisons</li>
+        <li>Formally defined CSG/TCS/DC metrics offer a concrete prescriptive evaluation agenda</li>
+      </ul>
+
+      <h3 style="margin-top:12px;">Key Weaknesses</h3>
+      <ul>
+        <li>Proposed metrics lack empirical validation; no experiments demonstrate their discriminative power</li>
+        <li>No quantitative cross-method comparison on a common benchmark</li>
+        <li>Cognitive reasoning paradigm coverage is thinner than the other three categories</li>
+      </ul>
+    </section>
+
+    <!-- ===== SLIDE 10: Key Takeaways ===== -->
+    <section class="slide-card">
+      <h2>Key Takeaways</h2>
+      <ol>
+        <li>The field needs to move from task-centric surveys to <strong>representation-centric frameworks</strong> that expose shared design choices across paradigms.</li>
+        <li>Open-loop perceptual metrics (ADE, FVD) are necessary but insufficient; <strong>closed-loop-aligned metrics</strong> like CSG, TCS, and DC are needed to evaluate deployment readiness.</li>
+        <li>Five internal mechanics (structural isomorphism, temporal dynamics, semantic alignment, value alignment, adaptive computation) represent the <strong>controllable design axes</strong> for building safer world models.</li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer class="phyra-footer">
+    Phyra NT Workflow | Paper Read Report | 2026-04-09
+  </footer>
+
+  <script>
+    /* phyra-switcher.js */
+    const PHYRA_THEMES=[{id:"nadeshiko",label:"\u64AB\u5B50 Nadeshiko",mode:"light"},{id:"taikoh",label:"\u9000\u7D05 Taikoh",mode:"light"},{id:"momo",label:"\u6843 Momo",mode:"light"},{id:"toki",label:"\u9D07 Toki",mode:"light"},{id:"jinzamomi",label:"\u751A\u4E09\u7D05 Jinzamomi",mode:"light"},{id:"haizakura",label:"\u7070\u685C Haizakura",mode:"light"},{id:"akebono",label:"\u66D9 Akebono",mode:"light"},{id:"sangosyu",label:"\u73CA\u745A\u6731 Sangosyu",mode:"light"},{id:"araisyu",label:"\u6D17\u6731 Araisyu",mode:"light"},{id:"akakoh",label:"\u8D64\u9999 Akakoh",mode:"light"},{id:"kokikuchinashi",label:"\u6DF1\u652F\u5B50 Kokikuchinashi",mode:"light"},{id:"kanzo",label:"\u8431\u8349 Kanzo",mode:"light"},{id:"beniukon",label:"\u7D05\u9B31\u91D1 Beniukon",mode:"light"},{id:"kuchiba",label:"\u673D\u8449 Kuchiba",mode:"light"},{id:"yamabuki",label:"\u5C71\u5439 Yamabuki",mode:"light"},{id:"hajizome",label:"\u6AE8\u67D3 Hajizome",mode:"light"},{id:"tamago",label:"\u7389\u5B50 Tamago",mode:"light"},{id:"tamamorokoshi",label:"\u7389\u8700\u9EDC Tamamorokoshi",mode:"light"},{id:"usuki",label:"\u6D45\u9EC4 Usuki",mode:"light"},{id:"kuchinashi",label:"\u6894\u5B50 Kuchinashi",mode:"light"},{id:"tohoh",label:"\u7C50\u9EC4 Tohoh",mode:"light"},{id:"ukon",label:"\u9B31\u91D1 Ukon",mode:"light"},{id:"tonoko",label:"\u7825\u7C89 Tonoko",mode:"light"},{id:"kariyasu",label:"\u5208\u5B89 Kariyasu",mode:"light"},{id:"hiwa",label:"\u9D38 Hiwa",mode:"light"},{id:"hiwamoegi",label:"\u9D38\u840C\u9EC4 Hiwamoegi",mode:"light"},{id:"yanagizome",label:"\u67F3\u67D3 Yanagizome",mode:"light"},{id:"nae",label:"\u82D7 Nae",mode:"light"},{id:"wakatake",label:"\u82E5\u7AF9 Wakatake",mode:"light"},{id:"byakuroku",label:"\u767D\u7DD1 Byakuroku",mode:"light"},{id:"seiji",label:"\u9752\u78C1 Seiji",mode:"light"},{id:"mizuasagi",label:"\u6C34\u6D45\u8471 Mizuasagi",mode:"light"},{id:"byakugun",label:"\u767D\u7FA4 Byakugun",mode:"light"},{id:"kamenozoki",label:"\u74F6\u898B Kamenozoki",mode:"light"},{id:"mizu",label:"\u6C34 Mizu",mode:"light"},{id:"sora",label:"\u7A7A Sora",mode:"light"},{id:"wasurenagusa",label:"\u52FF\u5FD8\u8349 Wasurenagusa",mode:"light"},{id:"tsuyukusa",label:"\u9732\u8349 Tsuyukusa",mode:"light"},{id:"gunjyo",label:"\u7FA4\u9752 Gunjyo",mode:"light"},{id:"usu",label:"\u8584 Usu",mode:"light"},{id:"shironeri",label:"\u767D\u7DF4 Shironeri",mode:"light"},{id:"shironezumi",label:"\u767D\u9F20 Shironezumi",mode:"light"},{id:"kohbai",label:"\u7D05\u6885 Kohbai",mode:"dark"},{id:"suoh",label:"\u8607\u82B3 Suoh",mode:"dark"},{id:"ichigo",label:"\u82FA Ichigo",mode:"dark"},{id:"karakurenai",label:"\u97D3\u7D05\u82B1 Karakurenai",mode:"dark"},{id:"kurenai",label:"\u7D05 Kurenai",mode:"dark"},{id:"kokiake",label:"\u6DF1\u7DCB Kokiake",mode:"dark"},{id:"azuki",label:"\u5C0F\u8C46 Azuki",mode:"dark"},{id:"akabeni",label:"\u8D64\u7D05 Akabeni",mode:"dark"},{id:"syojyohi",label:"\u7329\u7329\u7DCB Syojyohi",mode:"dark"},{id:"entan",label:"\u925B\u4E39 Entan",mode:"dark"},{id:"benihi",label:"\u7D05\u7DCB Benihi",mode:"dark"},{id:"terigaki",label:"\u7167\u67FF Terigaki",mode:"dark"},{id:"ohni",label:"\u9EC4\u4E39 Ohni",mode:"dark"},{id:"sohi",label:"\u7E81 Sohi",mode:"dark"},{id:"ensyucha",label:"\u9060\u5DDE\u8336 Ensyucha",mode:"dark"},{id:"kogecha",label:"\u7126\u8336 Kogecha",mode:"dark"},{id:"taisya",label:"\u4EE3\u8D6D Taisya",mode:"dark"},{id:"kohaku",label:"\u7425\u7425 Kohaku",mode:"dark"},{id:"kenpohzome",label:"\u61B2\u6CD5\u67D3 Kenpohzome",mode:"dark"},{id:"koke",label:"\u82D4 Koke",mode:"dark"},{id:"moegi",label:"\u840C\u9EC4 Moegi",mode:"dark"},{id:"matsuba",label:"\u677E\u8449 Matsuba",mode:"dark"},{id:"tokiwa",label:"\u5E38\u78D0 Tokiwa",mode:"dark"},{id:"midori",label:"\u7DD1 Midori",mode:"dark"},{id:"tokusa",label:"\u6728\u8CCA Tokusa",mode:"dark"},{id:"rokusyoh",label:"\u7DD1\u9752 Rokusyoh",mode:"dark"},{id:"aomidori",label:"\u9752\u7DD1 Aomidori",mode:"dark"},{id:"asagi",label:"\u6D45\u8471 Asagi",mode:"dark"},{id:"shinbashi",label:"\u65B0\u6A4B Shinbashi",mode:"dark"},{id:"hanaasagi",label:"\u82B1\u6D45\u8471 Hanaasagi",mode:"dark"},{id:"chigusa",label:"\u5343\u8349 Chigusa",mode:"dark"},{id:"hanada",label:"\u7E39 Hanada",mode:"dark"},{id:"ruri",label:"\u7460\u7483 Ruri",mode:"dark"},{id:"rurikon",label:"\u7460\u7483\u7D3A Rurikon",mode:"dark"},{id:"benimidori",label:"\u7D05\u78A7 Benimidori",mode:"dark"},{id:"fujinezumi",label:"\u85E4\u9F20 Fujinezumi",mode:"dark"},{id:"benikakehana",label:"\u7D05\u639B\u82B1 Benikakehana",mode:"dark"},{id:"konjyo",label:"\u7D3A\u9752 Konjyo",mode:"dark"},{id:"kon",label:"\u7D3A Kon",mode:"dark"},{id:"konkikyo",label:"\u7D3A\u6854\u6897 Konkikyo",mode:"dark"},{id:"kurotsurubami",label:"\u9ED2\u6A61 Kurotsurubami",mode:"dark"},{id:"fuji",label:"\u85E4 Fuji",mode:"dark"},{id:"fujimurasaki",label:"\u85E4\u7D2B Fujimurasaki",mode:"dark"},{id:"kikyo",label:"\u6854\u6897 Kikyo",mode:"dark"},{id:"shion",label:"\u7D2B\u82D1 Shion",mode:"dark"},{id:"edomurasaki",label:"\u6C5F\u6238\u7D2B Edomurasaki",mode:"dark"},{id:"murasaki",label:"\u7D2B Murasaki",mode:"dark"},{id:"benifuji",label:"\u7D05\u85E4 Benifuji",mode:"dark"},{id:"botan",label:"\u7261\u4E39 Botan",mode:"dark"},{id:"tsutsuji",label:"\u8E91\u8E85 Tsutsuji",mode:"dark"},{id:"ginnezumi",label:"\u9280\u9F20 Ginnezumi",mode:"dark"},{id:"namari",label:"\u925B Namari",mode:"dark"},{id:"hai",label:"\u7070 Hai",mode:"dark"},{id:"nibi",label:"\u920D Nibi",mode:"dark"},{id:"aonibi",label:"\u9752\u920D Aonibi",mode:"dark"},{id:"keshizumi",label:"\u6D88\u70AD Keshizumi",mode:"dark"},{id:"sumi",label:"\u58A8 Sumi",mode:"dark"},{id:"kuro",label:"\u9ED2 Kuro",mode:"dark"}];
+
+    function phyraApply(id){
+      const html=document.documentElement;
+      html.setAttribute('data-theme',id);
+      const t=PHYRA_THEMES.find(x=>x.id===id);
+      if(t){html.setAttribute('data-theme-mode',t.mode);const s=document.getElementById('phyra-select');if(s)s.value=id;}
+    }
+    function phyraRandom(){const i=Math.floor(Math.random()*PHYRA_THEMES.length);phyraApply(PHYRA_THEMES[i].id);}
+    function phyraBuildSelect(){
+      const s=document.getElementById('phyra-select');if(!s)return;
+      const lg=document.createElement('optgroup');lg.label='Light (42)';
+      const dg=document.createElement('optgroup');dg.label='Dark (58)';
+      PHYRA_THEMES.forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=t.label;if(t.mode==='light')lg.appendChild(o);else dg.appendChild(o);});
+      s.appendChild(lg);s.appendChild(dg);
+    }
+    (function(){phyraBuildSelect();const c=document.documentElement.getAttribute('data-theme')||'keshizumi';phyraApply(c);})();
+
+    /* Content width drag */
+    (function(){
+      const h=document.getElementById('phyra-width-handle');if(!h)return;let d=false;
+      function up(cw){const vw=window.innerWidth;h.style.right=Math.max(4,(vw-cw)/2-16)+'px';}
+      h.addEventListener('mousedown',e=>{d=true;h.classList.add('dragging');e.preventDefault();});
+      document.addEventListener('mousemove',e=>{if(!d)return;const vw=window.innerWidth;const nw=Math.max(400,Math.abs(e.clientX-vw/2)*2);document.documentElement.style.setProperty('--phyra-content-width',nw+'px');up(nw);});
+      document.addEventListener('mouseup',()=>{if(d){d=false;h.classList.remove('dragging');}});
+      const iw=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width'))||900;up(iw);
+      window.addEventListener('resize',()=>{const w=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width'))||900;up(w);});
+    })();
+  </script>
+</body>
+</html>

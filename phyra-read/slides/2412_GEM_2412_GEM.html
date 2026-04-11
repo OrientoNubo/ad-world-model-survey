@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phyra Paper Read | GEM</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* === Semantic aliases === */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 900px;
+    }
+
+    /* === Light Themes (selected) === */
+    [data-theme="wakatake"] {
+      --theme-primary : #5DAC81;
+      --theme-light   : #E7F2EC;
+      --theme-accent  : #7E42C6;
+      --theme-dark    : #152C20;
+      --theme-neutral : #E4E6E5;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="yamabuki"] {
+      --theme-primary : #FFB11B;
+      --theme-light   : #F3EFE6;
+      --theme-accent  : #1BFFB0;
+      --theme-dark    : #3D2B08;
+      --theme-neutral : #E8E6E2;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="sora"] {
+      --theme-primary : #58B2DC;
+      --theme-light   : #E6EFF3;
+      --theme-accent  : #F83BBC;
+      --theme-dark    : #0A3042;
+      --theme-neutral : #E2E6E8;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="shironeri"] {
+      --theme-primary : #FCFAF2;
+      --theme-light   : #F3F0E6;
+      --theme-accent  : #55F6D5;
+      --theme-dark    : #685713;
+      --theme-neutral : #E8E7E2;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="nadeshiko"] {
+      --theme-primary : #DC9FB4;
+      --theme-light   : #F3E6EB;
+      --theme-accent  : #92E566;
+      --theme-dark    : #471727;
+      --theme-neutral : #E7E3E4;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="seiji"] {
+      --theme-primary : #69B0AC;
+      --theme-light   : #E7F2F2;
+      --theme-accent  : #C150C8;
+      --theme-dark    : #172F2D;
+      --theme-neutral : #E4E6E6;
+      --theme-text    : #1C1C1C;
+    }
+
+    /* === Dark Themes (selected) === */
+    [data-theme="keshizumi"] {
+      --theme-primary : #434343;
+      --theme-light   : #EDEDED;
+      --theme-accent  : #526F52;
+      --theme-dark    : #191919;
+      --theme-neutral : #E5E5E5;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="hanada"] {
+      --theme-primary : #006284;
+      --theme-light   : #E6F0F3;
+      --theme-accent  : #C1008F;
+      --theme-dark    : #06222C;
+      --theme-neutral : #E2E6E8;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="kurenai"] {
+      --theme-primary : #CB1B45;
+      --theme-light   : #F3E6E9;
+      --theme-accent  : #36E500;
+      --theme-dark    : #320711;
+      --theme-neutral : #E8E2E4;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="fujimurasaki"] {
+      --theme-primary : #8A6BBE;
+      --theme-light   : #EBE6F3;
+      --theme-accent  : #D68352;
+      --theme-dark    : #211535;
+      --theme-neutral : #E5E3E7;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="rokusyoh"] {
+      --theme-primary : #24936E;
+      --theme-light   : #E6F3EF;
+      --theme-accent  : #7D0BB5;
+      --theme-dark    : #082A1F;
+      --theme-neutral : #E2E8E6;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="kohaku"] {
+      --theme-primary : #CA7A2C;
+      --theme-light   : #F3EDE6;
+      --theme-accent  : #09EC79;
+      --theme-dark    : #341E09;
+      --theme-neutral : #E8E5E2;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="sumi"] {
+      --theme-primary : #1C1C1C;
+      --theme-light   : #EDEDED;
+      --theme-accent  : #526F52;
+      --theme-dark    : #191919;
+      --theme-neutral : #E5E5E5;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="asagi"] {
+      --theme-primary : #33A6B8;
+      --theme-light   : #E6F1F3;
+      --theme-accent  : #D614BC;
+      --theme-dark    : #0B2A2F;
+      --theme-neutral : #E2E7E8;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="ichigo"] {
+      --theme-primary : #B5495B;
+      --theme-light   : #F3E6E8;
+      --theme-accent  : #47D22B;
+      --theme-dark    : #2E1015;
+      --theme-neutral : #E7E3E4;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="kon"] {
+      --theme-primary : #0F2540;
+      --theme-light   : #E6ECF3;
+      --theme-accent  : #B70A58;
+      --theme-dark    : #08172A;
+      --theme-neutral : #E2E5E8;
+      --theme-text    : #F5F2EB;
+    }
+
+    /* === Derived Variables === */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255, 255, 255, 0.92);
+      --p-formula-bg     : rgba(255, 255, 255, 0.92);
+      --p-border         : rgba(28, 28, 28, 0.12);
+      --p-text-secondary : rgba(28, 28, 28, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+      --p-gloss-top      : 0.22;
+      --p-gloss-mid      : 0.06;
+    }
+
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0, 0, 0, 0.35);
+      --p-formula-bg     : rgba(0, 0, 0, 0.35);
+      --p-border         : rgba(245, 242, 235, 0.12);
+      --p-text-secondary : rgba(245, 242, 235, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+      --p-gloss-top      : 0.10;
+      --p-gloss-mid      : 0.03;
+    }
+
+    /* === Base Reset === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--p-text);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* === Layer 1 + Layer 2 background === */
+    .phyra-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+
+    /* === Layer 3 top gloss === */
+    .phyra-gloss {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 478px;
+      z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none;
+      transition: opacity 2s ease-in;
+    }
+
+    /* === Content layer z-index === */
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* === Content width control === */
+    main, #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      transition: max-width 0.15s ease;
+    }
+
+    .phyra-width-handle {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 60px;
+      background: rgba(128, 128, 128, 0.3);
+      border-radius: 3px;
+      cursor: col-resize;
+      z-index: 99;
+      transition: background 0.2s, opacity 0.3s;
+      opacity: 0.4;
+    }
+    .phyra-width-handle:hover,
+    .phyra-width-handle.dragging {
+      background: var(--p-accent);
+      opacity: 1;
+    }
+
+    /* === Slide Card === */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 24px;
+      color: var(--p-text);
+      margin-bottom: 24px;
+    }
+
+    /* === Headings === */
+    h1, h2, h3 { color: var(--p-text); }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    h2 { font-size: 1.4rem; border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin-bottom: 16px; font-weight: 700; }
+    h3 { font-size: 1.1rem; margin-bottom: 8px; font-weight: 500; }
+
+    /* === Bold Highlight === */
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    /* === Tables === */
+    table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin: 12px 0; }
+    th {
+      background: var(--p-primary);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--p-border); color: var(--p-text); }
+    tr:hover td { background: rgba(128, 128, 128, 0.08); }
+
+    /* === Formula === */
+    .formula, .katex-display, pre.math {
+      background: var(--p-formula-bg);
+      color: var(--p-text);
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--p-border);
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+    .katex, code.math { color: var(--p-text); background: transparent; }
+
+    /* === Tags === */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: 600;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text);
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    /* === Score Bar === */
+    .score-bar { height: 8px; border-radius: 4px; background: var(--p-border); margin: 4px 0; }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+
+    /* === Lists === */
+    ul, ol { padding-left: 20px; margin: 8px 0; }
+    li { margin-bottom: 6px; }
+
+    /* === Paragraphs === */
+    p { margin-bottom: 10px; }
+
+    /* === Section spacer === */
+    .section-spacer { height: 32px; }
+
+    /* === Meta line === */
+    .meta-line { font-size: 0.85em; color: var(--p-text-secondary); margin-bottom: 4px; }
+
+    /* === Subtitle === */
+    .subtitle { font-size: 1.1em; color: var(--p-text-secondary); margin-bottom: 16px; }
+
+    /* === Score grid === */
+    .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .score-item { padding: 8px 0; }
+    .score-label { font-size: 0.85em; color: var(--p-text-secondary); margin-bottom: 4px; }
+    .score-value { font-size: 1.1em; font-weight: 700; }
+
+    /* === Flow diagram === */
+    .flow-box {
+      background: var(--p-formula-bg);
+      border: 1px solid var(--p-border);
+      border-radius: 6px;
+      padding: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82em;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+      color: var(--p-text);
+    }
+
+    /* === Unified footer === */
+    .phyra-footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+      color: var(--p-text);
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* === Theme switcher UI === */
+    .phyra-switcher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128, 128, 128, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128, 128, 128, 0.2);
+      border-radius: 24px;
+      transition: background 0.3s;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(128, 128, 128, 0.3);
+      border-radius: 12px;
+      color: #1C1C1C;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      max-width: 200px;
+    }
+    .phyra-switcher select option { color: #1C1C1C; background: #fff; }
+    .phyra-switcher select optgroup { font-weight: bold; color: #1C1C1C; }
+    .phyra-switcher button {
+      padding: 4px 12px;
+      background: rgba(128, 128, 128, 0.2);
+      border: 1px solid rgba(128, 128, 128, 0.3);
+      border-radius: 12px;
+      color: var(--p-text);
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+    .phyra-switcher button:hover { background: rgba(128, 128, 128, 0.35); }
+
+    /* === Red flag === */
+    .red-flag {
+      background: rgba(203, 27, 69, 0.12);
+      border-left: 3px solid #CB1B45;
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin: 8px 0;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Layer 1 + Layer 2 background -->
+  <div class="phyra-bg"></div>
+
+  <!-- Layer 3 gloss -->
+  <div class="phyra-gloss"></div>
+
+  <!-- Content width control handle -->
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <!-- Theme switcher -->
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <!-- Page content -->
+  <main id="phyra-main">
+
+    <!-- Slide 1: Title -->
+    <div class="slide-card">
+      <p class="meta-line">arXiv:2412.11198 | 2024-12-15</p>
+      <h1>GEM: A Generalizable Ego-Vision Multimodal World Model</h1>
+      <p class="subtitle">Fine-Grained Ego-Motion, Object Dynamics, and Scene Composition Control</p>
+      <p>
+        <span class="tag">World Model</span>
+        <span class="tag">Ego-Vision</span>
+        <span class="tag">Video Generation</span>
+        <span class="tag">Diffusion</span>
+        <span class="tag">Controllable</span>
+        <span class="tag">Multimodal</span>
+      </p>
+      <p style="margin-top:12px; font-size:0.9em;">
+        Mariam Hassan, Sebastian Stapf, Ahmad Rahimi, Pedro Rezende, et al.<br>
+        EPFL, University of Bern, Swiss Data Science Center, University of Zurich, ETH Zurich
+      </p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 2: Core Idea -->
+    <div class="slide-card">
+      <h2>Core Idea</h2>
+      <p>GEM is a <strong>multimodal ego-vision world model</strong> that generates future video frames (RGB + depth) given a reference frame, with three independent control levels:</p>
+      <ol>
+        <li><strong>Ego-motion control</strong> via trajectory conditioning through cross-attention LoRA</li>
+        <li><strong>Object-level control</strong> via sparse DINOv2 feature tokens with identity embeddings, projected through ObjectNet</li>
+        <li><strong>Human pose control</strong> via skeleton conditioning through PoseNet</li>
+      </ol>
+      <p>Built on Stable Video Diffusion (SVD), trained on 4000+ hours of multi-domain ego-vision data spanning autonomous driving, human activities, and drone flights.</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 3: Problem and Motivation -->
+    <div class="slide-card">
+      <h2>Problem and Motivation</h2>
+      <table>
+        <tr><th>Limitation of Prior Work</th><th>Impact</th></tr>
+        <tr><td>Domain specificity: models like Vista, DriveDreamer focus on driving only</td><td>Cannot generalize to human activities or drone scenarios</td></tr>
+        <tr><td>Limited controllability: only ego-motion captured, no object manipulation</td><td>Cannot specify object placement or movement in generated scenes</td></tr>
+        <tr><td>Single modality: RGB output only</td><td>No depth information for downstream spatial reasoning</td></tr>
+        <tr><td>Short generation horizon</td><td>Temporal consistency degrades after a few seconds</td></tr>
+      </table>
+      <p>GEM decomposes control into three orthogonal levels, enabling independent manipulation of camera motion, object dynamics, and human poses.</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 4: Architecture Overview -->
+    <div class="slide-card">
+      <h2>Architecture Overview</h2>
+      <div class="flow-box">Reference Frame --> VAE Encoder --> Latents -------+
+                                                     |
+Future Frames ---> VAE Encoder --> Noisy Latents ---+--> Denoiser UNet ---> VAE Decoder --> RGB
+                                                     |       |
+Future Depth ----> VAE Encoder --> Noisy Latents ---+   LoRA x-attn <--- Ego-Trajectories
+                                                     |       |
+DINOv2 Features (sparse, masked) --> ObjectNet ----+--> Input Blocks
+                                                     |
+Human Pose Skeletons --> PoseNet ------------------+--> Input Blocks
+                                                     |
+                                               Modality Proj --> Depth</div>
+      <p style="margin-top:12px">The denoiser $D_\theta$ processes concatenated RGB and depth latents, conditioned on all three control signals simultaneously. A modality output projection layer separates RGB and depth predictions.</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 5: Three Control Mechanisms -->
+    <div class="slide-card">
+      <h2>Three Control Mechanisms</h2>
+
+      <h3>1. Ego-Motion (Cross-Attention LoRA)</h3>
+      <p>Ego-trajectories (2D metric sequences from SLAM or GT) are Fourier-embedded and injected via LoRA adapters on all cross-attention layers. Lightweight adaptation without modifying base SVD weights.</p>
+
+      <h3>2. Object-Level (ObjectNet + DINOv2 + Identity Embeddings)</h3>
+      <p>Sparse DINOv2 feature maps (randomly masking to $m$ of $M=32$ tokens) encode object semantics. Learned identity embeddings $\text{ID}_\phi$ disambiguate moving vs. inserting objects. Optical flow warps tokens to target frames. ObjectNet projects features into denoiser input blocks.</p>
+
+      <h3>3. Human Pose (PoseNet)</h3>
+      <p>17-keypoint skeletons drawn on empty planes, encoded by CNN (PoseNet), added to UNet input blocks. Spatial information requires input-block injection rather than cross-attention (confirmed by ablation in supplementary Q4).</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 6: Autoregressive Long-Horizon Generation -->
+    <div class="slide-card">
+      <h2>Autoregressive Long-Horizon Generation</h2>
+      <p>A dynamic per-frame noise schedule enables stable generation up to <strong>150 frames</strong>:</p>
+      <ol>
+        <li><strong>Initialization:</strong> All frames begin denoising; frame $i$ starts only after frame $i-1$ completes</li>
+        <li><strong>Autoregressive:</strong> Fully denoised frames are saved and replaced by new noisy frames in a sliding window</li>
+        <li><strong>Termination:</strong> No new frames appended; remaining frames are progressively denoised</li>
+      </ol>
+      <p>Training noise schedule: $t_{\text{shift}} \sim \text{Beta}(\alpha, \beta)$ ensures consistent noise increase over the frame axis. GEM maintains lower FVD and FID than Vista across all tested video lengths (25-150 frames), with the gap widening at longer durations (Fig. 5, p.7).</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 7: Dataset -->
+    <div class="slide-card">
+      <h2>Dataset: 4000+ Hours Multi-Domain</h2>
+      <table>
+        <tr><th>Domain</th><th>Sources</th><th>Hours</th><th>Pseudo-Labels</th></tr>
+        <tr><td>Driving</td><td>OpenDV, BDD, Nuscenes, Honda HDD/HAD, DCity, DoTA, etc.</td><td>3211+</td><td>Depth (DepthAnything V2), Trajectories (GeoCalib + DroidSLAM), Skeletons (DWPose)</td></tr>
+        <tr><td>Human Activities</td><td>EgoExo4D</td><td>1000</td><td>Same pseudo-labeling pipeline</td></tr>
+        <tr><td>Drone Flights</td><td>YouTube (self-collected)</td><td>27.4</td><td>Same pseudo-labeling pipeline</td></tr>
+      </table>
+      <p>Data curation applies two-stage filtering: quality (aesthetic + PIQE scores) and diversity (optical flow, DINO semantic variation). Filtering retains 68-91% of data depending on stage and criterion (Table 6, p.19).</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 8: Main Results - Generation Quality -->
+    <div class="slide-card">
+      <h2>Generation Quality</h2>
+      <table>
+        <tr><th>Method</th><th>Nuscenes FID</th><th>Nuscenes FVD</th><th>OpenDV FID</th><th>OpenDV FVD</th></tr>
+        <tr><td><strong>GEM (Ours)</strong></td><td>10.5</td><td><strong>158.5</strong></td><td><strong>6.3</strong></td><td><strong>131</strong></td></tr>
+        <tr><td>Vista</td><td><strong>6.6*</strong></td><td>167.7*</td><td>5.5*</td><td>163*</td></tr>
+        <tr><td>DriveDreamer-2</td><td>25.0</td><td>105.1</td><td>-</td><td>-</td></tr>
+        <tr><td>GenAD</td><td>15.4</td><td>184.0</td><td>-</td><td>-</td></tr>
+      </table>
+      <p style="font-size:0.85em;">*Vista results reproduced by authors. Table 2, p.7.</p>
+      <p>GEM outperforms Vista on FVD for both datasets, indicating better temporal consistency. Vista's FID advantage on Nuscenes is attributed to its final fine-tuning stage on that dataset.</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 9: Controllability Results -->
+    <div class="slide-card">
+      <h2>Controllability Evaluation</h2>
+      <table>
+        <tr><th>Control Type</th><th>Metric</th><th>w/o Controls</th><th>w/ Controls</th><th>Improvement</th></tr>
+        <tr><td>Ego-Motion (OpenDV)</td><td>ADE</td><td>5.39</td><td>3.47</td><td>35.6%</td></tr>
+        <tr><td>Ego-Motion (Nuscenes-sub)</td><td>ADE</td><td>3.59</td><td>2.85</td><td>20.6%</td></tr>
+        <tr><td>Object Motion (Nuscenes)</td><td>COM</td><td>38.8</td><td>12.2</td><td>68.6%</td></tr>
+        <tr><td>Object Motion (OpenDV)</td><td>COM</td><td>55.2</td><td>11.5</td><td>79.2%</td></tr>
+        <tr><td>Human Pose (OpenDV)</td><td>AP@0.5</td><td>0.00</td><td>0.12</td><td>from zero</td></tr>
+      </table>
+      <p style="font-size:0.85em;">Table 3, p.8. Nuscenes-sub = subset with ego-motion ambiguity.</p>
+      <p>Conditional generation consistently and substantially outperforms unconditional across all control types. Object manipulation shows the largest gains.</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 10: Evaluation and Scores -->
+    <div class="slide-card">
+      <h2>Paper Evaluation</h2>
+      <div class="score-grid">
+        <div class="score-item">
+          <div class="score-label">Novelty</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+          <div class="score-value">3 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Technical Depth</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+          <div class="score-value">4 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Experiment Completeness</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+          <div class="score-value">3 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Writing Quality</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+          <div class="score-value">4 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Practical Value</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+          <div class="score-value">4 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Overall</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:70%"></div></div>
+          <div class="score-value">3.5 / 5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 11: Red Flags -->
+    <div class="slide-card">
+      <h2>Red Flags and Limitations</h2>
+      <div class="red-flag">
+        <strong>Cross-domain generalizability claimed but not quantitatively verified.</strong> Human activity and drone flight evaluations are qualitative only (supplementary Figs. 11-14), despite "Generalizable" appearing in the paper title.
+      </div>
+      <div class="red-flag">
+        <strong>COM metric limitations acknowledged by the authors themselves.</strong> The proposed COM metric measures only the largest vehicle's bounding box center offset, which the authors admit is "not an ideal metric" for evaluating identity embeddings (p.19).
+      </div>
+      <div class="red-flag">
+        <strong>Limited baseline comparison on OpenDV.</strong> Only Vista provides results on OpenDV; other baselines (DriveDreamer-2, GenAD, etc.) are compared only on Nuscenes (Table 2, p.7).
+      </div>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 12: Key Takeaways -->
+    <div class="slide-card">
+      <h2>Key Takeaways</h2>
+      <ol>
+        <li>GEM demonstrates that three-level controllability (ego-motion, object, pose) is achievable in a single world model by composing LoRA conditioning, sparse feature injection, and skeleton encoding on top of SVD.</li>
+        <li>The autoregressive noise schedule is effective: GEM maintains temporal consistency up to 150 frames where baseline methods degrade.</li>
+        <li>The 4000+ hour multi-domain dataset with pseudo-labels is a practical contribution that could benefit other ego-vision research.</li>
+      </ol>
+      <p style="margin-top:12px"><strong>Fundamental limitation:</strong> All control signals derive from pseudo-labels, establishing an inherent accuracy ceiling. Object control via sparse DINOv2 tokens provides semantic placement but lacks geometric precision for shape or orientation control.</p>
+    </div>
+
+  </main>
+
+  <!-- Unified footer -->
+  <footer class="phyra-footer">
+    Phyra NT Workflow | Paper Read Report | 2026-04-09
+  </footer>
+
+  <script>
+    /* phyra-switcher.js -- Dropdown theme switcher */
+    const PHYRA_THEMES = [
+      { id: "nadeshiko", label: "\u64AB\u5B50 Nadeshiko", mode: "light" },
+      { id: "taikoh", label: "\u9000\u7D05 Taikoh", mode: "light" },
+      { id: "momo", label: "\u6843 Momo", mode: "light" },
+      { id: "toki", label: "\u9D87 Toki", mode: "light" },
+      { id: "jinzamomi", label: "\u751A\u4E09\u7D05 Jinzamomi", mode: "light" },
+      { id: "haizakura", label: "\u7070\u685C Haizakura", mode: "light" },
+      { id: "akebono", label: "\u66D9 Akebono", mode: "light" },
+      { id: "sangosyu", label: "\u73CA\u745A\u6731 Sangosyu", mode: "light" },
+      { id: "araisyu", label: "\u6D17\u6731 Araisyu", mode: "light" },
+      { id: "akakoh", label: "\u8D64\u9999 Akakoh", mode: "light" },
+      { id: "kokikuchinashi", label: "\u6DF1\u652F\u5B50 Kokikuchinashi", mode: "light" },
+      { id: "kanzo", label: "\u8431\u8349 Kanzo", mode: "light" },
+      { id: "beniukon", label: "\u7D05\u9B31\u91D1 Beniukon", mode: "light" },
+      { id: "kuchiba", label: "\u673D\u8449 Kuchiba", mode: "light" },
+      { id: "yamabuki", label: "\u5C71\u5439 Yamabuki", mode: "light" },
+      { id: "hajizome", label: "\u6AE8\u67D3 Hajizome", mode: "light" },
+      { id: "tamago", label: "\u7389\u5B50 Tamago", mode: "light" },
+      { id: "tamamorokoshi", label: "\u7389\u8700\u9ECD Tamamorokoshi", mode: "light" },
+      { id: "usuki", label: "\u6D45\u9EC4 Usuki", mode: "light" },
+      { id: "kuchinashi", label: "\u6894\u5B50 Kuchinashi", mode: "light" },
+      { id: "tohoh", label: "\u7C50\u9EC4 Tohoh", mode: "light" },
+      { id: "ukon", label: "\u9B31\u91D1 Ukon", mode: "light" },
+      { id: "tonoko", label: "\u7825\u7C89 Tonoko", mode: "light" },
+      { id: "kariyasu", label: "\u5208\u5B89 Kariyasu", mode: "light" },
+      { id: "hiwa", label: "\u9D38 Hiwa", mode: "light" },
+      { id: "hiwamoegi", label: "\u9D38\u840C\u9EC4 Hiwamoegi", mode: "light" },
+      { id: "yanagizome", label: "\u67F3\u67D3 Yanagizome", mode: "light" },
+      { id: "nae", label: "\u82D7 Nae", mode: "light" },
+      { id: "wakatake", label: "\u82E5\u7AF9 Wakatake", mode: "light" },
+      { id: "byakuroku", label: "\u767D\u7DD1 Byakuroku", mode: "light" },
+      { id: "seiji", label: "\u9752\u78C1 Seiji", mode: "light" },
+      { id: "mizuasagi", label: "\u6C34\u6D45\u8471 Mizuasagi", mode: "light" },
+      { id: "byakugun", label: "\u767D\u7FA4 Byakugun", mode: "light" },
+      { id: "kamenozoki", label: "\u74F6\u899A Kamenozoki", mode: "light" },
+      { id: "mizu", label: "\u6C34 Mizu", mode: "light" },
+      { id: "sora", label: "\u7A7A Sora", mode: "light" },
+      { id: "wasurenagusa", label: "\u52FF\u5FD8\u8349 Wasurenagusa", mode: "light" },
+      { id: "tsuyukusa", label: "\u9732\u8349 Tsuyukusa", mode: "light" },
+      { id: "gunjyo", label: "\u7FA4\u9752 Gunjyo", mode: "light" },
+      { id: "usu", label: "\u8584 Usu", mode: "light" },
+      { id: "shironeri", label: "\u767D\u7DF4 Shironeri", mode: "light" },
+      { id: "shironezumi", label: "\u767D\u9F20 Shironezumi", mode: "light" },
+      { id: "kohbai", label: "\u7D05\u6885 Kohbai", mode: "dark" },
+      { id: "suoh", label: "\u8607\u82B3 Suoh", mode: "dark" },
+      { id: "ichigo", label: "\u82FA Ichigo", mode: "dark" },
+      { id: "karakurenai", label: "\u97D3\u7D05\u82B1 Karakurenai", mode: "dark" },
+      { id: "kurenai", label: "\u7D05 Kurenai", mode: "dark" },
+      { id: "kokiake", label: "\u6DF1\u7DCB Kokiake", mode: "dark" },
+      { id: "azuki", label: "\u5C0F\u8C46 Azuki", mode: "dark" },
+      { id: "akabeni", label: "\u8D64\u7D05 Akabeni", mode: "dark" },
+      { id: "syojyohi", label: "\u7329\u7329\u7DCB Syojyohi", mode: "dark" },
+      { id: "entan", label: "\u925B\u4E39 Entan", mode: "dark" },
+      { id: "benihi", label: "\u7D05\u7DCB Benihi", mode: "dark" },
+      { id: "terigaki", label: "\u7167\u67FF Terigaki", mode: "dark" },
+      { id: "ohni", label: "\u9EC4\u4E39 Ohni", mode: "dark" },
+      { id: "sohi", label: "\u7E81 Sohi", mode: "dark" },
+      { id: "ensyucha", label: "\u9060\u5DDE\u8336 Ensyucha", mode: "dark" },
+      { id: "kogecha", label: "\u7126\u8336 Kogecha", mode: "dark" },
+      { id: "taisya", label: "\u4EE3\u8D6D Taisya", mode: "dark" },
+      { id: "kohaku", label: "\u7425\u73C0 Kohaku", mode: "dark" },
+      { id: "kenpohzome", label: "\u61B2\u6CD5\u67D3 Kenpohzome", mode: "dark" },
+      { id: "koke", label: "\u82D4 Koke", mode: "dark" },
+      { id: "moegi", label: "\u840C\u9EC4 Moegi", mode: "dark" },
+      { id: "matsuba", label: "\u677E\u8449 Matsuba", mode: "dark" },
+      { id: "tokiwa", label: "\u5E38\u78D0 Tokiwa", mode: "dark" },
+      { id: "midori", label: "\u7DD1 Midori", mode: "dark" },
+      { id: "tokusa", label: "\u6728\u8CCA Tokusa", mode: "dark" },
+      { id: "rokusyoh", label: "\u7DD1\u9752 Rokusyoh", mode: "dark" },
+      { id: "aomidori", label: "\u9752\u7DD1 Aomidori", mode: "dark" },
+      { id: "asagi", label: "\u6D45\u8471 Asagi", mode: "dark" },
+      { id: "shinbashi", label: "\u65B0\u6A4B Shinbashi", mode: "dark" },
+      { id: "hanaasagi", label: "\u82B1\u6D45\u8471 Hanaasagi", mode: "dark" },
+      { id: "chigusa", label: "\u5343\u8349 Chigusa", mode: "dark" },
+      { id: "hanada", label: "\u7E39 Hanada", mode: "dark" },
+      { id: "ruri", label: "\u7460\u7483 Ruri", mode: "dark" },
+      { id: "rurikon", label: "\u7460\u7483\u7D3A Rurikon", mode: "dark" },
+      { id: "benimidori", label: "\u7D05\u78A7 Benimidori", mode: "dark" },
+      { id: "fujinezumi", label: "\u85E4\u9F20 Fujinezumi", mode: "dark" },
+      { id: "benikakehana", label: "\u7D05\u639B\u82B1 Benikakehana", mode: "dark" },
+      { id: "konjyo", label: "\u7D3A\u9752 Konjyo", mode: "dark" },
+      { id: "kon", label: "\u7D3A Kon", mode: "dark" },
+      { id: "konkikyo", label: "\u7D3A\u6854\u6897 Konkikyo", mode: "dark" },
+      { id: "kurotsurubami", label: "\u9ED2\u6A61 Kurotsurubami", mode: "dark" },
+      { id: "fuji", label: "\u85E4 Fuji", mode: "dark" },
+      { id: "fujimurasaki", label: "\u85E4\u7D2B Fujimurasaki", mode: "dark" },
+      { id: "kikyo", label: "\u6854\u6897 Kikyo", mode: "dark" },
+      { id: "shion", label: "\u7D2B\u82D1 Shion", mode: "dark" },
+      { id: "edomurasaki", label: "\u6C5F\u6238\u7D2B Edomurasaki", mode: "dark" },
+      { id: "murasaki", label: "\u7D2B Murasaki", mode: "dark" },
+      { id: "benifuji", label: "\u7D05\u85E4 Benifuji", mode: "dark" },
+      { id: "botan", label: "\u7261\u4E39 Botan", mode: "dark" },
+      { id: "tsutsuji", label: "\u8E91\u8E85 Tsutsuji", mode: "dark" },
+      { id: "ginnezumi", label: "\u9280\u9F20 Ginnezumi", mode: "dark" },
+      { id: "namari", label: "\u925B Namari", mode: "dark" },
+      { id: "hai", label: "\u7070 Hai", mode: "dark" },
+      { id: "nibi", label: "\u920D Nibi", mode: "dark" },
+      { id: "aonibi", label: "\u9752\u920D Aonibi", mode: "dark" },
+      { id: "keshizumi", label: "\u6D88\u70AD Keshizumi", mode: "dark" },
+      { id: "sumi", label: "\u58A8 Sumi", mode: "dark" },
+      { id: "kuro", label: "\u9ED2 Kuro", mode: "dark" }
+    ];
+
+    function phyraApply(id) {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', id);
+      const t = PHYRA_THEMES.find(x => x.id === id);
+      if (t) {
+        html.setAttribute('data-theme-mode', t.mode);
+        const select = document.getElementById('phyra-select');
+        if (select) select.value = id;
+      }
+    }
+
+    function phyraRandom() {
+      const idx = Math.floor(Math.random() * PHYRA_THEMES.length);
+      phyraApply(PHYRA_THEMES[idx].id);
+    }
+
+    function phyraBuildSelect() {
+      const select = document.getElementById('phyra-select');
+      if (!select) return;
+      const lightGroup = document.createElement('optgroup');
+      lightGroup.label = 'Light (42)';
+      const darkGroup = document.createElement('optgroup');
+      darkGroup.label = 'Dark (58)';
+      PHYRA_THEMES.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.label;
+        if (t.mode === 'light') lightGroup.appendChild(opt);
+        else darkGroup.appendChild(opt);
+      });
+      select.appendChild(lightGroup);
+      select.appendChild(darkGroup);
+    }
+
+    (function() {
+      phyraBuildSelect();
+      const current = document.documentElement.getAttribute('data-theme') || 'keshizumi';
+      phyraApply(current);
+    })();
+
+    /* Content width drag control */
+    (function() {
+      const handle = document.getElementById('phyra-width-handle');
+      if (!handle) return;
+      let dragging = false;
+
+      function updateHandlePos(contentWidth) {
+        const vw = window.innerWidth;
+        const gap = (vw - contentWidth) / 2;
+        handle.style.right = Math.max(4, gap - 16) + 'px';
+      }
+
+      handle.addEventListener('mousedown', (e) => {
+        dragging = true;
+        handle.classList.add('dragging');
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const vw = window.innerWidth;
+        const distFromCenter = Math.abs(e.clientX - vw / 2);
+        const newWidth = Math.max(400, distFromCenter * 2);
+        document.documentElement.style.setProperty('--phyra-content-width', newWidth + 'px');
+        updateHandlePos(newWidth);
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (dragging) {
+          dragging = false;
+          handle.classList.remove('dragging');
+        }
+      });
+
+      const initWidth = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--phyra-content-width')) || 900;
+      updateHandlePos(initWidth);
+
+      window.addEventListener('resize', () => {
+        const w = parseInt(getComputedStyle(document.documentElement)
+          .getPropertyValue('--phyra-content-width')) || 900;
+        updateHandlePos(w);
+      });
+    })();
+  </script>
+</body>
+</html>

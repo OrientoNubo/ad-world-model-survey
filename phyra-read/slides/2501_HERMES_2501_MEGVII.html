@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phyra Paper Read | HERMES</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* === Semantic aliases === */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 900px;
+    }
+
+    /* === Light Themes (selected) === */
+    [data-theme="wakatake"] {
+      --theme-primary : #5DAC81;
+      --theme-light   : #E7F2EC;
+      --theme-accent  : #7E42C6;
+      --theme-dark    : #152C20;
+      --theme-neutral : #E4E6E5;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="yamabuki"] {
+      --theme-primary : #FFB11B;
+      --theme-light   : #F3EFE6;
+      --theme-accent  : #1BFFB0;
+      --theme-dark    : #3D2B08;
+      --theme-neutral : #E8E6E2;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="sora"] {
+      --theme-primary : #58B2DC;
+      --theme-light   : #E6EFF3;
+      --theme-accent  : #F83BBC;
+      --theme-dark    : #0A3042;
+      --theme-neutral : #E2E6E8;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="shironeri"] {
+      --theme-primary : #FCFAF2;
+      --theme-light   : #F3F0E6;
+      --theme-accent  : #55F6D5;
+      --theme-dark    : #685713;
+      --theme-neutral : #E8E7E2;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="nadeshiko"] {
+      --theme-primary : #DC9FB4;
+      --theme-light   : #F3E6EB;
+      --theme-accent  : #92E566;
+      --theme-dark    : #471727;
+      --theme-neutral : #E7E3E4;
+      --theme-text    : #1C1C1C;
+    }
+    [data-theme="seiji"] {
+      --theme-primary : #69B0AC;
+      --theme-light   : #E7F2F2;
+      --theme-accent  : #C150C8;
+      --theme-dark    : #172F2D;
+      --theme-neutral : #E4E6E6;
+      --theme-text    : #1C1C1C;
+    }
+
+    /* === Dark Themes (selected) === */
+    [data-theme="keshizumi"] {
+      --theme-primary : #434343;
+      --theme-light   : #EDEDED;
+      --theme-accent  : #526F52;
+      --theme-dark    : #191919;
+      --theme-neutral : #E5E5E5;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="hanada"] {
+      --theme-primary : #006284;
+      --theme-light   : #E6F0F3;
+      --theme-accent  : #C1008F;
+      --theme-dark    : #06222C;
+      --theme-neutral : #E2E6E8;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="kurenai"] {
+      --theme-primary : #CB1B45;
+      --theme-light   : #F3E6E9;
+      --theme-accent  : #36E500;
+      --theme-dark    : #320711;
+      --theme-neutral : #E8E2E4;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="fujimurasaki"] {
+      --theme-primary : #8A6BBE;
+      --theme-light   : #EBE6F3;
+      --theme-accent  : #D68352;
+      --theme-dark    : #211535;
+      --theme-neutral : #E5E3E7;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="rokusyoh"] {
+      --theme-primary : #24936E;
+      --theme-light   : #E6F3EF;
+      --theme-accent  : #7D0BB5;
+      --theme-dark    : #082A1F;
+      --theme-neutral : #E2E8E6;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="kohaku"] {
+      --theme-primary : #CA7A2C;
+      --theme-light   : #F3EDE6;
+      --theme-accent  : #09EC79;
+      --theme-dark    : #341E09;
+      --theme-neutral : #E8E5E2;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="sumi"] {
+      --theme-primary : #1C1C1C;
+      --theme-light   : #EDEDED;
+      --theme-accent  : #526F52;
+      --theme-dark    : #191919;
+      --theme-neutral : #E5E5E5;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="asagi"] {
+      --theme-primary : #33A6B8;
+      --theme-light   : #E6F1F3;
+      --theme-accent  : #D614BC;
+      --theme-dark    : #0B2A2F;
+      --theme-neutral : #E2E7E8;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="ichigo"] {
+      --theme-primary : #B5495B;
+      --theme-light   : #F3E6E8;
+      --theme-accent  : #47D22B;
+      --theme-dark    : #2E1015;
+      --theme-neutral : #E7E3E4;
+      --theme-text    : #F5F2EB;
+    }
+    [data-theme="kon"] {
+      --theme-primary : #0F2540;
+      --theme-light   : #E6ECF3;
+      --theme-accent  : #B70A58;
+      --theme-dark    : #08172A;
+      --theme-neutral : #E2E5E8;
+      --theme-text    : #F5F2EB;
+    }
+
+    /* === Derived Variables === */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255, 255, 255, 0.92);
+      --p-formula-bg     : rgba(255, 255, 255, 0.92);
+      --p-border         : rgba(28, 28, 28, 0.12);
+      --p-text-secondary : rgba(28, 28, 28, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+      --p-gloss-top      : 0.22;
+      --p-gloss-mid      : 0.06;
+    }
+
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0, 0, 0, 0.35);
+      --p-formula-bg     : rgba(0, 0, 0, 0.35);
+      --p-border         : rgba(245, 242, 235, 0.12);
+      --p-text-secondary : rgba(245, 242, 235, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+      --p-gloss-top      : 0.10;
+      --p-gloss-mid      : 0.03;
+    }
+
+    /* === Base Reset === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--p-text);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* === Layer 1 + Layer 2 background === */
+    .phyra-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+
+    /* === Layer 3 top gloss === */
+    .phyra-gloss {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 478px;
+      z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none;
+      transition: opacity 2s ease-in;
+    }
+
+    /* === Content layer z-index === */
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* === Content width control === */
+    main, #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      transition: max-width 0.15s ease;
+    }
+
+    .phyra-width-handle {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 60px;
+      background: rgba(128, 128, 128, 0.3);
+      border-radius: 3px;
+      cursor: col-resize;
+      z-index: 99;
+      transition: background 0.2s, opacity 0.3s;
+      opacity: 0.4;
+    }
+    .phyra-width-handle:hover,
+    .phyra-width-handle.dragging {
+      background: var(--p-accent);
+      opacity: 1;
+    }
+
+    /* === Slide Card === */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 24px;
+      color: var(--p-text);
+      margin-bottom: 24px;
+    }
+
+    /* === Headings === */
+    h1, h2, h3 { color: var(--p-text); }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; font-weight: 700; }
+    h2 { font-size: 1.4rem; border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin-bottom: 16px; font-weight: 700; }
+    h3 { font-size: 1.1rem; margin-bottom: 8px; font-weight: 500; }
+
+    /* === Bold Highlight === */
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    /* === Tables === */
+    table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin: 12px 0; }
+    th {
+      background: var(--p-primary);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--p-border); color: var(--p-text); }
+    tr:hover td { background: rgba(128, 128, 128, 0.08); }
+
+    /* === Formula === */
+    .formula, .katex-display, pre.math {
+      background: var(--p-formula-bg);
+      color: var(--p-text);
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--p-border);
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+    .katex, code.math { color: var(--p-text); background: transparent; }
+
+    /* === Tags === */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: 600;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text);
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    /* === Score Bar === */
+    .score-bar { height: 8px; border-radius: 4px; background: var(--p-border); margin: 4px 0; }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+
+    /* === Lists === */
+    ul, ol { padding-left: 20px; margin: 8px 0; }
+    li { margin-bottom: 6px; }
+
+    /* === Paragraphs === */
+    p { margin-bottom: 10px; }
+
+    /* === Section spacer === */
+    .section-spacer { height: 32px; }
+
+    /* === Meta line === */
+    .meta-line { font-size: 0.85em; color: var(--p-text-secondary); margin-bottom: 4px; }
+
+    /* === Subtitle === */
+    .subtitle { font-size: 1.1em; color: var(--p-text-secondary); margin-bottom: 16px; }
+
+    /* === Score grid === */
+    .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .score-item { padding: 8px 0; }
+    .score-label { font-size: 0.85em; color: var(--p-text-secondary); margin-bottom: 4px; }
+    .score-value { font-size: 1.1em; font-weight: 700; }
+
+    /* === Flow diagram === */
+    .flow-box {
+      background: var(--p-formula-bg);
+      border: 1px solid var(--p-border);
+      border-radius: 6px;
+      padding: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82em;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+      color: var(--p-text);
+    }
+
+    /* === Unified footer === */
+    .phyra-footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+      color: var(--p-text);
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* === Theme switcher UI === */
+    .phyra-switcher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128, 128, 128, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128, 128, 128, 0.2);
+      border-radius: 24px;
+      transition: background 0.3s;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(128, 128, 128, 0.3);
+      border-radius: 12px;
+      color: #1C1C1C;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      max-width: 200px;
+    }
+    .phyra-switcher select option { color: #1C1C1C; background: #fff; }
+    .phyra-switcher select optgroup { font-weight: bold; color: #1C1C1C; }
+    .phyra-switcher button {
+      padding: 4px 12px;
+      background: rgba(128, 128, 128, 0.2);
+      border: 1px solid rgba(128, 128, 128, 0.3);
+      border-radius: 12px;
+      color: var(--p-text);
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+    .phyra-switcher button:hover { background: rgba(128, 128, 128, 0.35); }
+
+    /* === Red flag === */
+    .red-flag {
+      background: rgba(203, 27, 69, 0.12);
+      border-left: 3px solid #CB1B45;
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin: 8px 0;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Layer 1 + Layer 2 background -->
+  <div class="phyra-bg"></div>
+
+  <!-- Layer 3 gloss -->
+  <div class="phyra-gloss"></div>
+
+  <!-- Content width control handle -->
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <!-- Theme switcher -->
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <!-- Page content -->
+  <main id="phyra-main">
+
+    <!-- Slide 1: Title -->
+    <div class="slide-card">
+      <p class="meta-line">arXiv:2501.14729 | 2025-01</p>
+      <h1>HERMES: A Unified Self-Driving World Model for Simultaneous 3D Scene Understanding and Generation</h1>
+      <p class="subtitle">Bridging BEV-Based Scene Generation and LLM-Driven Scene Understanding in a Single Framework</p>
+      <p>
+        <span class="tag">World Model</span>
+        <span class="tag">Autonomous Driving</span>
+        <span class="tag">BEV</span>
+        <span class="tag">LLM</span>
+        <span class="tag">Scene Understanding</span>
+        <span class="tag">Point Cloud Generation</span>
+      </p>
+      <p style="margin-top:12px; font-size:0.9em;">
+        Xin Zhou*, Dingkang Liang*&#8224;, Sifan Tu, Xiwu Chen, Yikang Ding, Dingyuan Zhang, Feiyang Tan, Hengshuang Zhao, Xiang Bai&#9993;<br>
+        Huazhong University of Science and Technology, MEGVII Technology, Mach Drive, The University of Hong Kong
+      </p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 2: Core Idea -->
+    <div class="slide-card">
+      <h2>Core Idea</h2>
+      <p>HERMES is the first unified Driving World Model that simultaneously performs <strong>3D scene understanding</strong> (via language) and <strong>future scene generation</strong> (via point cloud prediction) within a single framework. The key insight: rather than treating understanding and generation as separate tasks with separate models, HERMES uses a shared BEV representation as the common interface between an LLM and a neural renderer.</p>
+      <ol>
+        <li><strong>BEV Tokenizer</strong> converts multi-view images into flattened BEV features fed to the LLM</li>
+        <li><strong>LLM</strong> (InternVL2-2B) processes text instructions and generates both textual understanding and world queries</li>
+        <li><strong>World Queries</strong> transfer world knowledge from the LLM to the Render via causal attention, enabling future BEV generation</li>
+        <li><strong>Shared Render</strong> (BEV-to-Point) produces point cloud predictions for both current and future scenes</li>
+      </ol>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 3: Problem and Motivation -->
+    <div class="slide-card">
+      <h2>Problem and Motivation</h2>
+      <table>
+        <tr><th>Limitation of Prior Work</th><th>Impact</th></tr>
+        <tr><td>Existing DWMs (4D-Occ, ViDAR) focus solely on scene generation</td><td>Cannot interpret or reason about driving environments; limited to future prediction only</td></tr>
+        <tr><td>LLM-based driving models (OmniDrive, LLaVA-OV) handle only understanding</td><td>Cannot generate future scene representations; no predictive capability</td></tr>
+        <tr><td>Separated unification (Fig. 1c): sharing BEV but using separate model heads</td><td>Fails to exploit cross-task knowledge transfer; suboptimal on both tasks</td></tr>
+      </table>
+      <p>HERMES argues that understanding and generation are mutually reinforcing: understanding provides world knowledge that improves generation, while generation forces the model to build representations that support deeper understanding.</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 4: Architecture Overview -->
+    <div class="slide-card">
+      <h2>Architecture Overview</h2>
+      <div class="flow-box">Multi-view Images I_t
+       |
+       v
+[BEV Tokenizer] --> Flattened BEV F_t (w x h x c, downsampled to L_bev tokens)
+       |
+       v
+[LLM (InternVL2-2B)] <-- Text Instructions T, World Queries Q^w
+       |                        |
+       |  Text Tokens           |  Current-to-Future Link
+       v  (Understanding)       v  (cross-attention layers)
+  Scene Description       Future BEV B_{t+1}, ..., B_{t+dt}
+  + VQA Answers                |
+                               v
+                    [Shared Render (BEV-to-Point)]
+                               |
+                               v
+                    Point Cloud P_t, P_{t+1}, ..., P_{t+dt}</div>
+      <p style="margin-top:12px">The BEV Tokenizer uses OpenCLIP ConvNext-L backbone (p.9). The flattened BEV is projected to LLM dimension via two-layer MLP. World queries are derived from max-pooling the flattened BEV $\mathcal{F}_t$ and processed through 3 cross-attention blocks in the current-to-future link module.</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 5: Key Technical Components -->
+    <div class="slide-card">
+      <h2>Key Technical Components</h2>
+
+      <h3>1. BEV-based World Tokenizer</h3>
+      <p>Adopts BEVFormer v2 architecture. Multi-view images at time $t$ are encoded by CLIP image encoder and converted to BEV features $\mathcal{F}_t^{bev} \in \mathbb{R}^{w \times h \times c}$ with $w = h = 200$ and $c = 256$ (p.9). A downsampling block reduces tokens by $4 \times$ twice, yielding $L_{bev} = \frac{w}{4} \times \frac{h}{4} = 2{,}500$ tokens, well within standard LLM context windows (vs. ~47,000 for raw views).</p>
+
+      <h3>2. World Queries and Current-to-Future Link</h3>
+      <p>$n = 4$ groups of world queries $\mathcal{Q}^w$ are generated per future timestep, each containing queries from max-pooling the flattened BEV. These queries are appended to the LLM input and processed through causal attention, allowing them to absorb world knowledge from text descriptions. The current-to-future link module employs 3 cross-attention blocks to generate future BEV features conditioned on the encoded BEV and world queries (p.5).</p>
+
+      <h3>3. BEV-to-Point Render</h3>
+      <p>Compressed BEV features are reshaped to $\mathbb{R}^{w \times h \times z \times \hat{c}}$ with an added height dimension, then processed via 3D convolutions to produce volumetric features. Differentiable volume rendering with an SDF field computes depth for each ray. The transmittance $T_i = \prod_{j=1}^{i-1}(1 - \alpha_j)$ with learnable sigmoid opacity $\sigma_t(x) = (1 + e^{-t'})^{-1}$ (p.4).</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 6: Training Pipeline -->
+    <div class="slide-card">
+      <h2>Three-Stage Training</h2>
+      <table>
+        <tr><th>Stage</th><th>Focus</th><th>Epochs</th><th>LR</th><th>Details</th></tr>
+        <tr><td>Stage 1: Tokenizer Training</td><td>World tokenizer + Render</td><td>6</td><td>2e-4</td><td>Train on nuScenes to convert images to point clouds</td></tr>
+        <tr><td>Stage 2: BEV-Text Alignment</td><td>Alignment + Refinement</td><td>3(A) + 36(R)</td><td>2e-4/4e-4</td><td>Alignment: in/out projections only. Refinement: LoRA on LLM, all params unfrozen</td></tr>
+        <tr><td>Stage 3: Understanding + Generation Unification</td><td>Full model</td><td>36</td><td>4e-4</td><td>Train on nuScenes keyframes + OmniDrive-nuScenes descriptions</td></tr>
+      </table>
+      <p style="font-size:0.85em;">All stages use AdamW optimizer and Cosine LR scheduler. Training on 32 NVIDIA H20 GPUs (Table S1, p.9).</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 7: Main Results -->
+    <div class="slide-card">
+      <h2>Main Results</h2>
+      <h3>Generation (Chamfer Distance, lower is better)</h3>
+      <table>
+        <tr><th>Method</th><th>Modality</th><th>0s</th><th>1s</th><th>2s</th><th>3s</th></tr>
+        <tr><td>4D-Occ (CVPR 23)</td><td>L&#8594;L</td><td>-</td><td>1.13</td><td>1.53</td><td>2.11</td></tr>
+        <tr><td>ViDAR (CVPR 24)</td><td>C&#8594;L</td><td>-</td><td>1.12</td><td>1.38</td><td>1.73</td></tr>
+        <tr><td>Separated Unification</td><td>C&#8594;T&amp;L</td><td>0.60</td><td>0.84</td><td>1.08</td><td>1.37</td></tr>
+        <tr><td><strong>HERMES (ours)</strong></td><td><strong>C&#8594;T&amp;L</strong></td><td><strong>0.59</strong></td><td><strong>0.78</strong></td><td><strong>0.95</strong></td><td><strong>1.17</strong></td></tr>
+      </table>
+      <h3>Understanding (OmniDrive-nuScenes)</h3>
+      <table>
+        <tr><th>Method</th><th>LLM Size</th><th>MTEOR</th><th>ROUGE</th><th>CIDEr</th></tr>
+        <tr><td>GPT-4o</td><td>-</td><td>-</td><td>0.223</td><td>0.244</td></tr>
+        <tr><td>OmniDrive</td><td>7B</td><td>0.380</td><td>0.326</td><td>0.686</td></tr>
+        <tr><td>OmniDrive-BEV</td><td>7B</td><td>0.356</td><td>0.278</td><td>0.595</td></tr>
+        <tr><td><strong>HERMES (ours)</strong></td><td><strong>1.8B</strong></td><td><strong>0.384</strong></td><td><strong>0.327</strong></td><td><strong>0.741</strong></td></tr>
+      </table>
+      <p style="font-size:0.85em;">Table 1, p.6. HERMES achieves ~32% Chamfer Distance reduction at 3s vs. ViDAR and outperforms OmniDrive by 8% on CIDEr, using a 4x smaller LLM (1.8B vs. 7B).</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 8: Ablation Studies -->
+    <div class="slide-card">
+      <h2>Ablation Studies</h2>
+
+      <h3>Understanding-Generation Interaction (Table 2, p.7)</h3>
+      <p>Training on both tasks jointly outperforms either task alone. The unified model (0.645 at 0s) beats separated unification (0.663 at 0s) in generation, while maintaining comparable understanding metrics. The performance gap is minor (0.002 MTEOR), indicating mutual benefit rather than interference.</p>
+
+      <h3>World Queries (Fig. 3, p.7)</h3>
+      <p>Without world queries, future BEV is generated by directly integrating ego-motion into $\mathcal{B}_t$. Adding world queries improves 3s Chamfer Distance by ~10% and introduces only a ~1% decrease in CIDEr, attributed to added optimization complexity.</p>
+
+      <h3>BEV Size (Table 5, p.7)</h3>
+      <p>Spatial resolution of $50 \times 50$ improves CIDEr by 7.3% and 0s generation by 10% compared to $25 \times 25$. The authors chose $50 \times 50$ as a trade-off between quality and LLM processing length.</p>
+
+      <h3>World Query Source (Table 4, p.7)</h3>
+      <p>Max pooling of $\mathcal{F}_t$ outperforms both attention pooling and average pooling, capturing peak responses from the BEV feature map more effectively.</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 9: Additional Results -->
+    <div class="slide-card">
+      <h2>Additional Results</h2>
+
+      <h3>NuScenes-QA (Table S5, p.10)</h3>
+      <p>HERMES achieves <strong>61.9% accuracy</strong> on the NuScenes-QA benchmark (camera modality), outperforming LLaVA by 14.5% and CenterPoint+MCAN by 2.4%, without requiring 3D object detection supervision.</p>
+
+      <h3>Scaling Potential (Table S2, p.9)</h3>
+      <p>Scaling from 0.8B to 1.8B LLM yields consistent gains in both tasks. Further scaling to 3.8B shows marginal improvement, suggesting a saturation point for the current architecture.</p>
+
+      <h3>Controllable Generation (Fig. S1, p.10)</h3>
+      <p>HERMES generates future point clouds conditioned on ego-motion instructions ("stop" vs. "turn right"), demonstrating potential as a controllable world simulator.</p>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 10: Evaluation Scores -->
+    <div class="slide-card">
+      <h2>Paper Evaluation</h2>
+      <div class="score-grid">
+        <div class="score-item">
+          <div class="score-label">Novelty</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:70%"></div></div>
+          <div class="score-value">3.5 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Technical Depth</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:70%"></div></div>
+          <div class="score-value">3.5 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Experiment Completeness</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:70%"></div></div>
+          <div class="score-value">3.5 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Writing Quality</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+          <div class="score-value">4 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Practical Value</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:70%"></div></div>
+          <div class="score-value">3.5 / 5</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Overall</div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:70%"></div></div>
+          <div class="score-value">3.5 / 5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 11: Red Flags -->
+    <div class="slide-card">
+      <h2>Red Flags and Limitations</h2>
+      <div class="red-flag">
+        <strong>No perception task evaluation.</strong> The paper claims unified understanding, yet does not evaluate on standard 3D detection or tracking benchmarks. Understanding is limited to captioning and VQA tasks (p.8, Sec. 6 Limitation).
+      </div>
+      <div class="red-flag">
+        <strong>Generation limited to point clouds only.</strong> Future scene generation produces only sparse point clouds, not images or dense occupancy. This limits practical applications compared to video-generating world models.
+      </div>
+      <div class="red-flag">
+        <strong>Small-scale LLM and single dataset evaluation.</strong> All experiments use a 1.8B LLM and are conducted only on nuScenes/OmniDrive-nuScenes. The 3.8B scaling experiment (Table S2, p.9) shows diminishing returns, but no larger models or diverse datasets are tested.
+      </div>
+      <div class="red-flag">
+        <strong>Future image generation not explored.</strong> The authors acknowledge (p.8) that future image modality is "still under exploration," leaving a gap in the claimed "unified" framework.
+      </div>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Slide 12: Key Takeaways -->
+    <div class="slide-card">
+      <h2>Key Takeaways</h2>
+      <ol>
+        <li>HERMES establishes that BEV representations can serve as a shared interface between LLM-based scene understanding and neural rendering-based scene generation, achieving cross-task knowledge transfer through world queries and causal attention.</li>
+        <li>The world query mechanism is the core enabler: by max-pooling BEV features and routing them through the LLM's causal attention, world knowledge enriches future generation without adding inference cost at test time.</li>
+        <li>Using a 1.8B LLM, HERMES matches or exceeds 7B-parameter specialist models on understanding tasks while simultaneously performing competitive generation, suggesting that task unification provides a regularization benefit.</li>
+      </ol>
+      <p style="margin-top:12px"><strong>Fundamental limitation:</strong> The architecture couples understanding and generation through a single LLM bottleneck. This means generation quality is bounded by the LLM's capacity to encode spatial-temporal information into a fixed number of world query tokens. The current design does not support image-level future generation, limiting its utility as a full world simulator.</p>
+    </div>
+
+  </main>
+
+  <!-- Unified footer -->
+  <footer class="phyra-footer">
+    Phyra NT Workflow | Paper Read Report | 2026-04-09
+  </footer>
+
+  <script>
+    /* phyra-switcher.js -- Dropdown theme switcher */
+    const PHYRA_THEMES = [
+      { id: "nadeshiko", label: "\u64AB\u5B50 Nadeshiko", mode: "light" },
+      { id: "taikoh", label: "\u9000\u7D05 Taikoh", mode: "light" },
+      { id: "momo", label: "\u6843 Momo", mode: "light" },
+      { id: "toki", label: "\u9D87 Toki", mode: "light" },
+      { id: "jinzamomi", label: "\u751A\u4E09\u7D05 Jinzamomi", mode: "light" },
+      { id: "haizakura", label: "\u7070\u685C Haizakura", mode: "light" },
+      { id: "akebono", label: "\u66D9 Akebono", mode: "light" },
+      { id: "sangosyu", label: "\u73CA\u745A\u6731 Sangosyu", mode: "light" },
+      { id: "araisyu", label: "\u6D17\u6731 Araisyu", mode: "light" },
+      { id: "akakoh", label: "\u8D64\u9999 Akakoh", mode: "light" },
+      { id: "kokikuchinashi", label: "\u6DF1\u652F\u5B50 Kokikuchinashi", mode: "light" },
+      { id: "kanzo", label: "\u8431\u8349 Kanzo", mode: "light" },
+      { id: "beniukon", label: "\u7D05\u9B31\u91D1 Beniukon", mode: "light" },
+      { id: "kuchiba", label: "\u673D\u8449 Kuchiba", mode: "light" },
+      { id: "yamabuki", label: "\u5C71\u5439 Yamabuki", mode: "light" },
+      { id: "hajizome", label: "\u6AE8\u67D3 Hajizome", mode: "light" },
+      { id: "tamago", label: "\u7389\u5B50 Tamago", mode: "light" },
+      { id: "tamamorokoshi", label: "\u7389\u8700\u9ECD Tamamorokoshi", mode: "light" },
+      { id: "usuki", label: "\u6D45\u9EC4 Usuki", mode: "light" },
+      { id: "kuchinashi", label: "\u6894\u5B50 Kuchinashi", mode: "light" },
+      { id: "tohoh", label: "\u7C50\u9EC4 Tohoh", mode: "light" },
+      { id: "ukon", label: "\u9B31\u91D1 Ukon", mode: "light" },
+      { id: "tonoko", label: "\u7825\u7C89 Tonoko", mode: "light" },
+      { id: "kariyasu", label: "\u5208\u5B89 Kariyasu", mode: "light" },
+      { id: "hiwa", label: "\u9D38 Hiwa", mode: "light" },
+      { id: "hiwamoegi", label: "\u9D38\u840C\u9EC4 Hiwamoegi", mode: "light" },
+      { id: "yanagizome", label: "\u67F3\u67D3 Yanagizome", mode: "light" },
+      { id: "nae", label: "\u82D7 Nae", mode: "light" },
+      { id: "wakatake", label: "\u82E5\u7AF9 Wakatake", mode: "light" },
+      { id: "byakuroku", label: "\u767D\u7DD1 Byakuroku", mode: "light" },
+      { id: "seiji", label: "\u9752\u78C1 Seiji", mode: "light" },
+      { id: "mizuasagi", label: "\u6C34\u6D45\u8471 Mizuasagi", mode: "light" },
+      { id: "byakugun", label: "\u767D\u7FA4 Byakugun", mode: "light" },
+      { id: "kamenozoki", label: "\u74F6\u899A Kamenozoki", mode: "light" },
+      { id: "mizu", label: "\u6C34 Mizu", mode: "light" },
+      { id: "sora", label: "\u7A7A Sora", mode: "light" },
+      { id: "wasurenagusa", label: "\u52FF\u5FD8\u8349 Wasurenagusa", mode: "light" },
+      { id: "tsuyukusa", label: "\u9732\u8349 Tsuyukusa", mode: "light" },
+      { id: "gunjyo", label: "\u7FA4\u9752 Gunjyo", mode: "light" },
+      { id: "usu", label: "\u8584 Usu", mode: "light" },
+      { id: "shironeri", label: "\u767D\u7DF4 Shironeri", mode: "light" },
+      { id: "shironezumi", label: "\u767D\u9F20 Shironezumi", mode: "light" },
+      { id: "kohbai", label: "\u7D05\u6885 Kohbai", mode: "dark" },
+      { id: "suoh", label: "\u8607\u82B3 Suoh", mode: "dark" },
+      { id: "ichigo", label: "\u82FA Ichigo", mode: "dark" },
+      { id: "karakurenai", label: "\u97D3\u7D05\u82B1 Karakurenai", mode: "dark" },
+      { id: "kurenai", label: "\u7D05 Kurenai", mode: "dark" },
+      { id: "kokiake", label: "\u6DF1\u7DCB Kokiake", mode: "dark" },
+      { id: "azuki", label: "\u5C0F\u8C46 Azuki", mode: "dark" },
+      { id: "akabeni", label: "\u8D64\u7D05 Akabeni", mode: "dark" },
+      { id: "syojyohi", label: "\u7329\u7329\u7DCB Syojyohi", mode: "dark" },
+      { id: "entan", label: "\u925B\u4E39 Entan", mode: "dark" },
+      { id: "benihi", label: "\u7D05\u7DCB Benihi", mode: "dark" },
+      { id: "terigaki", label: "\u7167\u67FF Terigaki", mode: "dark" },
+      { id: "ohni", label: "\u9EC4\u4E39 Ohni", mode: "dark" },
+      { id: "sohi", label: "\u7E81 Sohi", mode: "dark" },
+      { id: "ensyucha", label: "\u9060\u5DDE\u8336 Ensyucha", mode: "dark" },
+      { id: "kogecha", label: "\u7126\u8336 Kogecha", mode: "dark" },
+      { id: "taisya", label: "\u4EE3\u8D6D Taisya", mode: "dark" },
+      { id: "kohaku", label: "\u7425\u73C0 Kohaku", mode: "dark" },
+      { id: "kenpohzome", label: "\u61B2\u6CD5\u67D3 Kenpohzome", mode: "dark" },
+      { id: "koke", label: "\u82D4 Koke", mode: "dark" },
+      { id: "moegi", label: "\u840C\u9EC4 Moegi", mode: "dark" },
+      { id: "matsuba", label: "\u677E\u8449 Matsuba", mode: "dark" },
+      { id: "tokiwa", label: "\u5E38\u78D0 Tokiwa", mode: "dark" },
+      { id: "midori", label: "\u7DD1 Midori", mode: "dark" },
+      { id: "tokusa", label: "\u6728\u8CCA Tokusa", mode: "dark" },
+      { id: "rokusyoh", label: "\u7DD1\u9752 Rokusyoh", mode: "dark" },
+      { id: "aomidori", label: "\u9752\u7DD1 Aomidori", mode: "dark" },
+      { id: "asagi", label: "\u6D45\u8471 Asagi", mode: "dark" },
+      { id: "shinbashi", label: "\u65B0\u6A4B Shinbashi", mode: "dark" },
+      { id: "hanaasagi", label: "\u82B1\u6D45\u8471 Hanaasagi", mode: "dark" },
+      { id: "chigusa", label: "\u5343\u8349 Chigusa", mode: "dark" },
+      { id: "hanada", label: "\u7E39 Hanada", mode: "dark" },
+      { id: "ruri", label: "\u7460\u7483 Ruri", mode: "dark" },
+      { id: "rurikon", label: "\u7460\u7483\u7D3A Rurikon", mode: "dark" },
+      { id: "benimidori", label: "\u7D05\u78A7 Benimidori", mode: "dark" },
+      { id: "fujinezumi", label: "\u85E4\u9F20 Fujinezumi", mode: "dark" },
+      { id: "benikakehana", label: "\u7D05\u639B\u82B1 Benikakehana", mode: "dark" },
+      { id: "konjyo", label: "\u7D3A\u9752 Konjyo", mode: "dark" },
+      { id: "kon", label: "\u7D3A Kon", mode: "dark" },
+      { id: "konkikyo", label: "\u7D3A\u6854\u6897 Konkikyo", mode: "dark" },
+      { id: "kurotsurubami", label: "\u9ED2\u6A61 Kurotsurubami", mode: "dark" },
+      { id: "fuji", label: "\u85E4 Fuji", mode: "dark" },
+      { id: "fujimurasaki", label: "\u85E4\u7D2B Fujimurasaki", mode: "dark" },
+      { id: "kikyo", label: "\u6854\u6897 Kikyo", mode: "dark" },
+      { id: "shion", label: "\u7D2B\u82D1 Shion", mode: "dark" },
+      { id: "edomurasaki", label: "\u6C5F\u6238\u7D2B Edomurasaki", mode: "dark" },
+      { id: "murasaki", label: "\u7D2B Murasaki", mode: "dark" },
+      { id: "benifuji", label: "\u7D05\u85E4 Benifuji", mode: "dark" },
+      { id: "botan", label: "\u7261\u4E39 Botan", mode: "dark" },
+      { id: "tsutsuji", label: "\u8E91\u8E85 Tsutsuji", mode: "dark" },
+      { id: "ginnezumi", label: "\u9280\u9F20 Ginnezumi", mode: "dark" },
+      { id: "namari", label: "\u925B Namari", mode: "dark" },
+      { id: "hai", label: "\u7070 Hai", mode: "dark" },
+      { id: "nibi", label: "\u920D Nibi", mode: "dark" },
+      { id: "aonibi", label: "\u9752\u920D Aonibi", mode: "dark" },
+      { id: "keshizumi", label: "\u6D88\u70AD Keshizumi", mode: "dark" },
+      { id: "sumi", label: "\u58A8 Sumi", mode: "dark" },
+      { id: "kuro", label: "\u9ED2 Kuro", mode: "dark" }
+    ];
+
+    function phyraApply(id) {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', id);
+      const t = PHYRA_THEMES.find(x => x.id === id);
+      if (t) {
+        html.setAttribute('data-theme-mode', t.mode);
+        const select = document.getElementById('phyra-select');
+        if (select) select.value = id;
+      }
+    }
+
+    function phyraRandom() {
+      const idx = Math.floor(Math.random() * PHYRA_THEMES.length);
+      phyraApply(PHYRA_THEMES[idx].id);
+    }
+
+    function phyraBuildSelect() {
+      const select = document.getElementById('phyra-select');
+      if (!select) return;
+      const lightGroup = document.createElement('optgroup');
+      lightGroup.label = 'Light (42)';
+      const darkGroup = document.createElement('optgroup');
+      darkGroup.label = 'Dark (58)';
+      PHYRA_THEMES.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.label;
+        if (t.mode === 'light') lightGroup.appendChild(opt);
+        else darkGroup.appendChild(opt);
+      });
+      select.appendChild(lightGroup);
+      select.appendChild(darkGroup);
+    }
+
+    (function() {
+      phyraBuildSelect();
+      const current = document.documentElement.getAttribute('data-theme') || 'keshizumi';
+      phyraApply(current);
+    })();
+
+    /* Content width drag control */
+    (function() {
+      const handle = document.getElementById('phyra-width-handle');
+      if (!handle) return;
+      let dragging = false;
+
+      function updateHandlePos(contentWidth) {
+        const vw = window.innerWidth;
+        const gap = (vw - contentWidth) / 2;
+        handle.style.right = Math.max(4, gap - 16) + 'px';
+      }
+
+      handle.addEventListener('mousedown', (e) => {
+        dragging = true;
+        handle.classList.add('dragging');
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const vw = window.innerWidth;
+        const distFromCenter = Math.abs(e.clientX - vw / 2);
+        const newWidth = Math.max(400, distFromCenter * 2);
+        document.documentElement.style.setProperty('--phyra-content-width', newWidth + 'px');
+        updateHandlePos(newWidth);
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (dragging) {
+          dragging = false;
+          handle.classList.remove('dragging');
+        }
+      });
+
+      const initWidth = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--phyra-content-width')) || 900;
+      updateHandlePos(initWidth);
+
+      window.addEventListener('resize', () => {
+        const w = parseInt(getComputedStyle(document.documentElement)
+          .getPropertyValue('--phyra-content-width')) || 900;
+        updateHandlePos(w);
+      });
+    })();
+  </script>
+</body>
+</html>

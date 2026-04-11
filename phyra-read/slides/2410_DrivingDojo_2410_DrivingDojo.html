@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DrivingDojo - Phyra Paper Read Report</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+    /* === Semantic aliases === */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 900px;
+    }
+
+    /* === Light mode derived === */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255, 255, 255, 0.92);
+      --p-formula-bg     : rgba(255, 255, 255, 0.92);
+      --p-border         : rgba(28, 28, 28, 0.12);
+      --p-text-secondary : rgba(28, 28, 28, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+      --p-gloss-top      : 0.22;
+      --p-gloss-mid      : 0.06;
+    }
+
+    /* === Dark mode derived === */
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0, 0, 0, 0.35);
+      --p-formula-bg     : rgba(0, 0, 0, 0.35);
+      --p-border         : rgba(245, 242, 235, 0.12);
+      --p-text-secondary : rgba(245, 242, 235, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+      --p-gloss-top      : 0.10;
+      --p-gloss-mid      : 0.03;
+    }
+
+    /* === Light Themes (42) === */
+    [data-theme="nadeshiko"] { --theme-primary:#DC9FB4;--theme-light:#F3E6EB;--theme-accent:#92E566;--theme-dark:#471727;--theme-neutral:#E7E3E4;--theme-text:#1C1C1C; }
+    [data-theme="taikoh"] { --theme-primary:#F8C3CD;--theme-light:#F3E6E9;--theme-accent:#6EFE4C;--theme-dark:#600D1D;--theme-neutral:#E8E2E3;--theme-text:#1C1C1C; }
+    [data-theme="momo"] { --theme-primary:#F596AA;--theme-light:#F3E6E9;--theme-accent:#72FE4C;--theme-dark:#560C1B;--theme-neutral:#E8E2E4;--theme-text:#1C1C1C; }
+    [data-theme="toki"] { --theme-primary:#EEA9A9;--theme-light:#F3E6E6;--theme-accent:#50FA50;--theme-dark:#580D0D;--theme-neutral:#E8E2E2;--theme-text:#1C1C1C; }
+    [data-theme="jinzamomi"] { --theme-primary:#EB7A77;--theme-light:#F3E7E6;--theme-accent:#4CFE51;--theme-dark:#4D0C0B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C; }
+    [data-theme="haizakura"] { --theme-primary:#D7C4BB;--theme-light:#F1EBE8;--theme-accent:#7CCE97;--theme-dark:#402D23;--theme-neutral:#E6E5E4;--theme-text:#1C1C1C; }
+    [data-theme="akebono"] { --theme-primary:#F19483;--theme-light:#F3E8E6;--theme-accent:#4CFE68;--theme-dark:#51160B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C; }
+    [data-theme="sangosyu"] { --theme-primary:#F17C67;--theme-light:#F3E8E6;--theme-accent:#4CFE67;--theme-dark:#4B140A;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C; }
+    [data-theme="araisyu"] { --theme-primary:#FB966E;--theme-light:#F3EAE6;--theme-accent:#4CFE7F;--theme-dark:#4E1E0B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C; }
+    [data-theme="akakoh"] { --theme-primary:#E3916E;--theme-light:#F3EAE6;--theme-accent:#4FFB83;--theme-dark:#491D0A;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C; }
+    [data-theme="kokikuchinashi"] { --theme-primary:#FB9966;--theme-light:#F3EBE6;--theme-accent:#4CFE89;--theme-dark:#4D210B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C; }
+    [data-theme="kanzo"] { --theme-primary:#FC9F4D;--theme-light:#F3ECE6;--theme-accent:#4AFE9E;--theme-dark:#47270A;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C; }
+    [data-theme="beniukon"] { --theme-primary:#E98B2A;--theme-light:#F3EDE6;--theme-accent:#14FE8B;--theme-dark:#3C2208;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C; }
+    [data-theme="kuchiba"] { --theme-primary:#E2943B;--theme-light:#F3EDE6;--theme-accent:#1EFF95;--theme-dark:#3E2508;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C; }
+    [data-theme="yamabuki"] { --theme-primary:#FFB11B;--theme-light:#F3EFE6;--theme-accent:#1BFFB0;--theme-dark:#3D2B08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="hajizome"] { --theme-primary:#DDA52D;--theme-light:#F3EFE6;--theme-accent:#0BFEB1;--theme-dark:#3A2A08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tamago"] { --theme-primary:#F9BF45;--theme-light:#F3EFE6;--theme-accent:#3FFFC1;--theme-dark:#453209;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tamamorokoshi"] { --theme-primary:#E8B647;--theme-light:#F3EFE6;--theme-accent:#30FFBE;--theme-dark:#423009;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="usuki"] { --theme-primary:#FAD689;--theme-light:#F3EFE6;--theme-accent:#4CFEC6;--theme-dark:#543D0C;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="kuchinashi"] { --theme-primary:#F6C555;--theme-light:#F3EFE6;--theme-accent:#4CFEC8;--theme-dark:#48350A;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tohoh"] { --theme-primary:#FFC408;--theme-light:#F3F0E6;--theme-accent:#07FFC4;--theme-dark:#392D08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="ukon"] { --theme-primary:#EFBB24;--theme-light:#F3F0E6;--theme-accent:#14FEC2;--theme-dark:#3C2E08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tonoko"] { --theme-primary:#D7B98E;--theme-light:#F3EEE6;--theme-accent:#65E6B1;--theme-dark:#443015;--theme-neutral:#E7E5E3;--theme-text:#1C1C1C; }
+    [data-theme="kariyasu"] { --theme-primary:#E9CD4C;--theme-light:#F3F1E6;--theme-accent:#35FFDB;--theme-dark:#433909;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C; }
+    [data-theme="hiwa"] { --theme-primary:#BEC23F;--theme-light:#F3F3E6;--theme-accent:#1EDCE2;--theme-dark:#31320D;--theme-neutral:#E7E7E3;--theme-text:#1C1C1C; }
+    [data-theme="hiwamoegi"] { --theme-primary:#90B44B;--theme-light:#EFF3E6;--theme-accent:#2D99D1;--theme-dark:#242E11;--theme-neutral:#E6E7E3;--theme-text:#1C1C1C; }
+    [data-theme="yanagizome"] { --theme-primary:#91AD70;--theme-light:#EDF1E8;--theme-accent:#5992C3;--theme-dark:#242E19;--theme-neutral:#E5E6E4;--theme-text:#1C1C1C; }
+    [data-theme="nae"] { --theme-primary:#86C166;--theme-light:#EBF3E6;--theme-accent:#4C7EDA;--theme-dark:#1F3613;--theme-neutral:#E4E7E3;--theme-text:#1C1C1C; }
+    [data-theme="wakatake"] { --theme-primary:#5DAC81;--theme-light:#E7F2EC;--theme-accent:#7E42C6;--theme-dark:#152C20;--theme-neutral:#E4E6E5;--theme-text:#1C1C1C; }
+    [data-theme="byakuroku"] { --theme-primary:#A8D8B9;--theme-light:#E6F3EB;--theme-accent:#956FDB;--theme-dark:#1B442A;--theme-neutral:#E3E7E4;--theme-text:#1C1C1C; }
+    [data-theme="seiji"] { --theme-primary:#69B0AC;--theme-light:#E7F2F2;--theme-accent:#C150C8;--theme-dark:#172F2D;--theme-neutral:#E4E6E6;--theme-text:#1C1C1C; }
+    [data-theme="mizuasagi"] { --theme-primary:#66BAB7;--theme-light:#E6F3F2;--theme-accent:#CE4CD3;--theme-dark:#153231;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="byakugun"] { --theme-primary:#78C2C4;--theme-light:#E6F3F3;--theme-accent:#DA61D6;--theme-dark:#163738;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="kamenozoki"] { --theme-primary:#A5DEE4;--theme-light:#E6F2F3;--theme-accent:#EC5EDF;--theme-dark:#14484E;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="mizu"] { --theme-primary:#81C7D4;--theme-light:#E6F1F3;--theme-accent:#E763D3;--theme-dark:#133A41;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="sora"] { --theme-primary:#58B2DC;--theme-light:#E6EFF3;--theme-accent:#F83BBC;--theme-dark:#0A3042;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="wasurenagusa"] { --theme-primary:#7DB9DE;--theme-light:#E6EEF3;--theme-accent:#F258B8;--theme-dark:#0E3247;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="tsuyukusa"] { --theme-primary:#2EA9DF;--theme-light:#E6EFF3;--theme-accent:#FE0EB5;--theme-dark:#082B3A;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="gunjyo"] { --theme-primary:#51A8DD;--theme-light:#E6EEF3;--theme-accent:#FA33AF;--theme-dark:#092C41;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="usu"] { --theme-primary:#B28FCE;--theme-light:#EDE6F3;--theme-accent:#DDAB6E;--theme-dark:#2D183E;--theme-neutral:#E5E3E7;--theme-text:#1C1C1C; }
+    [data-theme="shironeri"] { --theme-primary:#FCFAF2;--theme-light:#F3F0E6;--theme-accent:#55F6D5;--theme-dark:#685713;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C; }
+    [data-theme="shironezumi"] { --theme-primary:#BDC0BA;--theme-light:#EDEDEC;--theme-accent:#93A5B8;--theme-dark:#2F312C;--theme-neutral:#E5E5E5;--theme-text:#1C1C1C; }
+
+    /* === Dark Themes (58) === */
+    [data-theme="kohbai"] { --theme-primary:#E16B8C;--theme-light:#F3E6EA;--theme-accent:#80FA51;--theme-dark:#470B1C;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB; }
+    [data-theme="suoh"] { --theme-primary:#8E354A;--theme-light:#F3E6E9;--theme-accent:#3DA51D;--theme-dark:#260C12;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB; }
+    [data-theme="ichigo"] { --theme-primary:#B5495B;--theme-light:#F3E6E8;--theme-accent:#47D22B;--theme-dark:#2E1015;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB; }
+    [data-theme="karakurenai"] { --theme-primary:#D0104C;--theme-light:#F3E6EA;--theme-accent:#46E000;--theme-dark:#300714;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB; }
+    [data-theme="kurenai"] { --theme-primary:#CB1B45;--theme-light:#F3E6E9;--theme-accent:#36E500;--theme-dark:#320711;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB; }
+    [data-theme="kokiake"] { --theme-primary:#86473F;--theme-light:#F3E8E6;--theme-accent:#299B36;--theme-dark:#23110F;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="azuki"] { --theme-primary:#954A45;--theme-light:#F3E7E6;--theme-accent:#2CAD34;--theme-dark:#261110;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="akabeni"] { --theme-primary:#CB4042;--theme-light:#F3E6E7;--theme-accent:#22EB1F;--theme-dark:#360C0C;--theme-neutral:#E8E2E3;--theme-text:#F5F2EB; }
+    [data-theme="syojyohi"] { --theme-primary:#E83015;--theme-light:#F3E8E6;--theme-accent:#00FD20;--theme-dark:#370D07;--theme-neutral:#E8E3E2;--theme-text:#F5F2EB; }
+    [data-theme="entan"] { --theme-primary:#D75455;--theme-light:#F3E6E6;--theme-accent:#38F337;--theme-dark:#3E0B0C;--theme-neutral:#E8E2E2;--theme-text:#F5F2EB; }
+    [data-theme="benihi"] { --theme-primary:#F75C2F;--theme-light:#F3E9E6;--theme-accent:#26FF57;--theme-dark:#401509;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB; }
+    [data-theme="terigaki"] { --theme-primary:#C46243;--theme-light:#F3E9E6;--theme-accent:#23E351;--theme-dark:#33170D;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="ohni"] { --theme-primary:#F05E1C;--theme-light:#F3EAE6;--theme-accent:#0DFE58;--theme-dark:#3A1808;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB; }
+    [data-theme="sohi"] { --theme-primary:#ED784A;--theme-light:#F3EAE6;--theme-accent:#38FF70;--theme-dark:#441A09;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB; }
+    [data-theme="ensyucha"] { --theme-primary:#CA7853;--theme-light:#F3EAE6;--theme-accent:#36E66D;--theme-dark:#381B0E;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="kogecha"] { --theme-primary:#563F2E;--theme-light:#F2ECE7;--theme-accent:#2F9259;--theme-dark:#221810;--theme-neutral:#E6E5E4;--theme-text:#F5F2EB; }
+    [data-theme="taisya"] { --theme-primary:#A36336;--theme-light:#F3ECE6;--theme-accent:#1ABE5E;--theme-dark:#2A180C;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB; }
+    [data-theme="kohaku"] { --theme-primary:#CA7A2C;--theme-light:#F3EDE6;--theme-accent:#09EC79;--theme-dark:#341E09;--theme-neutral:#E8E5E2;--theme-text:#F5F2EB; }
+    [data-theme="kenpohzome"] { --theme-primary:#43341B;--theme-light:#F3EEE6;--theme-accent:#20A070;--theme-dark:#251C0D;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB; }
+    [data-theme="koke"] { --theme-primary:#838A2D;--theme-light:#F2F3E6;--theme-accent:#179FAA;--theme-dark:#25270B;--theme-neutral:#E7E7E3;--theme-text:#F5F2EB; }
+    [data-theme="moegi"] { --theme-primary:#7BA23F;--theme-light:#EEF3E6;--theme-accent:#2480BC;--theme-dark:#1F290E;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB; }
+    [data-theme="matsuba"] { --theme-primary:#42602D;--theme-light:#ECF3E6;--theme-accent:#285699;--theme-dark:#17230F;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB; }
+    [data-theme="tokiwa"] { --theme-primary:#1B813E;--theme-light:#E6F3EB;--theme-accent:#4406BB;--theme-dark:#072B13;--theme-neutral:#E2E8E4;--theme-text:#F5F2EB; }
+    [data-theme="midori"] { --theme-primary:#227D51;--theme-light:#E6F3ED;--theme-accent:#630FB1;--theme-dark:#09291A;--theme-neutral:#E2E8E5;--theme-text:#F5F2EB; }
+    [data-theme="tokusa"] { --theme-primary:#2D6D4B;--theme-light:#E6F3EC;--theme-accent:#5C229F;--theme-dark:#0D2518;--theme-neutral:#E3E7E5;--theme-text:#F5F2EB; }
+    [data-theme="rokusyoh"] { --theme-primary:#24936E;--theme-light:#E6F3EF;--theme-accent:#7D0BB5;--theme-dark:#082A1F;--theme-neutral:#E2E8E6;--theme-text:#F5F2EB; }
+    [data-theme="aomidori"] { --theme-primary:#00AA90;--theme-light:#E6F3F1;--theme-accent:#A400C1;--theme-dark:#062C26;--theme-neutral:#E2E8E7;--theme-text:#F5F2EB; }
+    [data-theme="asagi"] { --theme-primary:#33A6B8;--theme-light:#E6F1F3;--theme-accent:#D614BC;--theme-dark:#0B2A2F;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB; }
+    [data-theme="shinbashi"] { --theme-primary:#0089A7;--theme-light:#E6F1F3;--theme-accent:#C1009E;--theme-dark:#06252C;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB; }
+    [data-theme="hanaasagi"] { --theme-primary:#1E88A8;--theme-light:#E6F0F3;--theme-accent:#C40197;--theme-dark:#06232C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB; }
+    [data-theme="chigusa"] { --theme-primary:#3A8FB7;--theme-light:#E6EFF3;--theme-accent:#D51B9A;--theme-dark:#0C242F;--theme-neutral:#E3E6E7;--theme-text:#F5F2EB; }
+    [data-theme="hanada"] { --theme-primary:#006284;--theme-light:#E6F0F3;--theme-accent:#C1008F;--theme-dark:#06222C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB; }
+    [data-theme="ruri"] { --theme-primary:#005CAF;--theme-light:#E6EDF3;--theme-accent:#C10065;--theme-dark:#061A2C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB; }
+    [data-theme="rurikon"] { --theme-primary:#0B346E;--theme-light:#E6ECF3;--theme-accent:#C10050;--theme-dark:#06162C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB; }
+    [data-theme="benimidori"] { --theme-primary:#7B90D2;--theme-light:#E6E9F3;--theme-accent:#E76383;--theme-dark:#131D40;--theme-neutral:#E3E4E7;--theme-text:#F5F2EB; }
+    [data-theme="fujinezumi"] { --theme-primary:#6E75A4;--theme-light:#E9EAF1;--theme-accent:#BB5663;--theme-dark:#191B2A;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB; }
+    [data-theme="benikakehana"] { --theme-primary:#4E4F97;--theme-light:#E7E7F2;--theme-accent:#AF3537;--theme-dark:#121226;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB; }
+    [data-theme="konjyo"] { --theme-primary:#113285;--theme-light:#E6EAF3;--theme-accent:#C10037;--theme-dark:#06112C;--theme-neutral:#E2E4E8;--theme-text:#F5F2EB; }
+    [data-theme="kon"] { --theme-primary:#0F2540;--theme-light:#E6ECF3;--theme-accent:#B70A58;--theme-dark:#08172A;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB; }
+    [data-theme="konkikyo"] { --theme-primary:#211E55;--theme-light:#E7E6F3;--theme-accent:#A7221A;--theme-dark:#0D0C26;--theme-neutral:#E3E3E7;--theme-text:#F5F2EB; }
+    [data-theme="kurotsurubami"] { --theme-primary:#0B1013;--theme-light:#E8EEF1;--theme-accent:#8E336C;--theme-dark:#121B20;--theme-neutral:#E4E5E6;--theme-text:#F5F2EB; }
+    [data-theme="fuji"] { --theme-primary:#8B81C3;--theme-light:#E8E6F3;--theme-accent:#D77C6C;--theme-dark:#1D1838;--theme-neutral:#E4E3E7;--theme-text:#F5F2EB; }
+    [data-theme="fujimurasaki"] { --theme-primary:#8A6BBE;--theme-light:#EBE6F3;--theme-accent:#D68352;--theme-dark:#211535;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB; }
+    [data-theme="kikyo"] { --theme-primary:#6A4C9C;--theme-light:#EBE6F3;--theme-accent:#B56332;--theme-dark:#1A1228;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB; }
+    [data-theme="shion"] { --theme-primary:#8F77B5;--theme-light:#EBE7F2;--theme-accent:#CA8A61;--theme-dark:#221931;--theme-neutral:#E5E4E6;--theme-text:#F5F2EB; }
+    [data-theme="edomurasaki"] { --theme-primary:#77428D;--theme-light:#EFE6F3;--theme-accent:#A4802A;--theme-dark:#1E0F24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB; }
+    [data-theme="murasaki"] { --theme-primary:#592C63;--theme-light:#F1E6F3;--theme-accent:#9C8625;--theme-dark:#200E24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB; }
+    [data-theme="benifuji"] { --theme-primary:#B481BB;--theme-light:#F1E7F2;--theme-accent:#CFC36C;--theme-dark:#311A34;--theme-neutral:#E6E4E6;--theme-text:#F5F2EB; }
+    [data-theme="botan"] { --theme-primary:#C1328E;--theme-light:#F3E6EE;--theme-accent:#97E111;--theme-dark:#320A24;--theme-neutral:#E8E2E6;--theme-text:#F5F2EB; }
+    [data-theme="tsutsuji"] { --theme-primary:#E03C8A;--theme-light:#F3E6EC;--theme-accent:#88FF1D;--theme-dark:#3E0822;--theme-neutral:#E8E2E5;--theme-text:#F5F2EB; }
+    [data-theme="ginnezumi"] { --theme-primary:#91989F;--theme-light:#EBEDEE;--theme-accent:#AF8098;--theme-dark:#232628;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="namari"] { --theme-primary:#787878;--theme-light:#EDEDED;--theme-accent:#668966;--theme-dark:#1D1D1D;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="hai"] { --theme-primary:#828282;--theme-light:#EDEDED;--theme-accent:#6F946F;--theme-dark:#202020;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="nibi"] { --theme-primary:#656765;--theme-light:#ECEDEC;--theme-accent:#555576;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="aonibi"] { --theme-primary:#535953;--theme-light:#ECEDEC;--theme-accent:#4E4E73;--theme-dark:#181A18;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="keshizumi"] { --theme-primary:#434343;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="sumi"] { --theme-primary:#1C1C1C;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="kuro"] { --theme-primary:#080808;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+
+    /* === Base styles === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--p-text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .phyra-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+
+    .phyra-gloss {
+      position: fixed; top: 0; left: 0; width: 100%; height: 478px; z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none;
+      transition: opacity 2s ease-in;
+    }
+
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative; z-index: 2;
+    }
+
+    main, #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto; padding: 40px 20px;
+      box-sizing: border-box;
+      transition: max-width 0.15s ease;
+    }
+
+    .phyra-width-handle {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 6px; height: 60px;
+      background: rgba(128,128,128,0.3); border-radius: 3px;
+      cursor: col-resize; z-index: 99;
+      transition: background 0.2s, opacity 0.3s; opacity: 0.4;
+    }
+    .phyra-width-handle:hover, .phyra-width-handle.dragging {
+      background: var(--p-accent); opacity: 1;
+    }
+
+    /* Slide card */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 24px;
+      color: var(--p-text);
+      margin-bottom: 24px;
+    }
+
+    h1, h2, h3 { color: var(--p-text); }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; }
+    h2 { font-size: 1.4rem; border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin-bottom: 16px; }
+    h3 { font-size: 1.1rem; margin-bottom: 8px; }
+
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px; border-radius: 3px; font-weight: 700;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin: 12px 0; }
+    th {
+      background: var(--p-primary); color: var(--p-text);
+      padding: 8px 12px; text-align: left;
+    }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--p-border); color: var(--p-text); }
+    tr:hover td { background: rgba(128,128,128,0.08); }
+
+    .formula, .katex-display, pre.math {
+      background: var(--p-formula-bg); color: var(--p-text);
+      padding: 12px 16px; border-radius: 6px;
+      border: 1px solid var(--p-border); overflow-x: auto; margin: 12px 0;
+    }
+    .katex, code.math { color: var(--p-text); background: transparent; }
+
+    .tag {
+      display: inline-block; padding: 2px 8px; border-radius: 12px;
+      font-size: 0.75em; font-weight: 600;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text); margin: 2px 4px;
+    }
+
+    .score-bar { height: 8px; border-radius: 4px; background: var(--p-border); margin: 4px 0; }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+
+    p { margin-bottom: 10px; }
+    ul, ol { margin: 8px 0 8px 20px; }
+    li { margin-bottom: 4px; }
+
+    .meta-line { font-size: 0.85em; color: var(--p-text-secondary); margin-bottom: 4px; }
+
+    .phyra-footer {
+      text-align: center; padding: 24px 20px; font-size: 12px;
+      color: var(--p-text); opacity: 0.5; letter-spacing: 0.05em;
+      position: relative; z-index: 2;
+    }
+
+    .phyra-switcher {
+      position: fixed; bottom: 20px; right: 20px; z-index: 100;
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128,128,128,0.15);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128,128,128,0.2); border-radius: 24px;
+      transition: background 0.3s;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px; background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(128,128,128,0.3); border-radius: 12px;
+      color: #1C1C1C; font-size: 12px; cursor: pointer; outline: none; max-width: 200px;
+    }
+    .phyra-switcher select option { color: #1C1C1C; background: #fff; }
+    .phyra-switcher select optgroup { font-weight: bold; color: #1C1C1C; }
+    .phyra-switcher button {
+      padding: 4px 12px; background: rgba(128,128,128,0.2);
+      border: 1px solid rgba(128,128,128,0.3); border-radius: 12px;
+      color: var(--p-text); cursor: pointer; font-size: 12px; transition: background 0.2s;
+    }
+    .phyra-switcher button:hover { background: rgba(128,128,128,0.35); }
+
+    .highlight-num { font-weight: 700; color: var(--p-accent); }
+  </style>
+</head>
+<body>
+  <div class="phyra-bg"></div>
+  <div class="phyra-gloss"></div>
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <main id="phyra-main">
+
+    <!-- Slide 1: Title -->
+    <section class="slide-card">
+      <h1>DrivingDojo Dataset</h1>
+      <p class="meta-line">Advancing Interactive and Knowledge-Enriched Driving World Model</p>
+      <p class="meta-line">NeurIPS 2024 (Datasets and Benchmarks Track) | arXiv: 2410.10738 | 2024-10-14</p>
+      <p class="meta-line">Yuqi Wang, Ke Cheng, Jiawei He, Qitai Wang, Hengchen Dai, Yuntao Chen, Fei Xia, Zhaoxiang Zhang</p>
+      <p class="meta-line">CASIA / UCAS / Meituan Inc. / HKISI, CAS</p>
+      <div style="margin-top:12px;">
+        <span class="tag">Driving World Model</span>
+        <span class="tag">Video Dataset</span>
+        <span class="tag">Action Instruction Following</span>
+        <span class="tag">Multi-agent Interplay</span>
+        <span class="tag">Open-world Knowledge</span>
+      </div>
+    </section>
+
+    <!-- Slide 2: Problem and Motivation -->
+    <section class="slide-card">
+      <h2>Problem and Motivation</h2>
+      <p>Driving world models require diverse, interaction-rich video data to fulfill their potential as real-world simulators. Existing driving datasets were designed for perception or prediction and fall short in three dimensions:</p>
+      <table>
+        <tr><th>Gap</th><th>Description</th><th>Source</th></tr>
+        <tr><td>Incomplete actions</td><td>nuScenes and ONCE are dominated by lane-keeping; turns, lane changes, and emergency braking are rare</td><td>Fig. 3a, p.4</td></tr>
+        <tr><td>No multi-agent interactions</td><td>Datasets curated for perception lack cut-in/cut-off, yielding, and overtaking scenarios</td><td>p.2</td></tr>
+        <tr><td>No open-world events</td><td>No existing dataset covers rare events: falling objects, animals crossing, unusual weather</td><td>p.5-6</td></tr>
+      </table>
+      <p>DrivingDojo fills these gaps by curating 18k videos from fleet data, organized into three targeted subsets.</p>
+    </section>
+
+    <!-- Slide 3: Dataset Overview -->
+    <section class="slide-card">
+      <h2>Dataset at a Glance</h2>
+      <table>
+        <tr><th>Subset</th><th>Videos</th><th>Type</th><th>Camera</th><th>Ego Trajectory</th><th>Text Description</th></tr>
+        <tr><td>DrivingDojo (total)</td><td class="highlight-num">17.8k</td><td>total</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+        <tr><td>DrivingDojo-Action</td><td>7.9k</td><td>rich ego-actions</td><td>Yes</td><td>Yes</td><td></td></tr>
+        <tr><td>DrivingDojo-Interplay</td><td>6.2k</td><td>multi-agent interplay</td><td>Yes</td><td>Yes</td><td></td></tr>
+        <tr><td>DrivingDojo-Open</td><td>3.7k</td><td>open-world knowledge</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      </table>
+      <p>Resolution: 1920x1080 at 5 fps. Duration: ~150 hours (curated from ~7,500 hours of fleet recordings). Front-view camera, 120-degree horizontal FOV. Source: Meituan autonomous delivery vehicles across major Chinese cities (Table 2, p.5).</p>
+    </section>
+
+    <!-- Slide 4: Comparison with Existing Datasets -->
+    <section class="slide-card">
+      <h2>Comparison with Existing Datasets</h2>
+      <table>
+        <tr><th>Dataset</th><th>Videos</th><th>Duration (h)</th><th>Ego Traj.</th><th>Complete Actions</th><th>Multi-agent</th><th>Open-world</th></tr>
+        <tr><td>nuScenes</td><td>1k</td><td>5.5</td><td>Yes</td><td></td><td></td><td></td></tr>
+        <tr><td>Waymo</td><td>1k</td><td>11</td><td>Yes</td><td></td><td></td><td></td></tr>
+        <tr><td>OpenDV-2K</td><td>2k</td><td>2059</td><td></td><td>Yes</td><td></td><td>Yes</td></tr>
+        <tr><td>nuPlan</td><td>-</td><td>1500</td><td>Yes</td><td>Yes</td><td>Yes</td><td></td></tr>
+        <tr><td><strong>DrivingDojo</strong></td><td><strong>18k</strong></td><td><strong>~150*</strong></td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      </table>
+      <p class="meta-line">* Curated from a ~7,500-hour data pool. (Table 1, p.3)</p>
+    </section>
+
+    <!-- Slide 5: Data Curation Pipeline -->
+    <section class="slide-card">
+      <h2>Data Curation Pipeline</h2>
+      <p>Six data sources feed into the curation process (p.6):</p>
+      <ol>
+        <li>Intervention data from safety inspectors during vehicle operation</li>
+        <li>Emergency brake data from automatic emergency braking</li>
+        <li>Randomly sampled 30-second general driving clips</li>
+        <li>Selected distinct scenarios: traffic lights, crossings, barriers, lane changes, pedestrian interactions</li>
+        <li>Manually sorted rare data: foreign objects on road, falling/rolling items</li>
+        <li>GPT-4o annotation for open-world knowledge descriptions</li>
+      </ol>
+      <p>PII removal is performed using license plate and face detectors with manual double-checking (p.6). Dataset released under CC BY-NC 4.0 license (p.16).</p>
+    </section>
+
+    <!-- Slide 6: AIF Task Definition -->
+    <section class="slide-card">
+      <h2>Action Instruction Following (AIF) Task</h2>
+      <p>Given an initial image $I_t$ and an action sequence $\{A_t, ..., A_{t+k}\}$, the world model predicts future frames:</p>
+      <div class="formula">
+        $$\{I_t, I_{t+1}, ..., I_{t+k}\} = f_\theta(I_t, \{A_t, A_{t+1}, ..., A_{t+k}\})$$
+      </div>
+      <p>Each action $A_t = (\Delta x_t, \Delta y_t)$ represents the next frame's camera position in the current camera coordinate system (Eq. 1, p.7).</p>
+      <p>The AIF error metric uses SfM (COLMAP) to estimate ego trajectories from generated videos and compares them against input actions:</p>
+      <div class="formula">
+        $$(E_x^{AIF}, E_y^{AIF}) = \frac{\sum_{i=0}^{k} |A_{t+i} - \tilde{A}_{t+i} \cdot \hat{S}|}{k+1}$$
+      </div>
+      <p class="meta-line">$\hat{S}$ is a scale factor estimated from the first $N=10$ frames to align SfM trajectories with metric scale (Eq. 2, p.7).</p>
+    </section>
+
+    <!-- Slide 7: Baseline Model Architecture -->
+    <section class="slide-card">
+      <h2>Baseline Model Architecture</h2>
+      <p>The baseline extends Stable Video Diffusion (SVD-XT) for action-conditioned generation:</p>
+      <ul>
+        <li>Action sequence encoded via MLP into a 1024-d vector</li>
+        <li>Concatenated with first-frame image feature and fed into U-Net</li>
+        <li>Training: EDM framework, 576x320 resolution, 30 frames, AdamW (lr=1e-5)</li>
+        <li>Hardware: 16x A100 (80G), batch size 32, 50K iterations</li>
+        <li>Inference: DDIM sampler, 25 steps</li>
+      </ul>
+      <p>Classifier-free guidance dropout: 20% action feature dropout (p.22).</p>
+    </section>
+
+    <!-- Slide 8: Visual Prediction Results -->
+    <section class="slide-card">
+      <h2>Visual Prediction Results</h2>
+      <p>SVD fine-tuned on different datasets, zero-shot evaluated on OpenDV-2K (Table 3, p.7):</p>
+      <table>
+        <tr><th>Fine-tuning Data</th><th>FID</th><th>FVD</th></tr>
+        <tr><td>OpenDV-2K (upper bound)</td><td>18.27</td><td>321.05</td></tr>
+        <tr><td>None</td><td>24.17</td><td>580.94</td></tr>
+        <tr><td>nuScenes</td><td>21.05</td><td>395.04</td></tr>
+        <tr><td><strong>DrivingDojo</strong></td><td><strong>19.20</strong></td><td><strong>343.91</strong></td></tr>
+      </table>
+      <p>DrivingDojo achieves the best visual quality among transfer datasets, approaching the in-domain upper bound despite having fewer hours of video.</p>
+    </section>
+
+    <!-- Slide 9: AIF Results -->
+    <section class="slide-card">
+      <h2>Action Instruction Following Results</h2>
+      <p>AIF evaluation on DrivingDojo (Table 4, p.8):</p>
+      <table>
+        <tr><th>Setting</th><th>FID</th><th>FVD</th><th>$E_x^{AIF}$</th><th>$E_y^{AIF}$</th></tr>
+        <tr><td>In-Domain (GT video)</td><td>-</td><td>-</td><td>0.036m</td><td>0.019m</td></tr>
+        <tr><td>In-Domain (generated)</td><td>37.07</td><td>658.72</td><td>0.100m</td><td>0.062m</td></tr>
+        <tr><td>Out-of-Domain actions</td><td>38.30</td><td>716.44</td><td>0.173m</td><td>0.110m</td></tr>
+        <tr><td>Out-of-Domain (OpenDV-2K)</td><td>24.27</td><td>442.67</td><td>0.238m</td><td>0.136m</td></tr>
+      </table>
+      <p>In-domain AIF error is ~10cm per frame, demonstrating that the SVD baseline can follow action instructions when trained on DrivingDojo. Out-of-domain degradation is gradual, not catastrophic.</p>
+    </section>
+
+    <!-- Slide 10: Zero-shot Comparison -->
+    <section class="slide-card">
+      <h2>Zero-shot AIF Comparison</h2>
+      <p>Models trained on different datasets, zero-shot tested on OpenDV-2K (Table 5, p.8):</p>
+      <table>
+        <tr><th>Training Set</th><th>FID</th><th>FVD</th><th>$E_x^{AIF}$</th><th>$E_y^{AIF}$</th></tr>
+        <tr><td><strong>DrivingDojo</strong></td><td><strong>24.27</strong></td><td><strong>442.67</strong></td><td><strong>0.238m</strong></td><td><strong>0.136m</strong></td></tr>
+        <tr><td>ONCE</td><td>28.37</td><td>473.59</td><td>0.255m</td><td>0.239m</td></tr>
+        <tr><td>nuScenes</td><td>37.90</td><td>794.36</td><td>0.387m</td><td>0.254m</td></tr>
+      </table>
+      <p>DrivingDojo-trained models achieve the best zero-shot transfer. The ONCE model (lane-keeping dominated) fails to follow lateral actions; nuScenes performs worst due to the most limited action coverage (p.9, Figure 3a).</p>
+    </section>
+
+    <!-- Slide 11: Paper Evaluation -->
+    <section class="slide-card">
+      <h2>Paper Evaluation</h2>
+      <table>
+        <tr><th>Dimension</th><th>Score</th><th style="width:60%">Rationale</th></tr>
+        <tr>
+          <td>Novelty</td>
+          <td>3/5</td>
+          <td>
+            <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+            First dataset explicitly for interactive world model training; the model baseline itself is a straightforward SVD extension
+          </td>
+        </tr>
+        <tr>
+          <td>Technical depth</td>
+          <td>2/5</td>
+          <td>
+            <div class="score-bar"><div class="score-bar-fill" style="width:40%"></div></div>
+            Simple MLP action encoder; AIF metric relies on SfM pipeline without independent validation
+          </td>
+        </tr>
+        <tr>
+          <td>Experiment completeness</td>
+          <td>3/5</td>
+          <td>
+            <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+            Covers visual quality and AIF; missing ablation on dataset subsets and multi-model comparison
+          </td>
+        </tr>
+        <tr>
+          <td>Writing quality</td>
+          <td>4/5</td>
+          <td>
+            <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+            Clear structure, compelling motivation, well-organized figures and tables
+          </td>
+        </tr>
+        <tr>
+          <td>Practical value</td>
+          <td>4/5</td>
+          <td>
+            <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+            Fills a genuine gap; CC BY-NC 4.0 license; project page with public release
+          </td>
+        </tr>
+      </table>
+      <p><strong>Overall: 3/5</strong> A solid dataset contribution addressing a real need; modest technical and experimental depth.</p>
+    </section>
+
+    <!-- Slide 12: Strengths and Weaknesses -->
+    <section class="slide-card">
+      <h2>Strengths and Weaknesses</h2>
+      <h3>Strengths</h3>
+      <ul>
+        <li>First dataset to simultaneously cover action completeness, multi-agent interplay, and open-world knowledge for world model training (Table 1, p.3)</li>
+        <li>Systematic curation from a 7,500-hour fleet data pool using multiple complementary strategies (p.6)</li>
+        <li>AIF benchmark provides a quantitative way to evaluate action controllability beyond visual quality metrics</li>
+      </ul>
+      <h3>Weaknesses</h3>
+      <ul>
+        <li>Only SVD tested as baseline; no comparison with GAIA-1, Drive-WM, Vista, or other driving world models</li>
+        <li>AIF metric accuracy depends on COLMAP SfM, which is not validated against ground truth on generated videos</li>
+        <li>No ablation on the contribution of each dataset subset (Action/Interplay/Open)</li>
+        <li>Single-camera, front-view only; limits applicability for multi-view world model research (p.10)</li>
+      </ul>
+    </section>
+
+    <!-- Slide 13: Fundamental Limitations -->
+    <section class="slide-card">
+      <h2>Fundamental Limitations</h2>
+      <ul>
+        <li><strong>Single-camera constraint:</strong> Front-view only data cannot support multi-view or surround-view world model research, which is increasingly the norm for autonomous driving</li>
+        <li><strong>AIF metric circularity:</strong> SfM accuracy on generated videos degrades as generation quality decreases, making the metric less reliable for weaker models</li>
+        <li><strong>Fleet distribution bias:</strong> All data comes from Meituan delivery vehicles in Chinese cities; road types, traffic patterns, and driving styles may not generalize globally</li>
+        <li><strong>Short-horizon generation:</strong> Baseline produces 30 frames (~6s at 5fps), insufficient for planning-relevant horizons</li>
+      </ul>
+    </section>
+
+    <!-- Slide 14: Open Questions -->
+    <section class="slide-card">
+      <h2>Open Questions and Future Directions</h2>
+      <ul>
+        <li>How much does each subset (Action/Interplay/Open) individually contribute to performance?</li>
+        <li>What is the SfM trajectory estimation error on real DrivingDojo videos, establishing a baseline for interpreting AIF values?</li>
+        <li>Does low AIF error translate to better closed-loop driving performance?</li>
+        <li>How do other world model architectures (autoregressive, 3D-aware) perform when trained on DrivingDojo?</li>
+      </ul>
+      <h3>Improvement Directions</h3>
+      <ol>
+        <li>Multi-model benchmarking: Train GAIA-1, Vista, and autoregressive models on DrivingDojo (high feasibility)</li>
+        <li>Subset ablation: Isolate the value of each subset to guide future curation efforts (high feasibility)</li>
+        <li>Multi-camera extension: Leverage side/rear cameras from fleet vehicles (medium feasibility)</li>
+        <li>AIF metric validation: Compare SfM estimates against GPS/IMU ground truth (medium feasibility)</li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer class="phyra-footer">
+    Phyra NT Workflow | Paper Read Report | 2026-04-09
+  </footer>
+
+  <script>
+    /* phyra-switcher.js */
+    const PHYRA_THEMES = [
+      {id:"nadeshiko",label:"撫子 Nadeshiko",mode:"light"},{id:"taikoh",label:"退紅 Taikoh",mode:"light"},{id:"momo",label:"桃 Momo",mode:"light"},{id:"toki",label:"鴇 Toki",mode:"light"},{id:"jinzamomi",label:"甚三紅 Jinzamomi",mode:"light"},{id:"haizakura",label:"灰桜 Haizakura",mode:"light"},{id:"akebono",label:"曙 Akebono",mode:"light"},{id:"sangosyu",label:"珊瑚朱 Sangosyu",mode:"light"},{id:"araisyu",label:"洗朱 Araisyu",mode:"light"},{id:"akakoh",label:"赤香 Akakoh",mode:"light"},{id:"kokikuchinashi",label:"深支子 Kokikuchinashi",mode:"light"},{id:"kanzo",label:"萱草 Kanzo",mode:"light"},{id:"beniukon",label:"紅鬱金 Beniukon",mode:"light"},{id:"kuchiba",label:"朽葉 Kuchiba",mode:"light"},{id:"yamabuki",label:"山吹 Yamabuki",mode:"light"},{id:"hajizome",label:"櫨染 Hajizome",mode:"light"},{id:"tamago",label:"玉子 Tamago",mode:"light"},{id:"tamamorokoshi",label:"玉蜀黍 Tamamorokoshi",mode:"light"},{id:"usuki",label:"浅黄 Usuki",mode:"light"},{id:"kuchinashi",label:"梔子 Kuchinashi",mode:"light"},{id:"tohoh",label:"籐黄 Tohoh",mode:"light"},{id:"ukon",label:"鬱金 Ukon",mode:"light"},{id:"tonoko",label:"砥粉 Tonoko",mode:"light"},{id:"kariyasu",label:"刈安 Kariyasu",mode:"light"},{id:"hiwa",label:"鶸 Hiwa",mode:"light"},{id:"hiwamoegi",label:"鶸萌黄 Hiwamoegi",mode:"light"},{id:"yanagizome",label:"柳染 Yanagizome",mode:"light"},{id:"nae",label:"苗 Nae",mode:"light"},{id:"wakatake",label:"若竹 Wakatake",mode:"light"},{id:"byakuroku",label:"白緑 Byakuroku",mode:"light"},{id:"seiji",label:"青磁 Seiji",mode:"light"},{id:"mizuasagi",label:"水浅葱 Mizuasagi",mode:"light"},{id:"byakugun",label:"白群 Byakugun",mode:"light"},{id:"kamenozoki",label:"瓶覗 Kamenozoki",mode:"light"},{id:"mizu",label:"水 Mizu",mode:"light"},{id:"sora",label:"空 Sora",mode:"light"},{id:"wasurenagusa",label:"勿忘草 Wasurenagusa",mode:"light"},{id:"tsuyukusa",label:"露草 Tsuyukusa",mode:"light"},{id:"gunjyo",label:"群青 Gunjyo",mode:"light"},{id:"usu",label:"薄 Usu",mode:"light"},{id:"shironeri",label:"白練 Shironeri",mode:"light"},{id:"shironezumi",label:"白鼠 Shironezumi",mode:"light"},
+      {id:"kohbai",label:"紅梅 Kohbai",mode:"dark"},{id:"suoh",label:"蘇芳 Suoh",mode:"dark"},{id:"ichigo",label:"苺 Ichigo",mode:"dark"},{id:"karakurenai",label:"韓紅花 Karakurenai",mode:"dark"},{id:"kurenai",label:"紅 Kurenai",mode:"dark"},{id:"kokiake",label:"深緋 Kokiake",mode:"dark"},{id:"azuki",label:"小豆 Azuki",mode:"dark"},{id:"akabeni",label:"赤紅 Akabeni",mode:"dark"},{id:"syojyohi",label:"猩猩緋 Syojyohi",mode:"dark"},{id:"entan",label:"鉛丹 Entan",mode:"dark"},{id:"benihi",label:"紅緋 Benihi",mode:"dark"},{id:"terigaki",label:"照柿 Terigaki",mode:"dark"},{id:"ohni",label:"黄丹 Ohni",mode:"dark"},{id:"sohi",label:"纁 Sohi",mode:"dark"},{id:"ensyucha",label:"遠州茶 Ensyucha",mode:"dark"},{id:"kogecha",label:"焦茶 Kogecha",mode:"dark"},{id:"taisya",label:"代赭 Taisya",mode:"dark"},{id:"kohaku",label:"琥珀 Kohaku",mode:"dark"},{id:"kenpohzome",label:"憲法染 Kenpohzome",mode:"dark"},{id:"koke",label:"苔 Koke",mode:"dark"},{id:"moegi",label:"萌黄 Moegi",mode:"dark"},{id:"matsuba",label:"松葉 Matsuba",mode:"dark"},{id:"tokiwa",label:"常磐 Tokiwa",mode:"dark"},{id:"midori",label:"緑 Midori",mode:"dark"},{id:"tokusa",label:"木賊 Tokusa",mode:"dark"},{id:"rokusyoh",label:"緑青 Rokusyoh",mode:"dark"},{id:"aomidori",label:"青緑 Aomidori",mode:"dark"},{id:"asagi",label:"浅葱 Asagi",mode:"dark"},{id:"shinbashi",label:"新橋 Shinbashi",mode:"dark"},{id:"hanaasagi",label:"花浅葱 Hanaasagi",mode:"dark"},{id:"chigusa",label:"千草 Chigusa",mode:"dark"},{id:"hanada",label:"縹 Hanada",mode:"dark"},{id:"ruri",label:"瑠璃 Ruri",mode:"dark"},{id:"rurikon",label:"瑠璃紺 Rurikon",mode:"dark"},{id:"benimidori",label:"紅碧 Benimidori",mode:"dark"},{id:"fujinezumi",label:"藤鼠 Fujinezumi",mode:"dark"},{id:"benikakehana",label:"紅掛花 Benikakehana",mode:"dark"},{id:"konjyo",label:"紺青 Konjyo",mode:"dark"},{id:"kon",label:"紺 Kon",mode:"dark"},{id:"konkikyo",label:"紺桔梗 Konkikyo",mode:"dark"},{id:"kurotsurubami",label:"黒橡 Kurotsurubami",mode:"dark"},{id:"fuji",label:"藤 Fuji",mode:"dark"},{id:"fujimurasaki",label:"藤紫 Fujimurasaki",mode:"dark"},{id:"kikyo",label:"桔梗 Kikyo",mode:"dark"},{id:"shion",label:"紫苑 Shion",mode:"dark"},{id:"edomurasaki",label:"江戸紫 Edomurasaki",mode:"dark"},{id:"murasaki",label:"紫 Murasaki",mode:"dark"},{id:"benifuji",label:"紅藤 Benifuji",mode:"dark"},{id:"botan",label:"牡丹 Botan",mode:"dark"},{id:"tsutsuji",label:"躑躅 Tsutsuji",mode:"dark"},{id:"ginnezumi",label:"銀鼠 Ginnezumi",mode:"dark"},{id:"namari",label:"鉛 Namari",mode:"dark"},{id:"hai",label:"灰 Hai",mode:"dark"},{id:"nibi",label:"鈍 Nibi",mode:"dark"},{id:"aonibi",label:"青鈍 Aonibi",mode:"dark"},{id:"keshizumi",label:"消炭 Keshizumi",mode:"dark"},{id:"sumi",label:"墨 Sumi",mode:"dark"},{id:"kuro",label:"黒 Kuro",mode:"dark"}
+    ];
+
+    function phyraApply(id) {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', id);
+      const t = PHYRA_THEMES.find(x => x.id === id);
+      if (t) {
+        html.setAttribute('data-theme-mode', t.mode);
+        const select = document.getElementById('phyra-select');
+        if (select) select.value = id;
+      }
+    }
+
+    function phyraRandom() {
+      const idx = Math.floor(Math.random() * PHYRA_THEMES.length);
+      phyraApply(PHYRA_THEMES[idx].id);
+    }
+
+    function phyraBuildSelect() {
+      const select = document.getElementById('phyra-select');
+      if (!select) return;
+      const lightGroup = document.createElement('optgroup');
+      lightGroup.label = 'Light (42)';
+      const darkGroup = document.createElement('optgroup');
+      darkGroup.label = 'Dark (58)';
+      PHYRA_THEMES.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.label;
+        if (t.mode === 'light') lightGroup.appendChild(opt);
+        else darkGroup.appendChild(opt);
+      });
+      select.appendChild(lightGroup);
+      select.appendChild(darkGroup);
+    }
+
+    (function() {
+      phyraBuildSelect();
+      const current = document.documentElement.getAttribute('data-theme') || 'keshizumi';
+      phyraApply(current);
+    })();
+
+    /* Content width drag control */
+    (function() {
+      const handle = document.getElementById('phyra-width-handle');
+      if (!handle) return;
+      let dragging = false;
+      function updateHandlePos(contentWidth) {
+        const vw = window.innerWidth;
+        const gap = (vw - contentWidth) / 2;
+        handle.style.right = Math.max(4, gap - 16) + 'px';
+      }
+      handle.addEventListener('mousedown', (e) => { dragging = true; handle.classList.add('dragging'); e.preventDefault(); });
+      document.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const vw = window.innerWidth;
+        const distFromCenter = Math.abs(e.clientX - vw / 2);
+        const newWidth = Math.max(400, distFromCenter * 2);
+        document.documentElement.style.setProperty('--phyra-content-width', newWidth + 'px');
+        updateHandlePos(newWidth);
+      });
+      document.addEventListener('mouseup', () => { if (dragging) { dragging = false; handle.classList.remove('dragging'); } });
+      const initWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width')) || 900;
+      updateHandlePos(initWidth);
+      window.addEventListener('resize', () => {
+        const w = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width')) || 900;
+        updateHandlePos(w);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -55,6 +55,27 @@ async function openModal(shortName) {
   titleEl.textContent = shortName;
   subtitleEl.textContent = paper ? `${paper.title || ''} | ${paper.venue || ''} ${paper.year || ''}` : '';
 
+  // Phyra buttons
+  let phyraContainer = document.getElementById('phyraBtns');
+  if (!phyraContainer) {
+    phyraContainer = document.createElement('div');
+    phyraContainer.id = 'phyraBtns';
+    phyraContainer.className = 'phyra-btns';
+    const headerEl = document.querySelector('.modal-header');
+    headerEl.insertBefore(phyraContainer, document.getElementById('modalClose'));
+  }
+  if (paper && paper.phyra_slides) {
+    const slidesBtn = `<a class="phyra-btn" href="${paper.phyra_slides}" target="_blank" rel="noopener">Phyra Slides</a>`;
+    const notesBtn = paper.phyra_notes
+      ? `<a class="phyra-btn" href="${paper.phyra_notes}" target="_blank" rel="noopener">Phyra Notes</a>`
+      : '';
+    phyraContainer.innerHTML = slidesBtn + notesBtn;
+    phyraContainer.style.display = '';
+  } else {
+    phyraContainer.innerHTML = '';
+    phyraContainer.style.display = 'none';
+  }
+
   // Show loading
   contentEl.innerHTML = '<div class="modal-loading">Loading notes...</div>';
   navEl.innerHTML = '';

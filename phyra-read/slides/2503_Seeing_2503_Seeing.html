@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phyra Paper Read | UniFuture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* === Semantic aliases === */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 900px;
+    }
+
+    /* === Light mode derived === */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255, 255, 255, 0.92);
+      --p-formula-bg     : rgba(255, 255, 255, 0.92);
+      --p-border         : rgba(28, 28, 28, 0.12);
+      --p-text-secondary : rgba(28, 28, 28, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+      --p-gloss-top      : 0.22;
+      --p-gloss-mid      : 0.06;
+    }
+
+    /* === Dark mode derived === */
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0, 0, 0, 0.35);
+      --p-formula-bg     : rgba(0, 0, 0, 0.35);
+      --p-border         : rgba(245, 242, 235, 0.12);
+      --p-text-secondary : rgba(245, 242, 235, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+      --p-gloss-top      : 0.10;
+      --p-gloss-mid      : 0.03;
+    }
+
+    /* === Light Themes === */
+    [data-theme="nadeshiko"] { --theme-primary:#DC9FB4;--theme-light:#F3E6EB;--theme-accent:#92E566;--theme-dark:#471727;--theme-neutral:#E7E3E4;--theme-text:#1C1C1C; }
+    [data-theme="taikoh"] { --theme-primary:#F8C3CD;--theme-light:#F3E6E9;--theme-accent:#6EFE4C;--theme-dark:#600D1D;--theme-neutral:#E8E2E3;--theme-text:#1C1C1C; }
+    [data-theme="momo"] { --theme-primary:#F596AA;--theme-light:#F3E6E9;--theme-accent:#72FE4C;--theme-dark:#560C1B;--theme-neutral:#E8E2E4;--theme-text:#1C1C1C; }
+    [data-theme="toki"] { --theme-primary:#EEA9A9;--theme-light:#F3E6E6;--theme-accent:#50FA50;--theme-dark:#580D0D;--theme-neutral:#E8E2E2;--theme-text:#1C1C1C; }
+    [data-theme="jinzamomi"] { --theme-primary:#EB7A77;--theme-light:#F3E7E6;--theme-accent:#4CFE51;--theme-dark:#4D0C0B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C; }
+    [data-theme="haizakura"] { --theme-primary:#D7C4BB;--theme-light:#F1EBE8;--theme-accent:#7CCE97;--theme-dark:#402D23;--theme-neutral:#E6E5E4;--theme-text:#1C1C1C; }
+    [data-theme="akebono"] { --theme-primary:#F19483;--theme-light:#F3E8E6;--theme-accent:#4CFE68;--theme-dark:#51160B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C; }
+    [data-theme="sangosyu"] { --theme-primary:#F17C67;--theme-light:#F3E8E6;--theme-accent:#4CFE67;--theme-dark:#4B140A;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C; }
+    [data-theme="araisyu"] { --theme-primary:#FB966E;--theme-light:#F3EAE6;--theme-accent:#4CFE7F;--theme-dark:#4E1E0B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C; }
+    [data-theme="akakoh"] { --theme-primary:#E3916E;--theme-light:#F3EAE6;--theme-accent:#4FFB83;--theme-dark:#491D0A;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C; }
+    [data-theme="kokikuchinashi"] { --theme-primary:#FB9966;--theme-light:#F3EBE6;--theme-accent:#4CFE89;--theme-dark:#4D210B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C; }
+    [data-theme="kanzo"] { --theme-primary:#FC9F4D;--theme-light:#F3ECE6;--theme-accent:#4AFE9E;--theme-dark:#47270A;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C; }
+    [data-theme="beniukon"] { --theme-primary:#E98B2A;--theme-light:#F3EDE6;--theme-accent:#14FE8B;--theme-dark:#3C2208;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C; }
+    [data-theme="kuchiba"] { --theme-primary:#E2943B;--theme-light:#F3EDE6;--theme-accent:#1EFF95;--theme-dark:#3E2508;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C; }
+    [data-theme="yamabuki"] { --theme-primary:#FFB11B;--theme-light:#F3EFE6;--theme-accent:#1BFFB0;--theme-dark:#3D2B08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="hajizome"] { --theme-primary:#DDA52D;--theme-light:#F3EFE6;--theme-accent:#0BFEB1;--theme-dark:#3A2A08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tamago"] { --theme-primary:#F9BF45;--theme-light:#F3EFE6;--theme-accent:#3FFFC1;--theme-dark:#453209;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tamamorokoshi"] { --theme-primary:#E8B647;--theme-light:#F3EFE6;--theme-accent:#30FFBE;--theme-dark:#423009;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="usuki"] { --theme-primary:#FAD689;--theme-light:#F3EFE6;--theme-accent:#4CFEC6;--theme-dark:#543D0C;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="kuchinashi"] { --theme-primary:#F6C555;--theme-light:#F3EFE6;--theme-accent:#4CFEC8;--theme-dark:#48350A;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tohoh"] { --theme-primary:#FFC408;--theme-light:#F3F0E6;--theme-accent:#07FFC4;--theme-dark:#392D08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="ukon"] { --theme-primary:#EFBB24;--theme-light:#F3F0E6;--theme-accent:#14FEC2;--theme-dark:#3C2E08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C; }
+    [data-theme="tonoko"] { --theme-primary:#D7B98E;--theme-light:#F3EEE6;--theme-accent:#65E6B1;--theme-dark:#443015;--theme-neutral:#E7E5E3;--theme-text:#1C1C1C; }
+    [data-theme="kariyasu"] { --theme-primary:#E9CD4C;--theme-light:#F3F1E6;--theme-accent:#35FFDB;--theme-dark:#433909;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C; }
+    [data-theme="hiwa"] { --theme-primary:#BEC23F;--theme-light:#F3F3E6;--theme-accent:#1EDCE2;--theme-dark:#31320D;--theme-neutral:#E7E7E3;--theme-text:#1C1C1C; }
+    [data-theme="hiwamoegi"] { --theme-primary:#90B44B;--theme-light:#EFF3E6;--theme-accent:#2D99D1;--theme-dark:#242E11;--theme-neutral:#E6E7E3;--theme-text:#1C1C1C; }
+    [data-theme="yanagizome"] { --theme-primary:#91AD70;--theme-light:#EDF1E8;--theme-accent:#5992C3;--theme-dark:#242E19;--theme-neutral:#E5E6E4;--theme-text:#1C1C1C; }
+    [data-theme="nae"] { --theme-primary:#86C166;--theme-light:#EBF3E6;--theme-accent:#4C7EDA;--theme-dark:#1F3613;--theme-neutral:#E4E7E3;--theme-text:#1C1C1C; }
+    [data-theme="wakatake"] { --theme-primary:#5DAC81;--theme-light:#E7F2EC;--theme-accent:#7E42C6;--theme-dark:#152C20;--theme-neutral:#E4E6E5;--theme-text:#1C1C1C; }
+    [data-theme="byakuroku"] { --theme-primary:#A8D8B9;--theme-light:#E6F3EB;--theme-accent:#956FDB;--theme-dark:#1B442A;--theme-neutral:#E3E7E4;--theme-text:#1C1C1C; }
+    [data-theme="seiji"] { --theme-primary:#69B0AC;--theme-light:#E7F2F2;--theme-accent:#C150C8;--theme-dark:#172F2D;--theme-neutral:#E4E6E6;--theme-text:#1C1C1C; }
+    [data-theme="mizuasagi"] { --theme-primary:#66BAB7;--theme-light:#E6F3F2;--theme-accent:#CE4CD3;--theme-dark:#153231;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="byakugun"] { --theme-primary:#78C2C4;--theme-light:#E6F3F3;--theme-accent:#DA61D6;--theme-dark:#163738;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="kamenozoki"] { --theme-primary:#A5DEE4;--theme-light:#E6F2F3;--theme-accent:#EC5EDF;--theme-dark:#14484E;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="mizu"] { --theme-primary:#81C7D4;--theme-light:#E6F1F3;--theme-accent:#E763D3;--theme-dark:#133A41;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C; }
+    [data-theme="sora"] { --theme-primary:#58B2DC;--theme-light:#E6EFF3;--theme-accent:#F83BBC;--theme-dark:#0A3042;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="wasurenagusa"] { --theme-primary:#7DB9DE;--theme-light:#E6EEF3;--theme-accent:#F258B8;--theme-dark:#0E3247;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="tsuyukusa"] { --theme-primary:#2EA9DF;--theme-light:#E6EFF3;--theme-accent:#FE0EB5;--theme-dark:#082B3A;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="gunjyo"] { --theme-primary:#51A8DD;--theme-light:#E6EEF3;--theme-accent:#FA33AF;--theme-dark:#092C41;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C; }
+    [data-theme="usu"] { --theme-primary:#B28FCE;--theme-light:#EDE6F3;--theme-accent:#DDAB6E;--theme-dark:#2D183E;--theme-neutral:#E5E3E7;--theme-text:#1C1C1C; }
+    [data-theme="shironeri"] { --theme-primary:#FCFAF2;--theme-light:#F3F0E6;--theme-accent:#55F6D5;--theme-dark:#685713;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C; }
+    [data-theme="shironezumi"] { --theme-primary:#BDC0BA;--theme-light:#EDEDEC;--theme-accent:#93A5B8;--theme-dark:#2F312C;--theme-neutral:#E5E5E5;--theme-text:#1C1C1C; }
+
+    /* === Dark Themes === */
+    [data-theme="kohbai"] { --theme-primary:#E16B8C;--theme-light:#F3E6EA;--theme-accent:#80FA51;--theme-dark:#470B1C;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB; }
+    [data-theme="suoh"] { --theme-primary:#8E354A;--theme-light:#F3E6E9;--theme-accent:#3DA51D;--theme-dark:#260C12;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB; }
+    [data-theme="ichigo"] { --theme-primary:#B5495B;--theme-light:#F3E6E8;--theme-accent:#47D22B;--theme-dark:#2E1015;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB; }
+    [data-theme="karakurenai"] { --theme-primary:#D0104C;--theme-light:#F3E6EA;--theme-accent:#46E000;--theme-dark:#300714;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB; }
+    [data-theme="kurenai"] { --theme-primary:#CB1B45;--theme-light:#F3E6E9;--theme-accent:#36E500;--theme-dark:#320711;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB; }
+    [data-theme="kokiake"] { --theme-primary:#86473F;--theme-light:#F3E8E6;--theme-accent:#299B36;--theme-dark:#23110F;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="azuki"] { --theme-primary:#954A45;--theme-light:#F3E7E6;--theme-accent:#2CAD34;--theme-dark:#261110;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="akabeni"] { --theme-primary:#CB4042;--theme-light:#F3E6E7;--theme-accent:#22EB1F;--theme-dark:#360C0C;--theme-neutral:#E8E2E3;--theme-text:#F5F2EB; }
+    [data-theme="syojyohi"] { --theme-primary:#E83015;--theme-light:#F3E8E6;--theme-accent:#00FD20;--theme-dark:#370D07;--theme-neutral:#E8E3E2;--theme-text:#F5F2EB; }
+    [data-theme="entan"] { --theme-primary:#D75455;--theme-light:#F3E6E6;--theme-accent:#38F337;--theme-dark:#3E0B0C;--theme-neutral:#E8E2E2;--theme-text:#F5F2EB; }
+    [data-theme="benihi"] { --theme-primary:#F75C2F;--theme-light:#F3E9E6;--theme-accent:#26FF57;--theme-dark:#401509;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB; }
+    [data-theme="terigaki"] { --theme-primary:#C46243;--theme-light:#F3E9E6;--theme-accent:#23E351;--theme-dark:#33170D;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="ohni"] { --theme-primary:#F05E1C;--theme-light:#F3EAE6;--theme-accent:#0DFE58;--theme-dark:#3A1808;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB; }
+    [data-theme="sohi"] { --theme-primary:#ED784A;--theme-light:#F3EAE6;--theme-accent:#38FF70;--theme-dark:#441A09;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB; }
+    [data-theme="ensyucha"] { --theme-primary:#CA7853;--theme-light:#F3EAE6;--theme-accent:#36E66D;--theme-dark:#381B0E;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB; }
+    [data-theme="kogecha"] { --theme-primary:#563F2E;--theme-light:#F2ECE7;--theme-accent:#2F9259;--theme-dark:#221810;--theme-neutral:#E6E5E4;--theme-text:#F5F2EB; }
+    [data-theme="taisya"] { --theme-primary:#A36336;--theme-light:#F3ECE6;--theme-accent:#1ABE5E;--theme-dark:#2A180C;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB; }
+    [data-theme="kohaku"] { --theme-primary:#CA7A2C;--theme-light:#F3EDE6;--theme-accent:#09EC79;--theme-dark:#341E09;--theme-neutral:#E8E5E2;--theme-text:#F5F2EB; }
+    [data-theme="kenpohzome"] { --theme-primary:#43341B;--theme-light:#F3EEE6;--theme-accent:#20A070;--theme-dark:#251C0D;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB; }
+    [data-theme="koke"] { --theme-primary:#838A2D;--theme-light:#F2F3E6;--theme-accent:#179FAA;--theme-dark:#25270B;--theme-neutral:#E7E7E3;--theme-text:#F5F2EB; }
+    [data-theme="moegi"] { --theme-primary:#7BA23F;--theme-light:#EEF3E6;--theme-accent:#2480BC;--theme-dark:#1F290E;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB; }
+    [data-theme="matsuba"] { --theme-primary:#42602D;--theme-light:#ECF3E6;--theme-accent:#285699;--theme-dark:#17230F;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB; }
+    [data-theme="tokiwa"] { --theme-primary:#1B813E;--theme-light:#E6F3EB;--theme-accent:#4406BB;--theme-dark:#072B13;--theme-neutral:#E2E8E4;--theme-text:#F5F2EB; }
+    [data-theme="midori"] { --theme-primary:#227D51;--theme-light:#E6F3ED;--theme-accent:#630FB1;--theme-dark:#09291A;--theme-neutral:#E2E8E5;--theme-text:#F5F2EB; }
+    [data-theme="tokusa"] { --theme-primary:#2D6D4B;--theme-light:#E6F3EC;--theme-accent:#5C229F;--theme-dark:#0D2518;--theme-neutral:#E3E7E5;--theme-text:#F5F2EB; }
+    [data-theme="rokusyoh"] { --theme-primary:#24936E;--theme-light:#E6F3EF;--theme-accent:#7D0BB5;--theme-dark:#082A1F;--theme-neutral:#E2E8E6;--theme-text:#F5F2EB; }
+    [data-theme="aomidori"] { --theme-primary:#00AA90;--theme-light:#E6F3F1;--theme-accent:#A400C1;--theme-dark:#062C26;--theme-neutral:#E2E8E7;--theme-text:#F5F2EB; }
+    [data-theme="asagi"] { --theme-primary:#33A6B8;--theme-light:#E6F1F3;--theme-accent:#D614BC;--theme-dark:#0B2A2F;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB; }
+    [data-theme="shinbashi"] { --theme-primary:#0089A7;--theme-light:#E6F1F3;--theme-accent:#C1009E;--theme-dark:#06252C;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB; }
+    [data-theme="hanaasagi"] { --theme-primary:#1E88A8;--theme-light:#E6F0F3;--theme-accent:#C40197;--theme-dark:#06232C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB; }
+    [data-theme="chigusa"] { --theme-primary:#3A8FB7;--theme-light:#E6EFF3;--theme-accent:#D51B9A;--theme-dark:#0C242F;--theme-neutral:#E3E6E7;--theme-text:#F5F2EB; }
+    [data-theme="hanada"] { --theme-primary:#006284;--theme-light:#E6F0F3;--theme-accent:#C1008F;--theme-dark:#06222C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB; }
+    [data-theme="ruri"] { --theme-primary:#005CAF;--theme-light:#E6EDF3;--theme-accent:#C10065;--theme-dark:#061A2C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB; }
+    [data-theme="rurikon"] { --theme-primary:#0B346E;--theme-light:#E6ECF3;--theme-accent:#C10050;--theme-dark:#06162C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB; }
+    [data-theme="benimidori"] { --theme-primary:#7B90D2;--theme-light:#E6E9F3;--theme-accent:#E76383;--theme-dark:#131D40;--theme-neutral:#E3E4E7;--theme-text:#F5F2EB; }
+    [data-theme="fujinezumi"] { --theme-primary:#6E75A4;--theme-light:#E9EAF1;--theme-accent:#BB5663;--theme-dark:#191B2A;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB; }
+    [data-theme="benikakehana"] { --theme-primary:#4E4F97;--theme-light:#E7E7F2;--theme-accent:#AF3537;--theme-dark:#121226;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB; }
+    [data-theme="konjyo"] { --theme-primary:#113285;--theme-light:#E6EAF3;--theme-accent:#C10037;--theme-dark:#06112C;--theme-neutral:#E2E4E8;--theme-text:#F5F2EB; }
+    [data-theme="kon"] { --theme-primary:#0F2540;--theme-light:#E6ECF3;--theme-accent:#B70A58;--theme-dark:#08172A;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB; }
+    [data-theme="konkikyo"] { --theme-primary:#211E55;--theme-light:#E7E6F3;--theme-accent:#A7221A;--theme-dark:#0D0C26;--theme-neutral:#E3E3E7;--theme-text:#F5F2EB; }
+    [data-theme="kurotsurubami"] { --theme-primary:#0B1013;--theme-light:#E8EEF1;--theme-accent:#8E336C;--theme-dark:#121B20;--theme-neutral:#E4E5E6;--theme-text:#F5F2EB; }
+    [data-theme="fuji"] { --theme-primary:#8B81C3;--theme-light:#E8E6F3;--theme-accent:#D77C6C;--theme-dark:#1D1838;--theme-neutral:#E4E3E7;--theme-text:#F5F2EB; }
+    [data-theme="fujimurasaki"] { --theme-primary:#8A6BBE;--theme-light:#EBE6F3;--theme-accent:#D68352;--theme-dark:#211535;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB; }
+    [data-theme="kikyo"] { --theme-primary:#6A4C9C;--theme-light:#EBE6F3;--theme-accent:#B56332;--theme-dark:#1A1228;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB; }
+    [data-theme="shion"] { --theme-primary:#8F77B5;--theme-light:#EBE7F2;--theme-accent:#CA8A61;--theme-dark:#221931;--theme-neutral:#E5E4E6;--theme-text:#F5F2EB; }
+    [data-theme="edomurasaki"] { --theme-primary:#77428D;--theme-light:#EFE6F3;--theme-accent:#A4802A;--theme-dark:#1E0F24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB; }
+    [data-theme="murasaki"] { --theme-primary:#592C63;--theme-light:#F1E6F3;--theme-accent:#9C8625;--theme-dark:#200E24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB; }
+    [data-theme="benifuji"] { --theme-primary:#B481BB;--theme-light:#F1E7F2;--theme-accent:#CFC36C;--theme-dark:#311A34;--theme-neutral:#E6E4E6;--theme-text:#F5F2EB; }
+    [data-theme="botan"] { --theme-primary:#C1328E;--theme-light:#F3E6EE;--theme-accent:#97E111;--theme-dark:#320A24;--theme-neutral:#E8E2E6;--theme-text:#F5F2EB; }
+    [data-theme="tsutsuji"] { --theme-primary:#E03C8A;--theme-light:#F3E6EC;--theme-accent:#88FF1D;--theme-dark:#3E0822;--theme-neutral:#E8E2E5;--theme-text:#F5F2EB; }
+    [data-theme="ginnezumi"] { --theme-primary:#91989F;--theme-light:#EBEDEE;--theme-accent:#AF8098;--theme-dark:#232628;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="namari"] { --theme-primary:#787878;--theme-light:#EDEDED;--theme-accent:#668966;--theme-dark:#1D1D1D;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="hai"] { --theme-primary:#828282;--theme-light:#EDEDED;--theme-accent:#6F946F;--theme-dark:#202020;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="nibi"] { --theme-primary:#656765;--theme-light:#ECEDEC;--theme-accent:#555576;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="aonibi"] { --theme-primary:#535953;--theme-light:#ECEDEC;--theme-accent:#4E4E73;--theme-dark:#181A18;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="keshizumi"] { --theme-primary:#434343;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="sumi"] { --theme-primary:#1C1C1C;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+    [data-theme="kuro"] { --theme-primary:#080808;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB; }
+
+    /* === Background layers === */
+    .phyra-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+    .phyra-gloss {
+      position: fixed; top: 0; left: 0; width: 100%; height: 478px; z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none; transition: opacity 2s ease-in;
+    }
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative; z-index: 2;
+    }
+
+    /* === Base === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--p-text);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    main, #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto; padding: 40px 20px;
+      transition: max-width 0.15s ease;
+    }
+
+    /* === Width handle === */
+    .phyra-width-handle {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 6px; height: 60px;
+      background: rgba(128,128,128,0.3); border-radius: 3px;
+      cursor: col-resize; z-index: 99;
+      transition: background 0.2s, opacity 0.3s; opacity: 0.4;
+    }
+    .phyra-width-handle:hover, .phyra-width-handle.dragging {
+      background: var(--p-accent); opacity: 1;
+    }
+
+    /* === Cards === */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 24px;
+      color: var(--p-text);
+      margin-bottom: 24px;
+    }
+
+    /* === Headings === */
+    h1 { font-size: 1.8rem; margin-bottom: 8px; color: var(--p-text); }
+    h2 { font-size: 1.4rem; border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin-bottom: 16px; color: var(--p-text); }
+    h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--p-text); }
+    p { margin-bottom: 12px; }
+
+    /* === Bold highlight === */
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px; border-radius: 3px; font-weight: 700;
+    }
+
+    /* === Tags === */
+    .tag {
+      display: inline-block; padding: 2px 8px; border-radius: 12px;
+      font-size: 0.75em; font-weight: 600;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text); margin-right: 4px;
+    }
+
+    /* === Tables === */
+    table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-bottom: 16px; }
+    th { background: var(--p-primary); padding: 8px 12px; text-align: left; }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--p-border); color: var(--p-text); }
+    tr:hover td { background: rgba(128,128,128,0.08); }
+
+    /* === Score bars === */
+    .score-bar { height: 8px; border-radius: 4px; background: var(--p-border); margin: 4px 0; }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+
+    /* === Lists === */
+    ul, ol { margin-left: 20px; margin-bottom: 12px; }
+    li { margin-bottom: 4px; }
+
+    /* === Subtitle === */
+    .subtitle { font-size: 0.95rem; color: var(--p-text-secondary); margin-bottom: 24px; }
+
+    /* === Grid === */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* === Flow diagram === */
+    .flow-diagram {
+      background: var(--p-formula-bg);
+      border: 1px solid var(--p-border);
+      border-radius: 6px;
+      padding: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85em;
+      overflow-x: auto;
+      white-space: pre;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    /* === Switcher === */
+    .phyra-switcher {
+      position: fixed; bottom: 20px; right: 20px; z-index: 100;
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128,128,128,0.15);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128,128,128,0.2); border-radius: 24px;
+      transition: background 0.3s;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px; background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(128,128,128,0.3); border-radius: 12px;
+      color: #1C1C1C; font-size: 12px; cursor: pointer; outline: none; max-width: 200px;
+    }
+    .phyra-switcher select option { color: #1C1C1C; background: #fff; }
+    .phyra-switcher select optgroup { font-weight: bold; color: #1C1C1C; }
+    .phyra-switcher button {
+      padding: 4px 12px; background: rgba(128,128,128,0.2);
+      border: 1px solid rgba(128,128,128,0.3); border-radius: 12px;
+      color: var(--p-text); cursor: pointer; font-size: 12px; transition: background 0.2s;
+    }
+    .phyra-switcher button:hover { background: rgba(128,128,128,0.35); }
+
+    /* === Footer === */
+    .phyra-footer {
+      text-align: center; padding: 24px 20px; font-size: 12px;
+      color: var(--p-text); opacity: 0.5; letter-spacing: 0.05em;
+      position: relative; z-index: 2;
+    }
+
+    /* === Section spacer === */
+    .section-spacer { height: 16px; }
+  </style>
+</head>
+<body>
+
+  <div class="phyra-bg"></div>
+  <div class="phyra-gloss"></div>
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <main id="phyra-main">
+
+    <!-- Slide 1: Title -->
+    <div class="slide-card">
+      <h1>Seeing the Future, Perceiving the Future</h1>
+      <p class="subtitle">A Unified Driving World Model for Future Generation and Perception</p>
+      <p>
+        <span class="tag">Driving World Model</span>
+        <span class="tag">Depth Estimation</span>
+        <span class="tag">Future Generation</span>
+        <span class="tag">Diffusion Model</span>
+      </p>
+      <p style="margin-top:12px; font-size:0.9em; color: var(--p-text-secondary);">
+        Dingkang Liang, Dingyuan Zhang, Xin Zhou, et al. | HUST &amp; Baidu | arXiv 2503.13587 | 2025-03
+      </p>
+    </div>
+
+    <!-- Slide 2: Problem & Motivation -->
+    <div class="slide-card">
+      <h2>Problem and Motivation</h2>
+      <p>Existing Driving World Models (DWMs) focus on either RGB future generation or depth estimation, but not both. This leads to two gaps:</p>
+      <div class="grid-2">
+        <div>
+          <h3>Generation-only DWMs</h3>
+          <p>Models like Vista, DriveGAN, and DriveDreamer predict future RGB frames but ignore geometric structure. This causes structural incoherence at longer prediction horizons (p.1-2).</p>
+        </div>
+        <div>
+          <h3>Perception-only Models</h3>
+          <p>Depth estimators like Marigold and DepthAnything operate on single current frames. They cannot predict future scene geometry, limiting their use for planning (p.1).</p>
+        </div>
+      </div>
+      <p style="margin-top:12px;"><strong>Core argument:</strong> Image and depth are heterogeneous representations of the same 3D scene. A shared latent space with bidirectional interaction enables mutual reinforcement between generation and perception.</p>
+    </div>
+
+    <!-- Slide 3: Method Overview -->
+    <div class="slide-card">
+      <h2>Method: UniFuture Overview</h2>
+      <p>UniFuture builds on Stable Video Diffusion (SVD) and introduces two key mechanisms:</p>
+      <div class="grid-2">
+        <div>
+          <h3>Dual-Latent Sharing (DLS)</h3>
+          <p>Both RGB images and depth maps are encoded into a shared latent space using a single pre-trained VAE encoder/decoder. No separate depth autoencoder is needed. This enforces cross-modal consistency by design (p.4).</p>
+        </div>
+        <div>
+          <h3>Multi-scale Latent Interaction (MLI)</h3>
+          <p>Bidirectional feature interaction between image and depth representations at 4 UNet scales (full, 1/2, 1/4, 1/8). Uses depth layers, inside feedback (zero-conv), and outside feedback (p.4-5).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Architecture Flow -->
+    <div class="slide-card">
+      <h2>Architecture: Training and Inference Pipeline</h2>
+      <h3>Training Pipeline</h3>
+      <div class="flow-diagram">Image seq x ──► Shared Encoder E ──► z_(x) ──► Denoising Video UNet ──► denoised latent ──► Shared Decoder D ──► Output images
+                                                        │                    ▲
+                                              MLI  ◄────┘                    │
+                                                        │              Bidirectional
+Depth seq d ──► Shared Encoder E ──► z_(d) ──►  MLI  ──────────────► predicted z^_(d) ──► Shared Decoder D ──► Output depth</div>
+      <h3>Inference Pipeline</h3>
+      <p>Single current image is encoded, concatenated with (M-1) Gaussian noise frames, and denoised through the Video UNet with MLI to produce M-1 future image-depth pairs simultaneously (p.5).</p>
+    </div>
+
+    <!-- Slide 5: DLS Details -->
+    <div class="slide-card">
+      <h2>Dual-Latent Sharing (DLS) Scheme</h2>
+      <p>The key insight: a pre-trained image VAE already captures rich spatial structure sufficient to encode depth maps. Both modalities share the encoder E and decoder D.</p>
+      <table>
+        <tr><th>Decoder Type</th><th>FID</th><th>FVD</th><th>AbsRel</th></tr>
+        <tr><td>Conventional decoder</td><td>15.6</td><td>121.1</td><td>11.874</td></tr>
+        <tr><td><strong>DLS (shared VAE)</strong></td><td><strong>11.8</strong></td><td><strong>99.9</strong></td><td><strong>8.936</strong></td></tr>
+      </table>
+      <p style="font-size:0.85em; color: var(--p-text-secondary);">Source: Table 4, p.7</p>
+    </div>
+
+    <!-- Slide 6: MLI Details -->
+    <div class="slide-card">
+      <h2>Multi-scale Latent Interaction (MLI)</h2>
+      <p>MLI contains three components at each UNet scale:</p>
+      <ul>
+        <li><strong>Depth layers:</strong> Concatenate UNet encoder/decoder features, reduce dimensionality, combine with previous scale output, upsample</li>
+        <li><strong>Inside feedback:</strong> Zero-initialized convolution feeds depth information back into the UNet stages</li>
+        <li><strong>Outside feedback:</strong> Post-UNet convolution aligns final depth prediction with input latent</li>
+      </ul>
+      <table>
+        <tr><th>Scales Used</th><th>FID</th><th>FVD</th><th>AbsRel</th></tr>
+        <tr><td>Single scale (1 only)</td><td>12.9</td><td>114.4</td><td>9.677</td></tr>
+        <tr><td>Two scales (1, 1/2)</td><td>12.6</td><td>106.9</td><td>9.277</td></tr>
+        <tr><td><strong>All four scales</strong></td><td><strong>11.8</strong></td><td><strong>99.9</strong></td><td><strong>8.936</strong></td></tr>
+      </table>
+      <p style="font-size:0.85em; color: var(--p-text-secondary);">Source: Table 5a, p.8</p>
+    </div>
+
+    <!-- Slide 7: Main Results -->
+    <div class="slide-card">
+      <h2>Main Results on nuScenes</h2>
+      <table>
+        <tr><th>Method</th><th>FID</th><th>FVD</th><th>AbsRel</th><th>delta_1</th><th>delta_2</th><th>delta_3</th></tr>
+        <tr><td><strong>UniFuture (ours)</strong></td><td><strong>11.8</strong></td><td><strong>99.9</strong></td><td><strong>8.936</strong></td><td><strong>91.4</strong></td><td><strong>97.6</strong></td><td><strong>98.9</strong></td></tr>
+        <tr><td>Vista (baseline)</td><td>15.5</td><td>101.5</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+        <tr><td>GenAD</td><td>15.4</td><td>184.0</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+        <tr><td>DriveDreamer</td><td>52.6</td><td>452.0</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+        <tr><td>Marigold (0th frame)</td><td>-</td><td>-</td><td>20.4</td><td>80.3</td><td>93.1</td><td>96.5</td></tr>
+        <tr><td>Marigold (12th frame)</td><td>-</td><td>-</td><td>39.0</td><td>65.8</td><td>81.9</td><td>89.7</td></tr>
+      </table>
+      <p>UniFuture achieves a 3.7-point FID reduction over Vista while adding depth perception. For depth, it outperforms Marigold by a large margin, especially at longer horizons where Marigold degrades severely (AbsRel: 8.936 vs. 39.0 at frame 12).</p>
+      <p style="font-size:0.85em; color: var(--p-text-secondary);">Source: Table 1, p.6</p>
+    </div>
+
+    <!-- Slide 8: Zero-Shot -->
+    <div class="slide-card">
+      <h2>Zero-Shot Generalization on Waymo</h2>
+      <table>
+        <tr><th>Method</th><th>FID</th><th>FVD</th><th>AbsRel</th><th>delta_1</th><th>delta_2</th><th>delta_3</th></tr>
+        <tr><td>Vista (baseline)</td><td>23.8</td><td>238.4</td><td colspan="4">Unsupported</td></tr>
+        <tr><td><strong>UniFuture (ours)</strong></td><td><strong>16.3</strong></td><td><strong>227.6</strong></td><td><strong>9.517</strong></td><td><strong>89.3</strong></td><td><strong>97.0</strong></td><td><strong>98.7</strong></td></tr>
+      </table>
+      <p>Without any fine-tuning, UniFuture achieves a 7.5-point lower FID (16.3 vs. 23.8) and provides accurate zero-shot depth estimation on Waymo, demonstrating transferable scene representations (p.6).</p>
+    </div>
+
+    <!-- Slide 9: Training Paradigm Ablation -->
+    <div class="slide-card">
+      <h2>Ablation: Training Paradigms</h2>
+      <table>
+        <tr><th>Setting</th><th>FID</th><th>FVD</th><th>AbsRel</th><th>delta_1</th></tr>
+        <tr><td>Image-only</td><td>15.5</td><td>101.5</td><td>-</td><td>-</td></tr>
+        <tr><td>Depth-only</td><td>271.0</td><td>3143.2</td><td>24.196</td><td>62.0</td></tr>
+        <tr><td>Detached gradients</td><td>11.2</td><td>104.9</td><td>12.351</td><td>85.2</td></tr>
+        <tr><td><strong>Joint training</strong></td><td><strong>11.8</strong></td><td><strong>99.9</strong></td><td><strong>8.936</strong></td><td><strong>91.4</strong></td></tr>
+      </table>
+      <p>Joint training with gradient flow between image and depth spaces consistently improves both generation (best FVD) and perception (best AbsRel), confirming the mutual reinforcement hypothesis (p.7).</p>
+    </div>
+
+    <!-- Slide 10: Evaluation -->
+    <div class="slide-card">
+      <h2>Phyra Evaluation</h2>
+      <h3>Impact Scores</h3>
+      <table>
+        <tr><th>Dimension</th><th>Score</th><th>Assessment</th></tr>
+        <tr>
+          <td>Novelty</td>
+          <td>3 / 5</td>
+          <td>DLS and MLI are engineering-driven; shared VAE for depth is intuitive rather than conceptually new</td>
+        </tr>
+        <tr>
+          <td>Technical Depth</td>
+          <td>3 / 5</td>
+          <td>Standard cross-modal interaction patterns; no new theoretical formulation</td>
+        </tr>
+        <tr>
+          <td>Experiments</td>
+          <td>4 / 5</td>
+          <td>Thorough ablations covering each design choice; missing inference time and multi-camera evaluation</td>
+        </tr>
+        <tr>
+          <td>Writing</td>
+          <td>4 / 5</td>
+          <td>Clear organization, effective figures, well-motivated problem statement</td>
+        </tr>
+        <tr>
+          <td>Practical Value</td>
+          <td>4 / 5</td>
+          <td>Unified generation+perception is directly useful for driving simulation and data augmentation</td>
+        </tr>
+      </table>
+      <div class="section-spacer"></div>
+      <h3>Key Strengths</h3>
+      <ul>
+        <li>First unified model achieving competitive results on both future generation and depth perception simultaneously</li>
+        <li>Shared VAE approach is simple and effective, reducing model complexity</li>
+        <li>Strong zero-shot transfer to Waymo without fine-tuning</li>
+      </ul>
+      <h3>Key Weaknesses</h3>
+      <ul>
+        <li>Depth pseudo-labels from DepthAnythingV2 create a ceiling; evaluation against the same teacher raises circularity concerns</li>
+        <li>No inference latency analysis; computational overhead of MLI is unknown</li>
+        <li>No explicit 3D reasoning despite claims of geometric awareness; operates entirely in 2D latent space</li>
+      </ul>
+    </div>
+
+    <!-- Slide 11: Limitations & Open Questions -->
+    <div class="slide-card">
+      <h2>Limitations and Open Questions</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Fundamental Limitations</h3>
+          <ul>
+            <li>Depth accuracy bounded by DepthAnythingV2 pseudo-label quality</li>
+            <li>Single-camera, forward-facing only; no surround-view support</li>
+            <li>No semantic understanding (labels, tracks, motion fields)</li>
+            <li>Implicit 2D geometry, not explicit 3D scene representation</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Open Questions</h3>
+          <ul>
+            <li>How does depth quality degrade beyond 12-frame horizon?</li>
+            <li>Would LiDAR ground truth training improve results?</li>
+            <li>What is the inference latency overhead of MLI?</li>
+            <li>How does the model handle occlusion/dis-occlusion?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 12: Citations Worth Tracking -->
+    <div class="slide-card">
+      <h2>References Worth Tracking</h2>
+      <table>
+        <tr><th>Paper</th><th>Reason</th></tr>
+        <tr><td>Vista [8] (NeurIPS 2024)</td><td>Primary baseline and backbone; understanding its architecture is essential</td></tr>
+        <tr><td>Marigold [20] (CVPR 2024)</td><td>Diffusion-based depth estimation baseline; conceptual predecessor</td></tr>
+        <tr><td>DepthAnythingV2 [43] (NeurIPS 2024)</td><td>Provides pseudo-depth labels; its accuracy defines the training ceiling</td></tr>
+        <tr><td>GEM [13] (2024)</td><td>Concurrent work with different geometry integration approach; compared in appendix</td></tr>
+        <tr><td>Hermes [48] (2025)</td><td>Concurrent unified self-driving world model for 3D scene understanding</td></tr>
+      </table>
+    </div>
+
+  </main>
+
+  <footer class="phyra-footer">
+    Phyra NT Workflow | Paper Read Report | 2026-04-09
+  </footer>
+
+  <script>
+    /* phyra-switcher.js -- Dropdown theme switcher */
+    const PHYRA_THEMES = [
+      { id: "nadeshiko", label: "\u64AB\u5B50 Nadeshiko", mode: "light" },
+      { id: "taikoh", label: "\u9000\u7D05 Taikoh", mode: "light" },
+      { id: "momo", label: "\u6843 Momo", mode: "light" },
+      { id: "toki", label: "\u9D87 Toki", mode: "light" },
+      { id: "jinzamomi", label: "\u751A\u4E09\u7D05 Jinzamomi", mode: "light" },
+      { id: "haizakura", label: "\u7070\u685C Haizakura", mode: "light" },
+      { id: "akebono", label: "\u66D9 Akebono", mode: "light" },
+      { id: "sangosyu", label: "\u73CA\u745A\u6731 Sangosyu", mode: "light" },
+      { id: "araisyu", label: "\u6D17\u6731 Araisyu", mode: "light" },
+      { id: "akakoh", label: "\u8D64\u9999 Akakoh", mode: "light" },
+      { id: "kokikuchinashi", label: "\u6DF1\u652F\u5B50 Kokikuchinashi", mode: "light" },
+      { id: "kanzo", label: "\u8431\u8349 Kanzo", mode: "light" },
+      { id: "beniukon", label: "\u7D05\u9B31\u91D1 Beniukon", mode: "light" },
+      { id: "kuchiba", label: "\u673D\u8449 Kuchiba", mode: "light" },
+      { id: "yamabuki", label: "\u5C71\u5439 Yamabuki", mode: "light" },
+      { id: "hajizome", label: "\u6AE8\u67D3 Hajizome", mode: "light" },
+      { id: "tamago", label: "\u7389\u5B50 Tamago", mode: "light" },
+      { id: "tamamorokoshi", label: "\u7389\u8700\u9ECD Tamamorokoshi", mode: "light" },
+      { id: "usuki", label: "\u6D45\u9EC4 Usuki", mode: "light" },
+      { id: "kuchinashi", label: "\u6894\u5B50 Kuchinashi", mode: "light" },
+      { id: "tohoh", label: "\u7C50\u9EC4 Tohoh", mode: "light" },
+      { id: "ukon", label: "\u9B31\u91D1 Ukon", mode: "light" },
+      { id: "tonoko", label: "\u7827\u7C89 Tonoko", mode: "light" },
+      { id: "kariyasu", label: "\u5208\u5B89 Kariyasu", mode: "light" },
+      { id: "hiwa", label: "\u9D38 Hiwa", mode: "light" },
+      { id: "hiwamoegi", label: "\u9D38\u840C\u9EC4 Hiwamoegi", mode: "light" },
+      { id: "yanagizome", label: "\u67F3\u67D3 Yanagizome", mode: "light" },
+      { id: "nae", label: "\u82D7 Nae", mode: "light" },
+      { id: "wakatake", label: "\u82E5\u7AF9 Wakatake", mode: "light" },
+      { id: "byakuroku", label: "\u767D\u7DD1 Byakuroku", mode: "light" },
+      { id: "seiji", label: "\u9752\u78C1 Seiji", mode: "light" },
+      { id: "mizuasagi", label: "\u6C34\u6D45\u8471 Mizuasagi", mode: "light" },
+      { id: "byakugun", label: "\u767D\u7FA4 Byakugun", mode: "light" },
+      { id: "kamenozoki", label: "\u74F6\u898B Kamenozoki", mode: "light" },
+      { id: "mizu", label: "\u6C34 Mizu", mode: "light" },
+      { id: "sora", label: "\u7A7A Sora", mode: "light" },
+      { id: "wasurenagusa", label: "\u52FF\u5FD8\u8349 Wasurenagusa", mode: "light" },
+      { id: "tsuyukusa", label: "\u9732\u8349 Tsuyukusa", mode: "light" },
+      { id: "gunjyo", label: "\u7FA4\u9752 Gunjyo", mode: "light" },
+      { id: "usu", label: "\u8584 Usu", mode: "light" },
+      { id: "shironeri", label: "\u767D\u7DF4 Shironeri", mode: "light" },
+      { id: "shironezumi", label: "\u767D\u9F20 Shironezumi", mode: "light" },
+      { id: "kohbai", label: "\u7D05\u6885 Kohbai", mode: "dark" },
+      { id: "suoh", label: "\u8607\u82B3 Suoh", mode: "dark" },
+      { id: "ichigo", label: "\u82FA Ichigo", mode: "dark" },
+      { id: "karakurenai", label: "\u97D3\u7D05\u82B1 Karakurenai", mode: "dark" },
+      { id: "kurenai", label: "\u7D05 Kurenai", mode: "dark" },
+      { id: "kokiake", label: "\u6DF1\u7DCB Kokiake", mode: "dark" },
+      { id: "azuki", label: "\u5C0F\u8C46 Azuki", mode: "dark" },
+      { id: "akabeni", label: "\u8D64\u7D05 Akabeni", mode: "dark" },
+      { id: "syojyohi", label: "\u7329\u7329\u7DCB Syojyohi", mode: "dark" },
+      { id: "entan", label: "\u925B\u4E39 Entan", mode: "dark" },
+      { id: "benihi", label: "\u7D05\u7DCB Benihi", mode: "dark" },
+      { id: "terigaki", label: "\u7167\u67FF Terigaki", mode: "dark" },
+      { id: "ohni", label: "\u9EC4\u4E39 Ohni", mode: "dark" },
+      { id: "sohi", label: "\u7E81 Sohi", mode: "dark" },
+      { id: "ensyucha", label: "\u9060\u5DDE\u8336 Ensyucha", mode: "dark" },
+      { id: "kogecha", label: "\u7126\u8336 Kogecha", mode: "dark" },
+      { id: "taisya", label: "\u4EE3\u8D6D Taisya", mode: "dark" },
+      { id: "kohaku", label: "\u7425\u73C0 Kohaku", mode: "dark" },
+      { id: "kenpohzome", label: "\u61B2\u6CD5\u67D3 Kenpohzome", mode: "dark" },
+      { id: "koke", label: "\u82D4 Koke", mode: "dark" },
+      { id: "moegi", label: "\u840C\u9EC4 Moegi", mode: "dark" },
+      { id: "matsuba", label: "\u677E\u8449 Matsuba", mode: "dark" },
+      { id: "tokiwa", label: "\u5E38\u78D0 Tokiwa", mode: "dark" },
+      { id: "midori", label: "\u7DD1 Midori", mode: "dark" },
+      { id: "tokusa", label: "\u6728\u8CCA Tokusa", mode: "dark" },
+      { id: "rokusyoh", label: "\u7DD1\u9752 Rokusyoh", mode: "dark" },
+      { id: "aomidori", label: "\u9752\u7DD1 Aomidori", mode: "dark" },
+      { id: "asagi", label: "\u6D45\u8471 Asagi", mode: "dark" },
+      { id: "shinbashi", label: "\u65B0\u6A4B Shinbashi", mode: "dark" },
+      { id: "hanaasagi", label: "\u82B1\u6D45\u8471 Hanaasagi", mode: "dark" },
+      { id: "chigusa", label: "\u5343\u8349 Chigusa", mode: "dark" },
+      { id: "hanada", label: "\u7E39 Hanada", mode: "dark" },
+      { id: "ruri", label: "\u7460\u7483 Ruri", mode: "dark" },
+      { id: "rurikon", label: "\u7460\u7483\u7D3A Rurikon", mode: "dark" },
+      { id: "benimidori", label: "\u7D05\u78A7 Benimidori", mode: "dark" },
+      { id: "fujinezumi", label: "\u85E4\u9F20 Fujinezumi", mode: "dark" },
+      { id: "benikakehana", label: "\u7D05\u639B\u82B1 Benikakehana", mode: "dark" },
+      { id: "konjyo", label: "\u7D3A\u9752 Konjyo", mode: "dark" },
+      { id: "kon", label: "\u7D3A Kon", mode: "dark" },
+      { id: "konkikyo", label: "\u7D3A\u6854\u6897 Konkikyo", mode: "dark" },
+      { id: "kurotsurubami", label: "\u9ED2\u6A61 Kurotsurubami", mode: "dark" },
+      { id: "fuji", label: "\u85E4 Fuji", mode: "dark" },
+      { id: "fujimurasaki", label: "\u85E4\u7D2B Fujimurasaki", mode: "dark" },
+      { id: "kikyo", label: "\u6854\u6897 Kikyo", mode: "dark" },
+      { id: "shion", label: "\u7D2B\u82D1 Shion", mode: "dark" },
+      { id: "edomurasaki", label: "\u6C5F\u6238\u7D2B Edomurasaki", mode: "dark" },
+      { id: "murasaki", label: "\u7D2B Murasaki", mode: "dark" },
+      { id: "benifuji", label: "\u7D05\u85E4 Benifuji", mode: "dark" },
+      { id: "botan", label: "\u7261\u4E39 Botan", mode: "dark" },
+      { id: "tsutsuji", label: "\u8E91\u8E85 Tsutsuji", mode: "dark" },
+      { id: "ginnezumi", label: "\u9280\u9F20 Ginnezumi", mode: "dark" },
+      { id: "namari", label: "\u925B Namari", mode: "dark" },
+      { id: "hai", label: "\u7070 Hai", mode: "dark" },
+      { id: "nibi", label: "\u920D Nibi", mode: "dark" },
+      { id: "aonibi", label: "\u9752\u920D Aonibi", mode: "dark" },
+      { id: "keshizumi", label: "\u6D88\u70AD Keshizumi", mode: "dark" },
+      { id: "sumi", label: "\u58A8 Sumi", mode: "dark" },
+      { id: "kuro", label: "\u9ED2 Kuro", mode: "dark" }
+    ];
+
+    function phyraApply(id) {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', id);
+      const t = PHYRA_THEMES.find(x => x.id === id);
+      if (t) {
+        html.setAttribute('data-theme-mode', t.mode);
+        const select = document.getElementById('phyra-select');
+        if (select) select.value = id;
+      }
+    }
+
+    function phyraRandom() {
+      const idx = Math.floor(Math.random() * PHYRA_THEMES.length);
+      phyraApply(PHYRA_THEMES[idx].id);
+    }
+
+    function phyraBuildSelect() {
+      const select = document.getElementById('phyra-select');
+      if (!select) return;
+      const lightGroup = document.createElement('optgroup');
+      lightGroup.label = 'Light (42)';
+      const darkGroup = document.createElement('optgroup');
+      darkGroup.label = 'Dark (58)';
+      PHYRA_THEMES.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.label;
+        if (t.mode === 'light') lightGroup.appendChild(opt);
+        else darkGroup.appendChild(opt);
+      });
+      select.appendChild(lightGroup);
+      select.appendChild(darkGroup);
+    }
+
+    (function() {
+      phyraBuildSelect();
+      const current = document.documentElement.getAttribute('data-theme') || 'keshizumi';
+      phyraApply(current);
+    })();
+
+    /* Content width drag control */
+    (function() {
+      const handle = document.getElementById('phyra-width-handle');
+      if (!handle) return;
+      let dragging = false;
+      function updateHandlePos(contentWidth) {
+        const vw = window.innerWidth;
+        const gap = (vw - contentWidth) / 2;
+        handle.style.right = Math.max(4, gap - 16) + 'px';
+      }
+      handle.addEventListener('mousedown', (e) => {
+        dragging = true; handle.classList.add('dragging'); e.preventDefault();
+      });
+      document.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const vw = window.innerWidth;
+        const distFromCenter = Math.abs(e.clientX - vw / 2);
+        const newWidth = Math.max(400, distFromCenter * 2);
+        document.documentElement.style.setProperty('--phyra-content-width', newWidth + 'px');
+        updateHandlePos(newWidth);
+      });
+      document.addEventListener('mouseup', () => {
+        if (dragging) { dragging = false; handle.classList.remove('dragging'); }
+      });
+      const initWidth = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--phyra-content-width')) || 900;
+      updateHandlePos(initWidth);
+      window.addEventListener('resize', () => {
+        const w = parseInt(getComputedStyle(document.documentElement)
+          .getPropertyValue('--phyra-content-width')) || 900;
+        updateHandlePos(w);
+      });
+    })();
+  </script>
+</body>
+</html>
