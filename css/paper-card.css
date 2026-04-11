@@ -131,18 +131,18 @@
 /* === Whiteboard Paper Blocks === */
 .paper-block {
   position: absolute;
-  width: var(--card-width);
-  min-height: var(--card-height);
+  width: 220px;
+  min-height: 110px;
   background: var(--surface);
   border-radius: var(--radius);
-  border-left: 4px solid var(--accent);
-  padding: 8px 10px;
+  border-left: 5px solid var(--accent);
+  padding: 10px 14px;
   cursor: pointer;
   box-shadow: var(--shadow);
   transition: box-shadow var(--transition), opacity var(--transition);
   z-index: 10;
   user-select: none;
-  font-size: 11px;
+  font-size: 16px;
 }
 
 .paper-block:hover {
@@ -162,25 +162,25 @@
 
 .paper-block .block-name {
   font-weight: 700;
-  font-size: 11px;
-  margin-bottom: 2px;
+  font-size: 16px;
+  margin-bottom: 4px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.3px;
 }
 
 .paper-block .block-meta {
-  font-size: 9px;
+  font-size: 13px;
   color: var(--text-secondary);
   display: flex;
-  gap: 3px;
+  gap: 4px;
 }
 
 .paper-block .block-category {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--text-muted);
-  margin-top: 3px;
+  margin-top: 4px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

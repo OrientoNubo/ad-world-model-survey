@@ -50,8 +50,9 @@ function createTextBoxElement(ann, idx) {
   el.dataset.annIdx = idx;
   el.style.left = ann.x + 'px';
   el.style.top = ann.y + 'px';
-  if (ann.width) el.style.width = ann.width + 'px';
-  if (ann.height) el.style.height = ann.height + 'px';
+
+  const fontSize = ann.fontSize || 14;
+  el.style.fontSize = fontSize + 'px';
 
   const colorIdx = ann.colorIdx || 0;
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -66,21 +67,44 @@ function createTextBoxElement(ann, idx) {
   bar.style.background = color.bar;
   el.appendChild(bar);
 
+  // Font size controls
+  const fontControls = document.createElement('div');
+  fontControls.className = 'tb-font-controls';
+  const btnMinus = document.createElement('button');
+  btnMinus.className = 'tb-font-btn';
+  btnMinus.textContent = '−';
+  btnMinus.title = 'Decrease font size';
+  btnMinus.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const cur = state.annotations[idx].fontSize || 14;
+    const next = Math.max(8, cur - 2);
+    state.annotations[idx].fontSize = next;
+    el.style.fontSize = next + 'px';
+  });
+  const btnPlus = document.createElement('button');
+  btnPlus.className = 'tb-font-btn';
+  btnPlus.textContent = '+';
+  btnPlus.title = 'Increase font size';
+  btnPlus.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const cur = state.annotations[idx].fontSize || 14;
+    const next = Math.min(72, cur + 2);
+    state.annotations[idx].fontSize = next;
+    el.style.fontSize = next + 'px';
+  });
+  fontControls.appendChild(btnMinus);
+  fontControls.appendChild(btnPlus);
+  el.appendChild(fontControls);
+
   // Content
   const content = document.createElement('div');
   content.className = 'tb-content';
   content.textContent = ann.text || '';
   el.appendChild(content);
 
-  // Resize handle
-  const resizer = document.createElement('div');
-  resizer.className = 'tb-resize';
-  el.appendChild(resizer);
-
   // Click to edit
   el.addEventListener('click', (e) => {
     e.stopPropagation();
-    // Deselect others
     document.querySelectorAll('.text-box.selected').forEach(b => b.classList.remove('selected'));
     el.classList.add('selected');
   });
@@ -92,7 +116,6 @@ function createTextBoxElement(ann, idx) {
   });
 
   setupDrag(el, idx);
-  setupResize(resizer, el, idx);
 
   return el;
 }
@@ -124,39 +147,6 @@ function setupDrag(el, idx) {
       el.style.top = ny + 'px';
       state.annotations[idx].x = nx;
       state.annotations[idx].y = ny;
-    };
-
-    const onUp = () => {
-      document.removeEventListener('pointermove', onMove);
-      document.removeEventListener('pointerup', onUp);
-    };
-
-    document.addEventListener('pointermove', onMove);
-    document.addEventListener('pointerup', onUp);
-  });
-}
-
-function setupResize(handle, el, idx) {
-  handle.addEventListener('pointerdown', (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    handle.setPointerCapture(e.pointerId);
-
-    const startX = e.clientX;
-    const startY = e.clientY;
-    const origW = el.offsetWidth;
-    const origH = el.offsetHeight;
-    const zoom = state.viewport.zoom;
-
-    const onMove = (ev) => {
-      const dw = (ev.clientX - startX) / zoom;
-      const dh = (ev.clientY - startY) / zoom;
-      const newW = Math.max(80, origW + dw);
-      const newH = Math.max(36, origH + dh);
-      el.style.width = newW + 'px';
-      el.style.height = newH + 'px';
-      state.annotations[idx].width = newW;
-      state.annotations[idx].height = newH;
     };
 
     const onUp = () => {
