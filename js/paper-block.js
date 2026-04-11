@@ -13,8 +13,9 @@ let dragOrigPositions = {};
 
 export function placePaper(shortName, x, y) {
   if (state.placedPapers.has(shortName)) {
-    // Already placed — just move it
-    state.positions[shortName] = { x, y };
+    // Already placed — just move it, preserve width
+    const existing = state.positions[shortName];
+    state.positions[shortName] = { x, y, ...(existing?.width != null && { width: existing.width }) };
     const el = document.querySelector(`.paper-block[data-name="${shortName}"]`);
     if (el) {
       el.style.left = x + 'px';
@@ -27,7 +28,9 @@ export function placePaper(shortName, x, y) {
   const paper = getPaper(shortName);
   if (!paper) return;
 
-  state.positions[shortName] = { x, y };
+  // Preserve width if already set (e.g. from imported layout)
+  const existing = state.positions[shortName];
+  state.positions[shortName] = { x, y, ...(existing?.width != null && { width: existing.width }) };
   state.placedPapers.add(shortName);
 
   const cat = (paper.task_category && paper.task_category[0]) || '';
@@ -171,7 +174,8 @@ function onBlockPointerDown(e) {
     for (const [n, orig] of Object.entries(dragOrigPositions)) {
       const nx = orig.x + dx;
       const ny = orig.y + dy;
-      state.positions[n] = { x: nx, y: ny };
+      const prev = state.positions[n];
+      state.positions[n] = { x: nx, y: ny, ...(prev?.width != null && { width: prev.width }) };
       const bel = document.querySelector(`.paper-block[data-name="${n}"]`);
       if (bel) {
         bel.style.left = nx + 'px';
