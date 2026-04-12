@@ -11,6 +11,7 @@ export const state = {
   viewport: { panX: 0, panY: 0, zoom: 1 },
   connections: [],         // [{ from, to, text, color, mid:{x,y}, labelT }]
   annotations: [],         // [{ x, y, text, width, height, colorIdx }]
+  blockNotes: {},          // { shortName: { text, colorIdx, fontSize } }
   connectMode: false,
   connectSource: null,
   selectedBlocks: new Set(),

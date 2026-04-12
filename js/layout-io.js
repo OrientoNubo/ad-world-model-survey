@@ -46,12 +46,13 @@ export function initLayoutIO() {
 
 function exportLayout() {
   const data = {
-    v: 4,
+    v: 5,
     p: state.positions,
     placed: [...state.placedPapers],
     vp: state.viewport,
     conn: state.connections,
     ann: state.annotations,
+    bn: state.blockNotes,
   };
   const json = JSON.stringify(data);
   const encoded = lzEncode(json);
@@ -74,10 +75,12 @@ function importLayout() {
     document.querySelectorAll('.paper-block').forEach(el => el.remove());
     document.querySelectorAll('.text-box').forEach(el => el.remove());
     document.querySelectorAll('.conn-label').forEach(el => el.remove());
+    document.querySelectorAll('.block-note').forEach(el => el.remove());
     state.placedPapers.clear();
     state.positions = {};
     state.connections = [];
     state.annotations = [];
+    state.blockNotes = {};
     state.selectedBlocks.clear();
 
     // Restore
@@ -85,6 +88,7 @@ function importLayout() {
     if (data.conn) state.connections = data.conn;
     if (data.ann) state.annotations = data.ann;
     if (data.p) state.positions = data.p;
+    state.blockNotes = data.bn || {};
 
     // Place papers
     const papersToPlace = data.placed || Object.keys(data.p || {});

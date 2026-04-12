@@ -224,3 +224,76 @@
 .paper-block[data-cat="Simulation"] { border-left-color: var(--cat-simulation); }
 .paper-block[data-cat="Occupancy Prediction"] { border-left-color: var(--cat-occupancy); }
 .paper-block[data-cat="Neural Rendering"] { border-left-color: var(--cat-neural-rendering); }
+
+/* === "+" Add Note Button on Paper Blocks === */
+.paper-block .block-add-note {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 12;
+  padding: 0;
+}
+
+.paper-block:hover .block-add-note {
+  opacity: 1;
+}
+
+.paper-block .block-add-note:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.paper-block.has-note .block-add-note {
+  opacity: 0.6;
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.paper-block.has-note:hover .block-add-note {
+  opacity: 1;
+}
+
+/* === Attached Block Notes === */
+.block-note {
+  position: absolute;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  z-index: 9;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  box-shadow: var(--shadow);
+  cursor: default;
+  min-height: 24px;
+}
+
+.block-note .bn-color-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+}
+
+.block-note .bn-content {
+  min-height: 14px;
+}

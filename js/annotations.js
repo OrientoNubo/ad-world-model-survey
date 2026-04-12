@@ -5,7 +5,7 @@
 
 import { state } from './state.js';
 
-const TB_COLORS = [
+export const TB_COLORS = [
   { name: 'Default', value: 'var(--surface)', bar: 'var(--border)' },
   { name: 'Red',     value: '#fef2f2', bar: '#ef4444' },
   { name: 'Blue',    value: '#eff6ff', bar: '#3b82f6' },
@@ -16,7 +16,7 @@ const TB_COLORS = [
   { name: 'Cyan',    value: '#ecfeff', bar: '#06b6d4' },
 ];
 
-const TB_COLORS_DARK = [
+export const TB_COLORS_DARK = [
   { name: 'Default', value: 'var(--surface)', bar: 'var(--border)' },
   { name: 'Red',     value: '#2a1515', bar: '#ef4444' },
   { name: 'Blue',    value: '#15192a', bar: '#3b82f6' },
@@ -28,10 +28,19 @@ const TB_COLORS_DARK = [
 ];
 
 let editingAnnIdx = -1;
+let _activeHandler = null;
+
+export function setPopupHandler(handler) {
+  _activeHandler = handler;
+}
 
 export function initAnnotations() {
-  document.getElementById('annSaveBtn').addEventListener('click', saveAnn);
-  document.getElementById('annDeleteBtn').addEventListener('click', deleteAnn);
+  document.getElementById('annSaveBtn').addEventListener('click', () => {
+    if (_activeHandler && _activeHandler.save) _activeHandler.save();
+  });
+  document.getElementById('annDeleteBtn').addEventListener('click', () => {
+    if (_activeHandler && _activeHandler.delete) _activeHandler.delete();
+  });
 }
 
 export function renderAnnotations() {
@@ -131,6 +140,7 @@ function setupDrag(el, idx) {
 }
 
 function openAnnEdit(x, y, ann) {
+  _activeHandler = { save: saveAnn, delete: deleteAnn };
   const popup = document.getElementById('annEditPopup');
   document.getElementById('annEditText').value = ann ? ann.text : '';
 

@@ -239,11 +239,13 @@ export function resetWhiteboard() {
   document.querySelectorAll('.paper-block').forEach(el => el.remove());
   document.querySelectorAll('.text-box').forEach(el => el.remove());
   document.querySelectorAll('.conn-label').forEach(el => el.remove());
+  document.querySelectorAll('.block-note').forEach(el => el.remove());
 
   state.positions = {};
   state.placedPapers.clear();
   state.connections = [];
   state.annotations = [];
+  state.blockNotes = {};
   state.selectedBlocks.clear();
   state.viewport = { panX: 0, panY: 0, zoom: 1 };
 
