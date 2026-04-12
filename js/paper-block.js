@@ -319,12 +319,8 @@ function showContextMenu(x, y, shortName) {
 
 function toggleBlockNote(shortName, clientX, clientY) {
   if (state.blockNotes[shortName]) {
-    // Remove existing note
-    delete state.blockNotes[shortName];
-    const noteEl = document.querySelector(`.block-note[data-note-for="${shortName}"]`);
-    if (noteEl) noteEl.remove();
-    const blockEl = document.querySelector(`.paper-block[data-name="${shortName}"]`);
-    if (blockEl) blockEl.classList.remove('has-note');
+    // Note exists — open edit popup (delete via popup's Delete button)
+    openBlockNoteEdit(shortName, clientX, clientY);
   } else {
     // Create new note
     state.blockNotes[shortName] = { text: 'Note', colorIdx: 0, fontSize: 14 };
