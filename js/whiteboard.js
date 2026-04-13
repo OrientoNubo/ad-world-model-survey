@@ -201,9 +201,15 @@ export function updateDropHint() {
 
 export function applyViewport() {
   const map = document.getElementById('mapboard');
+  const wrapper = document.getElementById('mapWrapper');
   const { panX, panY, zoom } = state.viewport;
   map.style.transform = `translate(${panX}px, ${panY}px) scale(${zoom})`;
   document.getElementById('zoomIndicator').textContent = Math.round(zoom * 100) + '%';
+
+  // Sync infinite grid on wrapper with pan/zoom
+  const gs = 40 * zoom;
+  wrapper.style.backgroundSize = `${gs}px ${gs}px`;
+  wrapper.style.backgroundPosition = `${panX}px ${panY}px`;
 }
 
 /** Expand mapboard to fit all content with padding. */
