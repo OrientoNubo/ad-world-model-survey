@@ -61,13 +61,15 @@
 
 .conn-label {
   position: absolute;
-  background: none;
+  background: var(--surface);
   border: none;
-  padding: 2px 4px;
+  border-radius: var(--radius-sm);
+  padding: 2px 8px;
   font-size: 10px;
   cursor: move;
   z-index: 6;
   white-space: nowrap;
+  box-shadow: var(--shadow);
 }
 
 /* Selection rectangle */
