@@ -138,7 +138,7 @@
   border-left: 5px solid var(--accent);
   padding: 10px 14px;
   cursor: pointer;
-  box-shadow: var(--shadow);
+  box-shadow: 0 0 0 2px var(--accent), var(--shadow);
   transition: box-shadow var(--transition), opacity var(--transition);
   z-index: 10;
   user-select: none;
@@ -175,12 +175,12 @@
 }
 
 .paper-block:hover {
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 0 0 2px var(--accent), var(--shadow-hover);
   z-index: 20;
 }
 
 .paper-block.selected {
-  box-shadow: 0 0 0 2px var(--accent), var(--shadow-hover);
+  box-shadow: 0 0 0 3px var(--accent-light), 0 0 8px var(--accent-light), var(--shadow-hover);
   z-index: 25;
 }
 

@@ -232,6 +232,16 @@
 
 .modal-content li { margin: 3px 0; }
 
+.modal-content a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.modal-content a:hover {
+  color: var(--accent-hover);
+}
+
 .modal-content img {
   max-width: 100%;
   border-radius: var(--radius);
