@@ -199,7 +199,7 @@
  },
  {
   "id": 7,
-  "short_name": "AGIC",
+  "short_name": "MagicDrive",
   "title": "MagicDrive: Street View Generation with Diverse 3D Geometry Control",
   "date": "2023-10",
   "year": "2310",
@@ -224,8 +224,8 @@
   "arxiv_id": "2310.02601",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2310_AGIC_2310_AGIC.html",
-  "phyra_notes": "phyra-read/notes/2310_AGIC_2310_AGIC.html"
+  "phyra_slides": "phyra-read/slides/2310_MagicDrive_2310_AGIC.html",
+  "phyra_notes": "phyra-read/notes/2310_MagicDrive_2310_AGIC.html"
  },
  {
   "id": 8,
@@ -790,7 +790,7 @@
  },
  {
   "id": 26,
-  "short_name": "PALM",
+  "short_name": "3D-VLA",
   "title": "3D-VLA: A 3D Vision-Language-Action Generative World Model",
   "date": "2024-03",
   "year": "2403",
@@ -818,8 +818,8 @@
   "arxiv_id": "2403.09631",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2403_PALM_2403_PALM.html",
-  "phyra_notes": "phyra-read/notes/2403_PALM_2403_PALM.html"
+  "phyra_slides": "phyra-read/slides/2403_3D-VLA_2403_PALM.html",
+  "phyra_notes": "phyra-read/notes/2403_3D-VLA_2403_PALM.html"
  },
  {
   "id": 27,

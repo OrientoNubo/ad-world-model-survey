@@ -22,7 +22,7 @@
 | 4 | **UniWorld** | UniWorld: Autonomous Driving Pre-training via World Models | 2023-08 | 預印本 | World Model Core | World Model, 3D Scene Understanding, Occupancy Prediction | ⭐⭐⭐ |
 | 5 | **DriveDreamer** | DriveDreamer: Towards Real-world-driven World Models for Aut... | 2023-09 | 預印本 | World Model Core | World Model, Video Generation, Motion Planning | ⭐⭐⭐ |
 | 6 | **GAIA-1** | GAIA-1: A Generative World Model for Autonomous Driving | 2023-09 | 預印本 | World Model Core | World Model, Video Generation | ⭐⭐⭐ |
-| 7 | **AGIC** | MagicDrive: Street View Generation with Diverse 3D Geometry ... | 2023-10 | 預印本 | Long Tail & Corner Case | Video Generation, 3D Scene Understanding, Simulation | ⭐⭐⭐ |
+| 7 | **MagicDrive** | MagicDrive: Street View Generation with Diverse 3D Geometry ... | 2023-10 | 預印本 | Long Tail & Corner Case | Video Generation, 3D Scene Understanding, Simulation | ⭐⭐⭐ |
 | 8 | **UniSim-Interactive** | Learning Interactive Real-World Simulators | 2023-10 | 預印本 | World Model Core | World Model, Video Generation, Simulation | ⭐⭐⭐ |
 | 9 | **Waymax** | Waymax: An Accelerated, Data-Driven Simulator for Large-Scal... | 2023-10 | 預印本 | Long Tail & Corner Case | Motion Planning, Simulation | ⭐⭐⭐ |
 | 10 | **ADriver-I** | ADriver-I: A General World Model for Autonomous Driving | 2023-11 | 預印本 | World Model Core | World Model, Video Generation | ⭐⭐⭐ |
@@ -41,7 +41,7 @@
 | 23 | **Think2Drive** | Think2Drive: Efficient Reinforcement Learning by Thinking wi... | 2024-02 | 預印本 | World Model Core | World Model, Motion Planning, End-to-End Driving, Simulation | ⭐⭐⭐ |
 | 24 | **DriveDreamer-2** | DriveDreamer-2: LLM-Enhanced World Models for Diverse Drivin... | 2024-03 | 預印本 | World Model Core | World Model, Video Generation, Simulation | ⭐⭐⭐ |
 | 25 | **NuPlanBenchmark** | Towards learning-based planning: The nuPlan benchmark for re... | 2024-03 | 預印本 | World Model Core | Motion Planning, End-to-End Driving, Simulation | ⭐⭐⭐ |
-| 26 | **PALM** | 3D-VLA: A 3D Vision-Language-Action Generative World Model | 2024-03 | 預印本 | World Model Core | World Model, 3D Scene Understanding | ⭐⭐⭐ |
+| 26 | **3D-VLA** | 3D-VLA: A 3D Vision-Language-Action Generative World Model | 2024-03 | 預印本 | World Model Core | World Model, 3D Scene Understanding | ⭐⭐⭐ |
 | 27 | **SGD** | SGD: Street View Synthesis with Gaussian Splatting and Diffu... | 2024-03 | 預印本 | Long Tail & Corner Case | 3D Scene Understanding, Simulation, Neural Rendering | ⭐⭐⭐ |
 | 28 | **SubjectDrive** | SubjectDrive: Scaling Generative Data in Autonomous Driving ... | 2024-03 | 預印本 | Long Tail & Corner Case | Video Generation, Simulation | ⭐⭐⭐ |
 | 29 | **WorldModelSurvey** | World Models for Autonomous Driving: An Initial Survey | 2024-03 | 預印本 | Survey | World Model, Video Generation, 3D Scene Understanding, Motion Planning, End-to-End Driving, Simulation, Occupancy Prediction | ⭐⭐⭐ |
@@ -1521,7 +1521,7 @@ $$L_{vd} = \mathbb{E}[\|v - v_\theta(x^{t'}, t', c)\|_2^2]$$ (v-parameterization
 
 ---
 
-### AGIC
+### MagicDrive
 
 **MagicDrive: Street View Generation with Diverse 3D Geometry Control**
 
@@ -5887,7 +5887,7 @@ $$Score = \prod_{i \in \{multiplier\}} score_i \cdot \sum_{j \in \{weighted\}} w
 
 ---
 
-### PALM
+### 3D-VLA
 
 **3D-VLA: A 3D Vision-Language-Action Generative World Model**
 
