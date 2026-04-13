@@ -2,11 +2,11 @@
  * Whiteboard: pan/zoom, drop zone, selection rectangle, panel resizer.
  */
 
-import { state, notify } from './state.js';
-import { screenToMap } from './utils.js';
-import { placePaper, removePaper } from './paper-block.js';
-import { renderConnections } from './connections.js';
-import { renderAnnotations } from './annotations.js';
+import { state, notify } from './state.js?v=2';
+import { screenToMap } from './utils.js?v=2';
+import { placePaper, removePaper } from './paper-block.js?v=2';
+import { renderConnections } from './connections.js?v=2';
+import { renderAnnotations } from './annotations.js?v=2';
 
 let isPanning = false;
 let panStartX = 0, panStartY = 0;

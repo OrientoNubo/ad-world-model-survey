@@ -10,7 +10,7 @@
  *   - Excludes always use OR (any excluded value hides the paper)
  */
 
-import { state, notify } from './state.js';
+import { state, notify } from './state.js?v=2';
 
 let allPapers = [];
 

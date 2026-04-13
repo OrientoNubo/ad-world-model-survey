@@ -2,11 +2,11 @@
  * Whiteboard paper blocks: create, drag, select, context menu.
  */
 
-import { state, notify } from './state.js';
-import { getPaper } from './data.js';
-import { renderConnections } from './connections.js';
-import { resizeBoard } from './whiteboard.js';
-import { TB_COLORS, TB_COLORS_DARK, setPopupHandler } from './annotations.js';
+import { state, notify } from './state.js?v=2';
+import { getPaper } from './data.js?v=2';
+import { renderConnections } from './connections.js?v=2';
+import { resizeBoard } from './whiteboard.js?v=2';
+import { TB_COLORS, TB_COLORS_DARK, setPopupHandler } from './annotations.js?v=2';
 
 let isDragging = false;
 let dragTarget = null;

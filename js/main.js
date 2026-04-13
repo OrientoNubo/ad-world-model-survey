@@ -2,15 +2,15 @@
  * Entry point: initialize all modules.
  */
 
-import { loadPapers } from './data.js';
-import { state } from './state.js';
-import { initPaperList } from './paper-list.js';
-import { initWhiteboard, placeAllPapers } from './whiteboard.js';
-import { initConnections } from './connections.js';
-import { initAnnotations } from './annotations.js';
-import { initDetailModal } from './detail-modal.js';
-import { initLayoutIO } from './layout-io.js';
-import { initTheme } from './theme.js';
+import { loadPapers } from './data.js?v=2';
+import { state } from './state.js?v=2';
+import { initPaperList } from './paper-list.js?v=2';
+import { initWhiteboard, placeAllPapers } from './whiteboard.js?v=2';
+import { initConnections } from './connections.js?v=2';
+import { initAnnotations } from './annotations.js?v=2';
+import { initDetailModal } from './detail-modal.js?v=2';
+import { initLayoutIO } from './layout-io.js?v=2';
+import { initTheme } from './theme.js?v=2';
 
 async function init() {
   // Theme first (no flash)

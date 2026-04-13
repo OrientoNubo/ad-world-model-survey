@@ -2,12 +2,12 @@
  * Export/Import layout state as base64.
  */
 
-import { state, notify } from './state.js';
-import { lzEncode, lzDecode } from './utils.js';
-import { placePaper } from './paper-block.js';
-import { applyViewport, resetWhiteboard, resizeBoard } from './whiteboard.js';
-import { renderConnections } from './connections.js';
-import { renderAnnotations } from './annotations.js';
+import { state, notify } from './state.js?v=2';
+import { lzEncode, lzDecode } from './utils.js?v=2';
+import { placePaper } from './paper-block.js?v=2';
+import { applyViewport, resetWhiteboard, resizeBoard } from './whiteboard.js?v=2';
+import { renderConnections } from './connections.js?v=2';
+import { renderAnnotations } from './annotations.js?v=2';
 
 export function initLayoutIO() {
   const exportBtn = document.getElementById('exportBtn');
