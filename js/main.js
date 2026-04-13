@@ -76,7 +76,7 @@ async function init() {
     if (e.key === 'Delete' || e.key === 'Backspace') {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (state.selectedBlocks.size > 0) {
-        import('./paper-block.js').then(m => {
+        import('./paper-block.js?v=2').then(m => {
           for (const name of [...state.selectedBlocks]) {
             m.removePaper(name);
           }

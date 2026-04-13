@@ -284,7 +284,7 @@ export function resetWhiteboard() {
   renderConnections();
   updateDropHint();
 
-  import('./paper-list.js').then(m => m.renderCards());
+  import('./paper-list.js?v=2').then(m => m.renderCards());
 }
 
 /* === Panel Resizer === */

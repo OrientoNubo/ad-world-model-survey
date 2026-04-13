@@ -223,7 +223,7 @@ export function renderCards() {
       e.stopPropagation();
       e.preventDefault();
       const name = btn.dataset.remove;
-      import('./paper-block.js').then(m => m.removePaper(name));
+      import('./paper-block.js?v=2').then(m => m.removePaper(name));
     });
   });
 }

@@ -166,7 +166,7 @@ export function placePaper(shortName, x, y) {
   if (hint) hint.style.display = 'none';
 
   // Update card list indicator
-  import('./paper-list.js').then(m => m.renderCards());
+  import('./paper-list.js?v=2').then(m => m.renderCards());
 }
 
 function onBlockPointerDown(e) {
@@ -287,7 +287,7 @@ export function removePaper(shortName) {
     if (hint) hint.style.display = '';
   }
 
-  import('./paper-list.js').then(m => m.renderCards());
+  import('./paper-list.js?v=2').then(m => m.renderCards());
 }
 
 function showContextMenu(x, y, shortName) {
