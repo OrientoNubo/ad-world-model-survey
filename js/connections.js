@@ -2,8 +2,8 @@
  * Bezier connections between paper blocks on the whiteboard.
  */
 
-import { state } from './state.js?v=2';
-import { getBlockCenter, CONNECTION_COLORS } from './utils.js?v=2';
+import { state } from './state.js';
+import { getBlockCenter, CONNECTION_COLORS } from './utils.js';
 
 let draggingControlPoint = null;
 let draggingLabel = null;

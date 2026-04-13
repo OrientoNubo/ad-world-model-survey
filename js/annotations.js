@@ -3,8 +3,8 @@
  * Features: drag, resize, edit, change color.
  */
 
-import { state } from './state.js?v=2';
-import { resizeBoard } from './whiteboard.js?v=2';
+import { state } from './state.js';
+import { resizeBoard } from './whiteboard.js';
 
 export const TB_COLORS = [
   { name: 'Default', value: 'var(--surface)', bar: 'var(--border)' },

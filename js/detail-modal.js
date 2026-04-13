@@ -2,7 +2,7 @@
  * Full notes detail modal with section navigation.
  */
 
-import { loadNotes, getPaper } from './data.js?v=2';
+import { loadNotes, getPaper } from './data.js';
 
 const SECTION_TITLES = {
   'basic_info': '1. Basic Info',
