@@ -4,6 +4,7 @@
  */
 
 import { state } from './state.js';
+import { resizeBoard } from './whiteboard.js';
 
 export const TB_COLORS = [
   { name: 'Default', value: 'var(--surface)', bar: 'var(--border)' },
@@ -132,6 +133,7 @@ function setupDrag(el, idx) {
     const onUp = () => {
       document.removeEventListener('pointermove', onMove);
       document.removeEventListener('pointerup', onUp);
+      resizeBoard();
     };
 
     document.addEventListener('pointermove', onMove);

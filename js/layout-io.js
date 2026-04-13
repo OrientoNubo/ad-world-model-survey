@@ -5,7 +5,7 @@
 import { state, notify } from './state.js';
 import { lzEncode, lzDecode } from './utils.js';
 import { placePaper } from './paper-block.js';
-import { applyViewport, resetWhiteboard } from './whiteboard.js';
+import { applyViewport, resetWhiteboard, resizeBoard } from './whiteboard.js';
 import { renderConnections } from './connections.js';
 import { renderAnnotations } from './annotations.js';
 
@@ -102,6 +102,7 @@ function importLayout() {
     applyViewport();
     renderConnections();
     renderAnnotations();
+    resizeBoard();
 
     document.getElementById('ioOverlay').classList.remove('open');
   } catch (e) {

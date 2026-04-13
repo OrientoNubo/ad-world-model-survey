@@ -153,6 +153,7 @@ export function initWhiteboard() {
     const pos = screenToMap(e.clientX, e.clientY, state.viewport);
     placePaper(shortName, pos.x - 79, pos.y - 47);
     updateDropHint();
+    resizeBoard();
   });
 
   // Double-click on empty space → add text box
@@ -169,6 +170,7 @@ export function initWhiteboard() {
     });
     renderAnnotations();
     updateDropHint();
+    resizeBoard();
 
     // Immediately open edit for the new text box
     const idx = state.annotations.length - 1;
@@ -204,6 +206,28 @@ export function applyViewport() {
   document.getElementById('zoomIndicator').textContent = Math.round(zoom * 100) + '%';
 }
 
+/** Expand mapboard to fit all content with padding. */
+export function resizeBoard() {
+  const pad = 1000;
+  const minW = 5000, minH = 3500;
+  let maxX = 0, maxY = 0;
+
+  for (const k in state.positions) {
+    const p = state.positions[k];
+    maxX = Math.max(maxX, p.x + (p.width || 220) + pad);
+    maxY = Math.max(maxY, p.y + 120 + pad);
+  }
+  for (const a of state.annotations) {
+    maxX = Math.max(maxX, a.x + (a.width || 150) + pad);
+    maxY = Math.max(maxY, a.y + (a.height || 60) + pad);
+  }
+
+  const map = document.getElementById('mapboard');
+  if (!map) return;
+  map.style.width = Math.max(minW, maxX) + 'px';
+  map.style.height = Math.max(minH, maxY) + 'px';
+}
+
 export function placeAllPapers() {
   const papers = state.papers;
   if (!papers.length) return;
@@ -233,6 +257,7 @@ export function placeAllPapers() {
   state.viewport = { panX: 20, panY: 20, zoom: 0.5 };
   applyViewport();
   updateDropHint();
+  resizeBoard();
 }
 
 export function resetWhiteboard() {

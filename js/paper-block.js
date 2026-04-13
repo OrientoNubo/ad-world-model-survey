@@ -5,6 +5,7 @@
 import { state, notify } from './state.js';
 import { getPaper } from './data.js';
 import { renderConnections } from './connections.js';
+import { resizeBoard } from './whiteboard.js';
 import { TB_COLORS, TB_COLORS_DARK, setPopupHandler } from './annotations.js';
 
 let isDragging = false;
@@ -226,6 +227,7 @@ function onBlockPointerDown(e) {
       el.classList.remove('dragging');
       // Small delay to prevent click from firing
       setTimeout(() => { isDragging = false; }, 50);
+      resizeBoard();
     }
   };
 

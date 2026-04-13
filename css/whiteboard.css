@@ -14,8 +14,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: var(--mapboard-w);
-  height: var(--mapboard-h);
+  min-width: 5000px;
+  min-height: 3500px;
   transform-origin: 0 0;
   background-color: var(--board-bg);
   background-image:
