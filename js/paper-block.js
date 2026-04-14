@@ -500,8 +500,9 @@ function openBlockNoteEdit(shortName, clientX, clientY) {
     }
   });
 
-  popup.style.left = Math.min(clientX, window.innerWidth - 280) + 'px';
-  popup.style.top = Math.min(clientY, window.innerHeight - 240) + 'px';
+  // Center the popup on screen
   popup.style.display = 'block';
+  popup.style.left = ((window.innerWidth - popup.offsetWidth) / 2) + 'px';
+  popup.style.top = ((window.innerHeight - popup.offsetHeight) / 2) + 'px';
   document.getElementById('annEditText').focus();
 }
