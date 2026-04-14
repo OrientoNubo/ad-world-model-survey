@@ -185,11 +185,23 @@ function onBlockPointerDown(e) {
 
   // If this block is selected, drag all selected; otherwise just this one
   const dragging = state.selectedBlocks.has(name) ? [...state.selectedBlocks] : [name];
+  const draggingSet = new Set(dragging);
   dragOrigPositions = {};
   for (const n of dragging) {
     const pos = state.positions[n];
     if (pos) dragOrigPositions[n] = { ...pos };
   }
+
+  // Snapshot original midpoints for affected connections
+  const connOrigMids = [];
+  state.connections.forEach((conn, idx) => {
+    if (!conn.mid) return;
+    const fromDragged = draggingSet.has(conn.from);
+    const toDragged = draggingSet.has(conn.to);
+    if (fromDragged || toDragged) {
+      connOrigMids.push({ idx, origMid: { ...conn.mid }, fromDragged, toDragged });
+    }
+  });
 
   const onMove = (ev) => {
     const dx = (ev.clientX - dragStartX) / zoom;
@@ -217,6 +229,16 @@ function onBlockPointerDown(e) {
         }
       }
     }
+
+    // Shift connection midpoints proportionally
+    for (const { idx, origMid, fromDragged, toDragged } of connOrigMids) {
+      const conn = state.connections[idx];
+      if (!conn) continue;
+      // If both endpoints drag, mid shifts by full dx/dy; if one, by half
+      const factor = (fromDragged && toDragged) ? 1 : 0.5;
+      conn.mid = { x: origMid.x + dx * factor, y: origMid.y + dy * factor };
+    }
+
     renderConnections();
   };
 
