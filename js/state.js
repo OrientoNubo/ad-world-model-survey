@@ -12,6 +12,7 @@ export const state = {
   connections: [],         // [{ from, to, text, color, mid:{x,y}, labelT }]
   annotations: [],         // [{ x, y, text, width, height, colorIdx }]
   blockNotes: {},          // { shortName: { text, colorIdx, fontSize } }
+  notesVisible: true,      // toggle for block note visibility
   connectMode: false,
   connectSource: null,
   selectedBlocks: new Set(),

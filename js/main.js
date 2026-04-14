@@ -48,6 +48,16 @@ async function init() {
     document.querySelectorAll('.paper-block').forEach(b => b.style.outline = '');
   });
 
+  // Notes visibility toggle
+  const notesToggleBtn = document.getElementById('notesToggleBtn');
+  notesToggleBtn.classList.add('active');
+  notesToggleBtn.addEventListener('click', () => {
+    state.notesVisible = !state.notesVisible;
+    notesToggleBtn.classList.toggle('active', state.notesVisible);
+    document.querySelectorAll('.block-note').forEach(el => el.classList.toggle('notes-hidden', !state.notesVisible));
+    document.querySelectorAll('.paper-block').forEach(el => el.classList.toggle('notes-hidden', !state.notesVisible));
+  });
+
   document.getElementById('fullscreenBtn').addEventListener('click', () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(() => {});

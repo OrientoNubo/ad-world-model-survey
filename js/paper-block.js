@@ -349,7 +349,7 @@ export function renderBlockNote(shortName) {
   blockEl.classList.add('has-note');
 
   const el = document.createElement('div');
-  el.className = 'block-note';
+  el.className = 'block-note' + (state.notesVisible ? '' : ' notes-hidden');
   el.dataset.noteFor = shortName;
   el.style.left = pos.x + 'px';
   el.style.top = (pos.y + blockEl.offsetHeight) + 'px';
