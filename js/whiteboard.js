@@ -22,6 +22,10 @@ export function initWhiteboard() {
   // Hide drop hint once items are placed
   updateDropHint();
 
+  // Zoom +/- buttons
+  document.getElementById('zoomInBtn').addEventListener('click', () => zoomByStep(1.2));
+  document.getElementById('zoomOutBtn').addEventListener('click', () => zoomByStep(1 / 1.2));
+
   // Pan: left mouse on empty space
   wrapper.addEventListener('mousedown', (e) => {
     // Only handle clicks on empty whiteboard space
@@ -197,6 +201,20 @@ export function updateDropHint() {
   const hint = document.getElementById('dropHint');
   if (!hint) return;
   hint.style.display = (state.placedPapers.size > 0 || state.annotations.length > 0) ? 'none' : '';
+}
+
+/** Zoom by a multiplier, centered on the viewport center. */
+function zoomByStep(factor) {
+  const wrapper = document.getElementById('mapWrapper');
+  const rect = wrapper.getBoundingClientRect();
+  const cx = rect.width / 2;
+  const cy = rect.height / 2;
+  const newZoom = Math.min(3, Math.max(0.2, state.viewport.zoom * factor));
+  const scale = newZoom / state.viewport.zoom;
+  state.viewport.panX = cx - (cx - state.viewport.panX) * scale;
+  state.viewport.panY = cy - (cy - state.viewport.panY) * scale;
+  state.viewport.zoom = newZoom;
+  applyViewport();
 }
 
 export function applyViewport() {

@@ -82,21 +82,53 @@
   border-radius: 2px;
 }
 
-/* Zoom indicator */
-.zoom-indicator {
+/* Zoom controls */
+.zoom-controls {
   position: absolute;
   bottom: 12px;
   right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0;
   background: var(--glass);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 3px 10px;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--text-secondary);
+  border-radius: var(--radius);
   z-index: 30;
   user-select: none;
+  overflow: hidden;
+}
+
+.zoom-controls .zoom-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.zoom-controls .zoom-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.zoom-controls .zoom-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 38px;
+  text-align: center;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 4px 6px;
+  line-height: 20px;
 }
 
 /* === Text Box Annotations === */
