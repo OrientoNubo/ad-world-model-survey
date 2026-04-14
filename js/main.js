@@ -61,15 +61,28 @@ async function init() {
   // Paper block font size control
   let blockFontSize = 16;
   const fontSizeVal = document.getElementById('fontSizeVal');
-  document.getElementById('fontDecBtn').addEventListener('click', () => {
-    blockFontSize = Math.max(6, blockFontSize - 2);
+  function applyBlockFontSize() {
     document.documentElement.style.setProperty('--block-font-size', blockFontSize + 'px');
     fontSizeVal.textContent = blockFontSize;
+    // Wait for reflow then reposition notes
+    requestAnimationFrame(() => {
+      import('./paper-block.js').then(m => m.repositionAllNotes());
+    });
+  }
+  document.getElementById('fontDecBtn').addEventListener('click', () => {
+    blockFontSize = Math.max(6, blockFontSize - 2);
+    applyBlockFontSize();
   });
   document.getElementById('fontIncBtn').addEventListener('click', () => {
     blockFontSize = Math.min(40, blockFontSize + 2);
-    document.documentElement.style.setProperty('--block-font-size', blockFontSize + 'px');
-    fontSizeVal.textContent = blockFontSize;
+    applyBlockFontSize();
+  });
+  // Click on value to reset to default
+  fontSizeVal.style.cursor = 'pointer';
+  fontSizeVal.title = 'Click to reset to default (16)';
+  fontSizeVal.addEventListener('click', () => {
+    blockFontSize = 16;
+    applyBlockFontSize();
   });
 
   document.getElementById('fullscreenBtn').addEventListener('click', () => {

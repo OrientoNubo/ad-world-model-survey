@@ -404,6 +404,20 @@ export function renderBlockNote(shortName) {
   document.getElementById('mapboard').appendChild(el);
 }
 
+/** Reposition all block notes to match current block heights. */
+export function repositionAllNotes() {
+  for (const shortName of Object.keys(state.blockNotes)) {
+    const blockEl = document.querySelector(`.paper-block[data-name="${shortName}"]`);
+    const noteEl = document.querySelector(`.block-note[data-note-for="${shortName}"]`);
+    if (!blockEl || !noteEl) continue;
+    const pos = state.positions[shortName];
+    if (!pos) continue;
+    noteEl.style.left = pos.x + 'px';
+    noteEl.style.top = (pos.y + blockEl.offsetHeight) + 'px';
+    noteEl.style.width = blockEl.offsetWidth + 'px';
+  }
+}
+
 function openBlockNoteEdit(shortName, clientX, clientY) {
   const note = state.blockNotes[shortName];
   if (!note) return;

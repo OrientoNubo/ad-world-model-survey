@@ -193,10 +193,9 @@
   font-weight: 700;
   font-size: var(--block-font-size, 16px);
   margin-bottom: 4px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   letter-spacing: -0.3px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .paper-block .block-meta {
