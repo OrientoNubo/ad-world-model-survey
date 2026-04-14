@@ -81,6 +81,44 @@ html, body {
   box-shadow: 0 1px 4px var(--accent-soft);
 }
 
+/* Font size control in header */
+.header-font-control {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  height: 28px;
+}
+
+.header-font-control .font-ctrl-btn {
+  background: var(--surface);
+  border: none;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 8px;
+  height: 100%;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.header-font-control .font-ctrl-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.header-font-control .font-ctrl-val {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 0 4px;
+  min-width: 22px;
+  text-align: center;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
 /* Main container */
 .main-container {
   display: flex;

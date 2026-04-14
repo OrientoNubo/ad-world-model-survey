@@ -26,6 +26,13 @@ export function initWhiteboard() {
   document.getElementById('zoomInBtn').addEventListener('click', () => zoomByStep(1.2));
   document.getElementById('zoomOutBtn').addEventListener('click', () => zoomByStep(1 / 1.2));
 
+  // Mouse wheel on zoom controls widget
+  document.getElementById('zoomControls').addEventListener('wheel', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    zoomByStep(e.deltaY < 0 ? 1.15 : 1 / 1.15);
+  }, { passive: false });
+
   // Pan: left mouse on empty space
   wrapper.addEventListener('mousedown', (e) => {
     // Only handle clicks on empty whiteboard space
@@ -114,7 +121,7 @@ export function initWhiteboard() {
     if (e.ctrlKey) {
       // Pinch-to-zoom (trackpad) or Ctrl+wheel (mouse)
       const delta = e.deltaY > 0 ? 0.97 : 1.03;
-      const newZoom = Math.min(3, Math.max(0.2, state.viewport.zoom * delta));
+      const newZoom = Math.min(3, Math.max(0.05, state.viewport.zoom * delta));
       const rect = wrapper.getBoundingClientRect();
       const cx = e.clientX - rect.left;
       const cy = e.clientY - rect.top;
@@ -131,7 +138,7 @@ export function initWhiteboard() {
       } else {
         // Mouse wheel (line-based): zoom
         const delta = e.deltaY > 0 ? 0.9 : 1.1;
-        const newZoom = Math.min(3, Math.max(0.2, state.viewport.zoom * delta));
+        const newZoom = Math.min(3, Math.max(0.05, state.viewport.zoom * delta));
         const rect = wrapper.getBoundingClientRect();
         const cx = e.clientX - rect.left;
         const cy = e.clientY - rect.top;
@@ -209,7 +216,7 @@ function zoomByStep(factor) {
   const rect = wrapper.getBoundingClientRect();
   const cx = rect.width / 2;
   const cy = rect.height / 2;
-  const newZoom = Math.min(3, Math.max(0.2, state.viewport.zoom * factor));
+  const newZoom = Math.min(3, Math.max(0.05, state.viewport.zoom * factor));
   const scale = newZoom / state.viewport.zoom;
   state.viewport.panX = cx - (cx - state.viewport.panX) * scale;
   state.viewport.panY = cy - (cy - state.viewport.panY) * scale;

@@ -58,6 +58,20 @@ async function init() {
     document.querySelectorAll('.paper-block').forEach(el => el.classList.toggle('notes-hidden', !state.notesVisible));
   });
 
+  // Paper block font size control
+  let blockFontSize = 16;
+  const fontSizeVal = document.getElementById('fontSizeVal');
+  document.getElementById('fontDecBtn').addEventListener('click', () => {
+    blockFontSize = Math.max(6, blockFontSize - 2);
+    document.documentElement.style.setProperty('--block-font-size', blockFontSize + 'px');
+    fontSizeVal.textContent = blockFontSize;
+  });
+  document.getElementById('fontIncBtn').addEventListener('click', () => {
+    blockFontSize = Math.min(40, blockFontSize + 2);
+    document.documentElement.style.setProperty('--block-font-size', blockFontSize + 'px');
+    fontSizeVal.textContent = blockFontSize;
+  });
+
   document.getElementById('fullscreenBtn').addEventListener('click', () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(() => {});
