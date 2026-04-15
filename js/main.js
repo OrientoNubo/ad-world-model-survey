@@ -97,6 +97,8 @@ async function init() {
     scaleVal.textContent = contentScale + '%';
     requestAnimationFrame(() => {
       import('./paper-block.js').then(m => m.repositionAllNotes());
+      import('./annotations.js').then(m => m.renderAnnotations());
+      import('./connections.js').then(m => m.renderConnections());
     });
   }
   document.getElementById('scaleDecBtn').addEventListener('click', () => {
@@ -104,7 +106,7 @@ async function init() {
     applyContentScale();
   });
   document.getElementById('scaleIncBtn').addEventListener('click', () => {
-    contentScale = Math.min(500, contentScale < 20 ? contentScale + 1 : contentScale + 10);
+    contentScale = Math.min(5000, contentScale < 20 ? contentScale + 1 : contentScale + 10);
     applyContentScale();
   });
   scaleVal.title = 'Click to reset to default (100%)';
@@ -115,7 +117,7 @@ async function init() {
   document.getElementById('contentControls').addEventListener('wheel', (e) => {
     e.preventDefault(); e.stopPropagation();
     if (e.deltaY < 0) {
-      contentScale = Math.min(500, contentScale < 20 ? contentScale + 1 : contentScale + 10);
+      contentScale = Math.min(5000, contentScale < 20 ? contentScale + 1 : contentScale + 10);
     } else {
       contentScale = Math.max(3, contentScale <= 20 ? contentScale - 1 : contentScale - 10);
     }
