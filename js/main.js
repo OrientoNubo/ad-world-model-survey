@@ -74,7 +74,7 @@ async function init() {
     applyBlockFontSize();
   });
   document.getElementById('fontIncBtn').addEventListener('click', () => {
-    blockFontSize = Math.min(40, blockFontSize + 2);
+    blockFontSize = Math.min(120, blockFontSize + 2);
     applyBlockFontSize();
   });
   // Click on value to reset to default
