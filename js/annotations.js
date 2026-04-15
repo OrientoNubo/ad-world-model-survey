@@ -62,7 +62,8 @@ function createTextBoxElement(ann, idx) {
   el.style.top = ann.y + 'px';
 
   const fontSize = ann.fontSize || 14;
-  el.style.fontSize = fontSize + 'px';
+  const scale = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--content-scale')) || 1;
+  el.style.fontSize = (fontSize * scale) + 'px';
 
   const colorIdx = ann.colorIdx || 0;
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';

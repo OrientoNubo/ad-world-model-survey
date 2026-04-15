@@ -378,7 +378,8 @@ export function renderBlockNote(shortName) {
   el.style.width = blockEl.offsetWidth + 'px';
 
   const fontSize = note.fontSize || 14;
-  el.style.fontSize = fontSize + 'px';
+  const scale = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--content-scale')) || 1;
+  el.style.fontSize = (fontSize * scale) + 'px';
 
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   const palette = isDark ? TB_COLORS_DARK : TB_COLORS;

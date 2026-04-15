@@ -38,13 +38,13 @@
 
 .connections-svg path {
   fill: none;
-  stroke-width: 2;
+  stroke-width: calc(2px * var(--content-scale, 1));
   pointer-events: stroke;
   cursor: pointer;
 }
 
 .connections-svg path:hover {
-  stroke-width: 3.5;
+  stroke-width: calc(3.5px * var(--content-scale, 1));
 }
 
 .conn-control-point {
@@ -65,7 +65,7 @@
   border: none;
   border-radius: var(--radius-sm);
   padding: 2px 8px;
-  font-size: 10px;
+  font-size: calc(10px * var(--content-scale, 1));
   cursor: move;
   z-index: 201;
   white-space: nowrap;
@@ -82,11 +82,19 @@
   border-radius: 2px;
 }
 
-/* Zoom controls */
-.zoom-controls {
+/* Board controls panel (bottom-right) */
+.board-controls {
   position: absolute;
   bottom: 12px;
   right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 30;
+  user-select: none;
+}
+
+.ctrl-row {
   display: flex;
   align-items: center;
   gap: 0;
@@ -94,18 +102,26 @@
   backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  z-index: 30;
-  user-select: none;
   overflow: hidden;
 }
 
-.zoom-controls .zoom-btn {
-  width: 28px;
-  height: 28px;
+.ctrl-row .ctrl-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.ctrl-row .ctrl-btn {
+  width: 26px;
+  height: 26px;
   border: none;
   background: transparent;
   color: var(--text-secondary);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   display: flex;
@@ -114,21 +130,22 @@
   transition: background 0.15s, color 0.15s;
 }
 
-.zoom-controls .zoom-btn:hover {
+.ctrl-row .ctrl-btn:hover {
   background: var(--accent);
   color: #fff;
 }
 
-.zoom-controls .zoom-value {
-  font-size: 11px;
+.ctrl-row .ctrl-val {
+  font-size: 10px;
   font-weight: 600;
   color: var(--text-secondary);
-  min-width: 38px;
+  min-width: 40px;
   text-align: center;
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  padding: 4px 6px;
-  line-height: 20px;
+  padding: 4px 4px;
+  line-height: 18px;
+  cursor: pointer;
 }
 
 /* === Text Box Annotations === */
@@ -138,7 +155,7 @@
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
   padding: 8px 10px;
-  font-size: 14px;
+  font-size: calc(14px * var(--content-scale, 1));
   line-height: 1.4;
   cursor: move;
   z-index: 8;

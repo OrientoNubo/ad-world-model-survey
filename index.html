@@ -32,11 +32,6 @@
   <button class="header-btn" id="importBtn" title="Import layout">Import</button>
   <button class="header-btn" id="resetBtn" title="Clear whiteboard">Reset</button>
   <button class="header-btn" id="notesToggleBtn" title="Show/hide all block notes">Notes</button>
-  <div class="header-font-control" id="fontSizeControl" title="Paper block title font size">
-    <button class="font-ctrl-btn" id="fontDecBtn">A−</button>
-    <span class="font-ctrl-val" id="fontSizeVal">16</span>
-    <button class="font-ctrl-btn" id="fontIncBtn">A+</button>
-  </div>
   <button class="header-btn" id="themeBtn">Dark</button>
   <button class="header-btn" id="fullscreenBtn" title="Toggle fullscreen">FS</button>
 </div>
@@ -67,10 +62,25 @@
         <div class="drop-hint" id="dropHint">Drag papers here or double-click to add text</div>
       </div>
     </div>
-    <div class="zoom-controls" id="zoomControls">
-      <button class="zoom-btn" id="zoomOutBtn" title="Zoom out">−</button>
-      <span class="zoom-value" id="zoomIndicator">100%</span>
-      <button class="zoom-btn" id="zoomInBtn" title="Zoom in">+</button>
+    <div class="board-controls" id="boardControls">
+      <div class="ctrl-row" id="zoomControls">
+        <span class="ctrl-label">Zoom</span>
+        <button class="ctrl-btn" id="zoomOutBtn">−</button>
+        <span class="ctrl-val" id="zoomIndicator">100%</span>
+        <button class="ctrl-btn" id="zoomInBtn">+</button>
+      </div>
+      <div class="ctrl-row" id="titleControls">
+        <span class="ctrl-label">Title</span>
+        <button class="ctrl-btn" id="fontDecBtn">−</button>
+        <span class="ctrl-val" id="fontSizeVal">16px</span>
+        <button class="ctrl-btn" id="fontIncBtn">+</button>
+      </div>
+      <div class="ctrl-row" id="contentControls">
+        <span class="ctrl-label">Content</span>
+        <button class="ctrl-btn" id="scaleDecBtn">−</button>
+        <span class="ctrl-val" id="scaleVal">100%</span>
+        <button class="ctrl-btn" id="scaleIncBtn">+</button>
+      </div>
     </div>
   </div>
 </div>

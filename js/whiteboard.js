@@ -26,12 +26,26 @@ export function initWhiteboard() {
   document.getElementById('zoomInBtn').addEventListener('click', () => zoomByStep(1.2));
   document.getElementById('zoomOutBtn').addEventListener('click', () => zoomByStep(1 / 1.2));
 
-  // Mouse wheel on zoom controls widget
+  // Mouse wheel on zoom controls row
   document.getElementById('zoomControls').addEventListener('wheel', (e) => {
     e.preventDefault();
     e.stopPropagation();
     zoomByStep(e.deltaY < 0 ? 1.15 : 1 / 1.15);
   }, { passive: false });
+
+  // Click zoom value to reset to 100%
+  const zoomVal = document.getElementById('zoomIndicator');
+  zoomVal.title = 'Click to reset to 100%';
+  zoomVal.addEventListener('click', () => {
+    const wrapper = document.getElementById('mapWrapper');
+    const rect = wrapper.getBoundingClientRect();
+    const cx = rect.width / 2, cy = rect.height / 2;
+    const scale = 1 / state.viewport.zoom;
+    state.viewport.panX = cx - (cx - state.viewport.panX) * scale;
+    state.viewport.panY = cy - (cy - state.viewport.panY) * scale;
+    state.viewport.zoom = 1;
+    applyViewport();
+  });
 
   // Pan: left mouse on empty space
   wrapper.addEventListener('mousedown', (e) => {

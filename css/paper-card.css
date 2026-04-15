@@ -82,7 +82,7 @@
   display: inline-block;
   padding: 1px 6px;
   border-radius: 4px;
-  font-size: 9px;
+  font-size: calc(9px * var(--content-scale, 1));
   font-weight: 600;
   line-height: 16px;
 }
@@ -131,7 +131,8 @@
 /* === Whiteboard Paper Blocks === */
 .paper-block {
   position: absolute;
-  width: 220px;
+  width: max-content;
+  min-width: 160px;
   min-height: 60px;
   background: var(--surface);
   border-radius: var(--radius);
@@ -194,23 +195,20 @@
   font-size: var(--block-font-size, 16px);
   margin-bottom: 4px;
   letter-spacing: -0.3px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  white-space: nowrap;
 }
 
 .paper-block .block-meta {
-  font-size: 13px;
+  font-size: calc(13px * var(--content-scale, 1));
   color: var(--text-secondary);
   display: flex;
   gap: 4px;
 }
 
 .paper-block .block-category {
-  font-size: 12px;
+  font-size: calc(12px * var(--content-scale, 1));
   color: var(--text-muted);
   margin-top: 4px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -275,7 +273,7 @@
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
   padding: 6px 10px;
-  font-size: 14px;
+  font-size: calc(14px * var(--content-scale, 1));
   line-height: 1.4;
   z-index: 9;
   word-wrap: break-word;

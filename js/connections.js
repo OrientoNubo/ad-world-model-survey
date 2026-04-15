@@ -56,7 +56,6 @@ export function renderConnections() {
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', `M ${c1.x} ${c1.y} Q ${ctrl.x} ${ctrl.y} ${c2.x} ${c2.y}`);
     path.style.stroke = conn.color;
-    path.style.strokeWidth = '2';
     path.style.fill = 'none';
     path.style.pointerEvents = 'stroke';
     path.style.cursor = 'pointer';

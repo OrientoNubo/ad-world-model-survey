@@ -58,13 +58,12 @@ async function init() {
     document.querySelectorAll('.paper-block').forEach(el => el.classList.toggle('notes-hidden', !state.notesVisible));
   });
 
-  // Paper block font size control
+  // --- Title font size control ---
   let blockFontSize = 16;
   const fontSizeVal = document.getElementById('fontSizeVal');
   function applyBlockFontSize() {
     document.documentElement.style.setProperty('--block-font-size', blockFontSize + 'px');
-    fontSizeVal.textContent = blockFontSize;
-    // Wait for reflow then reposition notes
+    fontSizeVal.textContent = blockFontSize + 'px';
     requestAnimationFrame(() => {
       import('./paper-block.js').then(m => m.repositionAllNotes());
     });
@@ -74,16 +73,54 @@ async function init() {
     applyBlockFontSize();
   });
   document.getElementById('fontIncBtn').addEventListener('click', () => {
-    blockFontSize = Math.min(120, blockFontSize + 2);
+    blockFontSize = Math.min(500, blockFontSize + 2);
     applyBlockFontSize();
   });
-  // Click on value to reset to default
-  fontSizeVal.style.cursor = 'pointer';
-  fontSizeVal.title = 'Click to reset to default (16)';
+  fontSizeVal.title = 'Click to reset to default (16px)';
   fontSizeVal.addEventListener('click', () => {
     blockFontSize = 16;
     applyBlockFontSize();
   });
+  document.getElementById('titleControls').addEventListener('wheel', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    blockFontSize = e.deltaY < 0
+      ? Math.min(500, blockFontSize + 2)
+      : Math.max(6, blockFontSize - 2);
+    applyBlockFontSize();
+  }, { passive: false });
+
+  // --- Content scale control ---
+  let contentScale = 100; // percentage
+  const scaleVal = document.getElementById('scaleVal');
+  function applyContentScale() {
+    document.documentElement.style.setProperty('--content-scale', contentScale / 100);
+    scaleVal.textContent = contentScale + '%';
+    requestAnimationFrame(() => {
+      import('./paper-block.js').then(m => m.repositionAllNotes());
+    });
+  }
+  document.getElementById('scaleDecBtn').addEventListener('click', () => {
+    contentScale = Math.max(3, contentScale <= 20 ? contentScale - 1 : contentScale - 10);
+    applyContentScale();
+  });
+  document.getElementById('scaleIncBtn').addEventListener('click', () => {
+    contentScale = Math.min(500, contentScale < 20 ? contentScale + 1 : contentScale + 10);
+    applyContentScale();
+  });
+  scaleVal.title = 'Click to reset to default (100%)';
+  scaleVal.addEventListener('click', () => {
+    contentScale = 100;
+    applyContentScale();
+  });
+  document.getElementById('contentControls').addEventListener('wheel', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    if (e.deltaY < 0) {
+      contentScale = Math.min(500, contentScale < 20 ? contentScale + 1 : contentScale + 10);
+    } else {
+      contentScale = Math.max(3, contentScale <= 20 ? contentScale - 1 : contentScale - 10);
+    }
+    applyContentScale();
+  }, { passive: false });
 
   document.getElementById('fullscreenBtn').addEventListener('click', () => {
     if (!document.fullscreenElement) {
