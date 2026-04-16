@@ -2121,7 +2121,35 @@
   "phyra_notes": "phyra-read/notes/2502_Role_2502_Role.html"
  },
  {
-  "id": 66,
+  "short_name": "AWMs",
+  "title": "Unlocking Efficient Vehicle Dynamics Modeling via Analytic World Models",
+  "date": "2025-02",
+  "year": "2502",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Analytic Policy Gradients",
+   "Vehicle Dynamics",
+   "Differentiable Simulation",
+   "Waymax"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {},
+  "arxiv_id": "2502.10012",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "",
+  "phyra_notes": "phyra-read/notes/2502_AWMs_2502_AWMs.html",
+  "id": 66
+ },
+ {
+  "id": 67,
   "short_name": "DiST-4D",
   "title": "DiST-4D: Disentangled Spatiotemporal Diffusion with Metric Depth for 4D Driving Scene Generation",
   "date": "2025-03",
@@ -2160,7 +2188,7 @@
   "phyra_notes": "phyra-read/notes/2503_DiST-4D_2503_DiST.html"
  },
  {
-  "id": 67,
+  "id": 68,
   "short_name": "GAIA-2",
   "title": "GAIA-2: A Controllable Multi-View Generative World Model for Autonomous Driving",
   "date": "2025-03",
@@ -2197,7 +2225,7 @@
   "phyra_notes": "phyra-read/notes/2503_GAIA-2_2503_GAIA.html"
  },
  {
-  "id": 68,
+  "id": 69,
   "short_name": "MiLA",
   "title": "MiLA: Multi-view Intensive-fidelity Long-term Video Generation World Model for Autonomous Driving",
   "date": "2025-03",
@@ -2231,7 +2259,7 @@
   "phyra_notes": "phyra-read/notes/2503_MiLA_2503_MiLA.html"
  },
  {
-  "id": 69,
+  "id": 70,
   "short_name": "UniFuture",
   "title": "Seeing the Future, Perceiving the Future: A Unified Driving World Model for Future Generation and Perception",
   "date": "2025-03",
@@ -2265,7 +2293,7 @@
   "phyra_notes": "phyra-read/notes/2503_Seeing_2503_Seeing.html"
  },
  {
-  "id": 70,
+  "id": 71,
   "short_name": "SimWorld",
   "title": "SimWorld: A Unified Benchmark for Simulator-Conditioned Scene Generation via World Model",
   "date": "2025-03",
@@ -2298,7 +2326,37 @@
   "phyra_notes": "phyra-read/notes/2503_SimWorld_2503_SimWorld.html"
  },
  {
-  "id": 71,
+  "short_name": "MindVLA-o1",
+  "title": "MindVLA-o1: Li Auto's Next-Gen Autonomous Driving Foundation Model",
+  "date": "2025-03",
+  "year": "2503",
+  "venue": "NVIDIA GTC 2025",
+  "keywords": [
+   "VLA",
+   "Latent World Model",
+   "MoE",
+   "3D ViT",
+   "Foundation Model"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "Foundation Model"
+  ],
+  "ratings": {},
+  "arxiv_id": "",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "",
+  "phyra_notes": "phyra-read/notes/2503_MindVLA-o1_2503_MindVLA-o1.html",
+  "id": 72
+ },
+ {
+  "id": 73,
   "short_name": "FutureSightDrive",
   "title": "FutureSightDrive: Thinking Visually with Spatio-Temporal CoT for Autonomous Driving",
   "date": "2025-05",
@@ -2328,7 +2386,7 @@
   "phyra_notes": "phyra-read/notes/2505_FutureSightDrive_2505_FutureSightDrive.html"
  },
  {
-  "id": 72,
+  "id": 74,
   "short_name": "GeoDrive",
   "title": "GeoDrive: 3D Geometry-Informed Driving World Model with Precise Action Control",
   "date": "2025-05",
@@ -2366,7 +2424,7 @@
   "phyra_notes": "phyra-read/notes/2505_GeoDrive_2505_GeoDrive.html"
  },
  {
-  "id": 73,
+  "id": 75,
   "short_name": "ProphetDWM",
   "title": "ProphetDWM: A Driving World Model for Rolling Out Future Actions and Videos",
   "date": "2025-05",
@@ -2400,734 +2458,7 @@
   "phyra_notes": "phyra-read/notes/2505_ProphetDWM_2505_ProphetDWM.html"
  },
  {
-  "id": 74,
-  "short_name": "Cosmos-Drive-Dreams",
-  "title": "Cosmos-Drive-Dreams : Scalable Synthetic Driving Data Generation with World Foundation Models",
-  "date": "2025-06",
-  "year": "2506",
-  "venue": "預印本",
-  "keywords": [
-   "World Foundation Model (WFM)",
-   "Synthetic Driving Data Generation (SDG)",
-   "Multi-view Video Generation",
-   "HDMap Conditioning",
-   "LiDAR Generation",
-   "Autonomous Driving Simulation"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Simulation"
-  ],
-  "architecture": [
-   "Foundation Model"
-  ],
-  "ratings": {
-   "innovation": 5,
-   "technical_depth": 5,
-   "experiment_completeness": 5,
-   "writing_quality": 4,
-   "practical_value": 5,
-   "overall": 5
-  },
-  "arxiv_id": "2506.09042",
-  "has_notes": true,
-  "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html",
-  "phyra_notes": "phyra-read/notes/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html"
- },
- {
-  "id": 75,
-  "short_name": "Epona",
-  "title": "Epona: Autoregressive Diffusion World Model for Autonomous Driving",
-  "date": "2025-06",
-  "year": "2506",
-  "venue": "預印本",
-  "keywords": [
-   "Autoregressive Diffusion",
-   "Driving World Model",
-   "Long-horizon Video Generation",
-   "Trajectory Planning",
-   "Flow Matching"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Motion Planning",
-   "End-to-End Driving",
-   "Simulation"
-  ],
-  "architecture": [
-   "End-to-End",
-   "World Model + Planner"
-  ],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2506.24113",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2506_Epona_2506_Epona.html",
-  "phyra_notes": "phyra-read/notes/2506_Epona_2506_Epona.html"
- },
- {
   "id": 76,
-  "short_name": "LongDWM",
-  "title": "LongDWM: Cross-Granularity Distillation for Building a Long-Term Driving World Model",
-  "date": "2025-06",
-  "year": "2506",
-  "venue": "預印本",
-  "keywords": [
-   "Driving World Model",
-   "Long Video Generation",
-   "Diffusion Transformer (DiT)",
-   "Cross-Granularity Distillation",
-   "Error Accumulation"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Simulation"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2506.01546",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2506_LongDWM_2506_LongDWM.html",
-  "phyra_notes": "phyra-read/notes/2506_LongDWM_2506_LongDWM.html"
- },
- {
-  "id": 77,
-  "short_name": "ReSim",
-  "title": "ReSim: Reliable World Simulation for Autonomous Driving",
-  "date": "2025-06",
-  "year": "2506",
-  "venue": "預印本",
-  "keywords": [
-   "Driving World Model",
-   "Action Controllability",
-   "Simulator Data Integration",
-   "Video2Reward",
-   "Non-expert Behaviors",
-   "CARLA Simulation"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Motion Planning",
-   "Simulation"
-  ],
-  "architecture": [
-   "World Model + Planner"
-  ],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2506.09981",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2506_ReSim_2506_ReSim.html",
-  "phyra_notes": "phyra-read/notes/2506_ReSim_2506_ReSim.html"
- },
- {
-  "id": 78,
-  "short_name": "STAGE",
-  "title": "STAGE: A Stream-Centric Generative World Model for Long-Horizon Driving-Scene Simulation",
-  "date": "2025-06",
-  "year": "2506",
-  "venue": "預印本",
-  "keywords": [
-   "Streaming Video Generation",
-   "Driving World Model",
-   "Hierarchical Temporal Feature Transfer (HTFT)",
-   "Multi-stage Training",
-   "Infinite Video Generation"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Simulation"
-  ],
-  "architecture": [
-   "World Model + Planner"
-  ],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2506.13138",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2506_STAGE_2506_STAGE.html",
-  "phyra_notes": "phyra-read/notes/2506_STAGE_2506_STAGE.html"
- },
- {
-  "id": 79,
-  "short_name": "World4Drive",
-  "title": "World4Drive: End-to-End Autonomous Driving via Intention-aware Physical Latent World Model",
-  "date": "2025-07",
-  "year": "2507",
-  "venue": "預印本",
-  "keywords": [
-   "End-to-End Autonomous Driving",
-   "Latent World Model",
-   "Intention-aware Planning",
-   "Vision Foundation Model",
-   "Self-supervised Learning"
-  ],
-  "task_category": [
-   "World Model",
-   "Motion Planning",
-   "End-to-End Driving"
-  ],
-  "architecture": [
-   "End-to-End",
-   "World Model + Planner"
-  ],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2507.00603",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2507_World4Drive_2507_World4Drive.html",
-  "phyra_notes": "phyra-read/notes/2507_World4Drive_2507_World4Drive.html"
- },
- {
-  "id": 80,
-  "short_name": "TeraSim-World",
-  "title": "TeraSim-World: Worldwide Safety-Critical Data Synthesis for End-to-End Autonomous Driving",
-  "date": "2025-09",
-  "year": "2509",
-  "venue": "預印本 (Mcity/UMich)",
-  "keywords": [
-   "Safety-Critical",
-   "Data Synthesis",
-   "Long-Tail",
-   "Cosmos-Drive",
-   "Corner Cases"
-  ],
-  "task_category": [],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2509.13164",
-  "has_notes": true,
-  "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2509_TeraSim-World_2509_TeraSim-World.html",
-  "phyra_notes": "phyra-read/notes/2509_TeraSim-World_2509_TeraSim-World.html"
- },
- {
-  "id": 81,
-  "short_name": "DriveVLA-W0",
-  "title": "DriveVLA-W0: World Models Amplify Data Scaling Law in Autonomous Driving",
-  "date": "2025-10",
-  "year": "2510",
-  "venue": "預印本",
-  "keywords": [
-   "World Model",
-   "VLA",
-   "Data Scaling",
-   "Autonomous Driving",
-   "Self-Supervised"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "End-to-End Driving"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2510.12796",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2510_DriveVLA-W0_2510_DriveVLA-W0.html",
-  "phyra_notes": "phyra-read/notes/2510_DriveVLA-W0_2510_DriveVLA-W0.html"
- },
- {
-  "id": 82,
-  "short_name": "DriveLaW",
-  "title": "DriveLaW: Unifying Planning and Video Generation in a Latent Driving World",
-  "date": "2025-12",
-  "year": "2512",
-  "venue": "預印本",
-  "keywords": [
-   "World Model",
-   "Latent Space",
-   "Video Generation",
-   "Planning",
-   "Diffusion Transformer"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Motion Planning"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2512.23421",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2512_DriveLaW_2512_DriveLaW.html",
-  "phyra_notes": "phyra-read/notes/2512_DriveLaW_2512_DriveLaW.html"
- },
- {
-  "id": 83,
-  "short_name": "GaussianDWM",
-  "title": "GaussianDWM: 3D Gaussian Driving World Model for Unified Scene Understanding and Multi-Modal Generation",
-  "date": "2025-12",
-  "year": "2512",
-  "venue": "預印本",
-  "keywords": [
-   "3D Gaussian Splatting",
-   "Driving World Model",
-   "Scene Understanding",
-   "Multi-modal Generation",
-   "Vision-Language Model",
-   "Novel View Synthesis"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "3D Scene Understanding",
-   "Neural Rendering"
-  ],
-  "architecture": [
-   "World Model + Planner",
-   "Foundation Model"
-  ],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2512.23180",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2512_GaussianDWM_2512_GaussianDWM.html",
-  "phyra_notes": "phyra-read/notes/2512_GaussianDWM_2512_GaussianDWM.html"
- },
- {
-  "id": 84,
-  "short_name": "InDRiVE",
-  "title": "InDRiVE: Reward-Free World-Model Pretraining for Autonomous Driving via Latent Disagreement",
-  "date": "2025-12",
-  "year": "2512",
-  "venue": "預印本",
-  "keywords": [
-   "World Model",
-   "Reinforcement Learning",
-   "Reward-Free",
-   "Exploration",
-   "CARLA"
-  ],
-  "task_category": [
-   "World Model",
-   "End-to-End Driving",
-   "Simulation"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2512.18850",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2512_InDRiVE_2512_InDRiVE.html",
-  "phyra_notes": "phyra-read/notes/2512_InDRiVE_2512_InDRiVE.html"
- },
- {
-  "id": 85,
-  "short_name": "WorldRFT",
-  "title": "WorldRFT: Latent World Model Planning with Reinforcement Fine-Tuning for Autonomous Driving",
-  "date": "2025-12",
-  "year": "2512",
-  "venue": "AAAI 2026",
-  "keywords": [
-   "World Model",
-   "Reinforcement Learning",
-   "Planning",
-   "Safety-Aware"
-  ],
-  "task_category": [
-   "World Model",
-   "Motion Planning",
-   "End-to-End Driving"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2512.19133",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2512_WorldRFT_2512_WorldRFT.html",
-  "phyra_notes": "phyra-read/notes/2512_WorldRFT_2512_WorldRFT.html"
- },
- {
-  "id": 86,
-  "short_name": "DrivingGen",
-  "title": "DrivingGen: A Comprehensive Benchmark for Generative Video World Models in Autonomous Driving",
-  "date": "2026-01",
-  "year": "2601",
-  "venue": "預印本",
-  "keywords": [
-   "Benchmark",
-   "World Model",
-   "Video Generation",
-   "Evaluation",
-   "Autonomous Driving"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Simulation"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2601.01528",
-  "has_notes": true,
-  "relevance": "Survey",
-  "phyra_slides": "phyra-read/slides/2601_DrivingGen_2601_DrivingGen.html",
-  "phyra_notes": "phyra-read/notes/2601_DrivingGen_2601_DrivingGen.html"
- },
- {
-  "id": 87,
-  "short_name": "AD-L-JEPA",
-  "title": "Value-guided JEPA for Action Planning",
-  "date": "2026-01",
-  "year": "2601",
-  "venue": "預印本",
-  "keywords": [
-   "JEPA (Joint-Embedded Predictive Architectures)",
-   "World Model",
-   "Action Planning",
-   "Value Function",
-   "Implicit Q-Learning (IQL)",
-   "Quasimetric Distance"
-  ],
-  "task_category": [
-   "World Model",
-   "Motion Planning"
-  ],
-  "architecture": [
-   "World Model + Planner"
-  ],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2601.00844",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2601_JEPA_2601_JEPA.html",
-  "phyra_notes": "phyra-read/notes/2601_JEPA_2601_JEPA.html"
- },
- {
-  "id": 88,
-  "short_name": "NeoVerse",
-  "title": "NeoVerse: Enhancing 4D World Model with in-the-wild Monocular Videos",
-  "date": "2026-01",
-  "year": "2601",
-  "venue": "CVPR 2026",
-  "keywords": [
-   "4D World Model",
-   "Monocular Video",
-   "3D Reconstruction",
-   "Novel View Synthesis"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "3D Scene Understanding",
-   "Neural Rendering"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2601.00393",
-  "has_notes": true,
-  "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2601_NeoVerse_2601_NeoVerse.html",
-  "phyra_notes": "phyra-read/notes/2601_NeoVerse_2601_NeoVerse.html"
- },
- {
-  "id": 89,
-  "short_name": "UniDrive-WM",
-  "title": "UniDrive-WM: Unified Understanding, Planning and Generation World Model For Autonomous Driving",
-  "date": "2026-01",
-  "year": "2601",
-  "venue": "預印本",
-  "keywords": [
-   "World Model",
-   "VLM",
-   "Planning",
-   "Generation",
-   "Unified"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Motion Planning",
-   "End-to-End Driving"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2601.04453",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2601_UniDrive-WM_2601_UniDrive-WM.html",
-  "phyra_notes": "phyra-read/notes/2601_UniDrive-WM_2601_UniDrive-WM.html"
- },
- {
-  "id": 90,
-  "short_name": "RAYNOVA",
-  "title": "RAYNOVA: Scale-Temporal Autoregressive World Modeling in Ray Space",
-  "date": "2026-02",
-  "year": "2602",
-  "venue": "CVPR 2026",
-  "keywords": [
-   "World Model",
-   "Multi-View Video Generation",
-   "Ray Space",
-   "Autoregressive"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Simulation"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2602.20685",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2602_RAYNOVA_2602_RAYNOVA.html",
-  "phyra_notes": "phyra-read/notes/2602_RAYNOVA_2602_RAYNOVA.html"
- },
- {
-  "id": 91,
-  "short_name": "RaWMPC",
-  "title": "Risk-Aware World Model Predictive Control for Generalizable End-to-End Autonomous Driving",
-  "date": "2026-02",
-  "year": "2602",
-  "venue": "預印本",
-  "keywords": [
-   "World Model",
-   "Model Predictive Control",
-   "Risk-Aware",
-   "End-to-End Driving"
-  ],
-  "task_category": [
-   "World Model",
-   "Motion Planning",
-   "End-to-End Driving"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2602.23259",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2602_RaWMPC_2602_RaWMPC.html",
-  "phyra_notes": "phyra-read/notes/2602_RaWMPC_2602_RaWMPC.html"
- },
- {
-  "id": 92,
-  "short_name": "ResWorld",
-  "title": "ResWorld: Temporal Residual World Model for End-to-End Autonomous Driving",
-  "date": "2026-02",
-  "year": "2602",
-  "venue": "ICLR 2026",
-  "keywords": [
-   "World Model",
-   "Temporal Residual",
-   "Planning",
-   "Dynamic Object Modeling"
-  ],
-  "task_category": [
-   "World Model",
-   "Motion Planning",
-   "End-to-End Driving"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2602.10884",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2602_ResWorld_2602_ResWorld.html",
-  "phyra_notes": "phyra-read/notes/2602_ResWorld_2602_ResWorld.html"
- },
- {
-  "id": 93,
-  "short_name": "WaymoWM",
-  "title": "The Waymo World Model: A New Frontier For Autonomous Driving Simulation",
-  "date": "2026-02",
-  "year": "2602",
-  "venue": "Waymo Blog (2026-02-06)",
-  "keywords": [
-   "World Model",
-   "Simulation",
-   "Genie 3",
-   "Multi-Sensor",
-   "Long-Tail"
-  ],
-  "task_category": [
-   "World Model",
-   "Simulation"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "N/A (Industry Blog)",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2602_WaymoWM_2602_WaymoWM.html",
-  "phyra_notes": "phyra-read/notes/2602_WaymoWM_2602_WaymoWM.html"
- },
- {
-  "id": 94,
-  "short_name": "LatentWMSurvey",
-  "title": "Latent World Models for Automated Driving: A Unified Taxonomy, Evaluation Framework, and Open Challenges",
-  "date": "2026-03",
-  "year": "2603",
-  "venue": "預印本",
-  "keywords": [
-   "Survey",
-   "Latent World Model",
-   "Autonomous Driving",
-   "Taxonomy"
-  ],
-  "task_category": [
-   "World Model"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2603.09086",
-  "has_notes": true,
-  "relevance": "Survey",
-  "phyra_slides": "phyra-read/slides/2603_LatentWMSurvey_2603_LatentWMSurvey.html",
-  "phyra_notes": "phyra-read/notes/2603_LatentWMSurvey_2603_LatentWMSurvey.html"
- },
- {
-  "id": 95,
   "short_name": "Raw2Drive",
   "title": "Raw2Drive: Reinforcement Learning with Aligned World Models for End-to-End Autonomous Driving (in CARLA v2)",
   "date": "2025-05",
@@ -3166,7 +2497,284 @@
   "phyra_notes": "phyra-read/notes/2505_Raw2Drive_2505_Raw2Drive.html"
  },
  {
-  "id": 96,
+  "short_name": "Omni-Scene",
+  "title": "DriveX: Omni Scene Modeling for Learning Generalizable World Knowledge in Autonomous Driving",
+  "date": "2025-05",
+  "year": "2505",
+  "venue": "ICCV 2025",
+  "keywords": [
+   "World Model",
+   "Self-Supervised",
+   "Omni Scene Modeling",
+   "BEV Pre-training",
+   "Point Cloud Forecasting"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {},
+  "arxiv_id": "2505.19239",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "",
+  "phyra_notes": "phyra-read/notes/2505_Omni-Scene_2505_Omni-Scene.html",
+  "id": 77
+ },
+ {
+  "id": 78,
+  "short_name": "Cosmos-Drive-Dreams",
+  "title": "Cosmos-Drive-Dreams : Scalable Synthetic Driving Data Generation with World Foundation Models",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "World Foundation Model (WFM)",
+   "Synthetic Driving Data Generation (SDG)",
+   "Multi-view Video Generation",
+   "HDMap Conditioning",
+   "LiDAR Generation",
+   "Autonomous Driving Simulation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "Foundation Model"
+  ],
+  "ratings": {
+   "innovation": 5,
+   "technical_depth": 5,
+   "experiment_completeness": 5,
+   "writing_quality": 4,
+   "practical_value": 5,
+   "overall": 5
+  },
+  "arxiv_id": "2506.09042",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html",
+  "phyra_notes": "phyra-read/notes/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html"
+ },
+ {
+  "id": 79,
+  "short_name": "Epona",
+  "title": "Epona: Autoregressive Diffusion World Model for Autonomous Driving",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "Autoregressive Diffusion",
+   "Driving World Model",
+   "Long-horizon Video Generation",
+   "Trajectory Planning",
+   "Flow Matching"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [
+   "End-to-End",
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2506.24113",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2506_Epona_2506_Epona.html",
+  "phyra_notes": "phyra-read/notes/2506_Epona_2506_Epona.html"
+ },
+ {
+  "id": 80,
+  "short_name": "LongDWM",
+  "title": "LongDWM: Cross-Granularity Distillation for Building a Long-Term Driving World Model",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "Driving World Model",
+   "Long Video Generation",
+   "Diffusion Transformer (DiT)",
+   "Cross-Granularity Distillation",
+   "Error Accumulation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2506.01546",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2506_LongDWM_2506_LongDWM.html",
+  "phyra_notes": "phyra-read/notes/2506_LongDWM_2506_LongDWM.html"
+ },
+ {
+  "id": 81,
+  "short_name": "ReSim",
+  "title": "ReSim: Reliable World Simulation for Autonomous Driving",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "Driving World Model",
+   "Action Controllability",
+   "Simulator Data Integration",
+   "Video2Reward",
+   "Non-expert Behaviors",
+   "CARLA Simulation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2506.09981",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2506_ReSim_2506_ReSim.html",
+  "phyra_notes": "phyra-read/notes/2506_ReSim_2506_ReSim.html"
+ },
+ {
+  "id": 82,
+  "short_name": "STAGE",
+  "title": "STAGE: A Stream-Centric Generative World Model for Long-Horizon Driving-Scene Simulation",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "預印本",
+  "keywords": [
+   "Streaming Video Generation",
+   "Driving World Model",
+   "Hierarchical Temporal Feature Transfer (HTFT)",
+   "Multi-stage Training",
+   "Infinite Video Generation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2506.13138",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2506_STAGE_2506_STAGE.html",
+  "phyra_notes": "phyra-read/notes/2506_STAGE_2506_STAGE.html"
+ },
+ {
+  "short_name": "DIO",
+  "title": "DIO: Decomposable Implicit 4D Occupancy-Flow World Model",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "CVPR 2025",
+  "keywords": [
+   "World Model",
+   "4D Occupancy",
+   "Occupancy Flow",
+   "Implicit Representation",
+   "LiDAR"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {},
+  "arxiv_id": "",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "",
+  "phyra_notes": "phyra-read/notes/2412_DIO_2412_DIO.html",
+  "id": 83
+ },
+ {
+  "id": 84,
+  "short_name": "World4Drive",
+  "title": "World4Drive: End-to-End Autonomous Driving via Intention-aware Physical Latent World Model",
+  "date": "2025-07",
+  "year": "2507",
+  "venue": "預印本",
+  "keywords": [
+   "End-to-End Autonomous Driving",
+   "Latent World Model",
+   "Intention-aware Planning",
+   "Vision Foundation Model",
+   "Self-supervised Learning"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "End-to-End",
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2507.00603",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2507_World4Drive_2507_World4Drive.html",
+  "phyra_notes": "phyra-read/notes/2507_World4Drive_2507_World4Drive.html"
+ },
+ {
+  "id": 85,
   "short_name": "I2-World",
   "title": "I²-World: Intra-Inter Tokenization for Efficient Dynamic 4D Scene Forecasting",
   "date": "2025-07",
@@ -3200,7 +2808,7 @@
   "phyra_notes": "phyra-read/notes/2507_I2-World_2507_I2-World.html"
  },
  {
-  "id": 97,
+  "id": 86,
   "short_name": "LiDARCrafter",
   "title": "LiDARCrafter: Dynamic 4D World Modeling from LiDAR Sequences",
   "date": "2025-08",
@@ -3235,5 +2843,653 @@
   "relevance": "Long Tail & Corner Case",
   "phyra_slides": "phyra-read/slides/2508_LiDARCrafter_2508_LiDARCrafter.html",
   "phyra_notes": "phyra-read/notes/2508_LiDARCrafter_2508_LiDARCrafter.html"
+ },
+ {
+  "id": 87,
+  "short_name": "TeraSim-World",
+  "title": "TeraSim-World: Worldwide Safety-Critical Data Synthesis for End-to-End Autonomous Driving",
+  "date": "2025-09",
+  "year": "2509",
+  "venue": "預印本 (Mcity/UMich)",
+  "keywords": [
+   "Safety-Critical",
+   "Data Synthesis",
+   "Long-Tail",
+   "Cosmos-Drive",
+   "Corner Cases"
+  ],
+  "task_category": [],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2509.13164",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2509_TeraSim-World_2509_TeraSim-World.html",
+  "phyra_notes": "phyra-read/notes/2509_TeraSim-World_2509_TeraSim-World.html"
+ },
+ {
+  "short_name": "OccTENS",
+  "title": "OccTENS: 3D Occupancy World Model via Temporal Next-Scale Prediction",
+  "date": "2025-09",
+  "year": "2509",
+  "venue": "RA-L 2026",
+  "keywords": [
+   "World Model",
+   "Occupancy Prediction",
+   "Next-Scale Prediction",
+   "Temporal Modeling"
+  ],
+  "task_category": [
+   "World Model",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {},
+  "arxiv_id": "2509.03887",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "",
+  "phyra_notes": "phyra-read/notes/2509_OccTENS_2509_OccTENS.html",
+  "id": 88
+ },
+ {
+  "id": 89,
+  "short_name": "DriveVLA-W0",
+  "title": "DriveVLA-W0: World Models Amplify Data Scaling Law in Autonomous Driving",
+  "date": "2025-10",
+  "year": "2510",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "VLA",
+   "Data Scaling",
+   "Autonomous Driving",
+   "Self-Supervised"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2510.12796",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2510_DriveVLA-W0_2510_DriveVLA-W0.html",
+  "phyra_notes": "phyra-read/notes/2510_DriveVLA-W0_2510_DriveVLA-W0.html"
+ },
+ {
+  "id": 90,
+  "short_name": "DriveLaW",
+  "title": "DriveLaW: Unifying Planning and Video Generation in a Latent Driving World",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Latent Space",
+   "Video Generation",
+   "Planning",
+   "Diffusion Transformer"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.23421",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2512_DriveLaW_2512_DriveLaW.html",
+  "phyra_notes": "phyra-read/notes/2512_DriveLaW_2512_DriveLaW.html"
+ },
+ {
+  "id": 91,
+  "short_name": "GaussianDWM",
+  "title": "GaussianDWM: 3D Gaussian Driving World Model for Unified Scene Understanding and Multi-Modal Generation",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "3D Gaussian Splatting",
+   "Driving World Model",
+   "Scene Understanding",
+   "Multi-modal Generation",
+   "Vision-Language Model",
+   "Novel View Synthesis"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Neural Rendering"
+  ],
+  "architecture": [
+   "World Model + Planner",
+   "Foundation Model"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.23180",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2512_GaussianDWM_2512_GaussianDWM.html",
+  "phyra_notes": "phyra-read/notes/2512_GaussianDWM_2512_GaussianDWM.html"
+ },
+ {
+  "id": 92,
+  "short_name": "InDRiVE",
+  "title": "InDRiVE: Reward-Free World-Model Pretraining for Autonomous Driving via Latent Disagreement",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Reinforcement Learning",
+   "Reward-Free",
+   "Exploration",
+   "CARLA"
+  ],
+  "task_category": [
+   "World Model",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.18850",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2512_InDRiVE_2512_InDRiVE.html",
+  "phyra_notes": "phyra-read/notes/2512_InDRiVE_2512_InDRiVE.html"
+ },
+ {
+  "id": 93,
+  "short_name": "WorldRFT",
+  "title": "WorldRFT: Latent World Model Planning with Reinforcement Fine-Tuning for Autonomous Driving",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "AAAI 2026",
+  "keywords": [
+   "World Model",
+   "Reinforcement Learning",
+   "Planning",
+   "Safety-Aware"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.19133",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2512_WorldRFT_2512_WorldRFT.html",
+  "phyra_notes": "phyra-read/notes/2512_WorldRFT_2512_WorldRFT.html"
+ },
+ {
+  "short_name": "VDD",
+  "title": "Vehicle Dynamics Embedded World Models for Autonomous Driving",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Vehicle Dynamics",
+   "DreamerV3",
+   "RSSM",
+   "MBRL",
+   "Sim-to-Real"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {},
+  "arxiv_id": "2512.02417",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "",
+  "phyra_notes": "phyra-read/notes/2512_VDD_2512_VDD.html",
+  "id": 94
+ },
+ {
+  "short_name": "WAM-Flow",
+  "title": "WAM-Flow: Parallel Coarse-to-Fine Motion Planning via Discrete Flow Matching for Autonomous Driving",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "CVPR 2026",
+  "keywords": [
+   "VLA",
+   "Discrete Flow Matching",
+   "Motion Planning",
+   "GRPO",
+   "Parallel Decoding"
+  ],
+  "task_category": [
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "End-to-End"
+  ],
+  "ratings": {},
+  "arxiv_id": "2512.06112",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "",
+  "phyra_notes": "phyra-read/notes/2512_WAM-Flow_2512_WAM-Flow.html",
+  "id": 95
+ },
+ {
+  "id": 96,
+  "short_name": "DrivingGen",
+  "title": "DrivingGen: A Comprehensive Benchmark for Generative Video World Models in Autonomous Driving",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "預印本",
+  "keywords": [
+   "Benchmark",
+   "World Model",
+   "Video Generation",
+   "Evaluation",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.01528",
+  "has_notes": true,
+  "relevance": "Survey",
+  "phyra_slides": "phyra-read/slides/2601_DrivingGen_2601_DrivingGen.html",
+  "phyra_notes": "phyra-read/notes/2601_DrivingGen_2601_DrivingGen.html"
+ },
+ {
+  "id": 97,
+  "short_name": "AD-L-JEPA",
+  "title": "Value-guided JEPA for Action Planning",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "預印本",
+  "keywords": [
+   "JEPA (Joint-Embedded Predictive Architectures)",
+   "World Model",
+   "Action Planning",
+   "Value Function",
+   "Implicit Q-Learning (IQL)",
+   "Quasimetric Distance"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.00844",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2601_JEPA_2601_JEPA.html",
+  "phyra_notes": "phyra-read/notes/2601_JEPA_2601_JEPA.html"
+ },
+ {
+  "id": 98,
+  "short_name": "NeoVerse",
+  "title": "NeoVerse: Enhancing 4D World Model with in-the-wild Monocular Videos",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "CVPR 2026",
+  "keywords": [
+   "4D World Model",
+   "Monocular Video",
+   "3D Reconstruction",
+   "Novel View Synthesis"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "3D Scene Understanding",
+   "Neural Rendering"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.00393",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "phyra-read/slides/2601_NeoVerse_2601_NeoVerse.html",
+  "phyra_notes": "phyra-read/notes/2601_NeoVerse_2601_NeoVerse.html"
+ },
+ {
+  "id": 99,
+  "short_name": "UniDrive-WM",
+  "title": "UniDrive-WM: Unified Understanding, Planning and Generation World Model For Autonomous Driving",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "VLM",
+   "Planning",
+   "Generation",
+   "Unified"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.04453",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2601_UniDrive-WM_2601_UniDrive-WM.html",
+  "phyra_notes": "phyra-read/notes/2601_UniDrive-WM_2601_UniDrive-WM.html"
+ },
+ {
+  "short_name": "Alpamayo",
+  "title": "NVIDIA Alpamayo: Building Autonomous Vehicles That Reason",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "NVIDIA Developer Blog",
+  "keywords": [
+   "VLA",
+   "Reasoning",
+   "Chain-of-Thought",
+   "AlpaSim",
+   "Open-Source"
+  ],
+  "task_category": [
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [
+   "End-to-End"
+  ],
+  "ratings": {},
+  "arxiv_id": "",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_slides": "",
+  "phyra_notes": "phyra-read/notes/2601_Alpamayo_2601_Alpamayo.html",
+  "id": 100
+ },
+ {
+  "id": 101,
+  "short_name": "RAYNOVA",
+  "title": "RAYNOVA: Scale-Temporal Autoregressive World Modeling in Ray Space",
+  "date": "2026-02",
+  "year": "2602",
+  "venue": "CVPR 2026",
+  "keywords": [
+   "World Model",
+   "Multi-View Video Generation",
+   "Ray Space",
+   "Autoregressive"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2602.20685",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2602_RAYNOVA_2602_RAYNOVA.html",
+  "phyra_notes": "phyra-read/notes/2602_RAYNOVA_2602_RAYNOVA.html"
+ },
+ {
+  "id": 102,
+  "short_name": "RaWMPC",
+  "title": "Risk-Aware World Model Predictive Control for Generalizable End-to-End Autonomous Driving",
+  "date": "2026-02",
+  "year": "2602",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Model Predictive Control",
+   "Risk-Aware",
+   "End-to-End Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2602.23259",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2602_RaWMPC_2602_RaWMPC.html",
+  "phyra_notes": "phyra-read/notes/2602_RaWMPC_2602_RaWMPC.html"
+ },
+ {
+  "id": 103,
+  "short_name": "ResWorld",
+  "title": "ResWorld: Temporal Residual World Model for End-to-End Autonomous Driving",
+  "date": "2026-02",
+  "year": "2602",
+  "venue": "ICLR 2026",
+  "keywords": [
+   "World Model",
+   "Temporal Residual",
+   "Planning",
+   "Dynamic Object Modeling"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2602.10884",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2602_ResWorld_2602_ResWorld.html",
+  "phyra_notes": "phyra-read/notes/2602_ResWorld_2602_ResWorld.html"
+ },
+ {
+  "id": 104,
+  "short_name": "WaymoWM",
+  "title": "The Waymo World Model: A New Frontier For Autonomous Driving Simulation",
+  "date": "2026-02",
+  "year": "2602",
+  "venue": "Waymo Blog (2026-02-06)",
+  "keywords": [
+   "World Model",
+   "Simulation",
+   "Genie 3",
+   "Multi-Sensor",
+   "Long-Tail"
+  ],
+  "task_category": [
+   "World Model",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "N/A (Industry Blog)",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "phyra-read/slides/2602_WaymoWM_2602_WaymoWM.html",
+  "phyra_notes": "phyra-read/notes/2602_WaymoWM_2602_WaymoWM.html"
+ },
+ {
+  "id": 105,
+  "short_name": "LatentWMSurvey",
+  "title": "Latent World Models for Automated Driving: A Unified Taxonomy, Evaluation Framework, and Open Challenges",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Survey",
+   "Latent World Model",
+   "Autonomous Driving",
+   "Taxonomy"
+  ],
+  "task_category": [
+   "World Model"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.09086",
+  "has_notes": true,
+  "relevance": "Survey",
+  "phyra_slides": "phyra-read/slides/2603_LatentWMSurvey_2603_LatentWMSurvey.html",
+  "phyra_notes": "phyra-read/notes/2603_LatentWMSurvey_2603_LatentWMSurvey.html"
+ },
+ {
+  "short_name": "X-World",
+  "title": "X-World: Controllable Ego-Centric Multi-Camera World Models for Scalable End-to-End Driving",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Multi-Camera Video Generation",
+   "Action-Conditioned",
+   "End-to-End Driving",
+   "VLA Training"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {},
+  "arxiv_id": "2603.19979",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_slides": "",
+  "phyra_notes": "phyra-read/notes/2603_X-World_2603_X-World.html",
+  "id": 106
  }
 ]

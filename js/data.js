@@ -7,7 +7,7 @@ const notesCache = new Map();
 
 export async function loadPapers() {
   if (papersCache) return papersCache;
-  const resp = await fetch('data/papers.json');
+  const resp = await fetch('data/papers.json?v=' + Date.now());
   if (!resp.ok) throw new Error(`Failed to load papers.json: ${resp.status}`);
   papersCache = await resp.json();
   return papersCache;
