@@ -1,0 +1,20 @@
+{
+ "sections": {
+  "basic_info": "## 1. 基本資訊\n\n\n\n| 項目 | 內容 |\n|------|------|\n| **論文簡稱** | VideoGenWMSurvey |\n| **論文全稱** | Video Generation Models as World Models: Efficient Paradigms, Architectures and Algorithms |\n| **arXiv ID** | 2603.28489 |\n| **PDF 檔案** | [PDF](../papers/2603_VideoGenWMSurvey/2603_VideoGenWMSurvey.pdf) |\n| **釋出日期** | 2026-03 |\n| **發表會議/期刊** | 預印本 |\n| **論文連結** | https://arxiv.org/abs/2603.28489 |\n| **程式碼連結** | (待補充) |\n| **專案主頁** | (待補充) |\n\n### 1.1 作者資訊\n\nMuyang He, Hanzhong Guo, Junxiong Lin, Yizhou Yu\n\n### 1.2 關鍵詞\n\n- Video Generation\n- World Models\n- Computational Efficiency\n- Spatiotemporal Modeling\n- Autonomous Systems\n\n---",
+  "research_overview": "## 2. 研究概述\n\n\n\n### 2.1 研究主題\n\n> A survey on efficient video generation as world models, organized around three dimensions: efficient modeling paradigms, efficient network architectures, and efficient inference algorithms — with applications to autonomous driving, embodied AI, and game simulation.\n\n### 2.2 研究領域分類\n\n- [ ] World Model (世界模型)\n- [x] Video Generation (影片生成)\n- [ ] 3D Scene Understanding (3D場景理解)\n- [ ] Motion Planning (運動規劃)\n- [ ] End-to-End Driving (端到端駕駛)\n- [ ] Simulation (模擬器)\n- [ ] Occupancy Prediction (佔用預測)\n- [ ] Neural Rendering (神經渲染)\n\n### 2.3 所使用的自動駕駛架構\n\n- [ ] **Modular Pipeline** (模組化管線)\n- [ ] **End-to-End** (端到端)\n- [x] **World Model + Planner** (世界模型 + 規劃器)\n- [ ] **Foundation Model** (基石模型)\n\n---",
+  "paper_assessment": "## 3. 論文評價\n\n\n\n### 3.1 影響程度評級\n\n| 評分維度 | 分數 (1-5) | 說明 |\n|---------|-----------|------|\n| **創新性** | ⭐⭐⭐ | |\n| **技術深度** | ⭐⭐⭐ | |\n| **實驗完整度** | ⭐⭐⭐ | |\n| **寫作品質** | ⭐⭐⭐ | |\n| **綜合評分** | ⭐⭐⭐ | |\n\n### 3.2 論文亮點\n\n1.\n2.\n3.\n\n### 3.3 論文不足\n\n1.\n2.\n3.\n\n---",
+  "problems_motivation": "## 4. 問題與動機\n\n\n\n### 4.1 故事線 (Introduction 脈絡)\n\n>\n\n### 4.2 現有方法的痛點/局限性\n\n| 痛點 | 具體描述 | 影響 |\n|-----|---------|------|\n| | | |\n\n### 4.3 本文提出的核心觀點\n\n>\n\n### 4.4 研究問題 (Research Questions)\n\n1. **RQ1**:\n2. **RQ2**:\n3. **RQ3**:\n\n---",
+  "contributions": "## 5. 貢獻點\n\n\n\n### 5.1 主要貢獻 (論文原文列出)\n\n1.\n2.\n3.\n\n---",
+  "related_work": "## 6. 相關工作\n\n\n\n### 6.1 涉及領域\n\n- [ ] Driving World Models\n- [ ] Video Diffusion Models\n- [ ] 3D Gaussian Splatting\n- [ ] Occupancy Networks\n- [ ] Neural Radiance Fields (NeRF)\n- [ ] Vision-Language Models\n- [ ] Motion Prediction\n- [ ] Trajectory Planning\n- [ ] Autonomous Driving Simulation\n\n### 6.2 相關工作簡述\n\n(待補充)\n\n---",
+  "methodology": "## 7. 方法論\n\n\n\n### 7.1 方法概述\n\n> (待補充)\n\n---",
+  "model_details": "## 8. 模型細節\n\n\n\n(待補充)\n\n---",
+  "training_settings": "## 9. 訓練設定\n\n\n\n(待補充)\n\n---",
+  "experiments": "## 10. 實驗評估\n\n\n\n(待補充)\n\n---",
+  "results": "## 11. 實驗結果\n\n\n\n(待補充)\n\n---",
+  "discussion": "## 12. 討論與分析\n\n\n\n(待補充)\n\n---",
+  "personal_thoughts": "## 13. 個人思考\n\n\n\n(待補充)\n\n---",
+  "key_citations": "## 14. 重要引用\n\n\n\n(待補充)\n\n---",
+  "appendix": "## 15. 附錄\n\n\n\n### 15.1 Markdown 全文\n\n[閱讀完整 Markdown](../papers/2603_VideoGenWMSurvey/2603_VideoGenWMSurvey.md)\n\n---\n\n**閱讀完成日期**：\n\n**推薦指數**：⭐⭐⭐⭐⭐\n\n---"
+ },
+ "short_name": "VideoGenWMSurvey"
+}

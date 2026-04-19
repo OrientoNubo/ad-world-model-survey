@@ -31,8 +31,8 @@
   "arxiv_id": "2303.04116",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2303_TrafficBots_2303_TrafficBots.html",
-  "phyra_notes": "phyra-read/notes/2303_TrafficBots_2303_TrafficBots.html"
+  "phyra_notes": "phyra-read/notes/2303_TrafficBots_2303_TrafficBots.html",
+  "phyra_slides": "phyra-read/slides/2303_TrafficBots_2303_TrafficBots.html"
  },
  {
   "id": 2,
@@ -60,8 +60,8 @@
   "arxiv_id": "2306.06344",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2306_CTG++_2306_NVIDIA.html",
-  "phyra_notes": "phyra-read/notes/2306_CTG++_2306_NVIDIA.html"
+  "phyra_notes": "phyra-read/notes/2306_CTG++_2306_NVIDIA.html",
+  "phyra_slides": "phyra-read/slides/2306_CTG++_2306_NVIDIA.html"
  },
  {
   "id": 3,
@@ -89,8 +89,8 @@
   "arxiv_id": "2308.01898",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2308_UniSim_2308_UniSim.html",
-  "phyra_notes": "phyra-read/notes/2308_UniSim_2308_UniSim.html"
+  "phyra_notes": "phyra-read/notes/2308_UniSim_2308_UniSim.html",
+  "phyra_slides": "phyra-read/slides/2308_UniSim_2308_UniSim.html"
  },
  {
   "id": 4,
@@ -124,8 +124,8 @@
   "arxiv_id": "2308.07234",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2308_UniWorld_2308_UniWorld.html",
-  "phyra_notes": "phyra-read/notes/2308_UniWorld_2308_UniWorld.html"
+  "phyra_notes": "phyra-read/notes/2308_UniWorld_2308_UniWorld.html",
+  "phyra_slides": "phyra-read/slides/2308_UniWorld_2308_UniWorld.html"
  },
  {
   "id": 5,
@@ -159,8 +159,8 @@
   "arxiv_id": "2309.09777",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2309_DriveDreamer_2309_DriveDreamer.html",
-  "phyra_notes": "phyra-read/notes/2309_DriveDreamer_2309_DriveDreamer.html"
+  "phyra_notes": "phyra-read/notes/2309_DriveDreamer_2309_DriveDreamer.html",
+  "phyra_slides": "phyra-read/slides/2309_DriveDreamer_2309_DriveDreamer.html"
  },
  {
   "id": 6,
@@ -194,12 +194,12 @@
   "arxiv_id": "2309.17080",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2309_GAIA-1_2309_GAIA.html",
-  "phyra_notes": "phyra-read/notes/2309_GAIA-1_2309_GAIA.html"
+  "phyra_notes": "phyra-read/notes/2309_GAIA-1_2309_GAIA.html",
+  "phyra_slides": "phyra-read/slides/2309_GAIA-1_2309_GAIA.html"
  },
  {
   "id": 7,
-  "short_name": "MagicDrive",
+  "short_name": "AGIC",
   "title": "MagicDrive: Street View Generation with Diverse 3D Geometry Control",
   "date": "2023-10",
   "year": "2310",
@@ -223,9 +223,9 @@
   },
   "arxiv_id": "2310.02601",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2310_MagicDrive_2310_AGIC.html",
-  "phyra_notes": "phyra-read/notes/2310_MagicDrive_2310_AGIC.html"
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
  },
  {
   "id": 8,
@@ -260,8 +260,8 @@
   "arxiv_id": "2310.06114",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2310_UniSim-Interactive_2310_EARNING.html",
-  "phyra_notes": "phyra-read/notes/2310_UniSim-Interactive_2310_EARNING.html"
+  "phyra_notes": "phyra-read/notes/2310_UniSim-Interactive_2310_EARNING.html",
+  "phyra_slides": "phyra-read/slides/2310_UniSim-Interactive_2310_EARNING.html"
  },
  {
   "id": 9,
@@ -289,8 +289,8 @@
   "arxiv_id": "2310.08710",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2310_Waymax_2310_Waymax.html",
-  "phyra_notes": "phyra-read/notes/2310_Waymax_2310_Waymax.html"
+  "phyra_notes": "phyra-read/notes/2310_Waymax_2310_Waymax.html",
+  "phyra_slides": "phyra-read/slides/2310_Waymax_2310_Waymax.html"
  },
  {
   "id": 10,
@@ -324,8 +324,8 @@
   "arxiv_id": "2311.13549",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2311_ADriver-I_2311_MEGVII.html",
-  "phyra_notes": "phyra-read/notes/2311_ADriver-I_2311_MEGVII.html"
+  "phyra_notes": "phyra-read/notes/2311_ADriver-I_2311_MEGVII.html",
+  "phyra_slides": "phyra-read/slides/2311_ADriver-I_2311_MEGVII.html"
  },
  {
   "id": 11,
@@ -353,11 +353,40 @@
   "arxiv_id": "2311.17663",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2311_Cam4DOcc_2311_Cam4DOcc.html",
-  "phyra_notes": "phyra-read/notes/2311_Cam4DOcc_2311_Cam4DOcc.html"
+  "phyra_notes": "phyra-read/notes/2311_Cam4DOcc_2311_Cam4DOcc.html",
+  "phyra_slides": "phyra-read/slides/2311_Cam4DOcc_2311_Cam4DOcc.html"
  },
  {
   "id": 12,
+  "short_name": "Copilot4D",
+  "title": "Copilot4D: Learning Unsupervised World Models for Autonomous Driving via Discrete Diffusion",
+  "date": "2023-11",
+  "year": "2311",
+  "venue": "預印本",
+  "keywords": [
+   "World Model, Discrete Diffusion, VQVAE, MaskGIT, Point Cloud Forecasting, LiDAR, BEV, Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2311.01017",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "phyra-read/notes/2311_Copilot4D_2311_OPILOT.html",
+  "phyra_slides": "phyra-read/slides/2311_Copilot4D_2311_OPILOT.html"
+ },
+ {
+  "id": 13,
   "short_name": "Drive-WM",
   "title": "Driving into the Future: Multiview Visual Forecasting and Planning with World Model for Autonomous Driving",
   "date": "2023-11",
@@ -389,11 +418,11 @@
   "arxiv_id": "2311.17918",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2311_Drive-WM_2311_CASIA.html",
-  "phyra_notes": "phyra-read/notes/2311_Drive-WM_2311_CASIA.html"
+  "phyra_notes": "phyra-read/notes/2311_Drive-WM_2311_CASIA.html",
+  "phyra_slides": "phyra-read/slides/2311_Drive-WM_2311_CASIA.html"
  },
  {
-  "id": 13,
+  "id": 14,
   "short_name": "MUVO",
   "title": "MUVO: A Multimodal Generative World Model for Autonomous Driving with Geometric Representations",
   "date": "2023-11",
@@ -418,11 +447,11 @@
   "arxiv_id": "2311.11762",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2311_MUVO_2311_MUVO.html",
-  "phyra_notes": "phyra-read/notes/2311_MUVO_2311_MUVO.html"
+  "phyra_notes": "phyra-read/notes/2311_MUVO_2311_MUVO.html",
+  "phyra_slides": "phyra-read/slides/2311_MUVO_2311_MUVO.html"
  },
  {
-  "id": 14,
+  "id": 15,
   "short_name": "NeuRAD",
   "title": "NeuRAD: Neural Rendering for Autonomous Driving",
   "date": "2023-11",
@@ -447,37 +476,8 @@
   "arxiv_id": "2311.15260",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2311_NeuRAD_2311_NeuRAD.html",
-  "phyra_notes": "phyra-read/notes/2311_NeuRAD_2311_NeuRAD.html"
- },
- {
-  "id": 15,
-  "short_name": "Copilot4D",
-  "title": "Copilot4D: Learning Unsupervised World Models for Autonomous Driving via Discrete Diffusion",
-  "date": "2023-11",
-  "year": "2311",
-  "venue": "預印本",
-  "keywords": [
-   "World Model, Discrete Diffusion, VQVAE, MaskGIT, Point Cloud Forecasting, LiDAR, BEV, Autonomous Driving"
-  ],
-  "task_category": [
-   "World Model",
-   "Occupancy Prediction"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2311.01017",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2311_Copilot4D_2311_OPILOT.html",
-  "phyra_notes": "phyra-read/notes/2311_Copilot4D_2311_OPILOT.html"
+  "phyra_notes": "phyra-read/notes/2311_NeuRAD_2311_NeuRAD.html",
+  "phyra_slides": "phyra-read/slides/2311_NeuRAD_2311_NeuRAD.html"
  },
  {
   "id": 16,
@@ -507,8 +507,8 @@
   "arxiv_id": "2311.16038",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2311_OccWorld_2311_OccWorld.html",
-  "phyra_notes": "phyra-read/notes/2311_OccWorld_2311_OccWorld.html"
+  "phyra_notes": "phyra-read/notes/2311_OccWorld_2311_OccWorld.html",
+  "phyra_slides": "phyra-read/slides/2311_OccWorld_2311_OccWorld.html"
  },
  {
   "id": 17,
@@ -540,8 +540,8 @@
   "arxiv_id": "2311.16813",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2311_Panacea_2311_MEGVII.html",
-  "phyra_notes": "phyra-read/notes/2311_Panacea_2311_MEGVII.html"
+  "phyra_notes": "phyra-read/notes/2311_Panacea_2311_MEGVII.html",
+  "phyra_slides": "phyra-read/slides/2311_Panacea_2311_MEGVII.html"
  },
  {
   "id": 18,
@@ -570,8 +570,8 @@
   "arxiv_id": "|",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2312_DrivingGaussian_2312_DrivingGaussian.html",
-  "phyra_notes": "phyra-read/notes/2312_DrivingGaussian_2312_DrivingGaussian.html"
+  "phyra_notes": "phyra-read/notes/2312_DrivingGaussian_2312_DrivingGaussian.html",
+  "phyra_slides": "phyra-read/slides/2312_DrivingGaussian_2312_DrivingGaussian.html"
  },
  {
   "id": 19,
@@ -601,8 +601,8 @@
   "arxiv_id": "2312.17655",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2312_ViDAR_2312_ViDAR.html",
-  "phyra_notes": "phyra-read/notes/2312_ViDAR_2312_ViDAR.html"
+  "phyra_notes": "phyra-read/notes/2312_ViDAR_2312_ViDAR.html",
+  "phyra_slides": "phyra-read/slides/2312_ViDAR_2312_ViDAR.html"
  },
  {
   "id": 20,
@@ -633,8 +633,8 @@
   "arxiv_id": "2312.02934",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2312_WoVoGen_2312_WoVoGen.html",
-  "phyra_notes": "phyra-read/notes/2312_WoVoGen_2312_WoVoGen.html"
+  "phyra_notes": "phyra-read/notes/2312_WoVoGen_2312_WoVoGen.html",
+  "phyra_slides": "phyra-read/slides/2312_WoVoGen_2312_WoVoGen.html"
  },
  {
   "id": 21,
@@ -663,8 +663,8 @@
   "arxiv_id": "|",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2401_StreetGaussians_2401_Street.html",
-  "phyra_notes": "phyra-read/notes/2401_StreetGaussians_2401_Street.html"
+  "phyra_notes": "phyra-read/notes/2401_StreetGaussians_2401_Street.html",
+  "phyra_slides": "phyra-read/slides/2401_StreetGaussians_2401_Street.html"
  },
  {
   "id": 22,
@@ -692,8 +692,8 @@
   "arxiv_id": "|",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2402_GenAD_2402_GenAD.html",
-  "phyra_notes": "phyra-read/notes/2402_GenAD_2402_GenAD.html"
+  "phyra_notes": "phyra-read/notes/2402_GenAD_2402_GenAD.html",
+  "phyra_slides": "phyra-read/slides/2402_GenAD_2402_GenAD.html"
  },
  {
   "id": 23,
@@ -725,8 +725,8 @@
   "arxiv_id": "2402.16720",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2402_Think2Drive_2402_Think2Drive.html",
-  "phyra_notes": "phyra-read/notes/2402_Think2Drive_2402_Think2Drive.html"
+  "phyra_notes": "phyra-read/notes/2402_Think2Drive_2402_Think2Drive.html",
+  "phyra_slides": "phyra-read/slides/2402_Think2Drive_2402_Think2Drive.html"
  },
  {
   "id": 24,
@@ -755,8 +755,8 @@
   "arxiv_id": "2403.06845",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2403_DriveDreamer-2_2403_DriveDreamer.html",
-  "phyra_notes": "phyra-read/notes/2403_DriveDreamer-2_2403_DriveDreamer.html"
+  "phyra_notes": "phyra-read/notes/2403_DriveDreamer-2_2403_DriveDreamer.html",
+  "phyra_slides": "phyra-read/slides/2403_DriveDreamer-2_2403_DriveDreamer.html"
  },
  {
   "id": 25,
@@ -785,12 +785,12 @@
   "arxiv_id": "|",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2403_NuPlanBenchmark_2403_Towards.html",
-  "phyra_notes": "phyra-read/notes/2403_NuPlanBenchmark_2403_Towards.html"
+  "phyra_notes": "phyra-read/notes/2403_NuPlanBenchmark_2403_Towards.html",
+  "phyra_slides": "phyra-read/slides/2403_NuPlanBenchmark_2403_Towards.html"
  },
  {
   "id": 26,
-  "short_name": "3D-VLA",
+  "short_name": "PALM",
   "title": "3D-VLA: A 3D Vision-Language-Action Generative World Model",
   "date": "2024-03",
   "year": "2403",
@@ -818,8 +818,8 @@
   "arxiv_id": "2403.09631",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2403_3D-VLA_2403_PALM.html",
-  "phyra_notes": "phyra-read/notes/2403_3D-VLA_2403_PALM.html"
+  "phyra_notes": "",
+  "phyra_slides": ""
  },
  {
   "id": 27,
@@ -852,8 +852,8 @@
   "arxiv_id": "2403.20079",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2403_SGD_2403_SGD.html",
-  "phyra_notes": "phyra-read/notes/2403_SGD_2403_SGD.html"
+  "phyra_notes": "phyra-read/notes/2403_SGD_2403_SGD.html",
+  "phyra_slides": "phyra-read/slides/2403_SGD_2403_SGD.html"
  },
  {
   "id": 28,
@@ -881,8 +881,8 @@
   "arxiv_id": "|",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2403_SubjectDrive_2403_SubjectDrive.html",
-  "phyra_notes": "phyra-read/notes/2403_SubjectDrive_2403_SubjectDrive.html"
+  "phyra_notes": "phyra-read/notes/2403_SubjectDrive_2403_SubjectDrive.html",
+  "phyra_slides": "phyra-read/slides/2403_SubjectDrive_2403_SubjectDrive.html"
  },
  {
   "id": 29,
@@ -920,8 +920,8 @@
   "arxiv_id": "2403.02622",
   "has_notes": true,
   "relevance": "Survey",
-  "phyra_slides": "phyra-read/slides/2403_WorldModelSurvey_2403_World.html",
-  "phyra_notes": "phyra-read/notes/2403_WorldModelSurvey_2403_World.html"
+  "phyra_notes": "phyra-read/notes/2403_WorldModelSurvey_2403_World.html",
+  "phyra_slides": "phyra-read/slides/2403_WorldModelSurvey_2403_World.html"
  },
  {
   "id": 30,
@@ -954,8 +954,8 @@
   "arxiv_id": "2404.02903",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2404_LidarDM_2404_LidarDM.html",
-  "phyra_notes": "phyra-read/notes/2404_LidarDM_2404_LidarDM.html"
+  "phyra_notes": "phyra-read/notes/2404_LidarDM_2404_LidarDM.html",
+  "phyra_slides": "phyra-read/slides/2404_LidarDM_2404_LidarDM.html"
  },
  {
   "id": 31,
@@ -986,8 +986,8 @@
   "arxiv_id": "2405.04390",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2405_DriveWorld_2405_DriveWorld.html",
-  "phyra_notes": "phyra-read/notes/2405_DriveWorld_2405_DriveWorld.html"
+  "phyra_notes": "phyra-read/notes/2405_DriveWorld_2405_DriveWorld.html",
+  "phyra_slides": "phyra-read/slides/2405_DriveWorld_2405_DriveWorld.html"
  },
  {
   "id": 32,
@@ -1017,8 +1017,8 @@
   "arxiv_id": "|",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2405_MagicDrive3D_2405_MagicDrive3D.html",
-  "phyra_notes": "phyra-read/notes/2405_MagicDrive3D_2405_MagicDrive3D.html"
+  "phyra_notes": "phyra-read/notes/2405_MagicDrive3D_2405_MagicDrive3D.html",
+  "phyra_slides": "phyra-read/slides/2405_MagicDrive3D_2405_MagicDrive3D.html"
  },
  {
   "id": 33,
@@ -1052,45 +1052,11 @@
   "arxiv_id": "2405.20337",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2405_OccSora_2405_OccSora.html",
-  "phyra_notes": "phyra-read/notes/2405_OccSora_2405_OccSora.html"
+  "phyra_notes": "phyra-read/notes/2405_OccSora_2405_OccSora.html",
+  "phyra_slides": "phyra-read/slides/2405_OccSora_2405_OccSora.html"
  },
  {
   "id": 34,
-  "short_name": "Vista",
-  "title": "Vista: A Generalizable Driving World Model with High Fidelity and Versatile Controllability",
-  "date": "2024-05",
-  "year": "2405",
-  "venue": "NeurIPS 2024",
-  "keywords": [
-   "Driving World Model",
-   "Video Diffusion",
-   "Action Controllability",
-   "High-Fidelity Prediction",
-   "Reward Function"
-  ],
-  "task_category": [
-   "World Model",
-   "Video Generation",
-   "Simulation"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2405.17398",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2405_Vista_2405_OpenDriveLab.html",
-  "phyra_notes": "phyra-read/notes/2405_Vista_2405_OpenDriveLab.html"
- },
- {
-  "id": 35,
   "short_name": "SoraWMSurvey",
   "title": "Is Sora a World Simulator? A Comprehensive Survey on General World Models and Beyond",
   "date": "2024-05",
@@ -1122,11 +1088,11 @@
   "arxiv_id": "2405.03520",
   "has_notes": true,
   "relevance": "Survey",
-  "phyra_slides": "phyra-read/slides/2405_SoraWMSurvey_2405_Sora.html",
-  "phyra_notes": "phyra-read/notes/2405_SoraWMSurvey_2405_Sora.html"
+  "phyra_notes": "phyra-read/notes/2405_SoraWMSurvey_2405_Sora.html",
+  "phyra_slides": "phyra-read/slides/2405_SoraWMSurvey_2405_Sora.html"
  },
  {
-  "id": 36,
+  "id": 35,
   "short_name": "VideoDiffSurvey",
   "title": "Video Diffusion Models: A Survey",
   "date": "2024-05",
@@ -1150,8 +1116,42 @@
   "arxiv_id": "|",
   "has_notes": true,
   "relevance": "Survey",
-  "phyra_slides": "phyra-read/slides/2405_VideoDiffSurvey_2405_Video.html",
-  "phyra_notes": "phyra-read/notes/2405_VideoDiffSurvey_2405_Video.html"
+  "phyra_notes": "phyra-read/notes/2405_VideoDiffSurvey_2405_Video.html",
+  "phyra_slides": "phyra-read/slides/2405_VideoDiffSurvey_2405_Video.html"
+ },
+ {
+  "id": 36,
+  "short_name": "Vista",
+  "title": "Vista: A Generalizable Driving World Model with High Fidelity and Versatile Controllability",
+  "date": "2024-05",
+  "year": "2405",
+  "venue": "NeurIPS 2024",
+  "keywords": [
+   "Driving World Model",
+   "Video Diffusion",
+   "Action Controllability",
+   "High-Fidelity Prediction",
+   "Reward Function"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2405.17398",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "phyra-read/notes/2405_Vista_2405_OpenDriveLab.html",
+  "phyra_slides": "phyra-read/slides/2405_Vista_2405_OpenDriveLab.html"
  },
  {
   "id": 37,
@@ -1180,8 +1180,8 @@
   "arxiv_id": "2406.08481",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2406_LAW-AD_2406_NHANCING.html",
-  "phyra_notes": "phyra-read/notes/2406_LAW-AD_2406_NHANCING.html"
+  "phyra_notes": "phyra-read/notes/2406_LAW-AD_2406_NHANCING.html",
+  "phyra_slides": "phyra-read/slides/2406_LAW-AD_2406_NHANCING.html"
  },
  {
   "id": 38,
@@ -1210,8 +1210,8 @@
   "arxiv_id": "2406.08691",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2406_UnO_2406_UnO.html",
-  "phyra_notes": "phyra-read/notes/2406_UnO_2406_UnO.html"
+  "phyra_notes": "phyra-read/notes/2406_UnO_2406_UnO.html",
+  "phyra_slides": "phyra-read/slides/2406_UnO_2406_UnO.html"
  },
  {
   "id": 39,
@@ -1242,8 +1242,8 @@
   "arxiv_id": "2407.05679",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2407_BEVW_2407_BEVW.html",
-  "phyra_notes": "phyra-read/notes/2407_BEVW_2407_BEVW.html"
+  "phyra_notes": "phyra-read/notes/2407_BEVW_2407_BEVW.html",
+  "phyra_slides": "phyra-read/slides/2407_BEVW_2407_BEVW.html"
  },
  {
   "id": 40,
@@ -1274,8 +1274,8 @@
   "arxiv_id": "2407.15843",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2407_CarFormer_2407_CarFormer.html",
-  "phyra_notes": "phyra-read/notes/2407_CarFormer_2407_CarFormer.html"
+  "phyra_notes": "phyra-read/notes/2407_CarFormer_2407_CarFormer.html",
+  "phyra_slides": "phyra-read/slides/2407_CarFormer_2407_CarFormer.html"
  },
  {
   "id": 41,
@@ -1304,8 +1304,8 @@
   "arxiv_id": "2407.02797",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2407_GUMP_2407_Solving.html",
-  "phyra_notes": "phyra-read/notes/2407_GUMP_2407_Solving.html"
+  "phyra_notes": "phyra-read/notes/2407_GUMP_2407_Solving.html",
+  "phyra_slides": "phyra-read/slides/2407_GUMP_2407_Solving.html"
  },
  {
   "id": 42,
@@ -1337,8 +1337,8 @@
   "arxiv_id": "2408.14197",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2408_Drive-OccWorld_2408_Driving.html",
-  "phyra_notes": "phyra-read/notes/2408_Drive-OccWorld_2408_Driving.html"
+  "phyra_notes": "phyra-read/notes/2408_Drive-OccWorld_2408_Driving.html",
+  "phyra_slides": "phyra-read/slides/2408_Drive-OccWorld_2408_Driving.html"
  },
  {
   "id": 43,
@@ -1370,8 +1370,8 @@
   "arxiv_id": "2408.07605",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2408_Panacea+_2408_Panacea+.html",
-  "phyra_notes": "phyra-read/notes/2408_Panacea+_2408_Panacea+.html"
+  "phyra_notes": "phyra-read/notes/2408_Panacea+_2408_Panacea+.html",
+  "phyra_slides": "phyra-read/slides/2408_Panacea+_2408_Panacea+.html"
  },
  {
   "id": 44,
@@ -1405,8 +1405,8 @@
   "arxiv_id": "2408.00415",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2408_RIVE_2408_RIVE.html",
-  "phyra_notes": "phyra-read/notes/2408_RIVE_2408_RIVE.html"
+  "phyra_notes": "phyra-read/notes/2408_RIVE_2408_RIVE.html",
+  "phyra_slides": "phyra-read/slides/2408_RIVE_2408_RIVE.html"
  },
  {
   "id": 45,
@@ -1439,8 +1439,8 @@
   "arxiv_id": "2409.03272",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2409_OccLLaMA_2409_OccLLaMA.html",
-  "phyra_notes": "phyra-read/notes/2409_OccLLaMA_2409_OccLLaMA.html"
+  "phyra_notes": "phyra-read/notes/2409_OccLLaMA_2409_OccLLaMA.html",
+  "phyra_slides": "phyra-read/slides/2409_OccLLaMA_2409_OccLLaMA.html"
  },
  {
   "id": 46,
@@ -1470,8 +1470,8 @@
   "arxiv_id": "2410.10429",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2410_DOME_2410_DOME.html",
-  "phyra_notes": "phyra-read/notes/2410_DOME_2410_DOME.html"
+  "phyra_notes": "phyra-read/notes/2410_DOME_2410_DOME.html",
+  "phyra_slides": "phyra-read/slides/2410_DOME_2410_DOME.html"
  },
  {
   "id": 47,
@@ -1509,8 +1509,8 @@
   "arxiv_id": "2410.13571",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2410_DriveDreamer4D_2410_DriveDreamer4D.html",
-  "phyra_notes": "phyra-read/notes/2410_DriveDreamer4D_2410_DriveDreamer4D.html"
+  "phyra_notes": "phyra-read/notes/2410_DriveDreamer4D_2410_DriveDreamer4D.html",
+  "phyra_slides": "phyra-read/slides/2410_DriveDreamer4D_2410_DriveDreamer4D.html"
  },
  {
   "id": 48,
@@ -1546,8 +1546,8 @@
   "arxiv_id": "2410.10738",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2410_DrivingDojo_2410_DrivingDojo.html",
-  "phyra_notes": "phyra-read/notes/2410_DrivingDojo_2410_DrivingDojo.html"
+  "phyra_notes": "phyra-read/notes/2410_DrivingDojo_2410_DrivingDojo.html",
+  "phyra_slides": "phyra-read/slides/2410_DrivingDojo_2410_DrivingDojo.html"
  },
  {
   "id": 49,
@@ -1563,21 +1563,28 @@
    "DiT",
    "Occupancy Generation"
   ],
-  "task_category": [],
-  "architecture": [],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Simulation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
   "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 4,
    "practical_value": 3,
-   "overall": 3
+   "overall": 4
   },
   "arxiv_id": "2410.18084",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2410_DynamicCity_2410_DynamicCity.html",
-  "phyra_notes": "phyra-read/notes/2410_DynamicCity_2410_DynamicCity.html"
+  "phyra_notes": "phyra-read/notes/2410_DynamicCity_2410_DynamicCity.html",
+  "phyra_slides": "phyra-read/slides/2410_DynamicCity_2410_DynamicCity.html"
  },
  {
   "id": 50,
@@ -1607,8 +1614,8 @@
   "arxiv_id": "|",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2410_SyntheOcc_2410_SyntheOcc.html",
-  "phyra_notes": "phyra-read/notes/2410_SyntheOcc_2410_SyntheOcc.html"
+  "phyra_notes": "phyra-read/notes/2410_SyntheOcc_2410_SyntheOcc.html",
+  "phyra_slides": "phyra-read/slides/2410_SyntheOcc_2410_SyntheOcc.html"
  },
  {
   "id": 51,
@@ -1622,26 +1629,68 @@
    "Video Generation",
    "Multi-View",
    "DiT",
+   "Autonomous Driving",
+   "3D VAE",
+   "Spatial-Temporal Control"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 4,
+   "practical_value": 4,
+   "overall": 4
+  },
+  "arxiv_id": "2411.13807",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_notes": "phyra-read/notes/2411_MagicDrive-V2_2411_MagicDrive-V2.html",
+  "phyra_slides": "phyra-read/slides/2411_MagicDrive-V2_2411_MagicDrive-V2.html"
+ },
+ {
+  "id": 52,
+  "short_name": "DINO-Foresight",
+  "title": "DINO-Foresight: Looking into the Future with DINO",
+  "date": "2024-12",
+  "year": "2412",
+  "venue": "NeurIPS 2025",
+  "keywords": [
+   "Future Frame Prediction",
+   "Vision Foundation Models",
+   "Semantic Feature Forecasting",
+   "Self-Supervised Learning",
    "Autonomous Driving"
   ],
-  "task_category": [],
-  "architecture": [],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding"
+  ],
+  "architecture": [
+   "Foundation Model"
+  ],
   "ratings": {
    "innovation": 3,
    "technical_depth": 3,
    "experiment_completeness": 3,
    "writing_quality": 3,
-   "practical_value": 3,
    "overall": 3
   },
-  "arxiv_id": "2411.13807",
+  "arxiv_id": "2412.11673",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2411_MagicDrive-V2_2411_MagicDrive-V2.html",
-  "phyra_notes": "phyra-read/notes/2411_MagicDrive-V2_2411_MagicDrive-V2.html"
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
  },
  {
-  "id": 52,
+  "id": 53,
   "short_name": "DrivingGPT",
   "title": "DrivingGPT: Unifying Driving World Modeling and Planning with Multi-modal Autoregressive Transformers",
   "date": "2024-12",
@@ -1672,11 +1721,11 @@
   "arxiv_id": "2412.18607",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2412_DrivingGPT_2412_DrivingGPT.html",
-  "phyra_notes": "phyra-read/notes/2412_DrivingGPT_2412_DrivingGPT.html"
+  "phyra_notes": "phyra-read/notes/2412_DrivingGPT_2412_DrivingGPT.html",
+  "phyra_slides": "phyra-read/slides/2412_DrivingGPT_2412_DrivingGPT.html"
  },
  {
-  "id": 53,
+  "id": 54,
   "short_name": "DrivingWorld",
   "title": "DrivingWorld: Constructing World Model for Autonomous Driving via Video GPT",
   "date": "2024-12",
@@ -1707,11 +1756,11 @@
   "arxiv_id": "2412.19505",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2412_DrivingWorld_2412_DrivingWorld.html",
-  "phyra_notes": "phyra-read/notes/2412_DrivingWorld_2412_DrivingWorld.html"
+  "phyra_notes": "phyra-read/notes/2412_DrivingWorld_2412_DrivingWorld.html",
+  "phyra_slides": "phyra-read/slides/2412_DrivingWorld_2412_DrivingWorld.html"
  },
  {
-  "id": 54,
+  "id": 55,
   "short_name": "GEM",
   "title": "GEM: A Generalizable Ego-Vision Multimodal World Model for Fine-Grained Ego-Motion, Object Dynamics, and Scene Composition Control",
   "date": "2024-12",
@@ -1737,11 +1786,11 @@
   "arxiv_id": "|",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2412_GEM_2412_GEM.html",
-  "phyra_notes": "phyra-read/notes/2412_GEM_2412_GEM.html"
+  "phyra_notes": "phyra-read/notes/2412_GEM_2412_GEM.html",
+  "phyra_slides": "phyra-read/slides/2412_GEM_2412_GEM.html"
  },
  {
-  "id": 55,
+  "id": 56,
   "short_name": "GaussianWorld",
   "title": "GaussianWorld: Gaussian World Model for Streaming 3D Occupancy Prediction",
   "date": "2024-12",
@@ -1772,11 +1821,11 @@
   "arxiv_id": "2412.10373",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2412_GaussianWorld_2412_GaussianWorld.html",
-  "phyra_notes": "phyra-read/notes/2412_GaussianWorld_2412_GaussianWorld.html"
+  "phyra_notes": "phyra-read/notes/2412_GaussianWorld_2412_GaussianWorld.html",
+  "phyra_slides": "phyra-read/slides/2412_GaussianWorld_2412_GaussianWorld.html"
  },
  {
-  "id": 56,
+  "id": 57,
   "short_name": "InfiniCube",
   "title": "InfiniCube: Unbounded and Controllable Dynamic 3D Driving Scene Generation with World-Guided Video Models",
   "date": "2024-12",
@@ -1810,11 +1859,11 @@
   "arxiv_id": "2412.03934",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2412_InfiniCube_2412_InfiniCube.html",
-  "phyra_notes": "phyra-read/notes/2412_InfiniCube_2412_InfiniCube.html"
+  "phyra_notes": "phyra-read/notes/2412_InfiniCube_2412_InfiniCube.html",
+  "phyra_slides": "phyra-read/slides/2412_InfiniCube_2412_InfiniCube.html"
  },
  {
-  "id": 57,
+  "id": 58,
   "short_name": "InfinityDrive",
   "title": "InfinityDrive: Breaking Time Limits in Driving World Models",
   "date": "2024-12",
@@ -1844,11 +1893,11 @@
   "arxiv_id": "2412.01522",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2412_InfinityDrive_2412_InfinityDrive.html",
-  "phyra_notes": "phyra-read/notes/2412_InfinityDrive_2412_InfinityDrive.html"
+  "phyra_notes": "phyra-read/notes/2412_InfinityDrive_2412_InfinityDrive.html",
+  "phyra_slides": "phyra-read/slides/2412_InfinityDrive_2412_InfinityDrive.html"
  },
  {
-  "id": 58,
+  "id": 59,
   "short_name": "SceneDiffuser",
   "title": "SceneDiffuser: Efficient and Controllable Driving Simulation Initialization and Rollout",
   "date": "2024-12",
@@ -1878,11 +1927,11 @@
   "arxiv_id": "2412.12129",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2412_SceneDiffuser_2412_SceneDiffuser.html",
-  "phyra_notes": "phyra-read/notes/2412_SceneDiffuser_2412_SceneDiffuser.html"
+  "phyra_notes": "phyra-read/notes/2412_SceneDiffuser_2412_SceneDiffuser.html",
+  "phyra_slides": "phyra-read/slides/2412_SceneDiffuser_2412_SceneDiffuser.html"
  },
  {
-  "id": 59,
+  "id": 60,
   "short_name": "UniScene",
   "title": "UniScene: Unified Occupancy-centric Driving Scene Generation",
   "date": "2024-12",
@@ -1915,11 +1964,11 @@
   "arxiv_id": "2412.05435",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2412_UniScene_2412_UniScene.html",
-  "phyra_notes": "phyra-read/notes/2412_UniScene_2412_UniScene.html"
+  "phyra_notes": "phyra-read/notes/2412_UniScene_2412_UniScene.html",
+  "phyra_slides": "phyra-read/slides/2412_UniScene_2412_UniScene.html"
  },
  {
-  "id": 60,
+  "id": 61,
   "short_name": "AdaWM",
   "title": "AdaWM: Adaptive World Model based Planning for Autonomous Driving",
   "date": "2025-01",
@@ -1948,11 +1997,11 @@
   "arxiv_id": "2501.13072",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2501_AdaWM_2501_AdaWM.html",
-  "phyra_notes": "phyra-read/notes/2501_AdaWM_2501_AdaWM.html"
+  "phyra_notes": "phyra-read/notes/2501_AdaWM_2501_AdaWM.html",
+  "phyra_slides": "phyra-read/slides/2501_AdaWM_2501_AdaWM.html"
  },
  {
-  "id": 61,
+  "id": 62,
   "short_name": "HERMES",
   "title": "HERMES: A Unified Self-Driving World Model for Simultaneous 3D Scene Understanding and Generation",
   "date": "2025-01",
@@ -1984,11 +2033,80 @@
   "arxiv_id": "2501.14729",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2501_HERMES_2501_MEGVII.html",
-  "phyra_notes": "phyra-read/notes/2501_HERMES_2501_MEGVII.html"
+  "phyra_notes": "phyra-read/notes/2501_HERMES_2501_MEGVII.html",
+  "phyra_slides": "phyra-read/slides/2501_HERMES_2501_MEGVII.html"
  },
  {
-  "id": 62,
+  "id": 63,
+  "short_name": "PIWM",
+  "title": "Dream to Drive with Predictive Individual World Model",
+  "date": "2025-01",
+  "year": "2501",
+  "venue": "IEEE TIV 2025",
+  "keywords": [
+   "World Models",
+   "Autonomous Driving",
+   "Trajectory Prediction",
+   "Interactive Vehicles",
+   "Model-based Reinforcement Learning"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2501.16733",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 64,
+  "short_name": "AWMs",
+  "title": "Unlocking Efficient Vehicle Dynamics Modeling via Analytic World Models",
+  "date": "2025-02",
+  "year": "2502",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Analytic Policy Gradients",
+   "Vehicle Dynamics",
+   "Differentiable Simulation",
+   "Waymax"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2502.10012",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "phyra-read/notes/2502_AWMs_2502_AWMs.html",
+  "phyra_slides": ""
+ },
+ {
+  "id": 65,
   "short_name": "MaskGWM",
   "title": "MaskGWM: A Generalizable Driving World Model with Video Mask Reconstruction",
   "date": "2025-02",
@@ -2018,11 +2136,11 @@
   "arxiv_id": "2502.11663",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2502_MaskGWM_2502_MaskGWM.html",
-  "phyra_notes": "phyra-read/notes/2502_MaskGWM_2502_MaskGWM.html"
+  "phyra_notes": "phyra-read/notes/2502_MaskGWM_2502_MaskGWM.html",
+  "phyra_slides": "phyra-read/slides/2502_MaskGWM_2502_MaskGWM.html"
  },
  {
-  "id": 63,
+  "id": 66,
   "short_name": "OccProphet",
   "title": "OccProphet: Pushing Efficiency Frontier of Camera-Only 4D Occupancy Forecasting with Observer-Forecaster-Refiner Framework",
   "date": "2025-02",
@@ -2035,24 +2153,22 @@
    "Camera-Only",
    "Autonomous Driving"
   ],
-  "task_category": [],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
+  "task_category": [
+   "3D Scene Understanding",
+   "Occupancy Prediction"
+  ],
+  "architecture": [
+   "Modular Pipeline"
+  ],
+  "ratings": {},
   "arxiv_id": "2502.15180",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2502_OccProphet_2502_OccProphet.html",
-  "phyra_notes": "phyra-read/notes/2502_OccProphet_2502_OccProphet.html"
+  "phyra_notes": "phyra-read/notes/2502_OccProphet_2502_OccProphet.html",
+  "phyra_slides": "phyra-read/slides/2502_OccProphet_2502_OccProphet.html"
  },
  {
-  "id": 64,
+  "id": 67,
   "short_name": "PreWorld",
   "title": "PreWorld: Semi-Supervised Vision-Centric 3D Occupancy World Model for Autonomous Driving",
   "date": "2025-02",
@@ -2081,11 +2197,11 @@
   "arxiv_id": "2502.07309",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2502_PreWorld_2502_PreWorld.html",
-  "phyra_notes": "phyra-read/notes/2502_PreWorld_2502_PreWorld.html"
+  "phyra_notes": "phyra-read/notes/2502_PreWorld_2502_PreWorld.html",
+  "phyra_slides": "phyra-read/slides/2502_PreWorld_2502_PreWorld.html"
  },
  {
-  "id": 65,
+  "id": 68,
   "short_name": "Role",
   "title": "The Role of World Models in Shaping Autonomous Driving: A Comprehensive Survey",
   "date": "2025-02",
@@ -2117,39 +2233,11 @@
   "arxiv_id": "2502.10498",
   "has_notes": true,
   "relevance": "Survey",
-  "phyra_slides": "phyra-read/slides/2502_Role_2502_Role.html",
-  "phyra_notes": "phyra-read/notes/2502_Role_2502_Role.html"
+  "phyra_notes": "phyra-read/notes/2502_Role_2502_Role.html",
+  "phyra_slides": "phyra-read/slides/2502_Role_2502_Role.html"
  },
  {
-  "short_name": "AWMs",
-  "title": "Unlocking Efficient Vehicle Dynamics Modeling via Analytic World Models",
-  "date": "2025-02",
-  "year": "2502",
-  "venue": "預印本",
-  "keywords": [
-   "World Model",
-   "Analytic Policy Gradients",
-   "Vehicle Dynamics",
-   "Differentiable Simulation",
-   "Waymax"
-  ],
-  "task_category": [
-   "World Model",
-   "Motion Planning"
-  ],
-  "architecture": [
-   "World Model + Planner"
-  ],
-  "ratings": {},
-  "arxiv_id": "2502.10012",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "",
-  "phyra_notes": "phyra-read/notes/2502_AWMs_2502_AWMs.html",
-  "id": 66
- },
- {
-  "id": 67,
+  "id": 69,
   "short_name": "DiST-4D",
   "title": "DiST-4D: Disentangled Spatiotemporal Diffusion with Metric Depth for 4D Driving Scene Generation",
   "date": "2025-03",
@@ -2184,11 +2272,11 @@
   "arxiv_id": "2503.15208",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2503_DiST-4D_2503_DiST.html",
-  "phyra_notes": "phyra-read/notes/2503_DiST-4D_2503_DiST.html"
+  "phyra_notes": "phyra-read/notes/2503_DiST-4D_2503_DiST.html",
+  "phyra_slides": "phyra-read/slides/2503_DiST-4D_2503_DiST.html"
  },
  {
-  "id": 68,
+  "id": 70,
   "short_name": "GAIA-2",
   "title": "GAIA-2: A Controllable Multi-View Generative World Model for Autonomous Driving",
   "date": "2025-03",
@@ -2221,11 +2309,11 @@
   "arxiv_id": "2503.20523",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2503_GAIA-2_2503_GAIA.html",
-  "phyra_notes": "phyra-read/notes/2503_GAIA-2_2503_GAIA.html"
+  "phyra_notes": "phyra-read/notes/2503_GAIA-2_2503_GAIA.html",
+  "phyra_slides": "phyra-read/slides/2503_GAIA-2_2503_GAIA.html"
  },
  {
-  "id": 69,
+  "id": 71,
   "short_name": "MiLA",
   "title": "MiLA: Multi-view Intensive-fidelity Long-term Video Generation World Model for Autonomous Driving",
   "date": "2025-03",
@@ -2255,11 +2343,43 @@
   "arxiv_id": "2503.15875",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2503_MiLA_2503_MiLA.html",
-  "phyra_notes": "phyra-read/notes/2503_MiLA_2503_MiLA.html"
+  "phyra_notes": "phyra-read/notes/2503_MiLA_2503_MiLA.html",
+  "phyra_slides": "phyra-read/slides/2503_MiLA_2503_MiLA.html"
  },
  {
-  "id": 70,
+  "id": 72,
+  "short_name": "MindVLA-o1",
+  "title": "MindVLA-o1: Li Auto's Next-Gen Autonomous Driving Foundation Model",
+  "date": "2025-03",
+  "year": "2503",
+  "venue": "NVIDIA GTC 2025",
+  "keywords": [
+   "VLA",
+   "Latent World Model",
+   "MoE",
+   "3D ViT",
+   "Foundation Model"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "Foundation Model"
+  ],
+  "ratings": {
+   "practical_value": 3
+  },
+  "arxiv_id": "N/A (Industry Announcement)",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_notes": "phyra-read/notes/2503_MindVLA-o1_2503_MindVLA-o1.html",
+  "phyra_slides": ""
+ },
+ {
+  "id": 73,
   "short_name": "UniFuture",
   "title": "Seeing the Future, Perceiving the Future: A Unified Driving World Model for Future Generation and Perception",
   "date": "2025-03",
@@ -2289,11 +2409,11 @@
   "arxiv_id": "2503.13587",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2503_Seeing_2503_Seeing.html",
-  "phyra_notes": "phyra-read/notes/2503_Seeing_2503_Seeing.html"
+  "phyra_notes": "phyra-read/notes/2503_Seeing_2503_Seeing.html",
+  "phyra_slides": "phyra-read/slides/2503_Seeing_2503_Seeing.html"
  },
  {
-  "id": 71,
+  "id": 74,
   "short_name": "SimWorld",
   "title": "SimWorld: A Unified Benchmark for Simulator-Conditioned Scene Generation via World Model",
   "date": "2025-03",
@@ -2322,41 +2442,117 @@
   "arxiv_id": "2503.13952",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2503_SimWorld_2503_SimWorld.html",
-  "phyra_notes": "phyra-read/notes/2503_SimWorld_2503_SimWorld.html"
+  "phyra_notes": "phyra-read/notes/2503_SimWorld_2503_SimWorld.html",
+  "phyra_slides": "phyra-read/slides/2503_SimWorld_2503_SimWorld.html"
  },
  {
-  "short_name": "MindVLA-o1",
-  "title": "MindVLA-o1: Li Auto's Next-Gen Autonomous Driving Foundation Model",
+  "id": 75,
+  "short_name": "UMGen",
+  "title": "Generating Multimodal Driving Scenes via Next-Scene Prediction",
   "date": "2025-03",
   "year": "2503",
-  "venue": "NVIDIA GTC 2025",
+  "venue": "CVPR 2025",
   "keywords": [
-   "VLA",
-   "Latent World Model",
-   "MoE",
-   "3D ViT",
-   "Foundation Model"
+   "Autonomous Driving Scene Generation",
+   "Multimodal Generative Models",
+   "Autoregressive Scene Prediction",
+   "Map-Action Alignment",
+   "Driving Scene Synthesis"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2503.14945",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 76,
+  "short_name": "UniOcc",
+  "title": "UniOcc: A Unified Benchmark for Occupancy Forecasting and Prediction in Autonomous Driving",
+  "date": "2025-03",
+  "year": "2503",
+  "venue": "ICCV 2025",
+  "keywords": [
+   "Occupancy Forecasting",
+   "Autonomous Driving Perception",
+   "3D Scene Understanding",
+   "Multi-source Dataset Integration",
+   "Motion Flow Prediction"
   ],
   "task_category": [
    "World Model",
    "3D Scene Understanding",
-   "Motion Planning",
-   "End-to-End Driving"
+   "Simulation",
+   "Occupancy Prediction"
   ],
   "architecture": [
-   "Foundation Model"
+   "Modular Pipeline"
   ],
-  "ratings": {},
-  "arxiv_id": "",
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2503.24381",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "",
-  "phyra_notes": "phyra-read/notes/2503_MindVLA-o1_2503_MindVLA-o1.html",
-  "id": 72
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
  },
  {
-  "id": 73,
+  "id": 77,
+  "short_name": "DriVerse",
+  "title": "DriVerse: Navigation World Model for Driving Simulation via Multimodal Trajectory Prompting and Motion Alignment",
+  "date": "2025-04",
+  "year": "2504",
+  "venue": "ACM MM 2025",
+  "keywords": [
+   "Navigation World Model",
+   "Trajectory-Guided Video Synthesis",
+   "Autonomous Driving Simulation",
+   "Motion Alignment",
+   "Multimodal Prompting"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2504.18576",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 78,
   "short_name": "FutureSightDrive",
   "title": "FutureSightDrive: Thinking Visually with Spatio-Temporal CoT for Autonomous Driving",
   "date": "2025-05",
@@ -2369,24 +2565,32 @@
    "Future Prediction",
    "Planning"
   ],
-  "task_category": [],
-  "architecture": [],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "End-to-End",
+   "World Model + Planner",
+   "Foundation Model"
+  ],
   "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 4,
    "practical_value": 3,
-   "overall": 3
+   "overall": 4
   },
   "arxiv_id": "2505.17685",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2505_FutureSightDrive_2505_FutureSightDrive.html",
-  "phyra_notes": "phyra-read/notes/2505_FutureSightDrive_2505_FutureSightDrive.html"
+  "phyra_notes": "phyra-read/notes/2505_FutureSightDrive_2505_FutureSightDrive.html",
+  "phyra_slides": "phyra-read/slides/2505_FutureSightDrive_2505_FutureSightDrive.html"
  },
  {
-  "id": 74,
+  "id": 79,
   "short_name": "GeoDrive",
   "title": "GeoDrive: 3D Geometry-Informed Driving World Model with Precise Action Control",
   "date": "2025-05",
@@ -2420,11 +2624,47 @@
   "arxiv_id": "2505.22421",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2505_GeoDrive_2505_GeoDrive.html",
-  "phyra_notes": "phyra-read/notes/2505_GeoDrive_2505_GeoDrive.html"
+  "phyra_notes": "phyra-read/notes/2505_GeoDrive_2505_GeoDrive.html",
+  "phyra_slides": "phyra-read/slides/2505_GeoDrive_2505_GeoDrive.html"
  },
  {
-  "id": 75,
+  "id": 80,
+  "short_name": "Omni-Scene",
+  "title": "DriveX: Omni Scene Modeling for Learning Generalizable World Knowledge in Autonomous Driving",
+  "date": "2025-05",
+  "year": "2505",
+  "venue": "ICCV 2025",
+  "keywords": [
+   "World Model",
+   "Self-Supervised",
+   "Omni Scene Modeling",
+   "BEV Pre-training",
+   "Point Cloud Forecasting"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2505.19239",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "phyra-read/notes/2505_Omni-Scene_2505_Omni-Scene.html",
+  "phyra_slides": ""
+ },
+ {
+  "id": 81,
   "short_name": "ProphetDWM",
   "title": "ProphetDWM: A Driving World Model for Rolling Out Future Actions and Videos",
   "date": "2025-05",
@@ -2454,18 +2694,18 @@
   "arxiv_id": "2505.18650",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2505_ProphetDWM_2505_ProphetDWM.html",
-  "phyra_notes": "phyra-read/notes/2505_ProphetDWM_2505_ProphetDWM.html"
+  "phyra_notes": "phyra-read/notes/2505_ProphetDWM_2505_ProphetDWM.html",
+  "phyra_slides": "phyra-read/slides/2505_ProphetDWM_2505_ProphetDWM.html"
  },
  {
-  "id": 76,
+  "id": 82,
   "short_name": "Raw2Drive",
   "title": "Raw2Drive: Reinforcement Learning with Aligned World Models for End-to-End Autonomous Driving (in CARLA v2)",
   "date": "2025-05",
   "year": "2505",
   "venue": "NeurIPS 2025",
   "keywords": [
-   "Model-based Reinforcement Learning",
+   "Model-based Reinforcement Learning (MBRL)",
    "End-to-End Autonomous Driving",
    "World Model",
    "Dual-stream Architecture",
@@ -2473,15 +2713,18 @@
    "CARLA Leaderboard 2.0",
    "Bench2Drive",
    "DreamerV3",
-   "RSSM",
+   "RSSM (Recurrent State-Space Model)",
    "BEVFormer"
   ],
   "task_category": [
    "World Model",
-   "End-to-End Driving",
-   "Motion Planning"
+   "Motion Planning",
+   "End-to-End Driving"
   ],
-  "architecture": [],
+  "architecture": [
+   "End-to-End",
+   "World Model + Planner"
+  ],
   "ratings": {
    "innovation": 4,
    "technical_depth": 4,
@@ -2493,40 +2736,11 @@
   "arxiv_id": "2505.16394",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2505_Raw2Drive_2505_Raw2Drive.html",
-  "phyra_notes": "phyra-read/notes/2505_Raw2Drive_2505_Raw2Drive.html"
+  "phyra_notes": "phyra-read/notes/2505_Raw2Drive_2505_Raw2Drive.html",
+  "phyra_slides": "phyra-read/slides/2505_Raw2Drive_2505_Raw2Drive.html"
  },
  {
-  "short_name": "Omni-Scene",
-  "title": "DriveX: Omni Scene Modeling for Learning Generalizable World Knowledge in Autonomous Driving",
-  "date": "2025-05",
-  "year": "2505",
-  "venue": "ICCV 2025",
-  "keywords": [
-   "World Model",
-   "Self-Supervised",
-   "Omni Scene Modeling",
-   "BEV Pre-training",
-   "Point Cloud Forecasting"
-  ],
-  "task_category": [
-   "World Model",
-   "3D Scene Understanding",
-   "End-to-End Driving"
-  ],
-  "architecture": [
-   "World Model + Planner"
-  ],
-  "ratings": {},
-  "arxiv_id": "2505.19239",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "",
-  "phyra_notes": "phyra-read/notes/2505_Omni-Scene_2505_Omni-Scene.html",
-  "id": 77
- },
- {
-  "id": 78,
+  "id": 83,
   "short_name": "Cosmos-Drive-Dreams",
   "title": "Cosmos-Drive-Dreams : Scalable Synthetic Driving Data Generation with World Foundation Models",
   "date": "2025-06",
@@ -2559,11 +2773,45 @@
   "arxiv_id": "2506.09042",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html",
-  "phyra_notes": "phyra-read/notes/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html"
+  "phyra_notes": "phyra-read/notes/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html",
+  "phyra_slides": "phyra-read/slides/2506_Cosmos-Drive-Dreams_2506_Cosmos-Drive-Dreams.html"
  },
  {
-  "id": 79,
+  "id": 84,
+  "short_name": "DIO",
+  "title": "DIO: Decomposable Implicit 4D Occupancy-Flow World Model",
+  "date": "2025-06",
+  "year": "2506",
+  "venue": "CVPR 2025",
+  "keywords": [
+   "World Model",
+   "4D Occupancy",
+   "Occupancy Flow",
+   "Implicit Representation",
+   "LiDAR"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Occupancy Prediction"
+  ],
+  "architecture": [],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "N/A (CVPR 2025)",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "phyra-read/notes/2412_DIO_2412_DIO.html",
+  "phyra_slides": ""
+ },
+ {
+  "id": 85,
   "short_name": "Epona",
   "title": "Epona: Autoregressive Diffusion World Model for Autonomous Driving",
   "date": "2025-06",
@@ -2598,11 +2846,11 @@
   "arxiv_id": "2506.24113",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2506_Epona_2506_Epona.html",
-  "phyra_notes": "phyra-read/notes/2506_Epona_2506_Epona.html"
+  "phyra_notes": "phyra-read/notes/2506_Epona_2506_Epona.html",
+  "phyra_slides": "phyra-read/slides/2506_Epona_2506_Epona.html"
  },
  {
-  "id": 80,
+  "id": 86,
   "short_name": "LongDWM",
   "title": "LongDWM: Cross-Granularity Distillation for Building a Long-Term Driving World Model",
   "date": "2025-06",
@@ -2632,11 +2880,11 @@
   "arxiv_id": "2506.01546",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2506_LongDWM_2506_LongDWM.html",
-  "phyra_notes": "phyra-read/notes/2506_LongDWM_2506_LongDWM.html"
+  "phyra_notes": "phyra-read/notes/2506_LongDWM_2506_LongDWM.html",
+  "phyra_slides": "phyra-read/slides/2506_LongDWM_2506_LongDWM.html"
  },
  {
-  "id": 81,
+  "id": 87,
   "short_name": "ReSim",
   "title": "ReSim: Reliable World Simulation for Autonomous Driving",
   "date": "2025-06",
@@ -2670,11 +2918,11 @@
   "arxiv_id": "2506.09981",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2506_ReSim_2506_ReSim.html",
-  "phyra_notes": "phyra-read/notes/2506_ReSim_2506_ReSim.html"
+  "phyra_notes": "phyra-read/notes/2506_ReSim_2506_ReSim.html",
+  "phyra_slides": "phyra-read/slides/2506_ReSim_2506_ReSim.html"
  },
  {
-  "id": 82,
+  "id": 88,
   "short_name": "STAGE",
   "title": "STAGE: A Stream-Centric Generative World Model for Long-Horizon Driving-Scene Simulation",
   "date": "2025-06",
@@ -2706,38 +2954,115 @@
   "arxiv_id": "2506.13138",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2506_STAGE_2506_STAGE.html",
-  "phyra_notes": "phyra-read/notes/2506_STAGE_2506_STAGE.html"
+  "phyra_notes": "phyra-read/notes/2506_STAGE_2506_STAGE.html",
+  "phyra_slides": "phyra-read/slides/2506_STAGE_2506_STAGE.html"
  },
  {
-  "short_name": "DIO",
-  "title": "DIO: Decomposable Implicit 4D Occupancy-Flow World Model",
+  "id": 89,
+  "short_name": "SceneDiffuser++",
+  "title": "SceneDiffuser++: City-Scale Traffic Simulation via a Generative World Model",
   "date": "2025-06",
   "year": "2506",
   "venue": "CVPR 2025",
   "keywords": [
-   "World Model",
-   "4D Occupancy",
-   "Occupancy Flow",
-   "Implicit Representation",
-   "LiDAR"
+   "Traffic Simulation",
+   "Generative World Model",
+   "Scene Generation",
+   "Agent Behavior Modeling",
+   "Autonomous Vehicle Testing"
   ],
   "task_category": [
    "World Model",
-   "3D Scene Understanding",
-   "Occupancy Prediction"
+   "Simulation"
   ],
-  "architecture": [],
-  "ratings": {},
-  "arxiv_id": "",
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2506.21976",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "",
-  "phyra_notes": "phyra-read/notes/2412_DIO_2412_DIO.html",
-  "id": 83
+  "phyra_notes": "",
+  "phyra_slides": ""
  },
  {
-  "id": 84,
+  "id": 90,
+  "short_name": "I2-World",
+  "title": "I²-World: Intra-Inter Tokenization for Efficient Dynamic 4D Scene Forecasting",
+  "date": "2025-07",
+  "year": "2507",
+  "venue": "ICCV 2025",
+  "keywords": [
+   "4D Occupancy Forecasting",
+   "Scene Tokenization",
+   "World Model",
+   "Intra-Inter Tokenization",
+   "Transformation Matrix",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Occupancy Prediction"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 4,
+   "technical_depth": 4,
+   "experiment_completeness": 4,
+   "writing_quality": 3,
+   "practical_value": 4,
+   "overall": 4
+  },
+  "arxiv_id": "2507.09144",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "phyra-read/notes/2507_I2-World_2507_I2-World.html",
+  "phyra_slides": "phyra-read/slides/2507_I2-World_2507_I2-World.html"
+ },
+ {
+  "id": 91,
+  "short_name": "Orbis",
+  "title": "Orbis: Overcoming Challenges of Long-Horizon Prediction in Driving World Models",
+  "date": "2025-07",
+  "year": "2507",
+  "venue": "預印本",
+  "keywords": [
+   "Long-Horizon Prediction",
+   "World Models",
+   "Autonomous Driving",
+   "Continuous Autoregressive Models",
+   "Video Generation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2507.13162",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 92,
   "short_name": "World4Drive",
   "title": "World4Drive: End-to-End Autonomous Driving via Intention-aware Physical Latent World Model",
   "date": "2025-07",
@@ -2770,50 +3095,16 @@
   "arxiv_id": "2507.00603",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2507_World4Drive_2507_World4Drive.html",
-  "phyra_notes": "phyra-read/notes/2507_World4Drive_2507_World4Drive.html"
+  "phyra_notes": "phyra-read/notes/2507_World4Drive_2507_World4Drive.html",
+  "phyra_slides": "phyra-read/slides/2507_World4Drive_2507_World4Drive.html"
  },
  {
-  "id": 85,
-  "short_name": "I2-World",
-  "title": "I²-World: Intra-Inter Tokenization for Efficient Dynamic 4D Scene Forecasting",
-  "date": "2025-07",
-  "year": "2507",
-  "venue": "ICCV 2025",
-  "keywords": [
-   "4D Occupancy Forecasting",
-   "Scene Tokenization",
-   "World Model",
-   "Intra-Inter Tokenization",
-   "Transformation Matrix",
-   "Autonomous Driving"
-  ],
-  "task_category": [
-   "World Model",
-   "Occupancy Prediction"
-  ],
-  "architecture": [],
-  "ratings": {
-   "innovation": 4,
-   "technical_depth": 4,
-   "experiment_completeness": 4,
-   "writing_quality": 3,
-   "practical_value": 4,
-   "overall": 4
-  },
-  "arxiv_id": "2507.09144",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2507_I2-World_2507_I2-World.html",
-  "phyra_notes": "phyra-read/notes/2507_I2-World_2507_I2-World.html"
- },
- {
-  "id": 86,
+  "id": 93,
   "short_name": "LiDARCrafter",
   "title": "LiDARCrafter: Dynamic 4D World Modeling from LiDAR Sequences",
   "date": "2025-08",
   "year": "2508",
-  "venue": "AAAI 2026",
+  "venue": "AAAI 2026 (Oral Presentation)",
   "keywords": [
    "World Model",
    "LiDAR Point Cloud Generation",
@@ -2829,7 +3120,9 @@
    "3D Scene Understanding",
    "Simulation"
   ],
-  "architecture": [],
+  "architecture": [
+   "World Model + Planner"
+  ],
   "ratings": {
    "innovation": 4,
    "technical_depth": 4,
@@ -2841,40 +3134,11 @@
   "arxiv_id": "2508.03692",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2508_LiDARCrafter_2508_LiDARCrafter.html",
-  "phyra_notes": "phyra-read/notes/2508_LiDARCrafter_2508_LiDARCrafter.html"
+  "phyra_notes": "phyra-read/notes/2508_LiDARCrafter_2508_LiDARCrafter.html",
+  "phyra_slides": "phyra-read/slides/2508_LiDARCrafter_2508_LiDARCrafter.html"
  },
  {
-  "id": 87,
-  "short_name": "TeraSim-World",
-  "title": "TeraSim-World: Worldwide Safety-Critical Data Synthesis for End-to-End Autonomous Driving",
-  "date": "2025-09",
-  "year": "2509",
-  "venue": "預印本 (Mcity/UMich)",
-  "keywords": [
-   "Safety-Critical",
-   "Data Synthesis",
-   "Long-Tail",
-   "Cosmos-Drive",
-   "Corner Cases"
-  ],
-  "task_category": [],
-  "architecture": [],
-  "ratings": {
-   "innovation": 3,
-   "technical_depth": 3,
-   "experiment_completeness": 3,
-   "writing_quality": 3,
-   "practical_value": 3,
-   "overall": 3
-  },
-  "arxiv_id": "2509.13164",
-  "has_notes": true,
-  "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2509_TeraSim-World_2509_TeraSim-World.html",
-  "phyra_notes": "phyra-read/notes/2509_TeraSim-World_2509_TeraSim-World.html"
- },
- {
+  "id": 94,
   "short_name": "OccTENS",
   "title": "OccTENS: 3D Occupancy World Model via Temporal Next-Scale Prediction",
   "date": "2025-09",
@@ -2891,16 +3155,52 @@
    "Occupancy Prediction"
   ],
   "architecture": [],
-  "ratings": {},
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
   "arxiv_id": "2509.03887",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "",
   "phyra_notes": "phyra-read/notes/2509_OccTENS_2509_OccTENS.html",
-  "id": 88
+  "phyra_slides": ""
  },
  {
-  "id": 89,
+  "id": 95,
+  "short_name": "TeraSim-World",
+  "title": "TeraSim-World: Worldwide Safety-Critical Data Synthesis for End-to-End Autonomous Driving",
+  "date": "2025-09",
+  "year": "2509",
+  "venue": "預印本 (Mcity/UMich)",
+  "keywords": [
+   "Safety-Critical",
+   "Data Synthesis",
+   "Long-Tail",
+   "Cosmos-Drive",
+   "Corner Cases",
+   "Agent Simulation",
+   "Sensor Simulation"
+  ],
+  "task_category": [
+   "Simulation"
+  ],
+  "architecture": [
+   "End-to-End",
+   "Foundation Model"
+  ],
+  "ratings": {},
+  "arxiv_id": "2509.13164",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_notes": "phyra-read/notes/2509_TeraSim-World_2509_TeraSim-World.html",
+  "phyra_slides": "phyra-read/slides/2509_TeraSim-World_2509_TeraSim-World.html"
+ },
+ {
+  "id": 96,
   "short_name": "DriveVLA-W0",
   "title": "DriveVLA-W0: World Models Amplify Data Scaling Law in Autonomous Driving",
   "date": "2025-10",
@@ -2930,11 +3230,11 @@
   "arxiv_id": "2510.12796",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2510_DriveVLA-W0_2510_DriveVLA-W0.html",
-  "phyra_notes": "phyra-read/notes/2510_DriveVLA-W0_2510_DriveVLA-W0.html"
+  "phyra_notes": "phyra-read/notes/2510_DriveVLA-W0_2510_DriveVLA-W0.html",
+  "phyra_slides": "phyra-read/slides/2510_DriveVLA-W0_2510_DriveVLA-W0.html"
  },
  {
-  "id": 90,
+  "id": 97,
   "short_name": "DriveLaW",
   "title": "DriveLaW: Unifying Planning and Video Generation in a Latent Driving World",
   "date": "2025-12",
@@ -2964,11 +3264,11 @@
   "arxiv_id": "2512.23421",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2512_DriveLaW_2512_DriveLaW.html",
-  "phyra_notes": "phyra-read/notes/2512_DriveLaW_2512_DriveLaW.html"
+  "phyra_notes": "phyra-read/notes/2512_DriveLaW_2512_DriveLaW.html",
+  "phyra_slides": "phyra-read/slides/2512_DriveLaW_2512_DriveLaW.html"
  },
  {
-  "id": 91,
+  "id": 98,
   "short_name": "GaussianDWM",
   "title": "GaussianDWM: 3D Gaussian Driving World Model for Unified Scene Understanding and Multi-Modal Generation",
   "date": "2025-12",
@@ -3003,11 +3303,46 @@
   "arxiv_id": "2512.23180",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2512_GaussianDWM_2512_GaussianDWM.html",
-  "phyra_notes": "phyra-read/notes/2512_GaussianDWM_2512_GaussianDWM.html"
+  "phyra_notes": "phyra-read/notes/2512_GaussianDWM_2512_GaussianDWM.html",
+  "phyra_slides": "phyra-read/slides/2512_GaussianDWM_2512_GaussianDWM.html"
  },
  {
-  "id": 92,
+  "id": 99,
+  "short_name": "GenieDrive",
+  "title": "GenieDrive: Towards Physics-Aware Driving World Model with 4D Occupancy Guided Video Generation",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "4D Occupancy Representation",
+   "Physics-Aware Video Generation",
+   "Driving World Models",
+   "Multi-View Consistency",
+   "Latent Space Compression"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [
+   "Modular Pipeline"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.12751",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 100,
   "short_name": "InDRiVE",
   "title": "InDRiVE: Reward-Free World-Model Pretraining for Autonomous Driving via Latent Disagreement",
   "date": "2025-12",
@@ -3037,11 +3372,222 @@
   "arxiv_id": "2512.18850",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2512_InDRiVE_2512_InDRiVE.html",
-  "phyra_notes": "phyra-read/notes/2512_InDRiVE_2512_InDRiVE.html"
+  "phyra_notes": "phyra-read/notes/2512_InDRiVE_2512_InDRiVE.html",
+  "phyra_slides": "phyra-read/slides/2512_InDRiVE_2512_InDRiVE.html"
  },
  {
-  "id": 93,
+  "id": 101,
+  "short_name": "MindDrive",
+  "title": "MindDrive: An All-in-One Framework Bridging World Models and Vision-Language Model for End-to-End Autonomous Driving",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "End-to-End Autonomous Driving",
+   "World Models",
+   "Vision-Language Models",
+   "Trajectory Planning",
+   "Multi-Objective Decision Making"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.04441",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 102,
+  "short_name": "UniUGP",
+  "title": "UniUGP: Unifying Understanding, Generation, and Planing For End-to-end Autonomous Driving",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "Autonomous Driving",
+   "Vision-Language Models",
+   "Video Generation",
+   "Trajectory Planning",
+   "Long-tail Scenario Handling"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.09864",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 103,
+  "short_name": "VDD",
+  "title": "Vehicle Dynamics Embedded World Models for Autonomous Driving",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "World Model",
+   "Vehicle Dynamics",
+   "DreamerV3",
+   "RSSM",
+   "MBRL",
+   "Sim-to-Real"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.02417",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "phyra-read/notes/2512_VDD_2512_VDD.html",
+  "phyra_slides": ""
+ },
+ {
+  "id": 104,
+  "short_name": "VLA-ADSurvey",
+  "title": "Vision-Language-Action Models for Autonomous Driving: Past, Present, and Future",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "Vision-Language-Action Models",
+   "Autonomous Driving",
+   "End-to-End Learning",
+   "Multimodal Reasoning",
+   "Driving Policy"
+  ],
+  "task_category": [
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.16760",
+  "has_notes": true,
+  "relevance": "Survey",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 105,
+  "short_name": "WAM-Flow",
+  "title": "WAM-Flow: Parallel Coarse-to-Fine Motion Planning via Discrete Flow Matching for Autonomous Driving",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "CVPR 2026",
+  "keywords": [
+   "VLA",
+   "Discrete Flow Matching",
+   "Motion Planning",
+   "GRPO",
+   "Parallel Decoding"
+  ],
+  "task_category": [
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "End-to-End"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.06112",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_notes": "phyra-read/notes/2512_WAM-Flow_2512_WAM-Flow.html",
+  "phyra_slides": ""
+ },
+ {
+  "id": 106,
+  "short_name": "WorldLens",
+  "title": "WorldLens: Full-Spectrum Evaluations of Driving World Models in Real World",
+  "date": "2025-12",
+  "year": "2512",
+  "venue": "預印本",
+  "keywords": [
+   "World Models",
+   "Autonomous Driving Evaluation",
+   "Generative 4D Environments",
+   "Physics-aware Benchmarking",
+   "Embodied AI Assessment"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2512.10958",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 107,
   "short_name": "WorldRFT",
   "title": "WorldRFT: Latent World Model Planning with Reinforcement Fine-Tuning for Autonomous Driving",
   "date": "2025-12",
@@ -3070,69 +3616,77 @@
   "arxiv_id": "2512.19133",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2512_WorldRFT_2512_WorldRFT.html",
-  "phyra_notes": "phyra-read/notes/2512_WorldRFT_2512_WorldRFT.html"
+  "phyra_notes": "phyra-read/notes/2512_WorldRFT_2512_WorldRFT.html",
+  "phyra_slides": "phyra-read/slides/2512_WorldRFT_2512_WorldRFT.html"
  },
  {
-  "short_name": "VDD",
-  "title": "Vehicle Dynamics Embedded World Models for Autonomous Driving",
-  "date": "2025-12",
-  "year": "2512",
-  "venue": "預印本",
-  "keywords": [
-   "World Model",
-   "Vehicle Dynamics",
-   "DreamerV3",
-   "RSSM",
-   "MBRL",
-   "Sim-to-Real"
-  ],
-  "task_category": [
-   "World Model",
-   "Motion Planning",
-   "End-to-End Driving"
-  ],
-  "architecture": [
-   "World Model + Planner"
-  ],
-  "ratings": {},
-  "arxiv_id": "2512.02417",
-  "has_notes": true,
-  "relevance": "World Model Core",
-  "phyra_slides": "",
-  "phyra_notes": "phyra-read/notes/2512_VDD_2512_VDD.html",
-  "id": 94
- },
- {
-  "short_name": "WAM-Flow",
-  "title": "WAM-Flow: Parallel Coarse-to-Fine Motion Planning via Discrete Flow Matching for Autonomous Driving",
-  "date": "2025-12",
-  "year": "2512",
-  "venue": "CVPR 2026",
+  "id": 108,
+  "short_name": "Alpamayo",
+  "title": "NVIDIA Alpamayo: Building Autonomous Vehicles That Reason",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "NVIDIA Developer Blog",
   "keywords": [
    "VLA",
-   "Discrete Flow Matching",
-   "Motion Planning",
-   "GRPO",
-   "Parallel Decoding"
+   "Reasoning",
+   "Chain-of-Thought",
+   "AlpaSim",
+   "Open-Source"
   ],
   "task_category": [
+   "Motion Planning",
+   "End-to-End Driving",
+   "Simulation"
+  ],
+  "architecture": [
+   "End-to-End"
+  ],
+  "ratings": {
+   "practical_value": 5
+  },
+  "arxiv_id": "N/A (Industry Release)",
+  "has_notes": true,
+  "relevance": "Long Tail & Corner Case",
+  "phyra_notes": "phyra-read/notes/2601_Alpamayo_2601_Alpamayo.html",
+  "phyra_slides": ""
+ },
+ {
+  "id": 109,
+  "short_name": "Drive-JEPA",
+  "title": "Drive-JEPA: Video JEPA Meets Multimodal Trajectory Distillation for End-to-End Driving",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "預印本",
+  "keywords": [
+   "End-to-end autonomous driving",
+   "Self-supervised video pretraining",
+   "Joint-embedding predictive architecture",
+   "Trajectory distillation",
+   "Vision transformer"
+  ],
+  "task_category": [
+   "World Model",
    "Motion Planning",
    "End-to-End Driving"
   ],
   "architecture": [
    "End-to-End"
   ],
-  "ratings": {},
-  "arxiv_id": "2512.06112",
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.22032",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "",
-  "phyra_notes": "phyra-read/notes/2512_WAM-Flow_2512_WAM-Flow.html",
-  "id": 95
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
  },
  {
-  "id": 96,
+  "id": 110,
   "short_name": "DrivingGen",
   "title": "DrivingGen: A Comprehensive Benchmark for Generative Video World Models in Autonomous Driving",
   "date": "2026-01",
@@ -3162,11 +3716,11 @@
   "arxiv_id": "2601.01528",
   "has_notes": true,
   "relevance": "Survey",
-  "phyra_slides": "phyra-read/slides/2601_DrivingGen_2601_DrivingGen.html",
-  "phyra_notes": "phyra-read/notes/2601_DrivingGen_2601_DrivingGen.html"
+  "phyra_notes": "phyra-read/notes/2601_DrivingGen_2601_DrivingGen.html",
+  "phyra_slides": "phyra-read/slides/2601_DrivingGen_2601_DrivingGen.html"
  },
  {
-  "id": 97,
+  "id": 111,
   "short_name": "AD-L-JEPA",
   "title": "Value-guided JEPA for Action Planning",
   "date": "2026-01",
@@ -3198,11 +3752,45 @@
   "arxiv_id": "2601.00844",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2601_JEPA_2601_JEPA.html",
-  "phyra_notes": "phyra-read/notes/2601_JEPA_2601_JEPA.html"
+  "phyra_notes": "phyra-read/notes/2601_JEPA_2601_JEPA.html",
+  "phyra_slides": "phyra-read/slides/2601_JEPA_2601_JEPA.html"
  },
  {
-  "id": 98,
+  "id": 112,
+  "short_name": "MAD",
+  "title": "MAD: Motion Appearance Decoupling for Efficient Driving World Models",
+  "date": "2026-01",
+  "year": "2601",
+  "venue": "預印本",
+  "keywords": [
+   "Video Diffusion Models",
+   "Motion-Appearance Decoupling",
+   "Autonomous Driving",
+   "World Models",
+   "Efficient Adaptation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation"
+  ],
+  "architecture": [
+   "Modular Pipeline"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2601.09452",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 113,
   "short_name": "NeoVerse",
   "title": "NeoVerse: Enhancing 4D World Model with in-the-wild Monocular Videos",
   "date": "2026-01",
@@ -3232,11 +3820,11 @@
   "arxiv_id": "2601.00393",
   "has_notes": true,
   "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "phyra-read/slides/2601_NeoVerse_2601_NeoVerse.html",
-  "phyra_notes": "phyra-read/notes/2601_NeoVerse_2601_NeoVerse.html"
+  "phyra_notes": "phyra-read/notes/2601_NeoVerse_2601_NeoVerse.html",
+  "phyra_slides": "phyra-read/slides/2601_NeoVerse_2601_NeoVerse.html"
  },
  {
-  "id": 99,
+  "id": 114,
   "short_name": "UniDrive-WM",
   "title": "UniDrive-WM: Unified Understanding, Planning and Generation World Model For Autonomous Driving",
   "date": "2026-01",
@@ -3267,40 +3855,45 @@
   "arxiv_id": "2601.04453",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2601_UniDrive-WM_2601_UniDrive-WM.html",
-  "phyra_notes": "phyra-read/notes/2601_UniDrive-WM_2601_UniDrive-WM.html"
+  "phyra_notes": "phyra-read/notes/2601_UniDrive-WM_2601_UniDrive-WM.html",
+  "phyra_slides": "phyra-read/slides/2601_UniDrive-WM_2601_UniDrive-WM.html"
  },
  {
-  "short_name": "Alpamayo",
-  "title": "NVIDIA Alpamayo: Building Autonomous Vehicles That Reason",
-  "date": "2026-01",
-  "year": "2601",
-  "venue": "NVIDIA Developer Blog",
+  "id": 115,
+  "short_name": "DriveWorld-VLA",
+  "title": "DriveWorld-VLA: Unified Latent-Space World Modeling with Vision-Language-Action for Autonomous Driving",
+  "date": "2026-02",
+  "year": "2602",
+  "venue": "預印本",
   "keywords": [
-   "VLA",
-   "Reasoning",
-   "Chain-of-Thought",
-   "AlpaSim",
-   "Open-Source"
+   "World Models",
+   "Vision-Language-Action (VLA)",
+   "Latent Space Representation",
+   "Autonomous Driving",
+   "Scene Evolution Modeling"
   ],
   "task_category": [
-   "Motion Planning",
-   "End-to-End Driving",
-   "Simulation"
+   "World Model",
+   "End-to-End Driving"
   ],
   "architecture": [
-   "End-to-End"
+   "World Model + Planner"
   ],
-  "ratings": {},
-  "arxiv_id": "",
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2602.06521",
   "has_notes": true,
-  "relevance": "Long Tail & Corner Case",
-  "phyra_slides": "",
-  "phyra_notes": "phyra-read/notes/2601_Alpamayo_2601_Alpamayo.html",
-  "id": 100
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
  },
  {
-  "id": 101,
+  "id": 116,
   "short_name": "RAYNOVA",
   "title": "RAYNOVA: Scale-Temporal Autoregressive World Modeling in Ray Space",
   "date": "2026-02",
@@ -3329,11 +3922,11 @@
   "arxiv_id": "2602.20685",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2602_RAYNOVA_2602_RAYNOVA.html",
-  "phyra_notes": "phyra-read/notes/2602_RAYNOVA_2602_RAYNOVA.html"
+  "phyra_notes": "phyra-read/notes/2602_RAYNOVA_2602_RAYNOVA.html",
+  "phyra_slides": "phyra-read/slides/2602_RAYNOVA_2602_RAYNOVA.html"
  },
  {
-  "id": 102,
+  "id": 117,
   "short_name": "RaWMPC",
   "title": "Risk-Aware World Model Predictive Control for Generalizable End-to-End Autonomous Driving",
   "date": "2026-02",
@@ -3362,11 +3955,11 @@
   "arxiv_id": "2602.23259",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2602_RaWMPC_2602_RaWMPC.html",
-  "phyra_notes": "phyra-read/notes/2602_RaWMPC_2602_RaWMPC.html"
+  "phyra_notes": "phyra-read/notes/2602_RaWMPC_2602_RaWMPC.html",
+  "phyra_slides": "phyra-read/slides/2602_RaWMPC_2602_RaWMPC.html"
  },
  {
-  "id": 103,
+  "id": 118,
   "short_name": "ResWorld",
   "title": "ResWorld: Temporal Residual World Model for End-to-End Autonomous Driving",
   "date": "2026-02",
@@ -3395,11 +3988,11 @@
   "arxiv_id": "2602.10884",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2602_ResWorld_2602_ResWorld.html",
-  "phyra_notes": "phyra-read/notes/2602_ResWorld_2602_ResWorld.html"
+  "phyra_notes": "phyra-read/notes/2602_ResWorld_2602_ResWorld.html",
+  "phyra_slides": "phyra-read/slides/2602_ResWorld_2602_ResWorld.html"
  },
  {
-  "id": 104,
+  "id": 119,
   "short_name": "WaymoWM",
   "title": "The Waymo World Model: A New Frontier For Autonomous Driving Simulation",
   "date": "2026-02",
@@ -3428,11 +4021,185 @@
   "arxiv_id": "N/A (Industry Blog)",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "phyra-read/slides/2602_WaymoWM_2602_WaymoWM.html",
-  "phyra_notes": "phyra-read/notes/2602_WaymoWM_2602_WaymoWM.html"
+  "phyra_notes": "phyra-read/notes/2602_WaymoWM_2602_WaymoWM.html",
+  "phyra_slides": "phyra-read/slides/2602_WaymoWM_2602_WaymoWM.html"
  },
  {
-  "id": 105,
+  "id": 120,
+  "short_name": "AutoWorld",
+  "title": "AutoWorld: Scaling Multi-Agent Traffic Simulation with Self-Supervised World Models",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Self-Supervised World Model",
+   "Traffic Simulation",
+   "Multi-Agent Motion",
+   "LiDAR Occupancy",
+   "Determinantal Point Process"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.28963",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 121,
+  "short_name": "DCARL",
+  "title": "DCARL: A Divide-and-Conquer Framework for Autoregressive Long-Trajectory Video Generation",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Long-trajectory video generation",
+   "Autoregressive modeling",
+   "Keyframe synthesis",
+   "Video diffusion models",
+   "World modeling"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.24835",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 122,
+  "short_name": "DreamerAD",
+  "title": "DreamerAD: Efficient Reinforcement Learning via Latent World Model for Autonomous Driving",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Latent World Model",
+   "Reinforcement Learning",
+   "Diffusion Sampling Efficiency",
+   "Imagination-based Policy",
+   "End-to-End Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.24587",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 123,
+  "short_name": "FAR-Drive",
+  "title": "FAR-Drive: Frame-AutoRegressive Video Generation in Closed-Loop Autonomous Driving",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Closed-loop Simulation",
+   "Autoregressive Video Generation",
+   "Multi-view Diffusion Transformer",
+   "Temporal Consistency",
+   "Autonomous Driving"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.14938",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 124,
+  "short_name": "Latent-WAM",
+  "title": "Latent-WAM: Latent World Action Modeling for End-to-End Autonomous Driving",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "World modeling",
+   "Autonomous driving",
+   "Trajectory planning",
+   "Latent representations",
+   "Multi-view image compression"
+  ],
+  "task_category": [
+   "World Model",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.24581",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 125,
   "short_name": "LatentWMSurvey",
   "title": "Latent World Models for Automated Driving: A Unified Taxonomy, Evaluation Framework, and Open Challenges",
   "date": "2026-03",
@@ -3459,10 +4226,221 @@
   "arxiv_id": "2603.09086",
   "has_notes": true,
   "relevance": "Survey",
-  "phyra_slides": "phyra-read/slides/2603_LatentWMSurvey_2603_LatentWMSurvey.html",
-  "phyra_notes": "phyra-read/notes/2603_LatentWMSurvey_2603_LatentWMSurvey.html"
+  "phyra_notes": "phyra-read/notes/2603_LatentWMSurvey_2603_LatentWMSurvey.html",
+  "phyra_slides": "phyra-read/slides/2603_LatentWMSurvey_2603_LatentWMSurvey.html"
  },
  {
+  "id": 126,
+  "short_name": "OccSim",
+  "title": "OccSim: Multi-kilometer Simulation with Long-horizon Occupancy World Models",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Occupancy World Model",
+   "3D Scene Simulation",
+   "Long-horizon Generation",
+   "Synthetic Data Generation",
+   "Autonomous Driving Simulation"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Simulation",
+   "Occupancy Prediction"
+  ],
+  "architecture": [
+   "Modular Pipeline"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.28887",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 127,
+  "short_name": "PhyGenesis",
+  "title": "Toward Physically Consistent Driving Video World Models under Challenging Trajectories",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Video Generation World Model",
+   "Physical Consistency",
+   "Trajectory Correction",
+   "Multi-view Driving Video",
+   "Challenging Scenario Synthesis"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Simulation"
+  ],
+  "architecture": [
+   "Modular Pipeline"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.24506",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 128,
+  "short_name": "ReconDrive",
+  "title": "ReconDrive: Fast Feed-Forward 4D Gaussian Splatting for Autonomous Driving Scene Reconstruction",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "4D Gaussian Splatting",
+   "Novel-View Synthesis",
+   "Foundation Models",
+   "Autonomous Driving Simulation",
+   "Feed-Forward Scene Reconstruction"
+  ],
+  "task_category": [
+   "3D Scene Understanding",
+   "Simulation",
+   "Neural Rendering"
+  ],
+  "architecture": [
+   "Foundation Model"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.07552",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 129,
+  "short_name": "VideoGenWMSurvey",
+  "title": "Video Generation Models as World Models: Efficient Paradigms, Architectures and Algorithms",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Video Generation",
+   "World Models",
+   "Computational Efficiency",
+   "Spatiotemporal Modeling",
+   "Autonomous Systems"
+  ],
+  "task_category": [
+   "Video Generation"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.28489",
+  "has_notes": true,
+  "relevance": "Survey",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 130,
+  "short_name": "WorldDrive",
+  "title": "Bridging Scene Generation and Planning: Driving with World Model via Unifying Vision and Motion Representation",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "World models",
+   "Autonomous driving",
+   "Scene generation",
+   "Trajectory planning",
+   "Vision-motion representation"
+  ],
+  "task_category": [
+   "World Model",
+   "Video Generation",
+   "Motion Planning",
+   "End-to-End Driving"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.14948",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 131,
+  "short_name": "WorldVLM",
+  "title": "WorldVLM: Combining World Model Forecasting and Vision-Language Reasoning",
+  "date": "2026-03",
+  "year": "2603",
+  "venue": "預印本",
+  "keywords": [
+   "Autonomous driving",
+   "Vision-Language Models",
+   "World Models",
+   "Scene understanding",
+   "Dynamic prediction"
+  ],
+  "task_category": [
+   "World Model",
+   "3D Scene Understanding",
+   "Motion Planning"
+  ],
+  "architecture": [
+   "World Model + Planner"
+  ],
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "overall": 3
+  },
+  "arxiv_id": "2603.14497",
+  "has_notes": true,
+  "relevance": "World Model Core",
+  "phyra_notes": "",
+  "phyra_slides": ""
+ },
+ {
+  "id": 132,
   "short_name": "X-World",
   "title": "X-World: Controllable Ego-Centric Multi-Camera World Models for Scalable End-to-End Driving",
   "date": "2026-03",
@@ -3484,12 +4462,18 @@
   "architecture": [
    "World Model + Planner"
   ],
-  "ratings": {},
+  "ratings": {
+   "innovation": 3,
+   "technical_depth": 3,
+   "experiment_completeness": 3,
+   "writing_quality": 3,
+   "practical_value": 3,
+   "overall": 3
+  },
   "arxiv_id": "2603.19979",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_slides": "",
   "phyra_notes": "phyra-read/notes/2603_X-World_2603_X-World.html",
-  "id": 106
+  "phyra_slides": ""
  }
 ]
