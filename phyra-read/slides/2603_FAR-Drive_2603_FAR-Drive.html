@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAR-Drive | Phyra Paper Read</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+  <style>
+    /* === Semantic aliases === */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 960px;
+    }
+
+    /* === Light mode derived === */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255,255,255,0.92);
+      --p-formula-bg     : rgba(255,255,255,0.92);
+      --p-border         : rgba(28,28,28,0.12);
+      --p-text-secondary : rgba(28,28,28,0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+    }
+    /* === Dark mode derived === */
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0,0,0,0.35);
+      --p-formula-bg     : rgba(0,0,0,0.35);
+      --p-border         : rgba(245,242,235,0.12);
+      --p-text-secondary : rgba(245,242,235,0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+    }
+
+    /* ===== Light Themes (42) ===== */
+    [data-theme="nadeshiko"]{--theme-primary:#DC9FB4;--theme-light:#F3E6EB;--theme-accent:#92E566;--theme-dark:#471727;--theme-neutral:#E7E3E4;--theme-text:#1C1C1C}
+    [data-theme="taikoh"]{--theme-primary:#F8C3CD;--theme-light:#F3E6E9;--theme-accent:#6EFE4C;--theme-dark:#600D1D;--theme-neutral:#E8E2E3;--theme-text:#1C1C1C}
+    [data-theme="momo"]{--theme-primary:#F596AA;--theme-light:#F3E6E9;--theme-accent:#72FE4C;--theme-dark:#560C1B;--theme-neutral:#E8E2E4;--theme-text:#1C1C1C}
+    [data-theme="toki"]{--theme-primary:#EEA9A9;--theme-light:#F3E6E6;--theme-accent:#50FA50;--theme-dark:#580D0D;--theme-neutral:#E8E2E2;--theme-text:#1C1C1C}
+    [data-theme="jinzamomi"]{--theme-primary:#EB7A77;--theme-light:#F3E7E6;--theme-accent:#4CFE51;--theme-dark:#4D0C0B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C}
+    [data-theme="haizakura"]{--theme-primary:#D7C4BB;--theme-light:#F1EBE8;--theme-accent:#7CCE97;--theme-dark:#402D23;--theme-neutral:#E6E5E4;--theme-text:#1C1C1C}
+    [data-theme="akebono"]{--theme-primary:#F19483;--theme-light:#F3E8E6;--theme-accent:#4CFE68;--theme-dark:#51160B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C}
+    [data-theme="sangosyu"]{--theme-primary:#F17C67;--theme-light:#F3E8E6;--theme-accent:#4CFE67;--theme-dark:#4B140A;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C}
+    [data-theme="araisyu"]{--theme-primary:#FB966E;--theme-light:#F3EAE6;--theme-accent:#4CFE7F;--theme-dark:#4E1E0B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C}
+    [data-theme="akakoh"]{--theme-primary:#E3916E;--theme-light:#F3EAE6;--theme-accent:#4FFB83;--theme-dark:#491D0A;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C}
+    [data-theme="kokikuchinashi"]{--theme-primary:#FB9966;--theme-light:#F3EBE6;--theme-accent:#4CFE89;--theme-dark:#4D210B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C}
+    [data-theme="kanzo"]{--theme-primary:#FC9F4D;--theme-light:#F3ECE6;--theme-accent:#4AFE9E;--theme-dark:#47270A;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C}
+    [data-theme="beniukon"]{--theme-primary:#E98B2A;--theme-light:#F3EDE6;--theme-accent:#14FE8B;--theme-dark:#3C2208;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C}
+    [data-theme="kuchiba"]{--theme-primary:#E2943B;--theme-light:#F3EDE6;--theme-accent:#1EFF95;--theme-dark:#3E2508;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C}
+    [data-theme="yamabuki"]{--theme-primary:#FFB11B;--theme-light:#F3EFE6;--theme-accent:#1BFFB0;--theme-dark:#3D2B08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="hajizome"]{--theme-primary:#DDA52D;--theme-light:#F3EFE6;--theme-accent:#0BFEB1;--theme-dark:#3A2A08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="tamago"]{--theme-primary:#F9BF45;--theme-light:#F3EFE6;--theme-accent:#3FFFC1;--theme-dark:#453209;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="tamamorokoshi"]{--theme-primary:#E8B647;--theme-light:#F3EFE6;--theme-accent:#30FFBE;--theme-dark:#423009;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="usuki"]{--theme-primary:#FAD689;--theme-light:#F3EFE6;--theme-accent:#4CFEC6;--theme-dark:#543D0C;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="kuchinashi"]{--theme-primary:#F6C555;--theme-light:#F3EFE6;--theme-accent:#4CFEC8;--theme-dark:#48350A;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="tohoh"]{--theme-primary:#FFC408;--theme-light:#F3F0E6;--theme-accent:#07FFC4;--theme-dark:#392D08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="ukon"]{--theme-primary:#EFBB24;--theme-light:#F3F0E6;--theme-accent:#14FEC2;--theme-dark:#3C2E08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="tonoko"]{--theme-primary:#D7B98E;--theme-light:#F3EEE6;--theme-accent:#65E6B1;--theme-dark:#443015;--theme-neutral:#E7E5E3;--theme-text:#1C1C1C}
+    [data-theme="kariyasu"]{--theme-primary:#E9CD4C;--theme-light:#F3F1E6;--theme-accent:#35FFDB;--theme-dark:#433909;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C}
+    [data-theme="hiwa"]{--theme-primary:#BEC23F;--theme-light:#F3F3E6;--theme-accent:#1EDCE2;--theme-dark:#31320D;--theme-neutral:#E7E7E3;--theme-text:#1C1C1C}
+    [data-theme="hiwamoegi"]{--theme-primary:#90B44B;--theme-light:#EFF3E6;--theme-accent:#2D99D1;--theme-dark:#242E11;--theme-neutral:#E6E7E3;--theme-text:#1C1C1C}
+    [data-theme="yanagizome"]{--theme-primary:#91AD70;--theme-light:#EDF1E8;--theme-accent:#5992C3;--theme-dark:#242E19;--theme-neutral:#E5E6E4;--theme-text:#1C1C1C}
+    [data-theme="nae"]{--theme-primary:#86C166;--theme-light:#EBF3E6;--theme-accent:#4C7EDA;--theme-dark:#1F3613;--theme-neutral:#E4E7E3;--theme-text:#1C1C1C}
+    [data-theme="wakatake"]{--theme-primary:#5DAC81;--theme-light:#E7F2EC;--theme-accent:#7E42C6;--theme-dark:#152C20;--theme-neutral:#E4E6E5;--theme-text:#1C1C1C}
+    [data-theme="byakuroku"]{--theme-primary:#A8D8B9;--theme-light:#E6F3EB;--theme-accent:#956FDB;--theme-dark:#1B442A;--theme-neutral:#E3E7E4;--theme-text:#1C1C1C}
+    [data-theme="seiji"]{--theme-primary:#69B0AC;--theme-light:#E7F2F2;--theme-accent:#C150C8;--theme-dark:#172F2D;--theme-neutral:#E4E6E6;--theme-text:#1C1C1C}
+    [data-theme="mizuasagi"]{--theme-primary:#66BAB7;--theme-light:#E6F3F2;--theme-accent:#CE4CD3;--theme-dark:#153231;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C}
+    [data-theme="byakugun"]{--theme-primary:#78C2C4;--theme-light:#E6F3F3;--theme-accent:#DA61D6;--theme-dark:#163738;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C}
+    [data-theme="kamenozoki"]{--theme-primary:#A5DEE4;--theme-light:#E6F2F3;--theme-accent:#EC5EDF;--theme-dark:#14484E;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C}
+    [data-theme="mizu"]{--theme-primary:#81C7D4;--theme-light:#E6F1F3;--theme-accent:#E763D3;--theme-dark:#133A41;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C}
+    [data-theme="sora"]{--theme-primary:#58B2DC;--theme-light:#E6EFF3;--theme-accent:#F83BBC;--theme-dark:#0A3042;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C}
+    [data-theme="wasurenagusa"]{--theme-primary:#7DB9DE;--theme-light:#E6EEF3;--theme-accent:#F258B8;--theme-dark:#0E3247;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C}
+    [data-theme="tsuyukusa"]{--theme-primary:#2EA9DF;--theme-light:#E6EFF3;--theme-accent:#FE0EB5;--theme-dark:#082B3A;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C}
+    [data-theme="gunjyo"]{--theme-primary:#51A8DD;--theme-light:#E6EEF3;--theme-accent:#FA33AF;--theme-dark:#092C41;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C}
+    [data-theme="usu"]{--theme-primary:#B28FCE;--theme-light:#EDE6F3;--theme-accent:#DDAB6E;--theme-dark:#2D183E;--theme-neutral:#E5E3E7;--theme-text:#1C1C1C}
+    [data-theme="shironeri"]{--theme-primary:#FCFAF2;--theme-light:#F3F0E6;--theme-accent:#55F6D5;--theme-dark:#685713;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C}
+    [data-theme="shironezumi"]{--theme-primary:#BDC0BA;--theme-light:#EDEDEC;--theme-accent:#93A5B8;--theme-dark:#2F312C;--theme-neutral:#E5E5E5;--theme-text:#1C1C1C}
+
+    /* ===== Dark Themes (58) ===== */
+    [data-theme="kohbai"]{--theme-primary:#E16B8C;--theme-light:#F3E6EA;--theme-accent:#80FA51;--theme-dark:#470B1C;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB}
+    [data-theme="suoh"]{--theme-primary:#8E354A;--theme-light:#F3E6E9;--theme-accent:#3DA51D;--theme-dark:#260C12;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB}
+    [data-theme="ichigo"]{--theme-primary:#B5495B;--theme-light:#F3E6E8;--theme-accent:#47D22B;--theme-dark:#2E1015;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB}
+    [data-theme="karakurenai"]{--theme-primary:#D0104C;--theme-light:#F3E6EA;--theme-accent:#46E000;--theme-dark:#300714;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB}
+    [data-theme="kurenai"]{--theme-primary:#CB1B45;--theme-light:#F3E6E9;--theme-accent:#36E500;--theme-dark:#320711;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB}
+    [data-theme="kokiake"]{--theme-primary:#86473F;--theme-light:#F3E8E6;--theme-accent:#299B36;--theme-dark:#23110F;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB}
+    [data-theme="azuki"]{--theme-primary:#954A45;--theme-light:#F3E7E6;--theme-accent:#2CAD34;--theme-dark:#261110;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB}
+    [data-theme="akabeni"]{--theme-primary:#CB4042;--theme-light:#F3E6E7;--theme-accent:#22EB1F;--theme-dark:#360C0C;--theme-neutral:#E8E2E3;--theme-text:#F5F2EB}
+    [data-theme="syojyohi"]{--theme-primary:#E83015;--theme-light:#F3E8E6;--theme-accent:#00FD20;--theme-dark:#370D07;--theme-neutral:#E8E3E2;--theme-text:#F5F2EB}
+    [data-theme="entan"]{--theme-primary:#D75455;--theme-light:#F3E6E6;--theme-accent:#38F337;--theme-dark:#3E0B0C;--theme-neutral:#E8E2E2;--theme-text:#F5F2EB}
+    [data-theme="benihi"]{--theme-primary:#F75C2F;--theme-light:#F3E9E6;--theme-accent:#26FF57;--theme-dark:#401509;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB}
+    [data-theme="terigaki"]{--theme-primary:#C46243;--theme-light:#F3E9E6;--theme-accent:#23E351;--theme-dark:#33170D;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB}
+    [data-theme="ohni"]{--theme-primary:#F05E1C;--theme-light:#F3EAE6;--theme-accent:#0DFE58;--theme-dark:#3A1808;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB}
+    [data-theme="sohi"]{--theme-primary:#ED784A;--theme-light:#F3EAE6;--theme-accent:#38FF70;--theme-dark:#441A09;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB}
+    [data-theme="ensyucha"]{--theme-primary:#CA7853;--theme-light:#F3EAE6;--theme-accent:#36E66D;--theme-dark:#381B0E;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB}
+    [data-theme="kogecha"]{--theme-primary:#563F2E;--theme-light:#F2ECE7;--theme-accent:#2F9259;--theme-dark:#221810;--theme-neutral:#E6E5E4;--theme-text:#F5F2EB}
+    [data-theme="taisya"]{--theme-primary:#A36336;--theme-light:#F3ECE6;--theme-accent:#1ABE5E;--theme-dark:#2A180C;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB}
+    [data-theme="kohaku"]{--theme-primary:#CA7A2C;--theme-light:#F3EDE6;--theme-accent:#09EC79;--theme-dark:#341E09;--theme-neutral:#E8E5E2;--theme-text:#F5F2EB}
+    [data-theme="kenpohzome"]{--theme-primary:#43341B;--theme-light:#F3EEE6;--theme-accent:#20A070;--theme-dark:#251C0D;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB}
+    [data-theme="koke"]{--theme-primary:#838A2D;--theme-light:#F2F3E6;--theme-accent:#179FAA;--theme-dark:#25270B;--theme-neutral:#E7E7E3;--theme-text:#F5F2EB}
+    [data-theme="moegi"]{--theme-primary:#7BA23F;--theme-light:#EEF3E6;--theme-accent:#2480BC;--theme-dark:#1F290E;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB}
+    [data-theme="matsuba"]{--theme-primary:#42602D;--theme-light:#ECF3E6;--theme-accent:#285699;--theme-dark:#17230F;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB}
+    [data-theme="tokiwa"]{--theme-primary:#1B813E;--theme-light:#E6F3EB;--theme-accent:#4406BB;--theme-dark:#072B13;--theme-neutral:#E2E8E4;--theme-text:#F5F2EB}
+    [data-theme="midori"]{--theme-primary:#227D51;--theme-light:#E6F3ED;--theme-accent:#630FB1;--theme-dark:#09291A;--theme-neutral:#E2E8E5;--theme-text:#F5F2EB}
+    [data-theme="tokusa"]{--theme-primary:#2D6D4B;--theme-light:#E6F3EC;--theme-accent:#5C229F;--theme-dark:#0D2518;--theme-neutral:#E3E7E5;--theme-text:#F5F2EB}
+    [data-theme="rokusyoh"]{--theme-primary:#24936E;--theme-light:#E6F3EF;--theme-accent:#7D0BB5;--theme-dark:#082A1F;--theme-neutral:#E2E8E6;--theme-text:#F5F2EB}
+    [data-theme="aomidori"]{--theme-primary:#00AA90;--theme-light:#E6F3F1;--theme-accent:#A400C1;--theme-dark:#062C26;--theme-neutral:#E2E8E7;--theme-text:#F5F2EB}
+    [data-theme="asagi"]{--theme-primary:#33A6B8;--theme-light:#E6F1F3;--theme-accent:#D614BC;--theme-dark:#0B2A2F;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB}
+    [data-theme="shinbashi"]{--theme-primary:#0089A7;--theme-light:#E6F1F3;--theme-accent:#C1009E;--theme-dark:#06252C;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB}
+    [data-theme="hanaasagi"]{--theme-primary:#1E88A8;--theme-light:#E6F0F3;--theme-accent:#C40197;--theme-dark:#06232C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB}
+    [data-theme="chigusa"]{--theme-primary:#3A8FB7;--theme-light:#E6EFF3;--theme-accent:#D51B9A;--theme-dark:#0C242F;--theme-neutral:#E3E6E7;--theme-text:#F5F2EB}
+    [data-theme="hanada"]{--theme-primary:#006284;--theme-light:#E6F0F3;--theme-accent:#C1008F;--theme-dark:#06222C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB}
+    [data-theme="ruri"]{--theme-primary:#005CAF;--theme-light:#E6EDF3;--theme-accent:#C10065;--theme-dark:#061A2C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB}
+    [data-theme="rurikon"]{--theme-primary:#0B346E;--theme-light:#E6ECF3;--theme-accent:#C10050;--theme-dark:#06162C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB}
+    [data-theme="benimidori"]{--theme-primary:#7B90D2;--theme-light:#E6E9F3;--theme-accent:#E76383;--theme-dark:#131D40;--theme-neutral:#E3E4E7;--theme-text:#F5F2EB}
+    [data-theme="fujinezumi"]{--theme-primary:#6E75A4;--theme-light:#E9EAF1;--theme-accent:#BB5663;--theme-dark:#191B2A;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB}
+    [data-theme="benikakehana"]{--theme-primary:#4E4F97;--theme-light:#E7E7F2;--theme-accent:#AF3537;--theme-dark:#121226;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB}
+    [data-theme="konjyo"]{--theme-primary:#113285;--theme-light:#E6EAF3;--theme-accent:#C10037;--theme-dark:#06112C;--theme-neutral:#E2E4E8;--theme-text:#F5F2EB}
+    [data-theme="kon"]{--theme-primary:#0F2540;--theme-light:#E6ECF3;--theme-accent:#B70A58;--theme-dark:#08172A;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB}
+    [data-theme="konkikyo"]{--theme-primary:#211E55;--theme-light:#E7E6F3;--theme-accent:#A7221A;--theme-dark:#0D0C26;--theme-neutral:#E3E3E7;--theme-text:#F5F2EB}
+    [data-theme="kurotsurubami"]{--theme-primary:#0B1013;--theme-light:#E8EEF1;--theme-accent:#8E336C;--theme-dark:#121B20;--theme-neutral:#E4E5E6;--theme-text:#F5F2EB}
+    [data-theme="fuji"]{--theme-primary:#8B81C3;--theme-light:#E8E6F3;--theme-accent:#D77C6C;--theme-dark:#1D1838;--theme-neutral:#E4E3E7;--theme-text:#F5F2EB}
+    [data-theme="fujimurasaki"]{--theme-primary:#8A6BBE;--theme-light:#EBE6F3;--theme-accent:#D68352;--theme-dark:#211535;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB}
+    [data-theme="kikyo"]{--theme-primary:#6A4C9C;--theme-light:#EBE6F3;--theme-accent:#B56332;--theme-dark:#1A1228;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB}
+    [data-theme="shion"]{--theme-primary:#8F77B5;--theme-light:#EBE7F2;--theme-accent:#CA8A61;--theme-dark:#221931;--theme-neutral:#E5E4E6;--theme-text:#F5F2EB}
+    [data-theme="edomurasaki"]{--theme-primary:#77428D;--theme-light:#EFE6F3;--theme-accent:#A4802A;--theme-dark:#1E0F24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB}
+    [data-theme="murasaki"]{--theme-primary:#592C63;--theme-light:#F1E6F3;--theme-accent:#9C8625;--theme-dark:#200E24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB}
+    [data-theme="benifuji"]{--theme-primary:#B481BB;--theme-light:#F1E7F2;--theme-accent:#CFC36C;--theme-dark:#311A34;--theme-neutral:#E6E4E6;--theme-text:#F5F2EB}
+    [data-theme="botan"]{--theme-primary:#C1328E;--theme-light:#F3E6EE;--theme-accent:#97E111;--theme-dark:#320A24;--theme-neutral:#E8E2E6;--theme-text:#F5F2EB}
+    [data-theme="tsutsuji"]{--theme-primary:#E03C8A;--theme-light:#F3E6EC;--theme-accent:#88FF1D;--theme-dark:#3E0822;--theme-neutral:#E8E2E5;--theme-text:#F5F2EB}
+    [data-theme="ginnezumi"]{--theme-primary:#91989F;--theme-light:#EBEDEE;--theme-accent:#AF8098;--theme-dark:#232628;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="namari"]{--theme-primary:#787878;--theme-light:#EDEDED;--theme-accent:#668966;--theme-dark:#1D1D1D;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="hai"]{--theme-primary:#828282;--theme-light:#EDEDED;--theme-accent:#6F946F;--theme-dark:#202020;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="nibi"]{--theme-primary:#656765;--theme-light:#ECEDEC;--theme-accent:#555576;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="aonibi"]{--theme-primary:#535953;--theme-light:#ECEDEC;--theme-accent:#4E4E73;--theme-dark:#181A18;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="keshizumi"]{--theme-primary:#434343;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="sumi"]{--theme-primary:#1C1C1C;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="kuro"]{--theme-primary:#080808;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+
+    /* ===== Layout ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      background: transparent;
+      color: var(--p-text);
+      min-height: 100vh;
+    }
+
+    .phyra-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+
+    .phyra-gloss {
+      position: fixed; top: 0; left: 0; width: 100%; height: 478px;
+      z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none;
+      transition: opacity 2s ease-in;
+    }
+
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative; z-index: 2;
+    }
+
+    main, #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto;
+      padding: 40px 20px 20px;
+      box-sizing: border-box;
+      transition: max-width 0.15s ease;
+    }
+
+    .phyra-width-handle {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 6px; height: 60px;
+      background: rgba(128,128,128,0.3); border-radius: 3px;
+      cursor: col-resize; z-index: 99;
+      transition: background 0.2s, opacity 0.3s; opacity: 0.4;
+    }
+    .phyra-width-handle:hover, .phyra-width-handle.dragging {
+      background: var(--p-accent); opacity: 1;
+    }
+
+    .phyra-footer {
+      text-align: center; padding: 24px 20px;
+      font-size: 12px; color: var(--p-text); opacity: 0.5;
+      letter-spacing: 0.05em; position: relative; z-index: 2;
+    }
+
+    .phyra-switcher {
+      position: fixed; bottom: 20px; right: 20px; z-index: 100;
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128,128,128,0.15);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128,128,128,0.2);
+      border-radius: 24px; transition: background 0.3s;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(128,128,128,0.3);
+      border-radius: 12px; color: #1C1C1C;
+      font-size: 12px; cursor: pointer; outline: none; max-width: 200px;
+    }
+    .phyra-switcher select option, .phyra-switcher select optgroup {
+      color: #1C1C1C; background: #fff;
+    }
+    .phyra-switcher button {
+      padding: 4px 12px;
+      background: rgba(128,128,128,0.2);
+      border: 1px solid rgba(128,128,128,0.3);
+      border-radius: 12px; color: var(--p-text);
+      cursor: pointer; font-size: 12px; transition: background 0.2s;
+    }
+    .phyra-switcher button:hover { background: rgba(128,128,128,0.35); }
+
+    /* ===== Slide Cards ===== */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 24px;
+      color: var(--p-text);
+      margin-bottom: 20px;
+    }
+
+    h1 { font-size: 1.8rem; color: var(--p-text); margin-bottom: 8px; }
+    h2 { font-size: 1.4rem; color: var(--p-text); border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin-bottom: 16px; }
+    h3 { font-size: 1.1rem; color: var(--p-text); margin-bottom: 10px; }
+    p { line-height: 1.7; margin-bottom: 10px; color: var(--p-text); }
+
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px; border-radius: 3px; font-weight: 700;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-bottom: 12px; }
+    th {
+      background: var(--p-primary); padding: 8px 12px; text-align: left;
+    }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--p-border); color: var(--p-text); }
+    tr:hover td { background: rgba(128,128,128,0.08); }
+
+    .tag {
+      display: inline-block; padding: 2px 8px; border-radius: 12px;
+      font-size: 0.75em; font-weight: 600; margin: 2px;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text);
+    }
+
+    .score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+    .score-label { width: 160px; font-size: 0.9em; color: var(--p-text); flex-shrink: 0; }
+    .score-bar { flex: 1; height: 8px; border-radius: 4px; background: var(--p-border); }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+    .score-num { width: 30px; text-align: right; font-size: 0.85em; color: var(--p-text-secondary); }
+
+    .formula {
+      background: var(--p-formula-bg); color: var(--p-text);
+      padding: 12px 16px; border-radius: 6px;
+      border: 1px solid var(--p-border);
+      overflow-x: auto; margin-bottom: 12px;
+      font-size: 0.95em;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .header-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-top: 5px solid var(--p-accent);
+      border-radius: 8px; padding: 28px 28px 20px;
+      margin-bottom: 20px;
+    }
+
+    .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+    ul, ol { padding-left: 1.4em; margin-bottom: 10px; }
+    li { margin-bottom: 4px; line-height: 1.6; color: var(--p-text); }
+
+    .section-label {
+      font-size: 0.72em; font-weight: 700; letter-spacing: 0.08em;
+      color: var(--p-text-secondary); text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .highlight-box {
+      background: color-mix(in srgb, var(--p-accent) 10%, transparent);
+      border-left: 3px solid var(--p-accent);
+      border-radius: 0 6px 6px 0;
+      padding: 12px 16px; margin-bottom: 10px;
+      color: var(--p-text);
+    }
+
+    code {
+      font-family: 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.88em;
+      background: color-mix(in srgb, var(--p-primary) 15%, transparent);
+      padding: 1px 4px; border-radius: 3px;
+      color: var(--p-text);
+    }
+
+    pre {
+      background: var(--p-formula-bg);
+      border: 1px solid var(--p-border);
+      border-radius: 6px; padding: 14px 16px;
+      overflow-x: auto; margin-bottom: 12px;
+      font-size: 0.85em; color: var(--p-text);
+    }
+
+    .red-flag {
+      background: color-mix(in srgb, #e05050 12%, transparent);
+      border-left: 3px solid #e05050;
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px; margin-bottom: 8px;
+      font-size: 0.9em; color: var(--p-text);
+    }
+
+    .check-item { display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.9em; }
+    .check-ok { color: var(--p-accent); }
+    .check-no { color: #e05050; }
+    .check-partial { color: #f0a020; }
+  </style>
+</head>
+<body>
+<div class="phyra-bg"></div>
+<div class="phyra-gloss"></div>
+<div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+<div class="phyra-switcher">
+  <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+  <button onclick="phyraRandom()">Random</button>
+</div>
+
+<main id="phyra-main">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header-card">
+    <div class="section-label">Paper Read Report · 2026-04-19</div>
+    <h1>FAR-Drive</h1>
+    <p style="font-size:1.05em; opacity:0.85; margin-bottom:10px;">Frame-AutoRegressive Video Generation in Closed-Loop Autonomous Driving</p>
+    <div class="meta-row">
+      <span class="tag">arXiv 2603.14938</span>
+      <span class="tag">2026-03-16</span>
+      <span class="tag">Zhejiang University &amp; Huawei</span>
+      <span class="tag">Closed-Loop Simulation</span>
+      <span class="tag">Autoregressive Video</span>
+      <span class="tag">Diffusion Transformer</span>
+    </div>
+  </div>
+
+  <!-- ===== OVERVIEW ===== -->
+  <div class="slide-card">
+    <h2>Research Overview</h2>
+    <p>FAR-Drive trains a <strong>frame-level autoregressive multi-view video generator</strong> as a closed-loop simulator for autonomous driving. Given per-frame structured controls (BEV map, 3D bboxes, ego-motion, camera params, text) and a variable-length history, the model generates the next-frame multi-view observation at 576×1024 resolution across 6 cameras. A two-stage training strategy addresses long-horizon consistency (ARHC) and exposure bias (blend-forcing). System-level inference optimizations bring per-frame latency below one second on a single GPU.</p>
+    <div class="grid-2" style="margin-top:14px;">
+      <div>
+        <div class="section-label">Core Architecture</div>
+        <ul>
+          <li><strong>MMDiT backbone (~2.5B)</strong>: SD3-based; causal attention for AR</li>
+          <li><strong>Cross-view attention (~0.3B)</strong>: Interleaved every 4 blocks</li>
+          <li><strong>Control DiT (~0.8B)</strong>: ControlNet-style; zero-init injection</li>
+          <li><strong>DC-AE VAE (1×32×32)</strong>: Spatial-only; per-frame encoding</li>
+        </ul>
+      </div>
+      <div>
+        <div class="section-label">Three Core Challenges</div>
+        <ul>
+          <li>Long-horizon temporal &amp; cross-view consistency</li>
+          <li>Autoregressive degradation (exposure bias)</li>
+          <li>Sub-second inference latency</li>
+        </ul>
+        <div class="section-label" style="margin-top:10px;">Total Parameters</div>
+        <p style="font-size:0.9em;">~3.7B (backbone 2.5B + cross-view 0.3B + control 0.8B + misc 0.1B)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCORES ===== -->
+  <div class="slide-card">
+    <h2>Evaluation Scores</h2>
+    <div class="score-row"><div class="score-label">Novelty</div><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><div class="score-num">3/5</div></div>
+    <div class="score-row"><div class="score-label">Technical Depth</div><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><div class="score-num">3/5</div></div>
+    <div class="score-row"><div class="score-label">Experiment Completeness</div><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><div class="score-num">3/5</div></div>
+    <div class="score-row"><div class="score-label">Writing Quality</div><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><div class="score-num">3/5</div></div>
+    <div class="score-row"><div class="score-label">Practical Value</div><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><div class="score-num">4/5</div></div>
+    <div class="score-row"><div class="score-label"><strong>Overall</strong></div><div class="score-bar"><div class="score-bar-fill" style="width:62%"></div></div><div class="score-num">3/5</div></div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div>
+        <div class="section-label">Highlights</div>
+        <ul>
+          <li>Blend-forcing stabilizes to <strong>229 frames</strong> with only 8-step training (28x extrapolation, Fig. 3)</li>
+          <li>FVD 82.78 at AR Unit=1 surpasses DreamForge (103.61) and MagicDrive-V2 (94.84) at coarser AR units (Table 1)</li>
+          <li>KV cache reduces latency from 17.15s to 5.75s/it on NPU (Table 3)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="section-label">Weaknesses</div>
+        <ul>
+          <li>No standalone ARHC ablation; its contribution is unquantified</li>
+          <li>Missing comparison with Self-Forcing [24] and Self-Forcing++ [10]</li>
+          <li>Single dataset (nuScenes); no cross-dataset evaluation</li>
+          <li>NPU vs. GPU hardware not standardized across Table 3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PROBLEM ===== -->
+  <div class="slide-card">
+    <h2>Problem &amp; Motivation</h2>
+    <div class="highlight-box">
+      <strong>Core gap:</strong> Existing video generators are open-loop and cannot respond to per-step agent actions. AR generators suffer from exposure bias — pure teacher-forcing creates a train-test distribution mismatch; pure self-forcing amplifies drift. FAR-Drive addresses both within a unified training recipe.
+    </div>
+    <table>
+      <tr><th>Pain Point</th><th>Method Category</th><th>Impact</th></tr>
+      <tr><td>Open-loop generation</td><td>MagicDrive series, Vista</td><td>Cannot serve as interactive closed-loop simulator</td></tr>
+      <tr><td>Coarse AR granularity (Unit &gt; 1)</td><td>DriveArena (5), DreamForge (5)</td><td>Reduces action-observation temporal resolution</td></tr>
+      <tr><td>Exposure bias in AR</td><td>Pure self-forcing methods</td><td>Quality collapse beyond training horizon</td></tr>
+      <tr><td>Redundant control encoding</td><td>Standard diffusion pipelines</td><td>High per-frame latency; blocks interactive rollout</td></tr>
+    </table>
+    <div class="section-label" style="margin-top:14px;">Physical Insight (from paper, Sec. 1)</div>
+    <p style="font-size:0.9em;">A single reference frame provides only positional information. Two frames enable velocity estimation. Three or more frames enable acceleration inference. Adaptive reference-horizon conditioning exploits this progression.</p>
+  </div>
+
+  <!-- ===== METHODOLOGY ===== -->
+  <div class="slide-card">
+    <h2>Methodology</h2>
+    <h3>Data Flow</h3>
+    <pre>
+[History frames XHt] → [DC-AE VAE encode] → [Latent KV Cache]
+[Future frame noise zt]                             |
+[Controls Ct: BEV, bbox, camera, motion, text]      |
+    → [Convolutional encoder]                       |
+    → [Condition Cache]                             |
+    → [Control DiT (3 units)]                       |
+         ↓ zero-init residual inject                |
+[Backbone MMDiT (28 blocks, causal + cross-view)] ←─┘
+    → [Denoised latent X̂t+1]
+    → [DC-AE VAE decode]
+    → [Next-frame 6-view RGB 576×1024]
+    → [Feed back as history for t+2]
+    </pre>
+
+    <h3>Stage I: Adaptive Reference-Horizon Conditioning (ARHC)</h3>
+    <div class="formula">
+      $$\mathcal{L}_{\mathrm{ARHC}}(\theta) = \mathbb{E}_{l,t}\left[\left\|\mathbf{u}_\theta(\mathbf{z}_t, t \mid \mathbf{X}_{1:l}) - \mathbf{u}^*(\mathbf{z}_t, t \mid \mathbf{X}_{1:l})\right\|_2^2\right]$$
+    </div>
+    <p style="font-size:0.9em;">$l$ sampled from $\{0,\ldots,L-1\}$ with bias toward short horizons ($l=1,2,3$). $l=0$: text-to-video; $l=1$: image-to-video; $l>1$: video-to-video. Sequence length $L=16$.</p>
+
+    <h3>Stage II: Blend-Forcing Autoregressive Training</h3>
+    <div class="formula">
+      $$\tilde{\mathbf{X}}_i = \alpha \hat{\mathbf{X}}_i + (1-\alpha)\mathbf{X}_i$$
+    </div>
+    <div class="formula">
+      $$\mathcal{L}_{\mathrm{BF}}(\theta) = \mathbb{E}_{t}\left[\left\|\mathbf{u}_\theta(\mathbf{z}_t, t \mid \tilde{\mathbf{X}}_{1:t}) - \mathbf{u}^*(\mathbf{z}_t, t \mid \tilde{\mathbf{X}}_{1:t})\right\|_2^2\right]$$
+    </div>
+    <ul style="font-size:0.9em;">
+      <li>$\alpha$ starts at 0 (full GT); grows linearly at $1\times10^{-4}$/step; reaches 1.0 after 10,000 steps</li>
+      <li>Training converges at ~7,000 steps; one standard FM step per blend-forcing step</li>
+      <li>AR rollout randomly extended up to 16 frames; only last 8 frames used for loss</li>
+    </ul>
+
+    <h3>Control DiT Injection</h3>
+    <div class="formula">
+      $$c^{(0)} = x^{(0)} + \mathrm{Proj}_0(u), \quad c^{(l+1)} = \mathcal{C}^{(l)}(c^{(l)}), \quad x^{(l+1)} = \mathcal{B}^{(l)}(x^{(l)}) + \mathrm{Proj}_l(c^{(l)})$$
+    </div>
+    <p style="font-size:0.9em;">3 control units (vs. 7 backbone units); injection into early backbone layers only; zero-init Proj preserves pretrained backbone at start of training.</p>
+  </div>
+
+  <!-- ===== INFERENCE ACCELERATION ===== -->
+  <div class="slide-card">
+    <h2>Inference Acceleration</h2>
+    <div class="grid-2">
+      <div>
+        <div class="section-label">Techniques</div>
+        <ul>
+          <li><strong>Sampling step reduction</strong>: Blend-forcing enables 3-step inference without quality collapse (prior: noisy output at low steps)</li>
+          <li><strong>Frame-level VAE (1×32×32)</strong>: Spatial-only; no temporal entanglement; per-frame independent encoding</li>
+          <li><strong>Latent KV cache</strong>: Reference frame keys/values cached; only new frame contributes fresh queries</li>
+          <li><strong>Condition cache</strong>: Control features encoded once per target frame; reused across all denoising steps</li>
+        </ul>
+      </div>
+      <div>
+        <div class="section-label">Latency Table (Table 3, 6-view 576×1024)</div>
+        <table>
+          <tr><th>Steps</th><th>GPU (H200)</th><th>NPU</th></tr>
+          <tr><td>1</td><td>0.84 s/it</td><td>1.09 s/it</td></tr>
+          <tr><td>3</td><td>1.15 s/it</td><td>1.63 s/it</td></tr>
+          <tr><td>5</td><td>1.43 s/it</td><td>2.12 s/it</td></tr>
+          <tr><td>20 (all caches)</td><td>3.36 s/it</td><td>5.75 s/it</td></tr>
+          <tr><td>20 (no KV cache)</td><td>8.15 s/it</td><td>8.90 s/it</td></tr>
+          <tr><td>20 (no any cache)</td><td>15.94 s/it</td><td>20.05 s/it</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EXPERIMENTS ===== -->
+  <div class="slide-card">
+    <h2>Main Results</h2>
+    <h3>Table 1: AR Unit Comparison (nuScenes)</h3>
+    <table>
+      <tr><th>Method</th><th>AR Unit</th><th>FVD ↓</th><th>mAP ↑</th><th>mIoU ↑</th></tr>
+      <tr><td>MagicDrive</td><td>60</td><td>217.94</td><td>11.49</td><td>18.27</td></tr>
+      <tr><td>MagicDrive-V2</td><td>241</td><td>94.84</td><td>18.17</td><td>20.40</td></tr>
+      <tr><td>DreamForge (DiT)</td><td>5</td><td>103.61</td><td>19.17</td><td>34.36</td></tr>
+      <tr><td><strong>FAR-Drive (AR, Unit=1)</strong></td><td><strong>1</strong></td><td><strong>94.69</strong></td><td><strong>27.39</strong></td><td><strong>36.35</strong></td></tr>
+      <tr><td><strong>FAR-Drive (Single-shot)</strong></td><td><strong>16</strong></td><td><strong>84.71</strong></td><td><strong>28.58</strong></td><td><strong>38.62</strong></td></tr>
+    </table>
+    <p style="font-size:0.85em; color: var(--p-text-secondary);">AR generation uses 3 sampling steps; single-shot uses 30 steps.</p>
+
+    <h3 style="margin-top:14px;">Table 2: Condition-Free Multi-View Video (nuScenes val)</h3>
+    <table>
+      <tr><th>Method</th><th>Params</th><th>1st-Frame Free</th><th>FID ↓</th><th>FVD ↓</th></tr>
+      <tr><td>MagicDrive-V2</td><td>—</td><td>Yes</td><td>20.91</td><td>94.84</td></tr>
+      <tr><td>OmniNWM</td><td>11B</td><td>No</td><td>5.45</td><td>23.63</td></tr>
+      <tr><td>FAR-Drive (1st-frame cond.)</td><td>3.7B</td><td>No</td><td>8.60</td><td>46.99</td></tr>
+      <tr><td><strong>FAR-Drive (AR, cond-free)</strong></td><td><strong>3.7B</strong></td><td><strong>Yes</strong></td><td><strong>11.92</strong></td><td><strong>82.78</strong></td></tr>
+      <tr><td>FAR-Drive (single-shot, cond-free)</td><td>3.7B</td><td>Yes</td><td>13.24</td><td>84.71</td></tr>
+    </table>
+    <p style="font-size:0.85em; color: var(--p-text-secondary);">AR generation uses 20 sampling steps.</p>
+  </div>
+
+  <!-- ===== ABLATION ===== -->
+  <div class="slide-card">
+    <h2>Ablation Studies</h2>
+    <div class="grid-2">
+      <div>
+        <div class="section-label">Blend-Forcing (Fig. 3)</div>
+        <p style="font-size:0.9em;">FID and FVD measured at rollout lengths 16→229 frames.</p>
+        <div class="highlight-box" style="font-size:0.9em;">
+          Without blend-forcing: FVD increases monotonically. After blend-forcing: FVD remains flat to 229 frames. Training used max 8 AR steps — <strong>28x extrapolation beyond training horizon</strong>.
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Experiment Assessment</div>
+        <div class="check-item"><span class="check-ok">✓</span><span>Blend-forcing ablation is direct and quantitative</span></div>
+        <div class="check-item"><span class="check-no">✗</span><span>No standalone ARHC ablation — contribution unquantified</span></div>
+        <div class="check-item"><span class="check-no">✗</span><span>Missing Self-Forcing [24] and Self-Forcing++ [10] baselines</span></div>
+        <div class="check-item"><span class="check-no">✗</span><span>No downstream policy evaluation (L2, collision rate)</span></div>
+        <div class="check-item"><span class="check-partial">~</span><span>Single dataset — nuScenes 1,000 scenes</span></div>
+        <div class="check-item"><span class="check-partial">~</span><span>Alpha schedule sensitivity not studied</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== JUDGMENT ===== -->
+  <div class="slide-card">
+    <h2>Phyra's Judgment</h2>
+    <h3>Contributions vs. Evidence</h3>
+    <table>
+      <tr><th>Claimed</th><th>Verdict</th><th>Basis</th></tr>
+      <tr><td>FAR-Drive SotA closed-loop AR</td><td><span class="tag">Supported</span></td><td>Table 1/2: best FVD/mAP/mIoU at AR Unit=1</td></tr>
+      <tr><td>ARHC improves long-horizon consistency</td><td><span class="tag" style="background:color-mix(in srgb,#f0a020 20%,transparent)">Partial</span></td><td>No standalone ablation; implicit in full system</td></tr>
+      <tr><td>Blend-forcing mitigates AR degradation</td><td><span class="tag">Supported</span></td><td>Fig. 3 quantitative before/after across 229 frames</td></tr>
+      <tr><td>Sub-second latency (single GPU)</td><td><span class="tag">Supported</span></td><td>Table 3: 0.84–1.15 s/it on H200 at 1–3 steps</td></tr>
+      <tr><td>"Superior to all prior methods"</td><td><span class="tag" style="background:color-mix(in srgb,#f0a020 20%,transparent)">Partial</span></td><td>OmniNWM (11B) better in 1st-frame-cond. setting</td></tr>
+    </table>
+
+    <h3 style="margin-top:16px;">Fundamental Limitations</h3>
+    <div class="red-flag">Fixed linear alpha schedule in blend-forcing has no mechanism to respond to degradation onset during training; schedule sensitivity is untested.</div>
+    <div class="red-flag">Evaluation is nuScenes-only; structured control signals (BEV/bbox formats) are dataset-specific; generalization requires re-engineering the control pipeline.</div>
+    <div class="red-flag">Real-time operation (~10 fps) requires ~0.1 s/it — 8-10x below current reported latency; real-time closed-loop use is not achievable under this architecture.</div>
+    <div class="red-flag">No policy agent interacts with the simulator; "closed-loop" is demonstrated at the video generation level only, not as a full training loop.</div>
+  </div>
+
+  <!-- ===== CITATIONS ===== -->
+  <div class="slide-card">
+    <h2>Citations Worth Tracking</h2>
+    <table>
+      <tr><th>Paper</th><th>Why Read</th></tr>
+      <tr><td><strong>Self-Forcing [24]</strong> — Huang et al. 2025</td><td>Direct predecessor; establishes failure modes of pure self-conditioning that blend-forcing addresses</td></tr>
+      <tr><td><strong>DriveArena [49]</strong> — Yang et al. ICCV 2025</td><td>Primary closed-loop baseline; chunk-wise AR (Unit=5) that FAR-Drive most directly improves upon</td></tr>
+      <tr><td><strong>Self-Forcing++ [10]</strong> — Cui et al. 2025</td><td>Reports minute-scale generation quality; most relevant for positioning blend-forcing in the AR stabilization landscape</td></tr>
+      <tr><td><strong>DC-AE [6]</strong> — Chen et al. 2024</td><td>1×32×32 spatial-only VAE; key design enabler for per-frame independent encoding and inference efficiency</td></tr>
+      <tr><td><strong>DIVE [25]</strong> — Jiang et al. 2024</td><td>Cross-view attention mechanism adopted with zero-init modification; reading the original provides design context</td></tr>
+    </table>
+  </div>
+
+  <!-- ===== OPEN QUESTIONS ===== -->
+  <div class="slide-card">
+    <h2>Open Questions &amp; Improvement Directions</h2>
+    <div class="grid-2">
+      <div>
+        <div class="section-label">Open Questions</div>
+        <ul>
+          <li>What is ARHC's independent contribution isolated from blend-forcing?</li>
+          <li>Would an adaptive alpha schedule (conditioned on rollout FVD) outperform the fixed linear schedule?</li>
+          <li>Can the framework be extended to LiDAR or occupancy outputs for policy evaluation?</li>
+          <li>What is the downstream policy performance (L2, collision) when an agent trains inside FAR-Drive?</li>
+        </ul>
+      </div>
+      <div>
+        <div class="section-label">Improvement Directions (by feasibility)</div>
+        <ul>
+          <li><strong>(High)</strong> Standalone ARHC ablation: run without stage I to quantify its contribution</li>
+          <li><strong>(Medium)</strong> Adaptive alpha schedule: monitor rollout FVD during training; slow growth on degradation</li>
+          <li><strong>(Medium)</strong> Downstream policy eval: wrap as gym env; measure L2/collision for IL/RL agent</li>
+          <li><strong>(Low)</strong> Consistency distillation: single-step AR model toward real-time generation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="phyra-footer">
+  Phyra NT Workflow | Paper Read Report | 2026-04-19
+</footer>
+
+<script>
+const PHYRA_THEMES = [
+  {id:"nadeshiko",label:"撫子 Nadeshiko",mode:"light"},{id:"taikoh",label:"退紅 Taikoh",mode:"light"},
+  {id:"momo",label:"桃 Momo",mode:"light"},{id:"toki",label:"鴇 Toki",mode:"light"},
+  {id:"jinzamomi",label:"甚三紅 Jinzamomi",mode:"light"},{id:"haizakura",label:"灰桜 Haizakura",mode:"light"},
+  {id:"akebono",label:"曙 Akebono",mode:"light"},{id:"sangosyu",label:"珊瑚朱 Sangosyu",mode:"light"},
+  {id:"araisyu",label:"洗朱 Araisyu",mode:"light"},{id:"akakoh",label:"赤香 Akakoh",mode:"light"},
+  {id:"kokikuchinashi",label:"深支子 Kokikuchinashi",mode:"light"},{id:"kanzo",label:"萱草 Kanzo",mode:"light"},
+  {id:"beniukon",label:"紅鬱金 Beniukon",mode:"light"},{id:"kuchiba",label:"朽葉 Kuchiba",mode:"light"},
+  {id:"yamabuki",label:"山吹 Yamabuki",mode:"light"},{id:"hajizome",label:"櫨染 Hajizome",mode:"light"},
+  {id:"tamago",label:"玉子 Tamago",mode:"light"},{id:"tamamorokoshi",label:"玉蜀黍 Tamamorokoshi",mode:"light"},
+  {id:"usuki",label:"浅黄 Usuki",mode:"light"},{id:"kuchinashi",label:"梔子 Kuchinashi",mode:"light"},
+  {id:"tohoh",label:"籐黄 Tohoh",mode:"light"},{id:"ukon",label:"鬱金 Ukon",mode:"light"},
+  {id:"tonoko",label:"砥粉 Tonoko",mode:"light"},{id:"kariyasu",label:"刈安 Kariyasu",mode:"light"},
+  {id:"hiwa",label:"鶸 Hiwa",mode:"light"},{id:"hiwamoegi",label:"鶸萌黄 Hiwamoegi",mode:"light"},
+  {id:"yanagizome",label:"柳染 Yanagizome",mode:"light"},{id:"nae",label:"苗 Nae",mode:"light"},
+  {id:"wakatake",label:"若竹 Wakatake",mode:"light"},{id:"byakuroku",label:"白緑 Byakuroku",mode:"light"},
+  {id:"seiji",label:"青磁 Seiji",mode:"light"},{id:"mizuasagi",label:"水浅葱 Mizuasagi",mode:"light"},
+  {id:"byakugun",label:"白群 Byakugun",mode:"light"},{id:"kamenozoki",label:"瓶覗 Kamenozoki",mode:"light"},
+  {id:"mizu",label:"水 Mizu",mode:"light"},{id:"sora",label:"空 Sora",mode:"light"},
+  {id:"wasurenagusa",label:"勿忘草 Wasurenagusa",mode:"light"},{id:"tsuyukusa",label:"露草 Tsuyukusa",mode:"light"},
+  {id:"gunjyo",label:"群青 Gunjyo",mode:"light"},{id:"usu",label:"薄 Usu",mode:"light"},
+  {id:"shironeri",label:"白練 Shironeri",mode:"light"},{id:"shironezumi",label:"白鼠 Shironezumi",mode:"light"},
+  {id:"kohbai",label:"紅梅 Kohbai",mode:"dark"},{id:"suoh",label:"蘇芳 Suoh",mode:"dark"},
+  {id:"ichigo",label:"苺 Ichigo",mode:"dark"},{id:"karakurenai",label:"韓紅花 Karakurenai",mode:"dark"},
+  {id:"kurenai",label:"紅 Kurenai",mode:"dark"},{id:"kokiake",label:"深緋 Kokiake",mode:"dark"},
+  {id:"azuki",label:"小豆 Azuki",mode:"dark"},{id:"akabeni",label:"赤紅 Akabeni",mode:"dark"},
+  {id:"syojyohi",label:"猩猩緋 Syojyohi",mode:"dark"},{id:"entan",label:"鉛丹 Entan",mode:"dark"},
+  {id:"benihi",label:"紅緋 Benihi",mode:"dark"},{id:"terigaki",label:"照柿 Terigaki",mode:"dark"},
+  {id:"ohni",label:"黄丹 Ohni",mode:"dark"},{id:"sohi",label:"纁 Sohi",mode:"dark"},
+  {id:"ensyucha",label:"遠州茶 Ensyucha",mode:"dark"},{id:"kogecha",label:"焦茶 Kogecha",mode:"dark"},
+  {id:"taisya",label:"代赭 Taisya",mode:"dark"},{id:"kohaku",label:"琥珀 Kohaku",mode:"dark"},
+  {id:"kenpohzome",label:"憲法染 Kenpohzome",mode:"dark"},{id:"koke",label:"苔 Koke",mode:"dark"},
+  {id:"moegi",label:"萌黄 Moegi",mode:"dark"},{id:"matsuba",label:"松葉 Matsuba",mode:"dark"},
+  {id:"tokiwa",label:"常磐 Tokiwa",mode:"dark"},{id:"midori",label:"緑 Midori",mode:"dark"},
+  {id:"tokusa",label:"木賊 Tokusa",mode:"dark"},{id:"rokusyoh",label:"緑青 Rokusyoh",mode:"dark"},
+  {id:"aomidori",label:"青緑 Aomidori",mode:"dark"},{id:"asagi",label:"浅葱 Asagi",mode:"dark"},
+  {id:"shinbashi",label:"新橋 Shinbashi",mode:"dark"},{id:"hanaasagi",label:"花浅葱 Hanaasagi",mode:"dark"},
+  {id:"chigusa",label:"千草 Chigusa",mode:"dark"},{id:"hanada",label:"縹 Hanada",mode:"dark"},
+  {id:"ruri",label:"瑠璃 Ruri",mode:"dark"},{id:"rurikon",label:"瑠璃紺 Rurikon",mode:"dark"},
+  {id:"benimidori",label:"紅碧 Benimidori",mode:"dark"},{id:"fujinezumi",label:"藤鼠 Fujinezumi",mode:"dark"},
+  {id:"benikakehana",label:"紅掛花 Benikakehana",mode:"dark"},{id:"konjyo",label:"紺青 Konjyo",mode:"dark"},
+  {id:"kon",label:"紺 Kon",mode:"dark"},{id:"konkikyo",label:"紺桔梗 Konkikyo",mode:"dark"},
+  {id:"kurotsurubami",label:"黒橡 Kurotsurubami",mode:"dark"},{id:"fuji",label:"藤 Fuji",mode:"dark"},
+  {id:"fujimurasaki",label:"藤紫 Fujimurasaki",mode:"dark"},{id:"kikyo",label:"桔梗 Kikyo",mode:"dark"},
+  {id:"shion",label:"紫苑 Shion",mode:"dark"},{id:"edomurasaki",label:"江戸紫 Edomurasaki",mode:"dark"},
+  {id:"murasaki",label:"紫 Murasaki",mode:"dark"},{id:"benifuji",label:"紅藤 Benifuji",mode:"dark"},
+  {id:"botan",label:"牡丹 Botan",mode:"dark"},{id:"tsutsuji",label:"躑躅 Tsutsuji",mode:"dark"},
+  {id:"ginnezumi",label:"銀鼠 Ginnezumi",mode:"dark"},{id:"namari",label:"鉛 Namari",mode:"dark"},
+  {id:"hai",label:"灰 Hai",mode:"dark"},{id:"nibi",label:"鈍 Nibi",mode:"dark"},
+  {id:"aonibi",label:"青鈍 Aonibi",mode:"dark"},{id:"keshizumi",label:"消炭 Keshizumi",mode:"dark"},
+  {id:"sumi",label:"墨 Sumi",mode:"dark"},{id:"kuro",label:"黒 Kuro",mode:"dark"}
+];
+
+function phyraApply(id) {
+  const html = document.documentElement;
+  html.setAttribute('data-theme', id);
+  const t = PHYRA_THEMES.find(x => x.id === id);
+  if (t) {
+    html.setAttribute('data-theme-mode', t.mode);
+    const select = document.getElementById('phyra-select');
+    if (select) select.value = id;
+  }
+}
+
+function phyraRandom() {
+  const idx = Math.floor(Math.random() * PHYRA_THEMES.length);
+  phyraApply(PHYRA_THEMES[idx].id);
+}
+
+function phyraBuildSelect() {
+  const select = document.getElementById('phyra-select');
+  if (!select) return;
+  const lightGroup = document.createElement('optgroup');
+  lightGroup.label = 'Light (42)';
+  const darkGroup = document.createElement('optgroup');
+  darkGroup.label = 'Dark (58)';
+  PHYRA_THEMES.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t.id; opt.textContent = t.label;
+    if (t.mode === 'light') lightGroup.appendChild(opt);
+    else darkGroup.appendChild(opt);
+  });
+  select.appendChild(lightGroup);
+  select.appendChild(darkGroup);
+}
+
+(function() {
+  phyraBuildSelect();
+  const current = document.documentElement.getAttribute('data-theme') || 'keshizumi';
+  phyraApply(current);
+})();
+
+/* Width drag */
+(function() {
+  const handle = document.getElementById('phyra-width-handle');
+  if (!handle) return;
+  let dragging = false;
+  function updateHandlePos(w) {
+    const vw = window.innerWidth;
+    handle.style.right = Math.max(4, (vw - w) / 2 - 16) + 'px';
+  }
+  handle.addEventListener('mousedown', e => { dragging = true; handle.classList.add('dragging'); e.preventDefault(); });
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const vw = window.innerWidth;
+    const newWidth = Math.max(400, Math.abs(e.clientX - vw / 2) * 2);
+    document.documentElement.style.setProperty('--phyra-content-width', newWidth + 'px');
+    updateHandlePos(newWidth);
+  });
+  document.addEventListener('mouseup', () => { if (dragging) { dragging = false; handle.classList.remove('dragging'); } });
+  const initWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width')) || 960;
+  updateHandlePos(initWidth);
+  window.addEventListener('resize', () => {
+    const w = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width')) || 960;
+    updateHandlePos(w);
+  });
+})();
+</script>
+</body>
+</html>

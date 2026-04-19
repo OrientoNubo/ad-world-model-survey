@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindDrive — Phyra Paper Read Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Semantic aliases ===== */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 960px;
+    }
+
+    /* ===== Light mode derived ===== */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255, 255, 255, 0.92);
+      --p-formula-bg     : rgba(255, 255, 255, 0.92);
+      --p-border         : rgba(28, 28, 28, 0.12);
+      --p-text-secondary : rgba(28, 28, 28, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+    }
+
+    /* ===== Dark mode derived ===== */
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0, 0, 0, 0.35);
+      --p-formula-bg     : rgba(0, 0, 0, 0.35);
+      --p-border         : rgba(245, 242, 235, 0.12);
+      --p-text-secondary : rgba(245, 242, 235, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+    }
+
+    /* ===== Light themes ===== */
+    [data-theme="nadeshiko"]{--theme-primary:#DC9FB4;--theme-light:#F3E6EB;--theme-accent:#92E566;--theme-dark:#471727;--theme-neutral:#E7E3E4;--theme-text:#1C1C1C}
+    [data-theme="taikoh"]{--theme-primary:#F8C3CD;--theme-light:#F3E6E9;--theme-accent:#6EFE4C;--theme-dark:#600D1D;--theme-neutral:#E8E2E3;--theme-text:#1C1C1C}
+    [data-theme="momo"]{--theme-primary:#F596AA;--theme-light:#F3E6E9;--theme-accent:#72FE4C;--theme-dark:#560C1B;--theme-neutral:#E8E2E4;--theme-text:#1C1C1C}
+    [data-theme="toki"]{--theme-primary:#EEA9A9;--theme-light:#F3E6E6;--theme-accent:#50FA50;--theme-dark:#580D0D;--theme-neutral:#E8E2E2;--theme-text:#1C1C1C}
+    [data-theme="jinzamomi"]{--theme-primary:#EB7A77;--theme-light:#F3E7E6;--theme-accent:#4CFE51;--theme-dark:#4D0C0B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C}
+    [data-theme="haizakura"]{--theme-primary:#D7C4BB;--theme-light:#F1EBE8;--theme-accent:#7CCE97;--theme-dark:#402D23;--theme-neutral:#E6E5E4;--theme-text:#1C1C1C}
+    [data-theme="akebono"]{--theme-primary:#F19483;--theme-light:#F3E8E6;--theme-accent:#4CFE68;--theme-dark:#51160B;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C}
+    [data-theme="sangosyu"]{--theme-primary:#F17C67;--theme-light:#F3E8E6;--theme-accent:#4CFE67;--theme-dark:#4B140A;--theme-neutral:#E8E3E2;--theme-text:#1C1C1C}
+    [data-theme="araisyu"]{--theme-primary:#FB966E;--theme-light:#F3EAE6;--theme-accent:#4CFE7F;--theme-dark:#4E1E0B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C}
+    [data-theme="akakoh"]{--theme-primary:#E3916E;--theme-light:#F3EAE6;--theme-accent:#4FFB83;--theme-dark:#491D0A;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C}
+    [data-theme="kokikuchinashi"]{--theme-primary:#FB9966;--theme-light:#F3EBE6;--theme-accent:#4CFE89;--theme-dark:#4D210B;--theme-neutral:#E8E4E2;--theme-text:#1C1C1C}
+    [data-theme="kanzo"]{--theme-primary:#FC9F4D;--theme-light:#F3ECE6;--theme-accent:#4AFE9E;--theme-dark:#47270A;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C}
+    [data-theme="beniukon"]{--theme-primary:#E98B2A;--theme-light:#F3EDE6;--theme-accent:#14FE8B;--theme-dark:#3C2208;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C}
+    [data-theme="kuchiba"]{--theme-primary:#E2943B;--theme-light:#F3EDE6;--theme-accent:#1EFF95;--theme-dark:#3E2508;--theme-neutral:#E8E5E2;--theme-text:#1C1C1C}
+    [data-theme="yamabuki"]{--theme-primary:#FFB11B;--theme-light:#F3EFE6;--theme-accent:#1BFFB0;--theme-dark:#3D2B08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="hajizome"]{--theme-primary:#DDA52D;--theme-light:#F3EFE6;--theme-accent:#0BFEB1;--theme-dark:#3A2A08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="tamago"]{--theme-primary:#F9BF45;--theme-light:#F3EFE6;--theme-accent:#3FFFC1;--theme-dark:#453209;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="tamamorokoshi"]{--theme-primary:#E8B647;--theme-light:#F3EFE6;--theme-accent:#30FFBE;--theme-dark:#423009;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="usuki"]{--theme-primary:#FAD689;--theme-light:#F3EFE6;--theme-accent:#4CFEC6;--theme-dark:#543D0C;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="kuchinashi"]{--theme-primary:#F6C555;--theme-light:#F3EFE6;--theme-accent:#4CFEC8;--theme-dark:#48350A;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="tohoh"]{--theme-primary:#FFC408;--theme-light:#F3F0E6;--theme-accent:#07FFC4;--theme-dark:#392D08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="ukon"]{--theme-primary:#EFBB24;--theme-light:#F3F0E6;--theme-accent:#14FEC2;--theme-dark:#3C2E08;--theme-neutral:#E8E6E2;--theme-text:#1C1C1C}
+    [data-theme="tonoko"]{--theme-primary:#D7B98E;--theme-light:#F3EEE6;--theme-accent:#65E6B1;--theme-dark:#443015;--theme-neutral:#E7E5E3;--theme-text:#1C1C1C}
+    [data-theme="kariyasu"]{--theme-primary:#E9CD4C;--theme-light:#F3F1E6;--theme-accent:#35FFDB;--theme-dark:#433909;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C}
+    [data-theme="hiwa"]{--theme-primary:#BEC23F;--theme-light:#F3F3E6;--theme-accent:#1EDCE2;--theme-dark:#31320D;--theme-neutral:#E7E7E3;--theme-text:#1C1C1C}
+    [data-theme="hiwamoegi"]{--theme-primary:#90B44B;--theme-light:#EFF3E6;--theme-accent:#2D99D1;--theme-dark:#242E11;--theme-neutral:#E6E7E3;--theme-text:#1C1C1C}
+    [data-theme="yanagizome"]{--theme-primary:#91AD70;--theme-light:#EDF1E8;--theme-accent:#5992C3;--theme-dark:#242E19;--theme-neutral:#E5E6E4;--theme-text:#1C1C1C}
+    [data-theme="nae"]{--theme-primary:#86C166;--theme-light:#EBF3E6;--theme-accent:#4C7EDA;--theme-dark:#1F3613;--theme-neutral:#E4E7E3;--theme-text:#1C1C1C}
+    [data-theme="wakatake"]{--theme-primary:#5DAC81;--theme-light:#E7F2EC;--theme-accent:#7E42C6;--theme-dark:#152C20;--theme-neutral:#E4E6E5;--theme-text:#1C1C1C}
+    [data-theme="byakuroku"]{--theme-primary:#A8D8B9;--theme-light:#E6F3EB;--theme-accent:#956FDB;--theme-dark:#1B442A;--theme-neutral:#E3E7E4;--theme-text:#1C1C1C}
+    [data-theme="seiji"]{--theme-primary:#69B0AC;--theme-light:#E7F2F2;--theme-accent:#C150C8;--theme-dark:#172F2D;--theme-neutral:#E4E6E6;--theme-text:#1C1C1C}
+    [data-theme="mizuasagi"]{--theme-primary:#66BAB7;--theme-light:#E6F3F2;--theme-accent:#CE4CD3;--theme-dark:#153231;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C}
+    [data-theme="byakugun"]{--theme-primary:#78C2C4;--theme-light:#E6F3F3;--theme-accent:#DA61D6;--theme-dark:#163738;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C}
+    [data-theme="kamenozoki"]{--theme-primary:#A5DEE4;--theme-light:#E6F2F3;--theme-accent:#EC5EDF;--theme-dark:#14484E;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C}
+    [data-theme="mizu"]{--theme-primary:#81C7D4;--theme-light:#E6F1F3;--theme-accent:#E763D3;--theme-dark:#133A41;--theme-neutral:#E3E7E7;--theme-text:#1C1C1C}
+    [data-theme="sora"]{--theme-primary:#58B2DC;--theme-light:#E6EFF3;--theme-accent:#F83BBC;--theme-dark:#0A3042;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C}
+    [data-theme="wasurenagusa"]{--theme-primary:#7DB9DE;--theme-light:#E6EEF3;--theme-accent:#F258B8;--theme-dark:#0E3247;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C}
+    [data-theme="tsuyukusa"]{--theme-primary:#2EA9DF;--theme-light:#E6EFF3;--theme-accent:#FE0EB5;--theme-dark:#082B3A;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C}
+    [data-theme="gunjyo"]{--theme-primary:#51A8DD;--theme-light:#E6EEF3;--theme-accent:#FA33AF;--theme-dark:#092C41;--theme-neutral:#E2E6E8;--theme-text:#1C1C1C}
+    [data-theme="usu"]{--theme-primary:#B28FCE;--theme-light:#EDE6F3;--theme-accent:#DDAB6E;--theme-dark:#2D183E;--theme-neutral:#E5E3E7;--theme-text:#1C1C1C}
+    [data-theme="shironeri"]{--theme-primary:#FCFAF2;--theme-light:#F3F0E6;--theme-accent:#55F6D5;--theme-dark:#685713;--theme-neutral:#E8E7E2;--theme-text:#1C1C1C}
+    [data-theme="shironezumi"]{--theme-primary:#BDC0BA;--theme-light:#EDEDEC;--theme-accent:#93A5B8;--theme-dark:#2F312C;--theme-neutral:#E5E5E5;--theme-text:#1C1C1C}
+
+    /* ===== Dark themes ===== */
+    [data-theme="kohbai"]{--theme-primary:#E16B8C;--theme-light:#F3E6EA;--theme-accent:#80FA51;--theme-dark:#470B1C;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB}
+    [data-theme="suoh"]{--theme-primary:#8E354A;--theme-light:#F3E6E9;--theme-accent:#3DA51D;--theme-dark:#260C12;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB}
+    [data-theme="ichigo"]{--theme-primary:#B5495B;--theme-light:#F3E6E8;--theme-accent:#47D22B;--theme-dark:#2E1015;--theme-neutral:#E7E3E4;--theme-text:#F5F2EB}
+    [data-theme="karakurenai"]{--theme-primary:#D0104C;--theme-light:#F3E6EA;--theme-accent:#46E000;--theme-dark:#300714;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB}
+    [data-theme="kurenai"]{--theme-primary:#CB1B45;--theme-light:#F3E6E9;--theme-accent:#36E500;--theme-dark:#320711;--theme-neutral:#E8E2E4;--theme-text:#F5F2EB}
+    [data-theme="kokiake"]{--theme-primary:#86473F;--theme-light:#F3E8E6;--theme-accent:#299B36;--theme-dark:#23110F;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB}
+    [data-theme="azuki"]{--theme-primary:#954A45;--theme-light:#F3E7E6;--theme-accent:#2CAD34;--theme-dark:#261110;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB}
+    [data-theme="akabeni"]{--theme-primary:#CB4042;--theme-light:#F3E6E7;--theme-accent:#22EB1F;--theme-dark:#360C0C;--theme-neutral:#E8E2E3;--theme-text:#F5F2EB}
+    [data-theme="syojyohi"]{--theme-primary:#E83015;--theme-light:#F3E8E6;--theme-accent:#00FD20;--theme-dark:#370D07;--theme-neutral:#E8E3E2;--theme-text:#F5F2EB}
+    [data-theme="entan"]{--theme-primary:#D75455;--theme-light:#F3E6E6;--theme-accent:#38F337;--theme-dark:#3E0B0C;--theme-neutral:#E8E2E2;--theme-text:#F5F2EB}
+    [data-theme="benihi"]{--theme-primary:#F75C2F;--theme-light:#F3E9E6;--theme-accent:#26FF57;--theme-dark:#401509;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB}
+    [data-theme="terigaki"]{--theme-primary:#C46243;--theme-light:#F3E9E6;--theme-accent:#23E351;--theme-dark:#33170D;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB}
+    [data-theme="ohni"]{--theme-primary:#F05E1C;--theme-light:#F3EAE6;--theme-accent:#0DFE58;--theme-dark:#3A1808;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB}
+    [data-theme="sohi"]{--theme-primary:#ED784A;--theme-light:#F3EAE6;--theme-accent:#38FF70;--theme-dark:#441A09;--theme-neutral:#E8E4E2;--theme-text:#F5F2EB}
+    [data-theme="ensyucha"]{--theme-primary:#CA7853;--theme-light:#F3EAE6;--theme-accent:#36E66D;--theme-dark:#381B0E;--theme-neutral:#E7E4E3;--theme-text:#F5F2EB}
+    [data-theme="kogecha"]{--theme-primary:#563F2E;--theme-light:#F2ECE7;--theme-accent:#2F9259;--theme-dark:#221810;--theme-neutral:#E6E5E4;--theme-text:#F5F2EB}
+    [data-theme="taisya"]{--theme-primary:#A36336;--theme-light:#F3ECE6;--theme-accent:#1ABE5E;--theme-dark:#2A180C;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB}
+    [data-theme="kohaku"]{--theme-primary:#CA7A2C;--theme-light:#F3EDE6;--theme-accent:#09EC79;--theme-dark:#341E09;--theme-neutral:#E8E5E2;--theme-text:#F5F2EB}
+    [data-theme="kenpohzome"]{--theme-primary:#43341B;--theme-light:#F3EEE6;--theme-accent:#20A070;--theme-dark:#251C0D;--theme-neutral:#E7E5E3;--theme-text:#F5F2EB}
+    [data-theme="koke"]{--theme-primary:#838A2D;--theme-light:#F2F3E6;--theme-accent:#179FAA;--theme-dark:#25270B;--theme-neutral:#E7E7E3;--theme-text:#F5F2EB}
+    [data-theme="moegi"]{--theme-primary:#7BA23F;--theme-light:#EEF3E6;--theme-accent:#2480BC;--theme-dark:#1F290E;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB}
+    [data-theme="matsuba"]{--theme-primary:#42602D;--theme-light:#ECF3E6;--theme-accent:#285699;--theme-dark:#17230F;--theme-neutral:#E5E7E3;--theme-text:#F5F2EB}
+    [data-theme="tokiwa"]{--theme-primary:#1B813E;--theme-light:#E6F3EB;--theme-accent:#4406BB;--theme-dark:#072B13;--theme-neutral:#E2E8E4;--theme-text:#F5F2EB}
+    [data-theme="midori"]{--theme-primary:#227D51;--theme-light:#E6F3ED;--theme-accent:#630FB1;--theme-dark:#09291A;--theme-neutral:#E2E8E5;--theme-text:#F5F2EB}
+    [data-theme="tokusa"]{--theme-primary:#2D6D4B;--theme-light:#E6F3EC;--theme-accent:#5C229F;--theme-dark:#0D2518;--theme-neutral:#E3E7E5;--theme-text:#F5F2EB}
+    [data-theme="rokusyoh"]{--theme-primary:#24936E;--theme-light:#E6F3EF;--theme-accent:#7D0BB5;--theme-dark:#082A1F;--theme-neutral:#E2E8E6;--theme-text:#F5F2EB}
+    [data-theme="aomidori"]{--theme-primary:#00AA90;--theme-light:#E6F3F1;--theme-accent:#A400C1;--theme-dark:#062C26;--theme-neutral:#E2E8E7;--theme-text:#F5F2EB}
+    [data-theme="asagi"]{--theme-primary:#33A6B8;--theme-light:#E6F1F3;--theme-accent:#D614BC;--theme-dark:#0B2A2F;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB}
+    [data-theme="shinbashi"]{--theme-primary:#0089A7;--theme-light:#E6F1F3;--theme-accent:#C1009E;--theme-dark:#06252C;--theme-neutral:#E2E7E8;--theme-text:#F5F2EB}
+    [data-theme="hanaasagi"]{--theme-primary:#1E88A8;--theme-light:#E6F0F3;--theme-accent:#C40197;--theme-dark:#06232C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB}
+    [data-theme="chigusa"]{--theme-primary:#3A8FB7;--theme-light:#E6EFF3;--theme-accent:#D51B9A;--theme-dark:#0C242F;--theme-neutral:#E3E6E7;--theme-text:#F5F2EB}
+    [data-theme="hanada"]{--theme-primary:#006284;--theme-light:#E6F0F3;--theme-accent:#C1008F;--theme-dark:#06222C;--theme-neutral:#E2E6E8;--theme-text:#F5F2EB}
+    [data-theme="ruri"]{--theme-primary:#005CAF;--theme-light:#E6EDF3;--theme-accent:#C10065;--theme-dark:#061A2C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB}
+    [data-theme="rurikon"]{--theme-primary:#0B346E;--theme-light:#E6ECF3;--theme-accent:#C10050;--theme-dark:#06162C;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB}
+    [data-theme="benimidori"]{--theme-primary:#7B90D2;--theme-light:#E6E9F3;--theme-accent:#E76383;--theme-dark:#131D40;--theme-neutral:#E3E4E7;--theme-text:#F5F2EB}
+    [data-theme="fujinezumi"]{--theme-primary:#6E75A4;--theme-light:#E9EAF1;--theme-accent:#BB5663;--theme-dark:#191B2A;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB}
+    [data-theme="benikakehana"]{--theme-primary:#4E4F97;--theme-light:#E7E7F2;--theme-accent:#AF3537;--theme-dark:#121226;--theme-neutral:#E4E4E6;--theme-text:#F5F2EB}
+    [data-theme="konjyo"]{--theme-primary:#113285;--theme-light:#E6EAF3;--theme-accent:#C10037;--theme-dark:#06112C;--theme-neutral:#E2E4E8;--theme-text:#F5F2EB}
+    [data-theme="kon"]{--theme-primary:#0F2540;--theme-light:#E6ECF3;--theme-accent:#B70A58;--theme-dark:#08172A;--theme-neutral:#E2E5E8;--theme-text:#F5F2EB}
+    [data-theme="konkikyo"]{--theme-primary:#211E55;--theme-light:#E7E6F3;--theme-accent:#A7221A;--theme-dark:#0D0C26;--theme-neutral:#E3E3E7;--theme-text:#F5F2EB}
+    [data-theme="kurotsurubami"]{--theme-primary:#0B1013;--theme-light:#E8EEF1;--theme-accent:#8E336C;--theme-dark:#121B20;--theme-neutral:#E4E5E6;--theme-text:#F5F2EB}
+    [data-theme="fuji"]{--theme-primary:#8B81C3;--theme-light:#E8E6F3;--theme-accent:#D77C6C;--theme-dark:#1D1838;--theme-neutral:#E4E3E7;--theme-text:#F5F2EB}
+    [data-theme="fujimurasaki"]{--theme-primary:#8A6BBE;--theme-light:#EBE6F3;--theme-accent:#D68352;--theme-dark:#211535;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB}
+    [data-theme="kikyo"]{--theme-primary:#6A4C9C;--theme-light:#EBE6F3;--theme-accent:#B56332;--theme-dark:#1A1228;--theme-neutral:#E5E3E7;--theme-text:#F5F2EB}
+    [data-theme="shion"]{--theme-primary:#8F77B5;--theme-light:#EBE7F2;--theme-accent:#CA8A61;--theme-dark:#221931;--theme-neutral:#E5E4E6;--theme-text:#F5F2EB}
+    [data-theme="edomurasaki"]{--theme-primary:#77428D;--theme-light:#EFE6F3;--theme-accent:#A4802A;--theme-dark:#1E0F24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB}
+    [data-theme="murasaki"]{--theme-primary:#592C63;--theme-light:#F1E6F3;--theme-accent:#9C8625;--theme-dark:#200E24;--theme-neutral:#E6E3E7;--theme-text:#F5F2EB}
+    [data-theme="benifuji"]{--theme-primary:#B481BB;--theme-light:#F1E7F2;--theme-accent:#CFC36C;--theme-dark:#311A34;--theme-neutral:#E6E4E6;--theme-text:#F5F2EB}
+    [data-theme="botan"]{--theme-primary:#C1328E;--theme-light:#F3E6EE;--theme-accent:#97E111;--theme-dark:#320A24;--theme-neutral:#E8E2E6;--theme-text:#F5F2EB}
+    [data-theme="tsutsuji"]{--theme-primary:#E03C8A;--theme-light:#F3E6EC;--theme-accent:#88FF1D;--theme-dark:#3E0822;--theme-neutral:#E8E2E5;--theme-text:#F5F2EB}
+    [data-theme="ginnezumi"]{--theme-primary:#91989F;--theme-light:#EBEDEE;--theme-accent:#AF8098;--theme-dark:#232628;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="namari"]{--theme-primary:#787878;--theme-light:#EDEDED;--theme-accent:#668966;--theme-dark:#1D1D1D;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="hai"]{--theme-primary:#828282;--theme-light:#EDEDED;--theme-accent:#6F946F;--theme-dark:#202020;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="nibi"]{--theme-primary:#656765;--theme-light:#ECEDEC;--theme-accent:#555576;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="aonibi"]{--theme-primary:#535953;--theme-light:#ECEDEC;--theme-accent:#4E4E73;--theme-dark:#181A18;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="keshizumi"]{--theme-primary:#434343;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="sumi"]{--theme-primary:#1C1C1C;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+    [data-theme="kuro"]{--theme-primary:#080808;--theme-light:#EDEDED;--theme-accent:#526F52;--theme-dark:#191919;--theme-neutral:#E5E5E5;--theme-text:#F5F2EB}
+
+    /* ===== Reset & base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--p-text);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ===== Layer 1+2: background + texture ===== */
+    .phyra-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+
+    /* ===== Layer 3: gloss ===== */
+    .phyra-gloss {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 478px;
+      z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none;
+      transition: opacity 2s ease-in;
+    }
+
+    /* ===== Content z-index ===== */
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== Main content ===== */
+    #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto;
+      padding: 48px 20px 32px;
+      box-sizing: border-box;
+      transition: max-width 0.15s ease;
+    }
+
+    /* ===== Width drag handle ===== */
+    .phyra-width-handle {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      width: 6px; height: 60px;
+      background: rgba(128,128,128,0.3);
+      border-radius: 3px;
+      cursor: col-resize;
+      z-index: 99;
+      transition: background 0.2s, opacity 0.3s;
+      opacity: 0.4;
+    }
+    .phyra-width-handle:hover, .phyra-width-handle.dragging {
+      background: var(--p-accent); opacity: 1;
+    }
+
+    /* ===== Cards ===== */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 24px;
+      color: var(--p-text);
+      margin-bottom: 20px;
+    }
+
+    /* ===== Headings ===== */
+    h1 { font-size: 1.8rem; color: var(--p-text); margin-bottom: 8px; }
+    h2 { font-size: 1.4rem; color: var(--p-text); border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin: 32px 0 16px; }
+    h3 { font-size: 1.05rem; color: var(--p-text); margin: 20px 0 10px; }
+
+    /* ===== Strong highlight ===== */
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    /* ===== Tables ===== */
+    table { width: 100%; border-collapse: collapse; font-size: 0.88em; margin: 12px 0; }
+    th { background: var(--p-primary); padding: 8px 12px; text-align: left; }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--p-border); color: var(--p-text); }
+    tr:hover td { background: rgba(128,128,128,0.08); }
+
+    /* ===== Tags ===== */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: 600;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text);
+      margin: 2px 3px;
+    }
+
+    /* ===== Score bars ===== */
+    .score-row { display: flex; align-items: center; gap: 12px; margin: 6px 0; }
+    .score-label { min-width: 160px; font-size: 0.88em; color: var(--p-text); }
+    .score-bar { flex: 1; height: 8px; border-radius: 4px; background: var(--p-border); }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+    .score-num { min-width: 28px; font-size: 0.85em; color: var(--p-text-secondary); }
+
+    /* ===== Pipeline ===== */
+    .pipeline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .pipeline-box {
+      background: color-mix(in srgb, var(--p-accent) 12%, transparent);
+      border: 1px solid var(--p-border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.85em;
+      font-weight: 500;
+      color: var(--p-text);
+    }
+    .pipeline-arrow { color: var(--p-text-secondary); font-size: 1.1em; }
+
+    /* ===== Code / mono ===== */
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85em;
+      background: var(--p-formula-bg);
+      border: 1px solid var(--p-border);
+      border-radius: 3px;
+      padding: 1px 5px;
+      color: var(--p-text);
+    }
+
+    /* ===== Lists ===== */
+    ul, ol { padding-left: 20px; }
+    li { margin: 4px 0; color: var(--p-text); font-size: 0.93em; }
+
+    /* ===== Secondary text ===== */
+    .secondary { color: var(--p-text-secondary); font-size: 0.88em; }
+
+    /* ===== Header card ===== */
+    .header-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    .header-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+    /* ===== Result highlight ===== */
+    .result-best { color: var(--p-accent); font-weight: 700; }
+
+    /* ===== Footer ===== */
+    .phyra-footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+      color: var(--p-text);
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== Switcher ===== */
+    .phyra-switcher {
+      position: fixed;
+      bottom: 20px; right: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128,128,128,0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128,128,128,0.2);
+      border-radius: 24px;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(128,128,128,0.3);
+      border-radius: 12px;
+      color: #1C1C1C;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      max-width: 200px;
+    }
+    .phyra-switcher select option { color: #1C1C1C; background: #fff; }
+    .phyra-switcher select optgroup { font-weight: bold; color: #1C1C1C; }
+    .phyra-switcher button {
+      padding: 4px 12px;
+      background: rgba(128,128,128,0.2);
+      border: 1px solid rgba(128,128,128,0.3);
+      border-radius: 12px;
+      color: var(--p-text);
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .phyra-switcher button:hover { background: rgba(128,128,128,0.35); }
+
+    /* ===== Grid layouts ===== */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* ===== Flag ===== */
+    .redflag {
+      border-left: 4px solid #e05555;
+      padding: 8px 12px;
+      margin: 8px 0;
+      background: rgba(224, 85, 85, 0.08);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.88em;
+      color: var(--p-text);
+    }
+  </style>
+</head>
+<body>
+  <div class="phyra-bg"></div>
+  <div class="phyra-gloss"></div>
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <main id="phyra-main">
+
+    <!-- ===== HEADER ===== -->
+    <div class="header-card">
+      <div class="secondary" style="font-size:0.8em;margin-bottom:6px;">Phyra Paper Read Report &nbsp;|&nbsp; 2026-04-19</div>
+      <h1>MindDrive</h1>
+      <div style="font-size:1.0em;color:var(--p-text-secondary);margin-top:4px;">
+        An All-in-One Framework Bridging World Models and Vision-Language Model for End-to-End Autonomous Driving
+      </div>
+      <div class="header-meta">
+        <span class="tag">E2E Autonomous Driving</span>
+        <span class="tag">World Model</span>
+        <span class="tag">Vision-Language Model</span>
+        <span class="tag">Trajectory Planning</span>
+        <span class="tag">NAVSIM</span>
+      </div>
+      <div style="margin-top:16px;font-size:0.85em;color:var(--p-text-secondary);">
+        Bin Sun, Yaoguang Cao, Yan Wang, et al. &nbsp;|&nbsp; Beihang University &amp; BJTU &nbsp;|&nbsp; arXiv:2512.04441v2 &nbsp;|&nbsp; Dec 2025
+      </div>
+    </div>
+
+    <!-- ===== OVERVIEW ===== -->
+    <h2>Research Overview</h2>
+    <div class="slide-card">
+      <p>
+        MindDrive proposes a harmonized E2E-AD planning framework that addresses the <strong>generate-select imbalance</strong>
+        in existing methods. A <strong>Future-aware Trajectory Generator (FaTG)</strong> uses a World Action Model (WAM) to perform
+        ego-conditioned "what-if" BEV rollouts, producing foresighted candidates. A <strong>VLM-oriented Evaluator (VLoE)</strong>
+        then scores each candidate across safety, comfort, and efficiency via language-guided reasoning using Tiny-LLaVA-1B (LoRA fine-tuned).
+      </p>
+      <div class="pipeline" style="margin-top:16px;">
+        <div class="pipeline-box">Multi-view RGB + LiDAR</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">BEV Feature (ResNet-34)</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">N Scene-Variant Features</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">WAM Rollout</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">Trajectory Decoder</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">LaST-Former</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">VLM-Critic</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">Final Trajectory</div>
+      </div>
+    </div>
+
+    <!-- ===== PROBLEM & MOTIVATION ===== -->
+    <h2>Problem and Motivation</h2>
+    <div class="grid-2">
+      <div class="slide-card">
+        <h3>Trajectory Generation-Oriented</h3>
+        <p style="font-size:0.88em;">Methods (VADv2, DiffusionDrive, GaussianAD) invest in diverse candidate generation but use <strong>weak selectors</strong> (MLP heads, softmax). High-quality candidates in the set may be discarded.</p>
+      </div>
+      <div class="slide-card">
+        <h3>Trajectory Selection-Oriented</h3>
+        <p style="font-size:0.88em;">Methods (WoTE, Hydra-MDP, SimpleVSF) invest in expressive scoring but rely on <strong>limited candidate generation</strong>. A strong evaluator cannot compensate for low coverage of the candidate space.</p>
+      </div>
+    </div>
+    <div class="slide-card">
+      <h3>Core Argument</h3>
+      <p style="font-size:0.88em;">
+        The root cause is that generation and selection are treated as separate subproblems with unmatched investment.
+        Neither improvement alone closes the gap: component ablation (Table 6) confirms FaTG adds +2.5 PDMS and
+        VLoE adds +3.6 PDMS independently, while the joint system adds +4.8 PDMS over the baseline — confirming
+        complementarity under the current experimental setup.
+      </p>
+    </div>
+
+    <!-- ===== METHODOLOGY ===== -->
+    <h2>Methodology</h2>
+
+    <div class="slide-card">
+      <h3>World Action Model (WAM)</h3>
+      <p style="font-size:0.88em;margin-bottom:10px;">
+        Spatial-temporal-spatial sandwich: Transformer encoder captures spatial dependencies → two Mamba blocks (with pre-norm
+        and residual connections) model temporal dynamics → Transformer decoder projects back to BEV feature space.
+        Applied recurrently: 0s → 2s → 4s.
+      </p>
+      <div class="pipeline">
+        <div class="pipeline-box">S_f (N scene variants)</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">Transformer Enc → z_t</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">2x Mamba Blocks → z_{t+k}</div>
+        <span class="pipeline-arrow">→</span>
+        <div class="pipeline-box">Transformer Dec → S_{f,t+k}</div>
+      </div>
+      <p class="secondary" style="margin-top:8px;">Training supervision: current and future BEV semantic map features from simulator.</p>
+    </div>
+
+    <div class="slide-card">
+      <h3>LaST-Former &amp; VLM-Critic</h3>
+      <p style="font-size:0.88em;margin-bottom:8px;">
+        <strong>LaST-Former</strong> fuses scene tokens (Conv2D + MHCA), trajectory tokens (MHCA with learnable metric queries Q_metric),
+        and language prompt via <strong>sentinel insertion</strong> — placeholder indices (−200) in the token sequence are replaced at
+        embedding time by the corresponding scene or trajectory embeddings.
+      </p>
+      <p style="font-size:0.88em;">
+        <strong>VLM-Critic</strong> (Tiny-LLaVA-1B + LoRA) introduces a special <code>&lt;score_feature&gt;</code> token whose
+        hidden state aggregates the full output sequence; a lightweight score head converts it to multi-objective scores
+        (safety, comfort, efficiency, compliance).
+      </p>
+    </div>
+
+    <!-- ===== EXPERIMENTS ===== -->
+    <h2>Main Results</h2>
+    <div class="slide-card">
+      <h3>NAVSIM-v1 Navtest (PDMS)</h3>
+      <table>
+        <thead><tr><th>Method</th><th>NC</th><th>DAC</th><th>TTC</th><th>EP</th><th>PDMS</th></tr></thead>
+        <tbody>
+          <tr><td>TransFuser</td><td>97.7</td><td>92.8</td><td>92.8</td><td>79.2</td><td>84.0</td></tr>
+          <tr><td>DiffusionDrive (CVPR 2025)</td><td>98.2</td><td>96.2</td><td>94.7</td><td>82.2</td><td>88.1</td></tr>
+          <tr><td>WoTE (ICCV 2025)</td><td>98.5</td><td>96.8</td><td>94.9</td><td>81.9</td><td>88.3</td></tr>
+          <tr><td>DIVER</td><td>98.5</td><td>96.5</td><td>94.9</td><td>82.6</td><td>88.3</td></tr>
+          <tr><td class="result-best">MindDrive (Ours)</td><td class="result-best">98.4</td><td class="result-best">97.0</td><td class="result-best">95.1</td><td class="result-best">82.8</td><td class="result-best">88.9</td></tr>
+        </tbody>
+      </table>
+      <p class="secondary" style="margin-top:6px;">All methods use unified ResNet-34 backbone.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="slide-card">
+        <h3>NAVSIM-v2 Navtest (EPDMS1)</h3>
+        <table>
+          <thead><tr><th>Method</th><th>EPDMS1</th></tr></thead>
+          <tbody>
+            <tr><td>ARTEMIS</td><td>83.1</td></tr>
+            <tr><td>Hydra-MDP++</td><td>86.6</td></tr>
+            <tr><td class="result-best">MindDrive</td><td class="result-best">84.2</td></tr>
+          </tbody>
+        </table>
+        <p class="secondary" style="margin-top:6px;">Stage I only; Navtest has no synthetic futures for Stage II.</p>
+      </div>
+      <div class="slide-card">
+        <h3>NAVSIM-v2 Navhard (EPDMS)</h3>
+        <table>
+          <thead><tr><th>Method</th><th>EPDMS</th></tr></thead>
+          <tbody>
+            <tr><td>DiffusionDrive</td><td>24.2</td></tr>
+            <tr><td>GuideFlow</td><td>27.1</td></tr>
+            <tr><td class="result-best">MindDrive</td><td class="result-best">30.5</td></tr>
+          </tbody>
+        </table>
+        <p class="secondary" style="margin-top:6px;">Two-stage evaluation with 3DGS synthetic futures.</p>
+      </div>
+    </div>
+
+    <!-- ===== ABLATIONS ===== -->
+    <h2>Ablation Studies</h2>
+    <div class="grid-2">
+      <div class="slide-card">
+        <h3>Component Ablation (Table 6, NAVSIM-v1)</h3>
+        <div class="score-row"><span class="score-label">Baseline</span><div class="score-bar"><div class="score-bar-fill" style="width:56%"></div></div><span class="score-num">84.1</span></div>
+        <div class="score-row"><span class="score-label">FaTG only</span><div class="score-bar"><div class="score-bar-fill" style="width:64%"></div></div><span class="score-num">86.6</span></div>
+        <div class="score-row"><span class="score-label">VLoE only</span><div class="score-bar"><div class="score-bar-fill" style="width:72%"></div></div><span class="score-num">87.7</span></div>
+        <div class="score-row"><span class="score-label">FaTG + VLoE</span><div class="score-bar"><div class="score-bar-fill" style="width:88%"></div></div><span class="score-num">88.9</span></div>
+      </div>
+      <div class="slide-card">
+        <h3>WAM Architecture (Table 7)</h3>
+        <div class="score-row"><span class="score-label">Mamba-only</span><div class="score-bar"><div class="score-bar-fill" style="width:40%"></div></div><span class="score-num">85.6</span></div>
+        <div class="score-row"><span class="score-label">Hybrid-1 (shallow)</span><div class="score-bar"><div class="score-bar-fill" style="width:65%"></div></div><span class="score-num">88.1</span></div>
+        <div class="score-row"><span class="score-label">Hybrid-2 (symmetric)</span><div class="score-bar"><div class="score-bar-fill" style="width:75%"></div></div><span class="score-num">88.5</span></div>
+        <div class="score-row"><span class="score-label">Hybrid-3 (sandwich)</span><div class="score-bar"><div class="score-bar-fill" style="width:88%"></div></div><span class="score-num">88.9</span></div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="slide-card">
+        <h3>Temporal Steps (Table 8)</h3>
+        <div class="score-row"><span class="score-label">Direct 0s→4s</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">87.5</span></div>
+        <div class="score-row"><span class="score-label">Recurrent 0s→2s→4s</span><div class="score-bar"><div class="score-bar-fill" style="width:88%"></div></div><span class="score-num">88.9</span></div>
+      </div>
+      <div class="slide-card">
+        <h3>VLoE w/o VLM (Tables 9 and 10)</h3>
+        <div class="score-row"><span class="score-label">Navsafe w/o VLM</span><div class="score-bar"><div class="score-bar-fill" style="width:50%"></div></div><span class="score-num">64.5</span></div>
+        <div class="score-row"><span class="score-label">Navsafe with VLM</span><div class="score-bar"><div class="score-bar-fill" style="width:68%"></div></div><span class="score-num">67.5</span></div>
+        <div class="score-row"><span class="score-label">Navhard w/o VLM</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">68.2</span></div>
+        <div class="score-row"><span class="score-label">Navhard with VLM</span><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-num">72.7</span></div>
+      </div>
+    </div>
+
+    <!-- ===== RATINGS ===== -->
+    <h2>Evaluation</h2>
+    <div class="slide-card">
+      <h3>Impact Ratings</h3>
+      <div class="score-row"><span class="score-label">Novelty</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">3/5</span></div>
+      <div class="score-row"><span class="score-label">Technical Depth</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">3/5</span></div>
+      <div class="score-row"><span class="score-label">Experiment Completeness</span><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-num">4/5</span></div>
+      <div class="score-row"><span class="score-label">Writing Quality</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">3/5</span></div>
+      <div class="score-row"><span class="score-label">Practical Value</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">3/5</span></div>
+      <div class="score-row"><span class="score-label">Overall</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">3/5</span></div>
+    </div>
+
+    <!-- ===== RED FLAGS ===== -->
+    <h2>Red Flags</h2>
+    <div class="slide-card">
+      <div class="redflag">SimpleVSF [17] — the most directly related VLM-scoring baseline — is absent from Tables 1 and 2, creating a gap in competitive comparison.</div>
+      <div class="redflag">VLM-Critic training data construction and QA annotation procedure are not described; reproducibility of VLoE is uncertain.</div>
+      <div class="redflag">Inference latency is not reported; the generate-then-score pipeline with a 1B VLM has unquantified real-time cost.</div>
+      <div class="redflag">Figure 1 caption contains the typo "Word Action Model" instead of "World Action Model."</div>
+      <div class="redflag">All experiments are NAVSIM-only; no CarLA or real-world validation accompanies the generalization claims.</div>
+    </div>
+
+    <!-- ===== FUNDAMENTAL LIMITATIONS ===== -->
+    <h2>Fundamental Limitations</h2>
+    <div class="slide-card">
+      <ul>
+        <li>VLM-Critic requires task-specific fine-tuning with undocumented QA driving data, limiting reproducibility and domain transfer.</li>
+        <li>WAM training supervision uses simulator-generated BEV semantic maps; real-world deployment lacks this supervision signal.</li>
+        <li>The N-candidate sequential VLM scoring pipeline scales inference time with N; this is not addressed and may preclude real-time use.</li>
+        <li>Sentinel-insertion alignment assumes a shared embedding space for language, scene, and trajectory tokens after projection; no representation analysis validates this assumption.</li>
+      </ul>
+    </div>
+
+    <!-- ===== CITATIONS WORTH TRACKING ===== -->
+    <h2>Citations Worth Tracking</h2>
+    <div class="slide-card">
+      <table>
+        <thead><tr><th>Paper</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>WoTE [15] (arXiv 2504.01941)</td><td>Closest prior work on BEV world model + trajectory scoring; directly compared</td></tr>
+          <tr><td>Hydra-MDP [16] (arXiv 2406.06978)</td><td>Ablation baseline representative of selection-oriented methods</td></tr>
+          <tr><td>DiffusionDrive [9] (CVPR 2025)</td><td>Strongest generation-oriented baseline; most relevant for generation-side comparison</td></tr>
+          <tr><td>Tiny-LLaVA [49] (arXiv 2402.14289)</td><td>Backbone of VLM-Critic; reading clarifies 1B VLM capability and limitations</td></tr>
+          <tr><td>NAVSIM-v2 [42] (CoRL 2025)</td><td>Benchmark paper for Navhard; understanding pseudo-simulation evaluation is necessary</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== OPEN QUESTIONS ===== -->
+    <h2>Open Questions</h2>
+    <div class="slide-card">
+      <ul>
+        <li>What is the end-to-end inference latency, and how does it compare to real-time requirements (typically &le;100ms)?</li>
+        <li>Does ego-conditioned scene rollout provide strictly better candidates than rollout using only other agents' predicted trajectories without ego conditioning?</li>
+        <li>Would a larger VLM backbone (e.g., 7B) change scoring quality, or does the task saturate at 1B?</li>
+        <li>How does VLM-Critic behave when the evaluation prompt describes road types not present in training-time QA annotations?</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="phyra-footer">
+    Phyra NT Workflow | Paper Read Report | 2026-04-19
+  </footer>
+
+  <script>
+    /* ===== Theme switcher ===== */
+    const PHYRA_THEMES = [
+      {id:"nadeshiko",label:"撫子 Nadeshiko",mode:"light"},{id:"taikoh",label:"退紅 Taikoh",mode:"light"},
+      {id:"momo",label:"桃 Momo",mode:"light"},{id:"toki",label:"鴇 Toki",mode:"light"},
+      {id:"jinzamomi",label:"甚三紅 Jinzamomi",mode:"light"},{id:"haizakura",label:"灰桜 Haizakura",mode:"light"},
+      {id:"akebono",label:"曙 Akebono",mode:"light"},{id:"sangosyu",label:"珊瑚朱 Sangosyu",mode:"light"},
+      {id:"araisyu",label:"洗朱 Araisyu",mode:"light"},{id:"akakoh",label:"赤香 Akakoh",mode:"light"},
+      {id:"kokikuchinashi",label:"深支子 Kokikuchinashi",mode:"light"},{id:"kanzo",label:"萱草 Kanzo",mode:"light"},
+      {id:"beniukon",label:"紅鬱金 Beniukon",mode:"light"},{id:"kuchiba",label:"朽葉 Kuchiba",mode:"light"},
+      {id:"yamabuki",label:"山吹 Yamabuki",mode:"light"},{id:"hajizome",label:"櫨染 Hajizome",mode:"light"},
+      {id:"tamago",label:"玉子 Tamago",mode:"light"},{id:"tamamorokoshi",label:"玉蜀黍 Tamamorokoshi",mode:"light"},
+      {id:"usuki",label:"浅黄 Usuki",mode:"light"},{id:"kuchinashi",label:"梔子 Kuchinashi",mode:"light"},
+      {id:"tohoh",label:"籐黄 Tohoh",mode:"light"},{id:"ukon",label:"鬱金 Ukon",mode:"light"},
+      {id:"tonoko",label:"砥粉 Tonoko",mode:"light"},{id:"kariyasu",label:"刈安 Kariyasu",mode:"light"},
+      {id:"hiwa",label:"鶸 Hiwa",mode:"light"},{id:"hiwamoegi",label:"鶸萌黄 Hiwamoegi",mode:"light"},
+      {id:"yanagizome",label:"柳染 Yanagizome",mode:"light"},{id:"nae",label:"苗 Nae",mode:"light"},
+      {id:"wakatake",label:"若竹 Wakatake",mode:"light"},{id:"byakuroku",label:"白緑 Byakuroku",mode:"light"},
+      {id:"seiji",label:"青磁 Seiji",mode:"light"},{id:"mizuasagi",label:"水浅葱 Mizuasagi",mode:"light"},
+      {id:"byakugun",label:"白群 Byakugun",mode:"light"},{id:"kamenozoki",label:"瓶覗 Kamenozoki",mode:"light"},
+      {id:"mizu",label:"水 Mizu",mode:"light"},{id:"sora",label:"空 Sora",mode:"light"},
+      {id:"wasurenagusa",label:"勿忘草 Wasurenagusa",mode:"light"},{id:"tsuyukusa",label:"露草 Tsuyukusa",mode:"light"},
+      {id:"gunjyo",label:"群青 Gunjyo",mode:"light"},{id:"usu",label:"薄 Usu",mode:"light"},
+      {id:"shironeri",label:"白練 Shironeri",mode:"light"},{id:"shironezumi",label:"白鼠 Shironezumi",mode:"light"},
+      {id:"kohbai",label:"紅梅 Kohbai",mode:"dark"},{id:"suoh",label:"蘇芳 Suoh",mode:"dark"},
+      {id:"ichigo",label:"苺 Ichigo",mode:"dark"},{id:"karakurenai",label:"韓紅花 Karakurenai",mode:"dark"},
+      {id:"kurenai",label:"紅 Kurenai",mode:"dark"},{id:"kokiake",label:"深緋 Kokiake",mode:"dark"},
+      {id:"azuki",label:"小豆 Azuki",mode:"dark"},{id:"akabeni",label:"赤紅 Akabeni",mode:"dark"},
+      {id:"syojyohi",label:"猩猩緋 Syojyohi",mode:"dark"},{id:"entan",label:"鉛丹 Entan",mode:"dark"},
+      {id:"benihi",label:"紅緋 Benihi",mode:"dark"},{id:"terigaki",label:"照柿 Terigaki",mode:"dark"},
+      {id:"ohni",label:"黄丹 Ohni",mode:"dark"},{id:"sohi",label:"纁 Sohi",mode:"dark"},
+      {id:"ensyucha",label:"遠州茶 Ensyucha",mode:"dark"},{id:"kogecha",label:"焦茶 Kogecha",mode:"dark"},
+      {id:"taisya",label:"代赭 Taisya",mode:"dark"},{id:"kohaku",label:"琥珀 Kohaku",mode:"dark"},
+      {id:"kenpohzome",label:"憲法染 Kenpohzome",mode:"dark"},{id:"koke",label:"苔 Koke",mode:"dark"},
+      {id:"moegi",label:"萌黄 Moegi",mode:"dark"},{id:"matsuba",label:"松葉 Matsuba",mode:"dark"},
+      {id:"tokiwa",label:"常磐 Tokiwa",mode:"dark"},{id:"midori",label:"緑 Midori",mode:"dark"},
+      {id:"tokusa",label:"木賊 Tokusa",mode:"dark"},{id:"rokusyoh",label:"緑青 Rokusyoh",mode:"dark"},
+      {id:"aomidori",label:"青緑 Aomidori",mode:"dark"},{id:"asagi",label:"浅葱 Asagi",mode:"dark"},
+      {id:"shinbashi",label:"新橋 Shinbashi",mode:"dark"},{id:"hanaasagi",label:"花浅葱 Hanaasagi",mode:"dark"},
+      {id:"chigusa",label:"千草 Chigusa",mode:"dark"},{id:"hanada",label:"縹 Hanada",mode:"dark"},
+      {id:"ruri",label:"瑠璃 Ruri",mode:"dark"},{id:"rurikon",label:"瑠璃紺 Rurikon",mode:"dark"},
+      {id:"benimidori",label:"紅碧 Benimidori",mode:"dark"},{id:"fujinezumi",label:"藤鼠 Fujinezumi",mode:"dark"},
+      {id:"benikakehana",label:"紅掛花 Benikakehana",mode:"dark"},{id:"konjyo",label:"紺青 Konjyo",mode:"dark"},
+      {id:"kon",label:"紺 Kon",mode:"dark"},{id:"konkikyo",label:"紺桔梗 Konkikyo",mode:"dark"},
+      {id:"kurotsurubami",label:"黒橡 Kurotsurubami",mode:"dark"},{id:"fuji",label:"藤 Fuji",mode:"dark"},
+      {id:"fujimurasaki",label:"藤紫 Fujimurasaki",mode:"dark"},{id:"kikyo",label:"桔梗 Kikyo",mode:"dark"},
+      {id:"shion",label:"紫苑 Shion",mode:"dark"},{id:"edomurasaki",label:"江戸紫 Edomurasaki",mode:"dark"},
+      {id:"murasaki",label:"紫 Murasaki",mode:"dark"},{id:"benifuji",label:"紅藤 Benifuji",mode:"dark"},
+      {id:"botan",label:"牡丹 Botan",mode:"dark"},{id:"tsutsuji",label:"躑躅 Tsutsuji",mode:"dark"},
+      {id:"ginnezumi",label:"銀鼠 Ginnezumi",mode:"dark"},{id:"namari",label:"鉛 Namari",mode:"dark"},
+      {id:"hai",label:"灰 Hai",mode:"dark"},{id:"nibi",label:"鈍 Nibi",mode:"dark"},
+      {id:"aonibi",label:"青鈍 Aonibi",mode:"dark"},{id:"keshizumi",label:"消炭 Keshizumi",mode:"dark"},
+      {id:"sumi",label:"墨 Sumi",mode:"dark"},{id:"kuro",label:"黒 Kuro",mode:"dark"}
+    ];
+
+    function phyraApply(id) {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', id);
+      const t = PHYRA_THEMES.find(x => x.id === id);
+      if (t) {
+        html.setAttribute('data-theme-mode', t.mode);
+        const sel = document.getElementById('phyra-select');
+        if (sel) sel.value = id;
+      }
+    }
+    function phyraRandom() {
+      phyraApply(PHYRA_THEMES[Math.floor(Math.random() * PHYRA_THEMES.length)].id);
+    }
+    function phyraBuildSelect() {
+      const sel = document.getElementById('phyra-select');
+      if (!sel) return;
+      const lg = document.createElement('optgroup'); lg.label = 'Light (42)';
+      const dg = document.createElement('optgroup'); dg.label = 'Dark (58)';
+      PHYRA_THEMES.forEach(t => {
+        const o = document.createElement('option');
+        o.value = t.id; o.textContent = t.label;
+        (t.mode === 'light' ? lg : dg).appendChild(o);
+      });
+      sel.appendChild(lg); sel.appendChild(dg);
+    }
+    (function() {
+      phyraBuildSelect();
+      phyraApply(document.documentElement.getAttribute('data-theme') || 'keshizumi');
+    })();
+
+    /* ===== Width drag ===== */
+    (function() {
+      const handle = document.getElementById('phyra-width-handle');
+      if (!handle) return;
+      let dragging = false;
+      function updatePos(w) {
+        const gap = (window.innerWidth - w) / 2;
+        handle.style.right = Math.max(4, gap - 16) + 'px';
+      }
+      handle.addEventListener('mousedown', e => { dragging = true; handle.classList.add('dragging'); e.preventDefault(); });
+      document.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        const nw = Math.max(400, Math.abs(e.clientX - window.innerWidth / 2) * 2);
+        document.documentElement.style.setProperty('--phyra-content-width', nw + 'px');
+        updatePos(nw);
+      });
+      document.addEventListener('mouseup', () => { if (dragging) { dragging = false; handle.classList.remove('dragging'); } });
+      const init = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width')) || 960;
+      updatePos(init);
+      window.addEventListener('resize', () => {
+        const w = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width')) || 960;
+        updatePos(w);
+      });
+    })();
+  </script>
+</body>
+</html>

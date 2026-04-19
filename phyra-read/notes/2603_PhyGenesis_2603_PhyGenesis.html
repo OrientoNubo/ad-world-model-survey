@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhyGenesis — Phyra Paper Read Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <style>
+    /* === Semantic aliases === */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 900px;
+    }
+
+    /* === Light mode derived === */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255, 255, 255, 0.92);
+      --p-formula-bg     : rgba(255, 255, 255, 0.92);
+      --p-border         : rgba(28, 28, 28, 0.12);
+      --p-text-secondary : rgba(28, 28, 28, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+      --p-gloss-top      : 0.22;
+      --p-gloss-mid      : 0.06;
+    }
+
+    /* === Dark mode derived === */
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0, 0, 0, 0.35);
+      --p-formula-bg     : rgba(0, 0, 0, 0.35);
+      --p-border         : rgba(245, 242, 235, 0.12);
+      --p-text-secondary : rgba(245, 242, 235, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+      --p-gloss-top      : 0.10;
+      --p-gloss-mid      : 0.03;
+    }
+
+    /* === Light Themes === */
+    [data-theme="nadeshiko"] { --theme-primary:#DC9FB4; --theme-light:#F3E6EB; --theme-accent:#92E566; --theme-dark:#471727; --theme-neutral:#E7E3E4; --theme-text:#1C1C1C; }
+    [data-theme="taikoh"] { --theme-primary:#F8C3CD; --theme-light:#F3E6E9; --theme-accent:#6EFE4C; --theme-dark:#600D1D; --theme-neutral:#E8E2E3; --theme-text:#1C1C1C; }
+    [data-theme="momo"] { --theme-primary:#F596AA; --theme-light:#F3E6E9; --theme-accent:#72FE4C; --theme-dark:#560C1B; --theme-neutral:#E8E2E4; --theme-text:#1C1C1C; }
+    [data-theme="toki"] { --theme-primary:#EEA9A9; --theme-light:#F3E6E6; --theme-accent:#50FA50; --theme-dark:#580D0D; --theme-neutral:#E8E2E2; --theme-text:#1C1C1C; }
+    [data-theme="jinzamomi"] { --theme-primary:#EB7A77; --theme-light:#F3E7E6; --theme-accent:#4CFE51; --theme-dark:#4D0C0B; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+    [data-theme="haizakura"] { --theme-primary:#D7C4BB; --theme-light:#F1EBE8; --theme-accent:#7CCE97; --theme-dark:#402D23; --theme-neutral:#E6E5E4; --theme-text:#1C1C1C; }
+    [data-theme="akebono"] { --theme-primary:#F19483; --theme-light:#F3E8E6; --theme-accent:#4CFE68; --theme-dark:#51160B; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+    [data-theme="sangosyu"] { --theme-primary:#F17C67; --theme-light:#F3E8E6; --theme-accent:#4CFE67; --theme-dark:#4B140A; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+    [data-theme="araisyu"] { --theme-primary:#FB966E; --theme-light:#F3EAE6; --theme-accent:#4CFE7F; --theme-dark:#4E1E0B; --theme-neutral:#E8E4E2; --theme-text:#1C1C1C; }
+    [data-theme="akakoh"] { --theme-primary:#E3916E; --theme-light:#F3EAE6; --theme-accent:#4FFB83; --theme-dark:#491D0A; --theme-neutral:#E8E4E2; --theme-text:#1C1C1C; }
+    [data-theme="kokikuchinashi"] { --theme-primary:#FB9966; --theme-light:#F3EBE6; --theme-accent:#4CFE89; --theme-dark:#4D210B; --theme-neutral:#E8E4E2; --theme-text:#1C1C1C; }
+    [data-theme="kanzo"] { --theme-primary:#FC9F4D; --theme-light:#F3ECE6; --theme-accent:#4AFE9E; --theme-dark:#47270A; --theme-neutral:#E8E5E2; --theme-text:#1C1C1C; }
+    [data-theme="beniukon"] { --theme-primary:#E98B2A; --theme-light:#F3EDE6; --theme-accent:#14FE8B; --theme-dark:#3C2208; --theme-neutral:#E8E5E2; --theme-text:#1C1C1C; }
+    [data-theme="kuchiba"] { --theme-primary:#E2943B; --theme-light:#F3EDE6; --theme-accent:#1EFF95; --theme-dark:#3E2508; --theme-neutral:#E8E5E2; --theme-text:#1C1C1C; }
+    [data-theme="yamabuki"] { --theme-primary:#FFB11B; --theme-light:#F3EFE6; --theme-accent:#1BFFB0; --theme-dark:#3D2B08; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="hajizome"] { --theme-primary:#DDA52D; --theme-light:#F3EFE6; --theme-accent:#0BFEB1; --theme-dark:#3A2A08; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="tamago"] { --theme-primary:#F9BF45; --theme-light:#F3EFE6; --theme-accent:#3FFFC1; --theme-dark:#453209; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="tamamorokoshi"] { --theme-primary:#E8B647; --theme-light:#F3EFE6; --theme-accent:#30FFBE; --theme-dark:#423009; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="usuki"] { --theme-primary:#FAD689; --theme-light:#F3EFE6; --theme-accent:#4CFEC6; --theme-dark:#543D0C; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="kuchinashi"] { --theme-primary:#F6C555; --theme-light:#F3EFE6; --theme-accent:#4CFEC8; --theme-dark:#48350A; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="tohoh"] { --theme-primary:#FFC408; --theme-light:#F3F0E6; --theme-accent:#07FFC4; --theme-dark:#392D08; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="ukon"] { --theme-primary:#EFBB24; --theme-light:#F3F0E6; --theme-accent:#14FEC2; --theme-dark:#3C2E08; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="tonoko"] { --theme-primary:#D7B98E; --theme-light:#F3EEE6; --theme-accent:#65E6B1; --theme-dark:#443015; --theme-neutral:#E7E5E3; --theme-text:#1C1C1C; }
+    [data-theme="kariyasu"] { --theme-primary:#E9CD4C; --theme-light:#F3F1E6; --theme-accent:#35FFDB; --theme-dark:#433909; --theme-neutral:#E8E7E2; --theme-text:#1C1C1C; }
+    [data-theme="hiwa"] { --theme-primary:#BEC23F; --theme-light:#F3F3E6; --theme-accent:#1EDCE2; --theme-dark:#31320D; --theme-neutral:#E7E7E3; --theme-text:#1C1C1C; }
+    [data-theme="hiwamoegi"] { --theme-primary:#90B44B; --theme-light:#EFF3E6; --theme-accent:#2D99D1; --theme-dark:#242E11; --theme-neutral:#E6E7E3; --theme-text:#1C1C1C; }
+    [data-theme="yanagizome"] { --theme-primary:#91AD70; --theme-light:#EDF1E8; --theme-accent:#5992C3; --theme-dark:#242E19; --theme-neutral:#E5E6E4; --theme-text:#1C1C1C; }
+    [data-theme="nae"] { --theme-primary:#86C166; --theme-light:#EBF3E6; --theme-accent:#4C7EDA; --theme-dark:#1F3613; --theme-neutral:#E4E7E3; --theme-text:#1C1C1C; }
+    [data-theme="wakatake"] { --theme-primary:#5DAC81; --theme-light:#E7F2EC; --theme-accent:#7E42C6; --theme-dark:#152C20; --theme-neutral:#E4E6E5; --theme-text:#1C1C1C; }
+    [data-theme="byakuroku"] { --theme-primary:#A8D8B9; --theme-light:#E6F3EB; --theme-accent:#956FDB; --theme-dark:#1B442A; --theme-neutral:#E3E7E4; --theme-text:#1C1C1C; }
+    [data-theme="seiji"] { --theme-primary:#69B0AC; --theme-light:#E7F2F2; --theme-accent:#C150C8; --theme-dark:#172F2D; --theme-neutral:#E4E6E6; --theme-text:#1C1C1C; }
+    [data-theme="mizuasagi"] { --theme-primary:#66BAB7; --theme-light:#E6F3F2; --theme-accent:#CE4CD3; --theme-dark:#153231; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="byakugun"] { --theme-primary:#78C2C4; --theme-light:#E6F3F3; --theme-accent:#DA61D6; --theme-dark:#163738; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="kamenozoki"] { --theme-primary:#A5DEE4; --theme-light:#E6F2F3; --theme-accent:#EC5EDF; --theme-dark:#14484E; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="mizu"] { --theme-primary:#81C7D4; --theme-light:#E6F1F3; --theme-accent:#E763D3; --theme-dark:#133A41; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="sora"] { --theme-primary:#58B2DC; --theme-light:#E6EFF3; --theme-accent:#F83BBC; --theme-dark:#0A3042; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="wasurenagusa"] { --theme-primary:#7DB9DE; --theme-light:#E6EEF3; --theme-accent:#F258B8; --theme-dark:#0E3247; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="tsuyukusa"] { --theme-primary:#2EA9DF; --theme-light:#E6EFF3; --theme-accent:#FE0EB5; --theme-dark:#082B3A; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="gunjyo"] { --theme-primary:#51A8DD; --theme-light:#E6EEF3; --theme-accent:#FA33AF; --theme-dark:#092C41; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="usu"] { --theme-primary:#B28FCE; --theme-light:#EDE6F3; --theme-accent:#DDAB6E; --theme-dark:#2D183E; --theme-neutral:#E5E3E7; --theme-text:#1C1C1C; }
+    [data-theme="shironeri"] { --theme-primary:#FCFAF2; --theme-light:#F3F0E6; --theme-accent:#55F6D5; --theme-dark:#685713; --theme-neutral:#E8E7E2; --theme-text:#1C1C1C; }
+    [data-theme="shironezumi"] { --theme-primary:#BDC0BA; --theme-light:#EDEDEC; --theme-accent:#93A5B8; --theme-dark:#2F312C; --theme-neutral:#E5E5E5; --theme-text:#1C1C1C; }
+
+    /* === Dark Themes === */
+    [data-theme="kohbai"] { --theme-primary:#E16B8C; --theme-light:#F3E6EA; --theme-accent:#80FA51; --theme-dark:#470B1C; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+    [data-theme="suoh"] { --theme-primary:#8E354A; --theme-light:#F3E6E9; --theme-accent:#3DA51D; --theme-dark:#260C12; --theme-neutral:#E7E3E4; --theme-text:#F5F2EB; }
+    [data-theme="ichigo"] { --theme-primary:#B5495B; --theme-light:#F3E6E8; --theme-accent:#47D22B; --theme-dark:#2E1015; --theme-neutral:#E7E3E4; --theme-text:#F5F2EB; }
+    [data-theme="karakurenai"] { --theme-primary:#D0104C; --theme-light:#F3E6EA; --theme-accent:#46E000; --theme-dark:#300714; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+    [data-theme="kurenai"] { --theme-primary:#CB1B45; --theme-light:#F3E6E9; --theme-accent:#36E500; --theme-dark:#320711; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+    [data-theme="kokiake"] { --theme-primary:#86473F; --theme-light:#F3E8E6; --theme-accent:#299B36; --theme-dark:#23110F; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+    [data-theme="azuki"] { --theme-primary:#954A45; --theme-light:#F3E7E6; --theme-accent:#2CAD34; --theme-dark:#261110; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+    [data-theme="akabeni"] { --theme-primary:#CB4042; --theme-light:#F3E6E7; --theme-accent:#22EB1F; --theme-dark:#360C0C; --theme-neutral:#E8E2E3; --theme-text:#F5F2EB; }
+    [data-theme="syojyohi"] { --theme-primary:#E83015; --theme-light:#F3E8E6; --theme-accent:#00FD20; --theme-dark:#370D07; --theme-neutral:#E8E3E2; --theme-text:#F5F2EB; }
+    [data-theme="entan"] { --theme-primary:#D75455; --theme-light:#F3E6E6; --theme-accent:#38F337; --theme-dark:#3E0B0C; --theme-neutral:#E8E2E2; --theme-text:#F5F2EB; }
+    [data-theme="benihi"] { --theme-primary:#F75C2F; --theme-light:#F3E9E6; --theme-accent:#26FF57; --theme-dark:#401509; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+    [data-theme="terigaki"] { --theme-primary:#C46243; --theme-light:#F3E9E6; --theme-accent:#23E351; --theme-dark:#33170D; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+    [data-theme="ohni"] { --theme-primary:#F05E1C; --theme-light:#F3EAE6; --theme-accent:#0DFE58; --theme-dark:#3A1808; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+    [data-theme="sohi"] { --theme-primary:#ED784A; --theme-light:#F3EAE6; --theme-accent:#38FF70; --theme-dark:#441A09; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+    [data-theme="ensyucha"] { --theme-primary:#CA7853; --theme-light:#F3EAE6; --theme-accent:#36E66D; --theme-dark:#381B0E; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+    [data-theme="kogecha"] { --theme-primary:#563F2E; --theme-light:#F2ECE7; --theme-accent:#2F9259; --theme-dark:#221810; --theme-neutral:#E6E5E4; --theme-text:#F5F2EB; }
+    [data-theme="taisya"] { --theme-primary:#A36336; --theme-light:#F3ECE6; --theme-accent:#1ABE5E; --theme-dark:#2A180C; --theme-neutral:#E7E5E3; --theme-text:#F5F2EB; }
+    [data-theme="kohaku"] { --theme-primary:#CA7A2C; --theme-light:#F3EDE6; --theme-accent:#09EC79; --theme-dark:#341E09; --theme-neutral:#E8E5E2; --theme-text:#F5F2EB; }
+    [data-theme="kenpohzome"] { --theme-primary:#43341B; --theme-light:#F3EEE6; --theme-accent:#20A070; --theme-dark:#251C0D; --theme-neutral:#E7E5E3; --theme-text:#F5F2EB; }
+    [data-theme="koke"] { --theme-primary:#838A2D; --theme-light:#F2F3E6; --theme-accent:#179FAA; --theme-dark:#25270B; --theme-neutral:#E7E7E3; --theme-text:#F5F2EB; }
+    [data-theme="moegi"] { --theme-primary:#7BA23F; --theme-light:#EEF3E6; --theme-accent:#2480BC; --theme-dark:#1F290E; --theme-neutral:#E5E7E3; --theme-text:#F5F2EB; }
+    [data-theme="matsuba"] { --theme-primary:#42602D; --theme-light:#ECF3E6; --theme-accent:#285699; --theme-dark:#17230F; --theme-neutral:#E5E7E3; --theme-text:#F5F2EB; }
+    [data-theme="tokiwa"] { --theme-primary:#1B813E; --theme-light:#E6F3EB; --theme-accent:#4406BB; --theme-dark:#072B13; --theme-neutral:#E2E8E4; --theme-text:#F5F2EB; }
+    [data-theme="midori"] { --theme-primary:#227D51; --theme-light:#E6F3ED; --theme-accent:#630FB1; --theme-dark:#09291A; --theme-neutral:#E2E8E5; --theme-text:#F5F2EB; }
+    [data-theme="tokusa"] { --theme-primary:#2D6D4B; --theme-light:#E6F3EC; --theme-accent:#5C229F; --theme-dark:#0D2518; --theme-neutral:#E3E7E5; --theme-text:#F5F2EB; }
+    [data-theme="rokusyoh"] { --theme-primary:#24936E; --theme-light:#E6F3EF; --theme-accent:#7D0BB5; --theme-dark:#082A1F; --theme-neutral:#E2E8E6; --theme-text:#F5F2EB; }
+    [data-theme="aomidori"] { --theme-primary:#00AA90; --theme-light:#E6F3F1; --theme-accent:#A400C1; --theme-dark:#062C26; --theme-neutral:#E2E8E7; --theme-text:#F5F2EB; }
+    [data-theme="asagi"] { --theme-primary:#33A6B8; --theme-light:#E6F1F3; --theme-accent:#D614BC; --theme-dark:#0B2A2F; --theme-neutral:#E2E7E8; --theme-text:#F5F2EB; }
+    [data-theme="shinbashi"] { --theme-primary:#0089A7; --theme-light:#E6F1F3; --theme-accent:#C1009E; --theme-dark:#06252C; --theme-neutral:#E2E7E8; --theme-text:#F5F2EB; }
+    [data-theme="hanaasagi"] { --theme-primary:#1E88A8; --theme-light:#E6F0F3; --theme-accent:#C40197; --theme-dark:#06232C; --theme-neutral:#E2E6E8; --theme-text:#F5F2EB; }
+    [data-theme="chigusa"] { --theme-primary:#3A8FB7; --theme-light:#E6EFF3; --theme-accent:#D51B9A; --theme-dark:#0C242F; --theme-neutral:#E3E6E7; --theme-text:#F5F2EB; }
+    [data-theme="hanada"] { --theme-primary:#006284; --theme-light:#E6F0F3; --theme-accent:#C1008F; --theme-dark:#06222C; --theme-neutral:#E2E6E8; --theme-text:#F5F2EB; }
+    [data-theme="ruri"] { --theme-primary:#005CAF; --theme-light:#E6EDF3; --theme-accent:#C10065; --theme-dark:#061A2C; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="rurikon"] { --theme-primary:#0B346E; --theme-light:#E6ECF3; --theme-accent:#C10050; --theme-dark:#06162C; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="benimidori"] { --theme-primary:#7B90D2; --theme-light:#E6E9F3; --theme-accent:#E76383; --theme-dark:#131D40; --theme-neutral:#E3E4E7; --theme-text:#F5F2EB; }
+    [data-theme="fujinezumi"] { --theme-primary:#6E75A4; --theme-light:#E9EAF1; --theme-accent:#BB5663; --theme-dark:#191B2A; --theme-neutral:#E4E4E6; --theme-text:#F5F2EB; }
+    [data-theme="benikakehana"] { --theme-primary:#4E4F97; --theme-light:#E7E7F2; --theme-accent:#AF3537; --theme-dark:#121226; --theme-neutral:#E4E4E6; --theme-text:#F5F2EB; }
+    [data-theme="konjyo"] { --theme-primary:#113285; --theme-light:#E6EAF3; --theme-accent:#C10037; --theme-dark:#06112C; --theme-neutral:#E2E4E8; --theme-text:#F5F2EB; }
+    [data-theme="kon"] { --theme-primary:#0F2540; --theme-light:#E6ECF3; --theme-accent:#B70A58; --theme-dark:#08172A; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="konkikyo"] { --theme-primary:#211E55; --theme-light:#E7E6F3; --theme-accent:#A7221A; --theme-dark:#0D0C26; --theme-neutral:#E3E3E7; --theme-text:#F5F2EB; }
+    [data-theme="kurotsurubami"] { --theme-primary:#0B1013; --theme-light:#E8EEF1; --theme-accent:#8E336C; --theme-dark:#121B20; --theme-neutral:#E4E5E6; --theme-text:#F5F2EB; }
+    [data-theme="fuji"] { --theme-primary:#8B81C3; --theme-light:#E8E6F3; --theme-accent:#D77C6C; --theme-dark:#1D1838; --theme-neutral:#E4E3E7; --theme-text:#F5F2EB; }
+    [data-theme="fujimurasaki"] { --theme-primary:#8A6BBE; --theme-light:#EBE6F3; --theme-accent:#D68352; --theme-dark:#211535; --theme-neutral:#E5E3E7; --theme-text:#F5F2EB; }
+    [data-theme="kikyo"] { --theme-primary:#6A4C9C; --theme-light:#EBE6F3; --theme-accent:#B56332; --theme-dark:#1A1228; --theme-neutral:#E5E3E7; --theme-text:#F5F2EB; }
+    [data-theme="shion"] { --theme-primary:#8F77B5; --theme-light:#EBE7F2; --theme-accent:#CA8A61; --theme-dark:#221931; --theme-neutral:#E5E4E6; --theme-text:#F5F2EB; }
+    [data-theme="edomurasaki"] { --theme-primary:#77428D; --theme-light:#EFE6F3; --theme-accent:#A4802A; --theme-dark:#1E0F24; --theme-neutral:#E6E3E7; --theme-text:#F5F2EB; }
+    [data-theme="murasaki"] { --theme-primary:#592C63; --theme-light:#F1E6F3; --theme-accent:#9C8625; --theme-dark:#200E24; --theme-neutral:#E6E3E7; --theme-text:#F5F2EB; }
+    [data-theme="benifuji"] { --theme-primary:#B481BB; --theme-light:#F1E7F2; --theme-accent:#CFC36C; --theme-dark:#311A34; --theme-neutral:#E6E4E6; --theme-text:#F5F2EB; }
+    [data-theme="botan"] { --theme-primary:#C1328E; --theme-light:#F3E6EE; --theme-accent:#97E111; --theme-dark:#320A24; --theme-neutral:#E8E2E6; --theme-text:#F5F2EB; }
+    [data-theme="tsutsuji"] { --theme-primary:#E03C8A; --theme-light:#F3E6EC; --theme-accent:#88FF1D; --theme-dark:#3E0822; --theme-neutral:#E8E2E5; --theme-text:#F5F2EB; }
+    [data-theme="ginnezumi"] { --theme-primary:#91989F; --theme-light:#EBEDEE; --theme-accent:#AF8098; --theme-dark:#232628; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="namari"] { --theme-primary:#787878; --theme-light:#EDEDED; --theme-accent:#668966; --theme-dark:#1D1D1D; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="hai"] { --theme-primary:#828282; --theme-light:#EDEDED; --theme-accent:#6F946F; --theme-dark:#202020; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="nibi"] { --theme-primary:#656765; --theme-light:#ECEDEC; --theme-accent:#555576; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="aonibi"] { --theme-primary:#535953; --theme-light:#ECEDEC; --theme-accent:#4E4E73; --theme-dark:#181A18; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="keshizumi"] { --theme-primary:#434343; --theme-light:#EDEDED; --theme-accent:#526F52; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="sumi"] { --theme-primary:#1C1C1C; --theme-light:#EDEDED; --theme-accent:#526F52; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="kuro"] { --theme-primary:#080808; --theme-light:#EDEDED; --theme-accent:#526F52; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+
+    /* === Base === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--p-text);
+      min-height: 100vh;
+    }
+
+    /* === 3-Layer Background === */
+    .phyra-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+
+    .phyra-gloss {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 478px;
+      z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none;
+      transition: opacity 2s ease-in;
+    }
+
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative;
+      z-index: 2;
+    }
+
+    main, #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      box-sizing: border-box;
+      transition: max-width 0.15s ease;
+    }
+
+    .phyra-width-handle {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 60px;
+      background: rgba(128,128,128,0.3);
+      border-radius: 3px;
+      cursor: col-resize;
+      z-index: 99;
+      transition: background 0.2s, opacity 0.3s;
+      opacity: 0.4;
+    }
+    .phyra-width-handle:hover, .phyra-width-handle.dragging {
+      background: var(--p-accent);
+      opacity: 1;
+    }
+
+    /* === Cards === */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 24px;
+      color: var(--p-text);
+      margin-bottom: 24px;
+    }
+
+    /* === Typography === */
+    h1 { font-size: 1.8rem; color: var(--p-text); margin-bottom: 8px; }
+    h2 { font-size: 1.4rem; color: var(--p-text); border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin: 32px 0 16px; }
+    h3 { font-size: 1.1rem; color: var(--p-text); margin: 20px 0 10px; }
+
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    p { margin-bottom: 12px; }
+
+    ul, ol { padding-left: 20px; margin-bottom: 12px; }
+    li { margin-bottom: 6px; }
+
+    /* === Tables === */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9em;
+      margin-bottom: 16px;
+    }
+    th {
+      background: var(--p-primary);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--p-border);
+      color: var(--p-text);
+    }
+    tr:hover td { background: rgba(128,128,128,0.08); }
+
+    /* === Formula === */
+    .formula-block {
+      background: var(--p-formula-bg);
+      color: var(--p-text);
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--p-border);
+      overflow-x: auto;
+      margin: 12px 0;
+      font-size: 0.95em;
+    }
+
+    /* === Tags === */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: 600;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text);
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    /* === Score bars === */
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .score-label { width: 160px; font-size: 0.9em; flex-shrink: 0; }
+    .score-bar { flex: 1; height: 8px; border-radius: 4px; background: var(--p-border); }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+    .score-num { width: 30px; text-align: right; font-size: 0.85em; color: var(--p-text-secondary); }
+
+    /* === Hero === */
+    .hero {
+      padding: 48px 0 32px;
+      margin-bottom: 8px;
+    }
+    .hero-badge {
+      font-size: 0.75em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--p-text-secondary);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero h1 { font-size: 2rem; line-height: 1.3; margin-bottom: 12px; }
+    .hero .meta { font-size: 0.85em; color: var(--p-text-secondary); }
+
+    /* === Red flag === */
+    .red-flag {
+      background: color-mix(in srgb, #E83015 18%, transparent);
+      border-left: 4px solid #E83015;
+      border-radius: 0 6px 6px 0;
+      padding: 10px 16px;
+      margin: 10px 0;
+      font-size: 0.9em;
+    }
+
+    /* === Two-column grid === */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* === Framework diagram === */
+    .pipeline {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82em;
+      background: var(--p-formula-bg);
+      border: 1px solid var(--p-border);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      white-space: pre;
+      color: var(--p-text);
+      line-height: 1.5;
+    }
+
+    /* === Footer === */
+    .phyra-footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+      color: var(--p-text);
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* === Switcher === */
+    .phyra-switcher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128,128,128,0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128,128,128,0.2);
+      border-radius: 24px;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(128,128,128,0.3);
+      border-radius: 12px;
+      color: #1C1C1C;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      max-width: 200px;
+    }
+    .phyra-switcher select option { color: #1C1C1C; background: #fff; }
+    .phyra-switcher select optgroup { font-weight: bold; color: #1C1C1C; }
+    .phyra-switcher button {
+      padding: 4px 12px;
+      background: rgba(128,128,128,0.2);
+      border: 1px solid rgba(128,128,128,0.3);
+      border-radius: 12px;
+      color: var(--p-text);
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+    .phyra-switcher button:hover { background: rgba(128,128,128,0.35); }
+
+    .secondary { color: var(--p-text-secondary); }
+  </style>
+</head>
+<body>
+  <div class="phyra-bg"></div>
+  <div class="phyra-gloss"></div>
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <main id="phyra-main">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-badge">Phyra Paper Read Report &nbsp;|&nbsp; 2026-04-19</div>
+      <h1>PhyGenesis</h1>
+      <p class="meta">
+        Toward Physically Consistent Driving Video World Models under Challenging Trajectories<br>
+        Zhou et al. &nbsp;|&nbsp; Zhejiang University &amp; Xiaomi EV &nbsp;|&nbsp; arXiv 2603.24506 &nbsp;|&nbsp; 2026-03
+      </p>
+      <div style="margin-top:14px;">
+        <span class="tag">Video World Model</span>
+        <span class="tag">Autonomous Driving</span>
+        <span class="tag">Physics-Aware Generation</span>
+        <span class="tag">Multi-view Video</span>
+        <span class="tag">Trajectory Rectification</span>
+      </div>
+    </div>
+
+    <!-- Section 1: Basic Info -->
+    <h2>Basic Information</h2>
+    <div class="slide-card">
+      <table>
+        <tbody>
+          <tr><td><strong>Short name</strong></td><td>PhyGenesis</td></tr>
+          <tr><td><strong>arXiv</strong></td><td>2603.24506 (v2: 2026-04-01)</td></tr>
+          <tr><td><strong>Venue</strong></td><td>[Not provided — arXiv preprint]</td></tr>
+          <tr><td><strong>Project page</strong></td><td><a href="https://wmresearch.github.io/PhyGenesis/" style="color:var(--p-accent)">wmresearch.github.io/PhyGenesis</a></td></tr>
+          <tr><td><strong>Code</strong></td><td>[Not provided]</td></tr>
+          <tr><td><strong>Affiliations</strong></td><td>Zhejiang University, Xiaomi EV, HK PolyU, Shenzhen Loop Area Institute</td></tr>
+          <tr><td><strong>Corresponding authors</strong></td><td>Haiyang Sun (Project Leader), Yu Li</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 2: Research Overview -->
+    <h2>Research Overview</h2>
+    <div class="slide-card">
+      <h3>Core Topic</h3>
+      <p>
+        PhyGenesis targets the failure of existing driving world models when conditioned on physics-violating trajectories from planners or simulators. The framework introduces a <strong>Physical Condition Generator</strong> that rectifies invalid 2D trajectory inputs into physically plausible 6-DoF motions, and a <strong>Physics-Enhanced Video Generator</strong> (PE-MVGen) built on Wan2.1 DiT, trained on a heterogeneous dataset combining nuScenes nominal logs with CARLA-simulated collision and off-road scenarios.
+      </p>
+      <h3>Core Architectures</h3>
+      <ul>
+        <li><strong>Physical Condition Generator</strong> — Transformer with spatial cross-attention (PV features), agent-agent self-attention, map cross-attention, and a Time-Wise Output Head (TCN + MLP) for 6-DoF trajectory prediction.</li>
+        <li><strong>PE-MVGen</strong> — Wan2.1 DiT adapted for multi-view driving generation; conditioned on initial frame, text caption, and per-camera layout images; trained via rectified flow.</li>
+        <li><strong>Counterfactual Trajectory Corruption</strong> — Data engineering strategy that synthesizes physics-violating inputs from CARLA collision logs for training the condition generator.</li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Evaluation -->
+    <h2>Paper Evaluation</h2>
+    <div class="slide-card">
+      <h3>Impact Scores</h3>
+      <div class="score-row"><span class="score-label">Novelty</span><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-num">4/5</span></div>
+      <div class="score-row"><span class="score-label">Technical Depth</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">3/5</span></div>
+      <div class="score-row"><span class="score-label">Experiment Completeness</span><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-num">4/5</span></div>
+      <div class="score-row"><span class="score-label">Writing Quality</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">3/5</span></div>
+      <div class="score-row"><span class="score-label">Practical Value</span><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-num">4/5</span></div>
+      <div class="score-row"><span class="score-label">Overall</span><div class="score-bar"><div class="score-bar-fill" style="width:72%"></div></div><span class="score-num">3.6</span></div>
+    </div>
+
+    <div class="two-col">
+      <div class="slide-card">
+        <h3>Highlights</h3>
+        <ol>
+          <li>Time-Wise Output Head (TCN + temporal embeddings) captures abrupt collision impulses; qualitatively superior to MLP head (Fig. 4, p.7).</li>
+          <li>Heterogeneous co-training reduces CARLA ADV FVD 89.83 → 77.83 and Pref. 0.15 → 0.57 (Table 4, p.14).</li>
+          <li>Physical Condition Generator reduces CARLA Ego 6-DoF L2 from 1.78 to 0.65 (Table 3, p.13).</li>
+          <li>Counterfactual corruption is a systematic, data-driven method requiring no additional manual annotation.</li>
+        </ol>
+      </div>
+      <div class="slide-card">
+        <h3>Weaknesses</h3>
+        <ol>
+          <li>Baselines not retrained on heterogeneous data; domain gap conflated with architectural difference.</li>
+          <li>Style-transfer for CARLA evaluation is an uncontrolled confounder with no accuracy benchmark.</li>
+          <li>PHY metric is VLM-judge-based; sensitivity for collision vs. off-road events not characterized.</li>
+          <li>Time-Wise Head vs. MLP ablation is qualitative only; no quantitative trajectory-prediction comparison.</li>
+          <li>"First framework" claim is unverified because SafeMVDrive and Challenger are not compared.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Section 4: Problem & Motivation -->
+    <h2>Problem and Motivation</h2>
+    <div class="slide-card">
+      <h3>Storyline</h3>
+      <p>Driving video world models have grown into scalable simulation tools, but training distributions are dominated by safe, nominal behaviors. When planners or simulators provide physics-violating trajectory inputs (penetrating paths, out-of-distribution maneuvers), existing models produce severe artifacts. The paper identifies two coupled failures: (1) no physical trajectory awareness, and (2) inability to render extreme dynamics even with feasible inputs. PhyGenesis addresses both through a dedicated rectification stage and physics-rich co-training data.</p>
+    </div>
+    <div class="slide-card">
+      <h3>Pain Points of Existing Methods</h3>
+      <table>
+        <thead><tr><th>Pain Point</th><th>Description</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td>No physical trajectory awareness</td><td>Models accept any (x,y) input without feasibility checking; penetrating paths are forwarded as-is</td><td>Deformation and melting artifacts (Fig. 1)</td></tr>
+          <tr><td>Nominal-data-only training</td><td>nuScenes is overwhelmingly safe driving; collision/off-road frames are extremely scarce</td><td>Fails to render correct dynamics for challenging inputs (Table 2)</td></tr>
+          <tr><td>2D trajectory limitation</td><td>Extreme interactions induce z, pitch, roll changes that (x,y) trajectories cannot encode</td><td>Missing vertical and rotational dynamics in generated videos</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Section 5: Methodology -->
+    <h2>Methodology</h2>
+    <div class="slide-card">
+      <h3>Pipeline</h3>
+      <div class="pipeline">Input: I_0 (multi-view) + Map M + T_orig (2D trajectories, N agents, T steps)
+            |
+            v
+  [Physical Condition Generator]
+    Sine-cosine PE + MLP  -->  agent tokens q  (N x D)
+    SpatialCrossAttn(q, F_pv)               -->  q_s
+    AgentSelfAttn(q_s)                      -->  q_a    (resolves penetration)
+    MapCrossAttn(q_a, E_map)                -->  q_m    (off-road awareness)
+    FFN(q_m)                                -->  q_f
+    Time-Wise Head: TCN( Proj(q_f[i] || E_time(t)) ) --> MLP --> T_hat_6dof  (N x T x 6)
+            |
+            v
+  Project 6-DoF boxes + map onto cameras K_v, E_v
+  Encode layout images via VAE  -->  z_c
+            |
+  [PE-MVGen  (Wan2.1 DiT)]
+    z_t (noisy) || z_c (channel concat)  -->  patch embedder  -->  DiT
+    Conditions: c_init (first frame), c_text (caption), c_layout
+    Training: rectified flow  L_FM = E||u_theta(z_t, c) - v_t||^2_2
+    Curriculum:  Stage 1 @ 224x400 (2850 steps)  -->  Stage 2 @ 448x800 (350 steps)
+            |
+            v
+  Output: 6-view video V_{1:T}  (33 frames @ 12 Hz)</div>
+    </div>
+
+    <div class="two-col">
+      <div class="slide-card">
+        <h3>Physical Condition Generator</h3>
+        <p>Converts 2D (x,y) trajectories for N=2 agents into 6-DoF (x,y,z,pitch,yaw,roll) sequences. Key innovation: <strong>Time-Wise Output Head</strong> — step-specific learnable temporal embeddings concatenated with the refined agent token, processed by TCN to model high-frequency impulse dynamics at collision moments.</p>
+        <div class="formula-block">
+          $$\mathcal{L}_{phy} = \frac{1}{NT}\sum_{i,t} W_{i,t}\|\hat{\mathcal{T}}_{i,t}^{6dof} - \mathcal{T}_{i,t}^{gt}\|_1$$
+        </div>
+        <p class="secondary" style="font-size:0.85em;">$W_{i,t}$: $\lambda_{event}=10$ for collision window, $\lambda_{agent}=5$ for interacting agents</p>
+      </div>
+      <div class="slide-card">
+        <h3>Heterogeneous Dataset</h3>
+        <p>Training set: <strong>9.7h CARLA</strong> (physically-challenging clips filtered by collision sensor + HD map) + <strong>4.6h nuScenes</strong> at 1:1 ratio.</p>
+        <ul>
+          <li>CARLA-Ego: 15.2h, 830K boxes; ego perturbation for collisions/off-road.</li>
+          <li>CARLA-Adv: 15.5h, 760K boxes; non-ego agent perturbation.</li>
+          <li>Sensor suite: 6 cameras 900x1600, 1 LiDAR, 5 radars, IMU/GNSS, collision sensor @ 12Hz.</li>
+          <li>Format: identical to nuScenes for seamless training integration.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 6: Experiments -->
+    <h2>Experiments</h2>
+    <div class="slide-card">
+      <h3>Table 1 — Physics-violating 2D Trajectory Inputs</h3>
+      <p class="secondary" style="font-size:0.85em; margin-bottom:10px;">CARLA splits use counterfactual (post-collision velocity extrapolation) inputs; nuScenes uses ground-truth trajectories.</p>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>nuScenes FID↓</th><th>nuScenes FVD↓</th><th>nuScenes PHY↑</th><th>nuScenes Pref.↑</th><th>CARLA Ego FVD↓</th><th>CARLA Ego PHY↑</th><th>CARLA ADV FVD↓</th><th>CARLA ADV PHY↑</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>UniMLVG</td><td>17.59</td><td>129.69</td><td>0.93</td><td>0.05</td><td>260.21</td><td>0.55</td><td>274.94</td><td>0.70</td></tr>
+          <tr><td>MagicDrive-V2</td><td>13.40</td><td>91.10</td><td>0.92</td><td>0.16</td><td>207.64</td><td>0.60</td><td>222.55</td><td>0.66</td></tr>
+          <tr><td>DiST-4D</td><td>10.49</td><td>46.95</td><td>0.86</td><td>0.13</td><td>197.57</td><td>0.39</td><td>128.88</td><td>0.56</td></tr>
+          <tr><td><strong>PhyGenesis</strong></td><td><strong>10.24</strong></td><td><strong>40.41</strong></td><td><strong>0.97</strong></td><td><strong>0.67</strong></td><td><strong>72.48</strong></td><td><strong>0.71</strong></td><td><strong>77.83</strong></td><td><strong>0.87</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="slide-card">
+      <h3>Table 2 — Ground-Truth Trajectory Inputs (Video Generator Evaluation)</h3>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>nuScenes FVD↓</th><th>nuScenes CtrlErr↓</th><th>CARLA Ego FVD↓</th><th>CARLA Ego CtrlErr↓</th><th>CARLA ADV FVD↓</th><th>CARLA ADV CtrlErr↓</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>UniMLVG</td><td>113.23</td><td>0.35</td><td>240.78</td><td>1.32</td><td>264.59</td><td>0.66</td></tr>
+          <tr><td>MagicDrive-V2</td><td>88.86</td><td>0.29</td><td>181.26</td><td>1.26</td><td>214.52</td><td>0.75</td></tr>
+          <tr><td>DiST-4D</td><td>45.24</td><td>0.28</td><td>133.10</td><td>1.19</td><td>105.70</td><td>0.57</td></tr>
+          <tr><td><strong>PhyGenesis</strong></td><td><strong>31.14</strong></td><td><strong>0.25</strong></td><td><strong>57.02</strong></td><td><strong>0.85</strong></td><td><strong>59.44</strong></td><td><strong>0.37</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div class="slide-card">
+        <h3>Ablation (Table 4)</h3>
+        <table>
+          <thead><tr><th>Mixed Data</th><th>Phy-Model</th><th>nuScenes FVD↓</th><th>CARLA Ego FVD↓</th><th>CARLA ADV Pref.↑</th></tr></thead>
+          <tbody>
+            <tr><td>✓</td><td>✓</td><td><strong>40.41</strong></td><td><strong>72.48</strong></td><td><strong>0.57</strong></td></tr>
+            <tr><td>✓</td><td>✗</td><td>44.43</td><td>116.51</td><td>0.28</td></tr>
+            <tr><td>✗</td><td>✓</td><td>41.06</td><td>82.39</td><td>0.15</td></tr>
+          </tbody>
+        </table>
+        <p class="secondary" style="font-size:0.85em;">Both components necessary; Phy-Model is the dominant factor for physics-violating inputs; Mixed Data is the dominant factor for rendering quality on challenging scenarios.</p>
+      </div>
+      <div class="slide-card">
+        <h3>Physical Condition Generator — Trajectory Rectification (Table 3)</h3>
+        <table>
+          <thead><tr><th>Method</th><th>nuScenes 6-DoF L2↓</th><th>CARLA Ego 6-DoF L2↓</th><th>CARLA ADV 6-DoF L2↓</th></tr></thead>
+          <tbody>
+            <tr><td>w/o Phys. Cond. Gen.</td><td>0.21</td><td>1.78</td><td>1.05</td></tr>
+            <tr><td><strong>w/ Phys. Cond. Gen.</strong></td><td><strong>0.19</strong></td><td><strong>0.65</strong></td><td><strong>0.86</strong></td></tr>
+          </tbody>
+        </table>
+        <p class="secondary" style="font-size:0.85em;">Large reduction on CARLA splits confirms rectification capability; modest nuScenes gain mainly from 2D-to-6DoF recovery.</p>
+      </div>
+    </div>
+
+    <!-- Section 7: Red Flags -->
+    <h2>Red Flags</h2>
+    <div class="slide-card">
+      <div class="red-flag">Baselines (UniMLVG, MagicDrive-V2, DiST-4D) are trained only on nuScenes, not on the heterogeneous dataset. The comparison in Tables 1–2 cannot isolate architectural gains from data distribution gains. (Tables 1–2, pp.11–13)</div>
+      <div class="red-flag">CARLA clips are translated into nuScenes visual style via a learned style-transfer model before evaluation. Accuracy and bias of this style transfer are not analyzed; it is an uncontrolled variable. (Section 4.1, p.10)</div>
+      <div class="red-flag">PHY metric uses VLM-based judges from WorldModelBench. Sensitivity and inter-rater reliability for collision vs. off-road event types are not characterized in this paper. (Section 4.1, p.10)</div>
+      <div class="red-flag">The Time-Wise Output Head vs. standard MLP comparison is qualitative only (Fig. 4). No quantitative trajectory prediction accuracy comparison is provided. (Section 3.3, p.7)</div>
+      <div class="red-flag">"First framework capable of synthesizing physically consistent multi-view driving videos conditioned on physics-violating trajectory inputs" is stated without systematic comparison to SafeMVDrive or Challenger. (Introduction, p.3)</div>
+    </div>
+
+    <!-- Section 8: Phyra's Judgment -->
+    <h2>Phyra's Judgment</h2>
+    <div class="slide-card">
+      <h3>Actual vs. Claimed Contributions</h3>
+      <table>
+        <thead><tr><th>Claim</th><th>Status</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td>Physical Condition Generator with counterfactual rectification</td><td>Supported</td><td>Table 3 (6-DoF L2); Fig. 8–9; Ablation Row 2</td></tr>
+          <tr><td>Physics-Enhanced Video Generator via heterogeneous co-training</td><td>Supported</td><td>Table 2 (GT trajectory evaluation); Ablation Row 3</td></tr>
+          <tr><td>Heterogeneous physics-rich dataset construction</td><td>Partially supported</td><td>Dataset described; not released for independent verification</td></tr>
+          <tr><td>"First framework" for physics-violating inputs</td><td>Unverified</td><td>SafeMVDrive and Challenger not compared directly</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div class="slide-card">
+        <h3>Fundamental Limitations</h3>
+        <ul>
+          <li>Physical Condition Generator trained on CARLA physics; generalization to other simulators or real-world edge-case physics is not demonstrated.</li>
+          <li>Sim-to-real gap for collision dynamics not fully closed; style-transfer dependency for evaluation may mask remaining gaps.</li>
+          <li>1:1 nominal-to-challenging sampling ratio is fixed; no sensitivity analysis over this hyperparameter.</li>
+          <li>Method handles N=2 agents; scalability to denser multi-agent scenarios not shown.</li>
+        </ul>
+      </div>
+      <div class="slide-card">
+        <h3>Citations Worth Tracking</h3>
+        <ol>
+          <li><strong>WorldModelBench [25]</strong> (Li et al., arXiv 2502.20694) — PHY metric foundation; read to understand metric reliability.</li>
+          <li><strong>DiST-4D [14]</strong> (Guo et al., ICCV 2025) — main baseline; 4D metric depth lifting.</li>
+          <li><strong>MagicDrive-V2 [9]</strong> (Gao et al., ICCV 2025) — DiT-based multi-view baseline.</li>
+          <li><strong>Wan2.1 [33]</strong> — PE-MVGen foundation; necessary to understand generation capacity.</li>
+          <li><strong>ReSim [39]</strong> — prior synthetic data work; single-view limitation that PhyGenesis addresses.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Section 9: Open Questions -->
+    <h2>Open Questions and Improvement Directions</h2>
+    <div class="slide-card">
+      <h3>Open Questions</h3>
+      <ul>
+        <li>How does the Physical Condition Generator behave on real-world noisy planner outputs rather than constructed counterfactual inputs?</li>
+        <li>Is the PHY metric equally sensitive to penetration, off-road departure, and abrupt deceleration?</li>
+        <li>Does the 1:1 real-to-simulated ratio remain optimal as nominal data volume scales up?</li>
+        <li>Can the Time-Wise Output Head be quantitatively validated on held-out collision clips vs. a standard MLP head?</li>
+      </ul>
+      <h3>Improvement Directions</h3>
+      <ol>
+        <li><strong>Retrain baselines on heterogeneous data</strong> to cleanly isolate architectural contributions. (High feasibility)</li>
+        <li><strong>Release CARLA pipeline and style-transfer model</strong> for community reproduction. (Medium feasibility; data policy dependent)</li>
+        <li><strong>Extend Condition Generator to N &gt; 2 agents</strong> for multi-agent chain-collision scenarios. (Medium feasibility)</li>
+        <li><strong>Quantitative TCN vs. MLP head ablation</strong> on trajectory prediction accuracy for collision clips. (High feasibility)</li>
+      </ol>
+    </div>
+
+  </main>
+
+  <footer class="phyra-footer">
+    Phyra NT Workflow | Paper Read Report | 2026-04-19
+  </footer>
+
+  <script>
+    /* phyra-switcher.js */
+    const PHYRA_THEMES = [
+      { id:"nadeshiko", label:"撫子 Nadeshiko", mode:"light" },
+      { id:"taikoh", label:"退紅 Taikoh", mode:"light" },
+      { id:"momo", label:"桃 Momo", mode:"light" },
+      { id:"toki", label:"鴇 Toki", mode:"light" },
+      { id:"jinzamomi", label:"甚三紅 Jinzamomi", mode:"light" },
+      { id:"haizakura", label:"灰桜 Haizakura", mode:"light" },
+      { id:"akebono", label:"曙 Akebono", mode:"light" },
+      { id:"sangosyu", label:"珊瑚朱 Sangosyu", mode:"light" },
+      { id:"araisyu", label:"洗朱 Araisyu", mode:"light" },
+      { id:"akakoh", label:"赤香 Akakoh", mode:"light" },
+      { id:"kokikuchinashi", label:"深支子 Kokikuchinashi", mode:"light" },
+      { id:"kanzo", label:"萱草 Kanzo", mode:"light" },
+      { id:"beniukon", label:"紅鬱金 Beniukon", mode:"light" },
+      { id:"kuchiba", label:"朽葉 Kuchiba", mode:"light" },
+      { id:"yamabuki", label:"山吹 Yamabuki", mode:"light" },
+      { id:"hajizome", label:"櫨染 Hajizome", mode:"light" },
+      { id:"tamago", label:"玉子 Tamago", mode:"light" },
+      { id:"tamamorokoshi", label:"玉蜀黍 Tamamorokoshi", mode:"light" },
+      { id:"usuki", label:"浅黄 Usuki", mode:"light" },
+      { id:"kuchinashi", label:"梔子 Kuchinashi", mode:"light" },
+      { id:"tohoh", label:"籐黄 Tohoh", mode:"light" },
+      { id:"ukon", label:"鬱金 Ukon", mode:"light" },
+      { id:"tonoko", label:"砥粉 Tonoko", mode:"light" },
+      { id:"kariyasu", label:"刈安 Kariyasu", mode:"light" },
+      { id:"hiwa", label:"鶸 Hiwa", mode:"light" },
+      { id:"hiwamoegi", label:"鶸萌黄 Hiwamoegi", mode:"light" },
+      { id:"yanagizome", label:"柳染 Yanagizome", mode:"light" },
+      { id:"nae", label:"苗 Nae", mode:"light" },
+      { id:"wakatake", label:"若竹 Wakatake", mode:"light" },
+      { id:"byakuroku", label:"白緑 Byakuroku", mode:"light" },
+      { id:"seiji", label:"青磁 Seiji", mode:"light" },
+      { id:"mizuasagi", label:"水浅葱 Mizuasagi", mode:"light" },
+      { id:"byakugun", label:"白群 Byakugun", mode:"light" },
+      { id:"kamenozoki", label:"瓶覗 Kamenozoki", mode:"light" },
+      { id:"mizu", label:"水 Mizu", mode:"light" },
+      { id:"sora", label:"空 Sora", mode:"light" },
+      { id:"wasurenagusa", label:"勿忘草 Wasurenagusa", mode:"light" },
+      { id:"tsuyukusa", label:"露草 Tsuyukusa", mode:"light" },
+      { id:"gunjyo", label:"群青 Gunjyo", mode:"light" },
+      { id:"usu", label:"薄 Usu", mode:"light" },
+      { id:"shironeri", label:"白練 Shironeri", mode:"light" },
+      { id:"shironezumi", label:"白鼠 Shironezumi", mode:"light" },
+      { id:"kohbai", label:"紅梅 Kohbai", mode:"dark" },
+      { id:"suoh", label:"蘇芳 Suoh", mode:"dark" },
+      { id:"ichigo", label:"苺 Ichigo", mode:"dark" },
+      { id:"karakurenai", label:"韓紅花 Karakurenai", mode:"dark" },
+      { id:"kurenai", label:"紅 Kurenai", mode:"dark" },
+      { id:"kokiake", label:"深緋 Kokiake", mode:"dark" },
+      { id:"azuki", label:"小豆 Azuki", mode:"dark" },
+      { id:"akabeni", label:"赤紅 Akabeni", mode:"dark" },
+      { id:"syojyohi", label:"猩猩緋 Syojyohi", mode:"dark" },
+      { id:"entan", label:"鉛丹 Entan", mode:"dark" },
+      { id:"benihi", label:"紅緋 Benihi", mode:"dark" },
+      { id:"terigaki", label:"照柿 Terigaki", mode:"dark" },
+      { id:"ohni", label:"黄丹 Ohni", mode:"dark" },
+      { id:"sohi", label:"纁 Sohi", mode:"dark" },
+      { id:"ensyucha", label:"遠州茶 Ensyucha", mode:"dark" },
+      { id:"kogecha", label:"焦茶 Kogecha", mode:"dark" },
+      { id:"taisya", label:"代赭 Taisya", mode:"dark" },
+      { id:"kohaku", label:"琥珀 Kohaku", mode:"dark" },
+      { id:"kenpohzome", label:"憲法染 Kenpohzome", mode:"dark" },
+      { id:"koke", label:"苔 Koke", mode:"dark" },
+      { id:"moegi", label:"萌黄 Moegi", mode:"dark" },
+      { id:"matsuba", label:"松葉 Matsuba", mode:"dark" },
+      { id:"tokiwa", label:"常磐 Tokiwa", mode:"dark" },
+      { id:"midori", label:"緑 Midori", mode:"dark" },
+      { id:"tokusa", label:"木賊 Tokusa", mode:"dark" },
+      { id:"rokusyoh", label:"緑青 Rokusyoh", mode:"dark" },
+      { id:"aomidori", label:"青緑 Aomidori", mode:"dark" },
+      { id:"asagi", label:"浅葱 Asagi", mode:"dark" },
+      { id:"shinbashi", label:"新橋 Shinbashi", mode:"dark" },
+      { id:"hanaasagi", label:"花浅葱 Hanaasagi", mode:"dark" },
+      { id:"chigusa", label:"千草 Chigusa", mode:"dark" },
+      { id:"hanada", label:"縹 Hanada", mode:"dark" },
+      { id:"ruri", label:"瑠璃 Ruri", mode:"dark" },
+      { id:"rurikon", label:"瑠璃紺 Rurikon", mode:"dark" },
+      { id:"benimidori", label:"紅碧 Benimidori", mode:"dark" },
+      { id:"fujinezumi", label:"藤鼠 Fujinezumi", mode:"dark" },
+      { id:"benikakehana", label:"紅掛花 Benikakehana", mode:"dark" },
+      { id:"konjyo", label:"紺青 Konjyo", mode:"dark" },
+      { id:"kon", label:"紺 Kon", mode:"dark" },
+      { id:"konkikyo", label:"紺桔梗 Konkikyo", mode:"dark" },
+      { id:"kurotsurubami", label:"黒橡 Kurotsurubami", mode:"dark" },
+      { id:"fuji", label:"藤 Fuji", mode:"dark" },
+      { id:"fujimurasaki", label:"藤紫 Fujimurasaki", mode:"dark" },
+      { id:"kikyo", label:"桔梗 Kikyo", mode:"dark" },
+      { id:"shion", label:"紫苑 Shion", mode:"dark" },
+      { id:"edomurasaki", label:"江戸紫 Edomurasaki", mode:"dark" },
+      { id:"murasaki", label:"紫 Murasaki", mode:"dark" },
+      { id:"benifuji", label:"紅藤 Benifuji", mode:"dark" },
+      { id:"botan", label:"牡丹 Botan", mode:"dark" },
+      { id:"tsutsuji", label:"躑躅 Tsutsuji", mode:"dark" },
+      { id:"ginnezumi", label:"銀鼠 Ginnezumi", mode:"dark" },
+      { id:"namari", label:"鉛 Namari", mode:"dark" },
+      { id:"hai", label:"灰 Hai", mode:"dark" },
+      { id:"nibi", label:"鈍 Nibi", mode:"dark" },
+      { id:"aonibi", label:"青鈍 Aonibi", mode:"dark" },
+      { id:"keshizumi", label:"消炭 Keshizumi", mode:"dark" },
+      { id:"sumi", label:"墨 Sumi", mode:"dark" },
+      { id:"kuro", label:"黒 Kuro", mode:"dark" }
+    ];
+
+    function phyraApply(id) {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', id);
+      const t = PHYRA_THEMES.find(x => x.id === id);
+      if (t) {
+        html.setAttribute('data-theme-mode', t.mode);
+        const select = document.getElementById('phyra-select');
+        if (select) select.value = id;
+      }
+    }
+
+    function phyraRandom() {
+      const idx = Math.floor(Math.random() * PHYRA_THEMES.length);
+      phyraApply(PHYRA_THEMES[idx].id);
+    }
+
+    function phyraBuildSelect() {
+      const select = document.getElementById('phyra-select');
+      if (!select) return;
+      const lightGroup = document.createElement('optgroup');
+      lightGroup.label = 'Light (42)';
+      const darkGroup = document.createElement('optgroup');
+      darkGroup.label = 'Dark (58)';
+      PHYRA_THEMES.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.label;
+        if (t.mode === 'light') lightGroup.appendChild(opt);
+        else darkGroup.appendChild(opt);
+      });
+      select.appendChild(lightGroup);
+      select.appendChild(darkGroup);
+    }
+
+    (function() {
+      phyraBuildSelect();
+      const current = document.documentElement.getAttribute('data-theme') || 'keshizumi';
+      phyraApply(current);
+    })();
+
+    /* Content width drag control */
+    (function() {
+      const handle = document.getElementById('phyra-width-handle');
+      if (!handle) return;
+      let dragging = false;
+
+      function updateHandlePos(contentWidth) {
+        const vw = window.innerWidth;
+        const gap = (vw - contentWidth) / 2;
+        handle.style.right = Math.max(4, gap - 16) + 'px';
+      }
+
+      handle.addEventListener('mousedown', (e) => {
+        dragging = true;
+        handle.classList.add('dragging');
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const vw = window.innerWidth;
+        const distFromCenter = Math.abs(e.clientX - vw / 2);
+        const newWidth = Math.max(400, distFromCenter * 2);
+        document.documentElement.style.setProperty('--phyra-content-width', newWidth + 'px');
+        updateHandlePos(newWidth);
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (dragging) {
+          dragging = false;
+          handle.classList.remove('dragging');
+        }
+      });
+
+      const initWidth = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--phyra-content-width')) || 900;
+      updateHandlePos(initWidth);
+
+      window.addEventListener('resize', () => {
+        const w = parseInt(getComputedStyle(document.documentElement)
+          .getPropertyValue('--phyra-content-width')) || 900;
+        updateHandlePos(w);
+      });
+    })();
+  </script>
+</body>
+</html>

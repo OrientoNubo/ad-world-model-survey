@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCARL | Phyra Paper Read</title>
+  <style>
+/* === Semantic aliases === */
+:root {
+  --p-primary : var(--theme-primary);
+  --p-light   : var(--theme-light);
+  --p-accent  : var(--theme-accent);
+  --p-dark    : var(--theme-dark);
+  --p-neutral : var(--theme-neutral);
+  --p-text    : var(--theme-text);
+  --phyra-content-width: 960px;
+}
+
+/* === Light Themes (42) === */
+[data-theme="nadeshiko"]      { --theme-primary:#DC9FB4; --theme-light:#F3E6EB; --theme-accent:#92E566; --theme-dark:#471727; --theme-neutral:#E7E3E4; --theme-text:#1C1C1C; }
+[data-theme="taikoh"]         { --theme-primary:#F8C3CD; --theme-light:#F3E6E9; --theme-accent:#6EFE4C; --theme-dark:#600D1D; --theme-neutral:#E8E2E3; --theme-text:#1C1C1C; }
+[data-theme="momo"]           { --theme-primary:#F596AA; --theme-light:#F3E6E9; --theme-accent:#72FE4C; --theme-dark:#560C1B; --theme-neutral:#E8E2E4; --theme-text:#1C1C1C; }
+[data-theme="toki"]           { --theme-primary:#EEA9A9; --theme-light:#F3E6E6; --theme-accent:#50FA50; --theme-dark:#580D0D; --theme-neutral:#E8E2E2; --theme-text:#1C1C1C; }
+[data-theme="jinzamomi"]      { --theme-primary:#EB7A77; --theme-light:#F3E7E6; --theme-accent:#4CFE51; --theme-dark:#4D0C0B; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+[data-theme="haizakura"]      { --theme-primary:#D7C4BB; --theme-light:#F1EBE8; --theme-accent:#7CCE97; --theme-dark:#402D23; --theme-neutral:#E6E5E4; --theme-text:#1C1C1C; }
+[data-theme="akebono"]        { --theme-primary:#F19483; --theme-light:#F3E8E6; --theme-accent:#4CFE66; --theme-dark:#4D100A; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+[data-theme="sangosyu"]       { --theme-primary:#F17C67; --theme-light:#F3E8E6; --theme-accent:#4CFE72; --theme-dark:#4D0E08; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+[data-theme="araisyu"]        { --theme-primary:#FB966E; --theme-light:#F3E8E5; --theme-accent:#46FE7C; --theme-dark:#52120B; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+[data-theme="akakoh"]         { --theme-primary:#E3916E; --theme-light:#F2E8E4; --theme-accent:#5ACE7C; --theme-dark:#471A0C; --theme-neutral:#E7E4E2; --theme-text:#1C1C1C; }
+[data-theme="kokikuchinashi"] { --theme-primary:#FB9966; --theme-light:#F3E8E5; --theme-accent:#46FE88; --theme-dark:#52130B; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+[data-theme="kanzo"]          { --theme-primary:#FC9F4D; --theme-light:#F3EAE3; --theme-accent:#3EFE96; --theme-dark:#521600; --theme-neutral:#E8E4E1; --theme-text:#1C1C1C; }
+[data-theme="beniukon"]       { --theme-primary:#E98B2A; --theme-light:#F2EBE0; --theme-accent:#3CC896; --theme-dark:#492200; --theme-neutral:#E8E5E1; --theme-text:#1C1C1C; }
+[data-theme="kuchiba"]        { --theme-primary:#E2943B; --theme-light:#F2EBE1; --theme-accent:#3ACC96; --theme-dark:#481E00; --theme-neutral:#E7E5E1; --theme-text:#1C1C1C; }
+[data-theme="yamabuki"]       { --theme-primary:#FFB11B; --theme-light:#F3EFE0; --theme-accent:#24C8B4; --theme-dark:#521D00; --theme-neutral:#E8E6E0; --theme-text:#1C1C1C; }
+[data-theme="hajizome"]       { --theme-primary:#DDA52D; --theme-light:#F2EEE0; --theme-accent:#32BCAA; --theme-dark:#462100; --theme-neutral:#E7E6E0; --theme-text:#1C1C1C; }
+[data-theme="tamago"]         { --theme-primary:#F9BF45; --theme-light:#F3EFE1; --theme-accent:#1EC8BE; --theme-dark:#523300; --theme-neutral:#E8E6E1; --theme-text:#1C1C1C; }
+[data-theme="tamamorokoshi"]  { --theme-primary:#E8B647; --theme-light:#F2EEE1; --theme-accent:#22C2B8; --theme-dark:#492E00; --theme-neutral:#E7E6E1; --theme-text:#1C1C1C; }
+[data-theme="usuki"]          { --theme-primary:#FAD689; --theme-light:#F3EFE5; --theme-accent:#20C0D4; --theme-dark:#524000; --theme-neutral:#E8E7E3; --theme-text:#1C1C1C; }
+[data-theme="kuchinashi"]     { --theme-primary:#F6C555; --theme-light:#F3EFE2; --theme-accent:#1EC0C8; --theme-dark:#523700; --theme-neutral:#E8E6E1; --theme-text:#1C1C1C; }
+[data-theme="tohoh"]          { --theme-primary:#FFC408; --theme-light:#F3EFE0; --theme-accent:#12C4BE; --theme-dark:#524300; --theme-neutral:#E8E7E0; --theme-text:#1C1C1C; }
+[data-theme="ukon"]           { --theme-primary:#EFBB24; --theme-light:#F2EEE0; --theme-accent:#1ABEBA; --theme-dark:#4D3500; --theme-neutral:#E7E6E0; --theme-text:#1C1C1C; }
+[data-theme="tonoko"]         { --theme-primary:#D7B98E; --theme-light:#F1EDE5; --theme-accent:#7CC8AA; --theme-dark:#42291A; --theme-neutral:#E6E5E2; --theme-text:#1C1C1C; }
+[data-theme="kariyasu"]       { --theme-primary:#E9CD4C; --theme-light:#F2EFE2; --theme-accent:#1ABCCC; --theme-dark:#4A3D00; --theme-neutral:#E7E7E1; --theme-text:#1C1C1C; }
+[data-theme="hiwa"]           { --theme-primary:#BEC23F; --theme-light:#EEF0E0; --theme-accent:#4CB0DC; --theme-dark:#2C3000; --theme-neutral:#E5E6E0; --theme-text:#1C1C1C; }
+[data-theme="hiwamoegi"]      { --theme-primary:#90B44B; --theme-light:#EAF0E2; --theme-accent:#60A8E0; --theme-dark:#1A2E00; --theme-neutral:#E4E6E1; --theme-text:#1C1C1C; }
+[data-theme="yanagizome"]     { --theme-primary:#91AD70; --theme-light:#EAF0E4; --theme-accent:#60A0E0; --theme-dark:#1A2C10; --theme-neutral:#E4E6E2; --theme-text:#1C1C1C; }
+[data-theme="nae"]            { --theme-primary:#86C166; --theme-light:#E8F2E2; --theme-accent:#5898E8; --theme-dark:#143000; --theme-neutral:#E3E7E1; --theme-text:#1C1C1C; }
+[data-theme="wakatake"]       { --theme-primary:#5DAC81; --theme-light:#E4F0EA; --theme-accent:#6690F0; --theme-dark:#0A2C1A; --theme-neutral:#E2E7E4; --theme-text:#1C1C1C; }
+[data-theme="byakuroku"]      { --theme-primary:#A8D8B9; --theme-light:#E8F3EC; --theme-accent:#7890F4; --theme-dark:#1A3828; --theme-neutral:#E4E8E5; --theme-text:#1C1C1C; }
+[data-theme="seiji"]          { --theme-primary:#69B0AC; --theme-light:#E3EFEE; --theme-accent:#8880F0; --theme-dark:#0C2C2A; --theme-neutral:#E2E7E7; --theme-text:#1C1C1C; }
+[data-theme="mizuasagi"]      { --theme-primary:#66BAB7; --theme-light:#E3F0EF; --theme-accent:#8878F4; --theme-dark:#0A2C2A; --theme-neutral:#E2E7E7; --theme-text:#1C1C1C; }
+[data-theme="byakugun"]       { --theme-primary:#78C2C4; --theme-light:#E4F0F1; --theme-accent:#8870F8; --theme-dark:#0C3032; --theme-neutral:#E2E8E8; --theme-text:#1C1C1C; }
+[data-theme="kamenozoki"]     { --theme-primary:#A5DEE4; --theme-light:#E8F3F5; --theme-accent:#9070F8; --theme-dark:#1A3C40; --theme-neutral:#E4E9EA; --theme-text:#1C1C1C; }
+[data-theme="mizu"]           { --theme-primary:#81C7D4; --theme-light:#E6F1F4; --theme-accent:#9068F8; --theme-dark:#103444; --theme-neutral:#E3E8EA; --theme-text:#1C1C1C; }
+[data-theme="sora"]           { --theme-primary:#58B2DC; --theme-light:#E2EEF5; --theme-accent:#A858F0; --theme-dark:#083046; --theme-neutral:#E1E7EE; --theme-text:#1C1C1C; }
+[data-theme="wasurenagusa"]   { --theme-primary:#7DB9DE; --theme-light:#E5EFF5; --theme-accent:#AC50F0; --theme-dark:#0E2C46; --theme-neutral:#E3E8EE; --theme-text:#1C1C1C; }
+[data-theme="tsuyukusa"]      { --theme-primary:#2EA9DF; --theme-light:#E0EDF6; --theme-accent:#BE44EC; --theme-dark:#042C48; --theme-neutral:#E0E7F0; --theme-text:#1C1C1C; }
+[data-theme="gunjyo"]         { --theme-primary:#51A8DD; --theme-light:#E2EEF5; --theme-accent:#B844EE; --theme-dark:#082E48; --theme-neutral:#E1E7EE; --theme-text:#1C1C1C; }
+[data-theme="usu"]            { --theme-primary:#B28FCE; --theme-light:#EEE9F5; --theme-accent:#82DE82; --theme-dark:#261040; --theme-neutral:#E6E4EE; --theme-text:#1C1C1C; }
+[data-theme="shironeri"]      { --theme-primary:#FCFAF2; --theme-light:#F5F3EB; --theme-accent:#8090E8; --theme-dark:#302C20; --theme-neutral:#EEECE4; --theme-text:#1C1C1C; }
+[data-theme="shironezumi"]    { --theme-primary:#BDC0BA; --theme-light:#ECEEED; --theme-accent:#8888DC; --theme-dark:#282C25; --theme-neutral:#E5E6E5; --theme-text:#1C1C1C; }
+
+/* === Dark Themes (58) === */
+[data-theme="kohbai"]         { --theme-primary:#E16B8C; --theme-light:#F3E6EA; --theme-accent:#80FA51; --theme-dark:#470B1C; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+[data-theme="suoh"]           { --theme-primary:#8E354A; --theme-light:#F3E6E9; --theme-accent:#3DA51D; --theme-dark:#260C12; --theme-neutral:#E7E3E4; --theme-text:#F5F2EB; }
+[data-theme="ichigo"]         { --theme-primary:#B5495B; --theme-light:#F3E6E8; --theme-accent:#47D22B; --theme-dark:#2E1015; --theme-neutral:#E7E3E4; --theme-text:#F5F2EB; }
+[data-theme="karakurenai"]    { --theme-primary:#D0104C; --theme-light:#F3E6EA; --theme-accent:#46E000; --theme-dark:#300714; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+[data-theme="kurenai"]        { --theme-primary:#CB1B45; --theme-light:#F3E6E9; --theme-accent:#36E500; --theme-dark:#320711; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+[data-theme="kokiake"]        { --theme-primary:#86473F; --theme-light:#F3E8E6; --theme-accent:#299B36; --theme-dark:#23110F; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+[data-theme="azuki"]          { --theme-primary:#954A45; --theme-light:#F3E8E7; --theme-accent:#2E9E3A; --theme-dark:#251211; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+[data-theme="akabeni"]        { --theme-primary:#CB4042; --theme-light:#F3E7E7; --theme-accent:#40D030; --theme-dark:#321010; --theme-neutral:#E8E3E3; --theme-text:#F5F2EB; }
+[data-theme="syojyohi"]       { --theme-primary:#E83015; --theme-light:#F3E6E5; --theme-accent:#44E026; --theme-dark:#3C0C06; --theme-neutral:#E8E2E1; --theme-text:#F5F2EB; }
+[data-theme="entan"]          { --theme-primary:#D75455; --theme-light:#F3E7E7; --theme-accent:#48D82E; --theme-dark:#362015; --theme-neutral:#E8E3E3; --theme-text:#F5F2EB; }
+[data-theme="benihi"]         { --theme-primary:#F75C2F; --theme-light:#F3E7E5; --theme-accent:#40E832; --theme-dark:#3E160B; --theme-neutral:#E8E2E1; --theme-text:#F5F2EB; }
+[data-theme="terigaki"]       { --theme-primary:#C46243; --theme-light:#F3EAE6; --theme-accent:#30A842; --theme-dark:#321710; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+[data-theme="ohni"]           { --theme-primary:#F05E1C; --theme-light:#F3E8E4; --theme-accent:#36E840; --theme-dark:#3C1808; --theme-neutral:#E8E3E0; --theme-text:#F5F2EB; }
+[data-theme="sohi"]           { --theme-primary:#ED784A; --theme-light:#F3E9E5; --theme-accent:#32E450; --theme-dark:#3C1E0E; --theme-neutral:#E8E3E1; --theme-text:#F5F2EB; }
+[data-theme="ensyucha"]       { --theme-primary:#CA7853; --theme-light:#F3EBE6; --theme-accent:#2EAA4A; --theme-dark:#342014; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+[data-theme="kogecha"]        { --theme-primary:#563F2E; --theme-light:#EDE9E5; --theme-accent:#28884E; --theme-dark:#16100B; --theme-neutral:#E5E4E3; --theme-text:#F5F2EB; }
+[data-theme="taisya"]         { --theme-primary:#A36336; --theme-light:#F3ECE6; --theme-accent:#28A44A; --theme-dark:#2A1A0C; --theme-neutral:#E8E5E2; --theme-text:#F5F2EB; }
+[data-theme="kohaku"]         { --theme-primary:#CA7A2C; --theme-light:#F3EDE0; --theme-accent:#24AA5A; --theme-dark:#342208; --theme-neutral:#E8E5E0; --theme-text:#F5F2EB; }
+[data-theme="kenpohzome"]     { --theme-primary:#43341B; --theme-light:#EAE8E2; --theme-accent:#30884A; --theme-dark:#0E0D07; --theme-neutral:#E4E4E1; --theme-text:#F5F2EB; }
+[data-theme="koke"]           { --theme-primary:#838A2D; --theme-light:#EEEEE0; --theme-accent:#60C0C0; --theme-dark:#1E2208; --theme-neutral:#E5E6E0; --theme-text:#F5F2EB; }
+[data-theme="moegi"]          { --theme-primary:#7BA23F; --theme-light:#EBF0E0; --theme-accent:#5EC4CC; --theme-dark:#182810; --theme-neutral:#E4E6E0; --theme-text:#F5F2EB; }
+[data-theme="matsuba"]        { --theme-primary:#42602D; --theme-light:#E7EDE2; --theme-accent:#5AC8CC; --theme-dark:#0C180A; --theme-neutral:#E3E6E1; --theme-text:#F5F2EB; }
+[data-theme="tokiwa"]         { --theme-primary:#1B813E; --theme-light:#E2EDE5; --theme-accent:#66CCE0; --theme-dark:#042010; --theme-neutral:#E1E6E2; --theme-text:#F5F2EB; }
+[data-theme="midori"]         { --theme-primary:#227D51; --theme-light:#E2EDE7; --theme-accent:#64C8E4; --theme-dark:#061E14; --theme-neutral:#E1E6E3; --theme-text:#F5F2EB; }
+[data-theme="tokusa"]         { --theme-primary:#2D6D4B; --theme-light:#E3EDE8; --theme-accent:#68C4E4; --theme-dark:#081B12; --theme-neutral:#E2E6E3; --theme-text:#F5F2EB; }
+[data-theme="rokusyoh"]       { --theme-primary:#24936E; --theme-light:#E2EEEA; --theme-accent:#6CC0EC; --theme-dark:#06231B; --theme-neutral:#E1E7E5; --theme-text:#F5F2EB; }
+[data-theme="aomidori"]       { --theme-primary:#00AA90; --theme-light:#E0EEEC; --theme-accent:#70BCF4; --theme-dark:#002822; --theme-neutral:#E0E7E5; --theme-text:#F5F2EB; }
+[data-theme="asagi"]          { --theme-primary:#33A6B8; --theme-light:#E2EEF1; --theme-accent:#8CA8F8; --theme-dark:#082830; --theme-neutral:#E1E7EA; --theme-text:#F5F2EB; }
+[data-theme="shinbashi"]      { --theme-primary:#0089A7; --theme-light:#E0EDF2; --theme-accent:#90A8F8; --theme-dark:#00222A; --theme-neutral:#E0E7EA; --theme-text:#F5F2EB; }
+[data-theme="hanaasagi"]      { --theme-primary:#1E88A8; --theme-light:#E1EDF2; --theme-accent:#90A4F8; --theme-dark:#04222C; --theme-neutral:#E0E7EA; --theme-text:#F5F2EB; }
+[data-theme="chigusa"]        { --theme-primary:#3A8FB7; --theme-light:#E2EEF3; --theme-accent:#98A0F8; --theme-dark:#0A2430; --theme-neutral:#E1E7EC; --theme-text:#F5F2EB; }
+[data-theme="hanada"]         { --theme-primary:#006284; --theme-light:#E0EBF2; --theme-accent:#9C9CF8; --theme-dark:#001822; --theme-neutral:#E0E6EA; --theme-text:#F5F2EB; }
+[data-theme="ruri"]           { --theme-primary:#005CAF; --theme-light:#E0EAF3; --theme-accent:#A890F4; --theme-dark:#00162C; --theme-neutral:#E0E6EC; --theme-text:#F5F2EB; }
+[data-theme="rurikon"]        { --theme-primary:#0B346E; --theme-light:#E0E7F2; --theme-accent:#B884F0; --theme-dark:#020C1C; --theme-neutral:#E0E5EC; --theme-text:#F5F2EB; }
+[data-theme="benimidori"]     { --theme-primary:#7B90D2; --theme-light:#E8EAF4; --theme-accent:#D49854; --theme-dark:#1A2040; --theme-neutral:#E3E4EE; --theme-text:#F5F2EB; }
+[data-theme="fujinezumi"]     { --theme-primary:#6E75A4; --theme-light:#E7E8F2; --theme-accent:#C8905E; --theme-dark:#161830; --theme-neutral:#E3E3EC; --theme-text:#F5F2EB; }
+[data-theme="benikakehana"]   { --theme-primary:#4E4F97; --theme-light:#E5E5F2; --theme-accent:#CC7C68; --theme-dark:#10102A; --theme-neutral:#E2E2EC; --theme-text:#F5F2EB; }
+[data-theme="konjyo"]         { --theme-primary:#113285; --theme-light:#E0E5F3; --theme-accent:#C07880; --theme-dark:#040C22; --theme-neutral:#E0E4EC; --theme-text:#F5F2EB; }
+[data-theme="kon"]            { --theme-primary:#0F2540; --theme-light:#E0E4EC; --theme-accent:#BA7894; --theme-dark:#040A12; --theme-neutral:#E0E3E8; --theme-text:#F5F2EB; }
+[data-theme="konkikyo"]       { --theme-primary:#211E55; --theme-light:#E0E0EC; --theme-accent:#C07090; --theme-dark:#080716; --theme-neutral:#E0E0EA; --theme-text:#F5F2EB; }
+[data-theme="kurotsurubami"]  { --theme-primary:#0B1013; --theme-light:#E0E0E2; --theme-accent:#B898AA; --theme-dark:#030405; --theme-neutral:#E0E0E1; --theme-text:#F5F2EB; }
+[data-theme="fuji"]           { --theme-primary:#8B81C3; --theme-light:#EAE9F3; --theme-accent:#C8D060; --theme-dark:#1E1A36; --theme-neutral:#E4E3EE; --theme-text:#F5F2EB; }
+[data-theme="fujimurasaki"]   { --theme-primary:#8A6BBE; --theme-light:#EAE7F3; --theme-accent:#C8CC56; --theme-dark:#1E1434; --theme-neutral:#E4E2EE; --theme-text:#F5F2EB; }
+[data-theme="kikyo"]          { --theme-primary:#6A4C9C; --theme-light:#E7E3F2; --theme-accent:#C0C450; --theme-dark:#160E2A; --theme-neutral:#E3E1EE; --theme-text:#F5F2EB; }
+[data-theme="shion"]          { --theme-primary:#8F77B5; --theme-light:#EAE8F2; --theme-accent:#BCC85A; --theme-dark:#201830; --theme-neutral:#E4E3EE; --theme-text:#F5F2EB; }
+[data-theme="edomurasaki"]    { --theme-primary:#77428D; --theme-light:#E9E4F2; --theme-accent:#B8C252; --theme-dark:#1A0E26; --theme-neutral:#E3E2EE; --theme-text:#F5F2EB; }
+[data-theme="murasaki"]       { --theme-primary:#592C63; --theme-light:#E7E2F0; --theme-accent:#ACBC50; --theme-dark:#12091A; --theme-neutral:#E3E1EE; --theme-text:#F5F2EB; }
+[data-theme="benifuji"]       { --theme-primary:#B481BB; --theme-light:#EEE9F2; --theme-accent:#A4D064; --theme-dark:#2C1432; --theme-neutral:#E6E3EE; --theme-text:#F5F2EB; }
+[data-theme="botan"]          { --theme-primary:#C1328E; --theme-light:#F2E4EE; --theme-accent:#9CE050; --theme-dark:#300826; --theme-neutral:#E8E1EC; --theme-text:#F5F2EB; }
+[data-theme="tsutsuji"]       { --theme-primary:#E03C8A; --theme-light:#F3E5EE; --theme-accent:#90F040; --theme-dark:#380E24; --theme-neutral:#E8E1EC; --theme-text:#F5F2EB; }
+[data-theme="ginnezumi"]      { --theme-primary:#91989F; --theme-light:#ECEDEF; --theme-accent:#A4E0A0; --theme-dark:#1E2224; --theme-neutral:#E5E6E7; --theme-text:#F5F2EB; }
+[data-theme="namari"]         { --theme-primary:#787878; --theme-light:#EAEBEB; --theme-accent:#A8E09C; --theme-dark:#1A1A1A; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+[data-theme="hai"]            { --theme-primary:#828282; --theme-light:#EBEBEB; --theme-accent:#A4E0A4; --theme-dark:#1C1C1C; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+[data-theme="nibi"]           { --theme-primary:#656765; --theme-light:#E8E9E8; --theme-accent:#A8E0A8; --theme-dark:#161716; --theme-neutral:#E4E5E4; --theme-text:#F5F2EB; }
+[data-theme="aonibi"]         { --theme-primary:#535953; --theme-light:#E7E8E7; --theme-accent:#A8E4A8; --theme-dark:#131513; --theme-neutral:#E4E4E4; --theme-text:#F5F2EB; }
+[data-theme="keshizumi"]      { --theme-primary:#434343; --theme-light:#E6E6E6; --theme-accent:#A8E4AC; --theme-dark:#0F0F0F; --theme-neutral:#E3E3E3; --theme-text:#F5F2EB; }
+[data-theme="sumi"]           { --theme-primary:#1C1C1C; --theme-light:#E4E4E4; --theme-accent:#A8E4B0; --theme-dark:#080808; --theme-neutral:#E2E2E2; --theme-text:#F5F2EB; }
+[data-theme="kuro"]           { --theme-primary:#080808; --theme-light:#E3E3E3; --theme-accent:#A8E4B4; --theme-dark:#020202; --theme-neutral:#E2E2E2; --theme-text:#F5F2EB; }
+
+/* === Derived variables by mode === */
+[data-theme-mode="light"] {
+  --p-bg-card        : rgba(255,255,255,0.92);
+  --p-formula-bg     : rgba(255,255,255,0.92);
+  --p-border         : rgba(28,28,28,0.12);
+  --p-text-secondary : rgba(28,28,28,0.60);
+  --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+  --p-gloss-top      : 0.22;
+  --p-gloss-mid      : 0.06;
+}
+[data-theme-mode="dark"] {
+  --p-bg-card        : rgba(0,0,0,0.35);
+  --p-formula-bg     : rgba(0,0,0,0.35);
+  --p-border         : rgba(245,242,235,0.12);
+  --p-text-secondary : rgba(245,242,235,0.60);
+  --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+  --p-gloss-top      : 0.10;
+  --p-gloss-mid      : 0.03;
+}
+
+/* === Background layers === */
+.phyra-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background-color: var(--p-primary);
+  background-image: url('https://nipponcolors.com/images/texture.png');
+  background-repeat: repeat;
+  transition: background-color 2s ease-in;
+  pointer-events: none;
+}
+.phyra-gloss {
+  position: fixed; top: 0; left: 0; width: 100%; height: 478px; z-index: 1;
+  background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+  pointer-events: none;
+  transition: opacity 2s ease-in;
+}
+
+/* === Content z-index === */
+body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+  position: relative; z-index: 2;
+}
+
+/* === Layout === */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans TC','Helvetica Neue',Arial,sans-serif; color: var(--p-text); }
+main, #phyra-main {
+  max-width: var(--phyra-content-width);
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  transition: max-width 0.15s ease;
+}
+
+/* === Width drag handle === */
+.phyra-width-handle {
+  position: fixed; top: 50%; transform: translateY(-50%);
+  width: 6px; height: 60px;
+  background: rgba(128,128,128,0.3); border-radius: 3px;
+  cursor: col-resize; z-index: 99;
+  transition: background 0.2s, opacity 0.3s; opacity: 0.4;
+}
+.phyra-width-handle:hover,.phyra-width-handle.dragging { background: var(--p-accent); opacity: 1; }
+
+/* === Switcher === */
+.phyra-switcher {
+  position: fixed; bottom: 20px; right: 20px; z-index: 100;
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 12px;
+  background: rgba(128,128,128,0.15);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(128,128,128,0.2); border-radius: 24px;
+  transition: background 0.3s;
+}
+.phyra-switcher select {
+  padding: 4px 8px;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(128,128,128,0.3); border-radius: 12px;
+  color: #1C1C1C; font-size: 12px; cursor: pointer; outline: none; max-width: 200px;
+}
+.phyra-switcher select option,.phyra-switcher select optgroup { color: #1C1C1C; background: #fff; }
+.phyra-switcher button {
+  padding: 4px 12px;
+  background: rgba(128,128,128,0.2);
+  border: 1px solid rgba(128,128,128,0.3); border-radius: 12px;
+  color: var(--p-text); cursor: pointer; font-size: 12px; transition: background 0.2s;
+}
+.phyra-switcher button:hover { background: rgba(128,128,128,0.35); }
+
+/* === Footer === */
+.phyra-footer {
+  text-align: center; padding: 24px 20px; font-size: 12px;
+  color: var(--p-text); opacity: 0.5; letter-spacing: 0.05em;
+  position: relative; z-index: 2;
+}
+
+/* === Slide cards === */
+.slide-card {
+  background: var(--p-bg-card);
+  border: 1px solid var(--p-border);
+  border-left: 4px solid var(--p-primary);
+  border-radius: 8px;
+  padding: 24px;
+  color: var(--p-text);
+  margin-bottom: 24px;
+}
+h1 { font-size: 1.8rem; color: var(--p-text); margin-bottom: 8px; }
+h2 { font-size: 1.4rem; color: var(--p-text); border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin: 32px 0 16px; }
+h3 { font-size: 1.1rem; color: var(--p-text); margin: 16px 0 8px; }
+p { line-height: 1.7; margin-bottom: 10px; }
+strong {
+  background: var(--p-bold-highlight);
+  padding: 1px 4px; border-radius: 3px; font-weight: 700;
+}
+
+/* === Tables === */
+table { width: 100%; border-collapse: collapse; font-size: 0.88em; margin-bottom: 16px; }
+th { background: var(--p-primary); padding: 8px 12px; text-align: left; }
+[data-theme-mode="light"] th { color: #1C1C1C; }
+[data-theme-mode="dark"] th { color: #F5F2EB; }
+td { padding: 8px 12px; border-bottom: 1px solid var(--p-border); color: var(--p-text); }
+tr:hover td { background: rgba(128,128,128,0.08); }
+
+/* === Tags === */
+.tag {
+  display: inline-block; padding: 2px 8px; border-radius: 12px;
+  font-size: 0.75em; font-weight: 600;
+  background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+  color: var(--p-text); margin: 2px 2px;
+}
+
+/* === Score bars === */
+.score-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.score-label { width: 160px; font-size: 0.88em; color: var(--p-text-secondary); }
+.score-bar { flex: 1; height: 8px; border-radius: 4px; background: var(--p-border); }
+.score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+.score-num { width: 28px; text-align: right; font-size: 0.88em; font-weight: 600; color: var(--p-text); }
+
+/* === Header block === */
+.paper-header {
+  padding: 48px 0 32px;
+  text-align: center;
+}
+.paper-header .subtitle { font-size: 0.9rem; color: var(--p-text-secondary); margin-top: 8px; }
+.paper-header .meta { font-size: 0.85rem; color: var(--p-text-secondary); margin-top: 4px; }
+
+/* === Two-col layout === */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+/* === Code/formula block === */
+pre, code {
+  font-family: 'Courier New', Courier, monospace;
+  background: var(--p-formula-bg);
+  color: var(--p-text);
+  border: 1px solid var(--p-border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 0.83em;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+code { display: inline; padding: 1px 5px; border-radius: 3px; }
+
+/* === List === */
+ul, ol { padding-left: 20px; line-height: 1.7; }
+li { margin-bottom: 4px; }
+
+/* === Section divider label === */
+.section-label {
+  font-size: 0.75em; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--p-text-secondary);
+  margin-bottom: 8px;
+}
+
+/* === Highlight row === */
+.best-row td { font-weight: 700; background: color-mix(in srgb, var(--p-accent) 10%, transparent) !important; }
+  </style>
+</head>
+<body>
+  <div class="phyra-bg"></div>
+  <div class="phyra-gloss"></div>
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <main id="phyra-main">
+
+    <!-- Header -->
+    <div class="paper-header">
+      <h1>DCARL</h1>
+      <div class="subtitle">A Divide-and-Conquer Framework for Autoregressive Long-Trajectory Video Generation</div>
+      <div class="meta">Junyi Ouyang, Wenbin Teng, Gonglin Chen, Yajie Zhao, Haiwei Chen &nbsp;|&nbsp; USC ICT &nbsp;|&nbsp; arXiv 2603.24835 &nbsp;|&nbsp; 2026-03-25</div>
+      <div style="margin-top:12px;">
+        <span class="tag">Long-Trajectory Video</span>
+        <span class="tag">Autoregressive Diffusion</span>
+        <span class="tag">Divide-and-Conquer</span>
+        <span class="tag">Camera Control</span>
+        <span class="tag">AD World Modeling</span>
+      </div>
+    </div>
+
+    <!-- Abstract -->
+    <h2>Abstract</h2>
+    <div class="slide-card">
+      <p>Long-trajectory video generation is a crucial yet challenging task for world modeling, primarily due to the limited scalability of existing video diffusion models (VDMs). Autoregressive models, while offering infinite rollout, suffer from visual drift and poor controllability. To address these issues, we propose DCARL, a novel divide-and-conquer, autoregressive framework that effectively combines the structural stability of the divide-and-conquer scheme with the high-fidelity generation of VDMs. Our approach first employs a dedicated Keyframe Generator trained without temporal compression to establish long-range, globally consistent structural anchors. Subsequently, an Interpolation Generator synthesizes the dense frames in an autoregressive manner with overlapping segments, utilizing the keyframes for global context and a single clean preceding frame for local coherence. Trained on a large-scale internet long trajectory video dataset, our method achieves superior performance in both visual quality (lower FID and FVD) and camera adherence (lower ATE and ARE) compared to state-of-the-art autoregressive and divide-and-conquer baselines, demonstrating stable and high-fidelity generation for long trajectory videos up to 32 seconds in length.</p>
+    </div>
+
+    <!-- Scores -->
+    <h2>Paper Evaluation</h2>
+    <div class="slide-card">
+      <div class="section-label">Scores (1–5)</div>
+      <div class="score-row"><span class="score-label">Novelty</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">3</span></div>
+      <div class="score-row"><span class="score-label">Technical Depth</span><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-num">4</span></div>
+      <div class="score-row"><span class="score-label">Experiment Completeness</span><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-num">4</span></div>
+      <div class="score-row"><span class="score-label">Writing Quality</span><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><span class="score-num">3</span></div>
+      <div class="score-row"><span class="score-label">Practical Value</span><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-num">4</span></div>
+      <div class="score-row"><span class="score-label">Overall</span><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><span class="score-num">4</span></div>
+    </div>
+
+    <!-- Problem -->
+    <h2>Problem and Motivation</h2>
+    <div class="slide-card">
+      <h3>Core Problem</h3>
+      <p>Pure autoregressive video diffusion accumulates exposure bias at O(N) or O(L^N) rate as trajectory length grows. Attention sink stabilization partially helps but causes sink collapse that degrades camera responsiveness. No existing method explicitly bounds error propagation to a finite window.</p>
+      <h3>Pain Points</h3>
+      <table>
+        <thead><tr><th>Pain Point</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td>AR exposure bias</td><td>DiffF FVD reaches 4183.8 at 24-32s segment (Tab. 1)</td></tr>
+          <tr><td>Temporal VAE lossy for sparse keyframes</td><td>Temporal compression baseline: keyframe FID 19.6 vs. 16.3 (Tab. 3)</td></tr>
+          <tr><td>Keyframe duplication shortcut</td><td>Without noisy conditioning FVD 246.5 vs. 201.7 (Tab. 5)</td></tr>
+          <tr><td>Segment boundary artifacts</td><td>Overlap-only PSNR 0.969 vs. full design 0.972 (Tab. 6)</td></tr>
+        </tbody>
+      </table>
+      <h3>Core Argument</h3>
+      <p>Joint, non-autoregressive keyframe synthesis converts an unbounded AR error problem into a bounded local interpolation problem where each frame's error is a convex combination of its two anchor keyframe errors plus a local variance term independent of N (Proposition 1, Appendix A).</p>
+    </div>
+
+    <!-- Method -->
+    <h2>Methodology</h2>
+    <div class="slide-card">
+      <h3>Two-Stage Pipeline</h3>
+      <pre>[I0, Camera Trajectory T, Caption C]
+        |
+        v
+[Stage 1: Keyframe Generator GK]
+  DiT-based flow matching, image-level VAE (no temporal compression)
+  Jointly generates M=21 sparse keyframes across full timeline
+        |
+        v
+[Keyframe Set K = {Ik1,...,IkM}]
+        |
+        v
+[Stage 2: Interpolation Generator GI] (autoregressive, sliding window)
+  For each segment Si:
+    zin = [noise | encoded history zH_i | noisy keyframes z̃K_i]
+    Seamless Boundary: replace first p=1 latents with clean zH_i
+        |
+        v
+[Dense Video V = {I1,...,IN}] up to 32 seconds</pre>
+
+      <h3>Key Design Choices</h3>
+      <div class="two-col">
+        <div>
+          <strong>Motion-Inductive Noisy Conditioning</strong>
+          <p style="margin-top:6px;">Perturbs keyframe latents during both training and inference: <code>z̃_Ki = α_c·z_Ki + σ_c·ε</code> (α_c=0.7, σ_c=0.3). Prevents identity-mapping shortcut where model copies keyframe pixels.</p>
+        </div>
+        <div>
+          <strong>Seamless Boundary Consistency</strong>
+          <p style="margin-top:6px;">Replaces first p latents of each segment with clean preceding-segment latents at every denoising step. Trained with this substitution to eliminate distribution mismatch at junctions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experiments: Main -->
+    <h2>Experiments</h2>
+    <div class="slide-card">
+      <h3>ODV-YT 32-Second (Tab. 1)</h3>
+      <table>
+        <thead><tr><th>Method</th><th>Overall FID/FVD</th><th>24-32s FVD</th><th>ATE</th><th>ARE</th></tr></thead>
+        <tbody>
+          <tr><td>DiffF</td><td>35.0 / 664.1</td><td>1067.1</td><td>0.469</td><td>19.448</td></tr>
+          <tr><td>SelfF</td><td>58.0 / 2113.6</td><td>4183.8</td><td>0.610</td><td>14.386</td></tr>
+          <tr><td>DeepF</td><td>42.3 / 1558.5</td><td>2832.6</td><td>0.571</td><td>15.144</td></tr>
+          <tr><td>Vista</td><td>66.7 / 1550.0</td><td>3774.5</td><td>0.641</td><td>19.332</td></tr>
+          <tr><td>SEVA</td><td>22.2 / 548.0</td><td>602.0</td><td>0.294</td><td>8.527</td></tr>
+          <tr class="best-row"><td>DCARL (Ours)</td><td>19.2 / 203.7</td><td>313.8</td><td>0.237</td><td>7.669</td></tr>
+        </tbody>
+      </table>
+      <h3>nuScenes Zero-Shot 16-Second (Tab. 2)</h3>
+      <table>
+        <thead><tr><th>Method</th><th>Overall FID/FVD</th><th>12-16s FVD</th><th>ATE</th><th>ARE</th></tr></thead>
+        <tbody>
+          <tr><td>DiffF</td><td>37.1 / 566.6</td><td>906.2</td><td>0.154</td><td>13.704</td></tr>
+          <tr><td>SEVA</td><td>35.9 / 487.9</td><td>769.4</td><td>0.117</td><td>6.289</td></tr>
+          <tr class="best-row"><td>DCARL (Ours)</td><td>19.6 / 225.4</td><td>345.2</td><td>0.045</td><td>5.274</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Ablations -->
+    <h2>Ablation Studies</h2>
+    <div class="slide-card">
+      <div class="two-col">
+        <div>
+          <h3>Tab. 3: Keyframe Encoding</h3>
+          <table>
+            <thead><tr><th>Design</th><th>FID</th><th>ATE</th><th>ARE</th></tr></thead>
+            <tbody>
+              <tr><td>Temporal compression</td><td>19.6</td><td>0.155</td><td>7.276</td></tr>
+              <tr class="best-row"><td>Image-level (Ours)</td><td>16.3</td><td>0.100</td><td>3.999</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Tab. 5: Noisy Keyframe</h3>
+          <table>
+            <thead><tr><th>Design</th><th>FID</th><th>FVD</th></tr></thead>
+            <tbody>
+              <tr><td>No noise</td><td>19.0</td><td>246.5</td></tr>
+              <tr><td>Train only</td><td>19.9</td><td>240.9</td></tr>
+              <tr class="best-row"><td>Train+Infer (Ours)</td><td>19.3</td><td>201.7</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Tab. 6: Boundary Consistency</h3>
+          <table>
+            <thead><tr><th>Design</th><th>MS</th><th>PSNR</th><th>SSIM</th></tr></thead>
+            <tbody>
+              <tr><td>Overlap</td><td>18.15</td><td>0.969</td><td>0.534</td></tr>
+              <tr><td>+Sub</td><td>17.95</td><td>0.968</td><td>0.524</td></tr>
+              <tr class="best-row"><td>+Sub+Train (Ours)</td><td>18.75</td><td>0.972</td><td>0.562</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Tab. 7: Keyframe Necessity (32s)</h3>
+          <table>
+            <thead><tr><th>Method</th><th>Overall FVD</th><th>24-32s FVD</th></tr></thead>
+            <tbody>
+              <tr><td>w/o Keyframe</td><td>376.7</td><td>665.3</td></tr>
+              <tr class="best-row"><td>Ours (full)</td><td>203.7</td><td>313.8</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Judgment -->
+    <h2>Phyra's Judgment</h2>
+    <div class="slide-card">
+      <h3>Highlights</h3>
+      <ul>
+        <li><strong>Motion-Inductive Noisy Conditioning</strong> reduces FVD 246.5 → 201.7 (Tab. 5) by forcing GI to learn temporal dynamics rather than copy keyframe pixels.</li>
+        <li><strong>Image-level VAE encoding</strong> reduces keyframe FID 19.6 → 16.3 and ATE 0.155 → 0.100 (Tab. 3) by eliminating lossy temporal downsampling on sparse frames.</li>
+        <li><strong>Proposition 1</strong> (Brownian Bridge formalization) provides a falsifiable bound: interpolation error is a convex combination of anchor errors plus a local variance term independent of sequence length N.</li>
+        <li><strong>Zero-shot nuScenes</strong> FVD 225.4 vs. SEVA 487.9 demonstrates out-of-distribution temporal stability without domain-specific fine-tuning.</li>
+      </ul>
+      <h3>Weaknesses</h3>
+      <ul>
+        <li>Keyframe Generator quality ceiling is not analyzed independently; total video quality is bounded below by GK errors that GI cannot correct.</li>
+        <li>Optimal inference stride ∆ktest = 8 is not derived by any principled criterion and may require re-tuning for new domains (Tab. 4 shows ATE varies 0.096–0.148 across stride choices).</li>
+        <li>Baseline comparison excludes Epona, LIVE, and other recent divide-and-conquer methods cited in Related Work; "state-of-the-art" claim is not fully supported.</li>
+        <li>No latency or memory cost comparison is provided despite two-model architecture being inherently more expensive than single-model AR baselines.</li>
+      </ul>
+      <h3>Claims vs. Experiments</h3>
+      <table>
+        <thead><tr><th>Claimed Contribution</th><th>Status</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td>Divide-and-conquer reduces cumulative drift</td><td>Supported</td><td>Tab. 7: per-segment FVD growth 65% vs. 169% w/o keyframe</td></tr>
+          <tr><td>Noisy conditioning mitigates keyframe duplication</td><td>Supported</td><td>Tab. 5: FVD 201.7 vs. 246.5</td></tr>
+          <tr><td>Image-level encoding preserves structural fidelity</td><td>Supported</td><td>Tab. 3: FID 16.3 vs. 19.6</td></tr>
+          <tr><td>State-of-the-art on ODV-YT and nuScenes</td><td>Partially overclaimed</td><td>5 baselines benchmarked; Epona, LIVE absent</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Limitations -->
+    <h2>Fundamental Limitations</h2>
+    <div class="slide-card">
+      <ul>
+        <li>Two-model architecture doubles training and inference compute; joint keyframe synthesis does not scale to very long videos (e.g., 2+ minutes) without a hierarchical extension of GK.</li>
+        <li>Any keyframe quality failure propagates irreversibly to the dense sequence because GI is conditioned on GK outputs without a feedback correction loop.</li>
+        <li>The Lipschitz assumption L ≥ 1 in Proposition 1 is not empirically verified on the trained model; the formal bound may not be tight in practice.</li>
+      </ul>
+    </div>
+
+    <!-- Citations worth tracking -->
+    <h2>Citations Worth Tracking</h2>
+    <div class="slide-card">
+      <table>
+        <thead><tr><th>#</th><th>Paper</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>[3]</td><td>Diffusion Forcing (Chen et al., NeurIPS 2024)</td><td>Foundational AR diffusion; first formal articulation of the exposure bias problem DCARL addresses</td></tr>
+          <tr><td>[13]</td><td>Self Forcing (Huang et al., 2025)</td><td>Trains on self-generated rollouts to close train-test gap; direct architectural predecessor outperformed in Tab. 1</td></tr>
+          <tr><td>[8]</td><td>Vista (Gao et al., NeurIPS 2024)</td><td>Driving world model baseline; representative of non-AR VDM approach</td></tr>
+          <tr><td>[1]</td><td>ReCamMaster (Bai et al., ICCV 2025)</td><td>Camera control design adopted directly by DCARL for DiT block pose injection</td></tr>
+          <tr><td>[29]</td><td>OpenDV-YouTube (Yang et al., CVPR 2024)</td><td>Training and evaluation dataset; understanding its scale is prerequisite for interpreting generalization</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Open Questions -->
+    <h2>Open Questions</h2>
+    <div class="slide-card">
+      <ul>
+        <li>How does keyframe quality degrade as total video length increases beyond 32 seconds, and is there an upper bound on M for joint synthesis?</li>
+        <li>Do optimal hyperparameters (α_c, σ_c, p, ∆ktest) transfer from 16-second ablation conditions to 32-second or longer sequences?</li>
+        <li>What is the wall-clock latency and GPU memory footprint of DCARL (both stages combined) vs. SEVA and DiffF at 32-second generation?</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="phyra-footer">
+    Phyra NT Workflow | Paper Read Report | 2026-04-19
+  </footer>
+
+  <script>
+/* === Theme switcher === */
+const PHYRA_THEMES = [
+  {id:"nadeshiko",label:"撫子 Nadeshiko",mode:"light"},{id:"taikoh",label:"退紅 Taikoh",mode:"light"},
+  {id:"momo",label:"桃 Momo",mode:"light"},{id:"toki",label:"鴇 Toki",mode:"light"},
+  {id:"jinzamomi",label:"甚三紅 Jinzamomi",mode:"light"},{id:"haizakura",label:"灰桜 Haizakura",mode:"light"},
+  {id:"akebono",label:"曙 Akebono",mode:"light"},{id:"sangosyu",label:"珊瑚朱 Sangosyu",mode:"light"},
+  {id:"araisyu",label:"洗朱 Araisyu",mode:"light"},{id:"akakoh",label:"赤香 Akakoh",mode:"light"},
+  {id:"kokikuchinashi",label:"深支子 Kokikuchinashi",mode:"light"},{id:"kanzo",label:"萱草 Kanzo",mode:"light"},
+  {id:"beniukon",label:"紅鬱金 Beniukon",mode:"light"},{id:"kuchiba",label:"朽葉 Kuchiba",mode:"light"},
+  {id:"yamabuki",label:"山吹 Yamabuki",mode:"light"},{id:"hajizome",label:"櫨染 Hajizome",mode:"light"},
+  {id:"tamago",label:"玉子 Tamago",mode:"light"},{id:"tamamorokoshi",label:"玉蜀黍 Tamamorokoshi",mode:"light"},
+  {id:"usuki",label:"浅黄 Usuki",mode:"light"},{id:"kuchinashi",label:"梔子 Kuchinashi",mode:"light"},
+  {id:"tohoh",label:"籐黄 Tohoh",mode:"light"},{id:"ukon",label:"鬱金 Ukon",mode:"light"},
+  {id:"tonoko",label:"砥粉 Tonoko",mode:"light"},{id:"kariyasu",label:"刈安 Kariyasu",mode:"light"},
+  {id:"hiwa",label:"鶸 Hiwa",mode:"light"},{id:"hiwamoegi",label:"鶸萌黄 Hiwamoegi",mode:"light"},
+  {id:"yanagizome",label:"柳染 Yanagizome",mode:"light"},{id:"nae",label:"苗 Nae",mode:"light"},
+  {id:"wakatake",label:"若竹 Wakatake",mode:"light"},{id:"byakuroku",label:"白緑 Byakuroku",mode:"light"},
+  {id:"seiji",label:"青磁 Seiji",mode:"light"},{id:"mizuasagi",label:"水浅葱 Mizuasagi",mode:"light"},
+  {id:"byakugun",label:"白群 Byakugun",mode:"light"},{id:"kamenozoki",label:"瓶覗 Kamenozoki",mode:"light"},
+  {id:"mizu",label:"水 Mizu",mode:"light"},{id:"sora",label:"空 Sora",mode:"light"},
+  {id:"wasurenagusa",label:"勿忘草 Wasurenagusa",mode:"light"},{id:"tsuyukusa",label:"露草 Tsuyukusa",mode:"light"},
+  {id:"gunjyo",label:"群青 Gunjyo",mode:"light"},{id:"usu",label:"薄 Usu",mode:"light"},
+  {id:"shironeri",label:"白練 Shironeri",mode:"light"},{id:"shironezumi",label:"白鼠 Shironezumi",mode:"light"},
+  {id:"kohbai",label:"紅梅 Kohbai",mode:"dark"},{id:"suoh",label:"蘇芳 Suoh",mode:"dark"},
+  {id:"ichigo",label:"苺 Ichigo",mode:"dark"},{id:"karakurenai",label:"韓紅花 Karakurenai",mode:"dark"},
+  {id:"kurenai",label:"紅 Kurenai",mode:"dark"},{id:"kokiake",label:"深緋 Kokiake",mode:"dark"},
+  {id:"azuki",label:"小豆 Azuki",mode:"dark"},{id:"akabeni",label:"赤紅 Akabeni",mode:"dark"},
+  {id:"syojyohi",label:"猩猩緋 Syojyohi",mode:"dark"},{id:"entan",label:"鉛丹 Entan",mode:"dark"},
+  {id:"benihi",label:"紅緋 Benihi",mode:"dark"},{id:"terigaki",label:"照柿 Terigaki",mode:"dark"},
+  {id:"ohni",label:"黄丹 Ohni",mode:"dark"},{id:"sohi",label:"纁 Sohi",mode:"dark"},
+  {id:"ensyucha",label:"遠州茶 Ensyucha",mode:"dark"},{id:"kogecha",label:"焦茶 Kogecha",mode:"dark"},
+  {id:"taisya",label:"代赭 Taisya",mode:"dark"},{id:"kohaku",label:"琥珀 Kohaku",mode:"dark"},
+  {id:"kenpohzome",label:"憲法染 Kenpohzome",mode:"dark"},{id:"koke",label:"苔 Koke",mode:"dark"},
+  {id:"moegi",label:"萌黄 Moegi",mode:"dark"},{id:"matsuba",label:"松葉 Matsuba",mode:"dark"},
+  {id:"tokiwa",label:"常磐 Tokiwa",mode:"dark"},{id:"midori",label:"緑 Midori",mode:"dark"},
+  {id:"tokusa",label:"木賊 Tokusa",mode:"dark"},{id:"rokusyoh",label:"緑青 Rokusyoh",mode:"dark"},
+  {id:"aomidori",label:"青緑 Aomidori",mode:"dark"},{id:"asagi",label:"浅葱 Asagi",mode:"dark"},
+  {id:"shinbashi",label:"新橋 Shinbashi",mode:"dark"},{id:"hanaasagi",label:"花浅葱 Hanaasagi",mode:"dark"},
+  {id:"chigusa",label:"千草 Chigusa",mode:"dark"},{id:"hanada",label:"縹 Hanada",mode:"dark"},
+  {id:"ruri",label:"瑠璃 Ruri",mode:"dark"},{id:"rurikon",label:"瑠璃紺 Rurikon",mode:"dark"},
+  {id:"benimidori",label:"紅碧 Benimidori",mode:"dark"},{id:"fujinezumi",label:"藤鼠 Fujinezumi",mode:"dark"},
+  {id:"benikakehana",label:"紅掛花 Benikakehana",mode:"dark"},{id:"konjyo",label:"紺青 Konjyo",mode:"dark"},
+  {id:"kon",label:"紺 Kon",mode:"dark"},{id:"konkikyo",label:"紺桔梗 Konkikyo",mode:"dark"},
+  {id:"kurotsurubami",label:"黒橡 Kurotsurubami",mode:"dark"},{id:"fuji",label:"藤 Fuji",mode:"dark"},
+  {id:"fujimurasaki",label:"藤紫 Fujimurasaki",mode:"dark"},{id:"kikyo",label:"桔梗 Kikyo",mode:"dark"},
+  {id:"shion",label:"紫苑 Shion",mode:"dark"},{id:"edomurasaki",label:"江戸紫 Edomurasaki",mode:"dark"},
+  {id:"murasaki",label:"紫 Murasaki",mode:"dark"},{id:"benifuji",label:"紅藤 Benifuji",mode:"dark"},
+  {id:"botan",label:"牡丹 Botan",mode:"dark"},{id:"tsutsuji",label:"躑躅 Tsutsuji",mode:"dark"},
+  {id:"ginnezumi",label:"銀鼠 Ginnezumi",mode:"dark"},{id:"namari",label:"鉛 Namari",mode:"dark"},
+  {id:"hai",label:"灰 Hai",mode:"dark"},{id:"nibi",label:"鈍 Nibi",mode:"dark"},
+  {id:"aonibi",label:"青鈍 Aonibi",mode:"dark"},{id:"keshizumi",label:"消炭 Keshizumi",mode:"dark"},
+  {id:"sumi",label:"墨 Sumi",mode:"dark"},{id:"kuro",label:"黒 Kuro",mode:"dark"}
+];
+function phyraApply(id){
+  const html=document.documentElement;
+  html.setAttribute('data-theme',id);
+  const t=PHYRA_THEMES.find(x=>x.id===id);
+  if(t){html.setAttribute('data-theme-mode',t.mode);const s=document.getElementById('phyra-select');if(s)s.value=id;}
+}
+function phyraRandom(){phyraApply(PHYRA_THEMES[Math.floor(Math.random()*PHYRA_THEMES.length)].id);}
+function phyraBuildSelect(){
+  const s=document.getElementById('phyra-select');if(!s)return;
+  const lg=document.createElement('optgroup');lg.label='Light (42)';
+  const dg=document.createElement('optgroup');dg.label='Dark (58)';
+  PHYRA_THEMES.forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=t.label;t.mode==='light'?lg.appendChild(o):dg.appendChild(o);});
+  s.appendChild(lg);s.appendChild(dg);
+}
+(function(){phyraBuildSelect();phyraApply(document.documentElement.getAttribute('data-theme')||'keshizumi');})();
+
+/* === Width drag === */
+(function(){
+  const handle=document.getElementById('phyra-width-handle');
+  if(!handle)return;
+  let dragging=false;
+  function updatePos(w){const vw=window.innerWidth;handle.style.right=Math.max(4,(vw-w)/2-16)+'px';}
+  handle.addEventListener('mousedown',e=>{dragging=true;handle.classList.add('dragging');e.preventDefault();});
+  document.addEventListener('mousemove',e=>{if(!dragging)return;const vw=window.innerWidth;const nw=Math.max(400,Math.abs(e.clientX-vw/2)*2);document.documentElement.style.setProperty('--phyra-content-width',nw+'px');updatePos(nw);});
+  document.addEventListener('mouseup',()=>{if(dragging){dragging=false;handle.classList.remove('dragging');}});
+  const init=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width'))||960;
+  updatePos(init);
+  window.addEventListener('resize',()=>{const w=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width'))||960;updatePos(w);});
+})();
+  </script>
+</body>
+</html>

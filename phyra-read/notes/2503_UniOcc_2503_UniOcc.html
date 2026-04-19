@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="chigusa" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniOcc — Phyra Read Report</title>
+  <style>
+    /* === Semantic aliases === */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 960px;
+    }
+
+    /* === Light derived === */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255,255,255,0.92);
+      --p-formula-bg     : rgba(255,255,255,0.92);
+      --p-border         : rgba(28,28,28,0.12);
+      --p-text-secondary : rgba(28,28,28,0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+    }
+
+    /* === Dark derived === */
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0,0,0,0.35);
+      --p-formula-bg     : rgba(0,0,0,0.35);
+      --p-border         : rgba(245,242,235,0.12);
+      --p-text-secondary : rgba(245,242,235,0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+    }
+
+    /* === All themes === */
+    /* Light */
+    [data-theme="wakatake"]      { --theme-primary:#5DAC81; --theme-light:#E7F2EC; --theme-accent:#7E42C6; --theme-dark:#152C20; --theme-neutral:#E4E6E5; --theme-text:#1C1C1C; }
+    [data-theme="seiji"]         { --theme-primary:#69B0AC; --theme-light:#E7F2F2; --theme-accent:#C150C8; --theme-dark:#172F2D; --theme-neutral:#E4E6E6; --theme-text:#1C1C1C; }
+    [data-theme="sora"]          { --theme-primary:#58B2DC; --theme-light:#E6EFF3; --theme-accent:#F83BBC; --theme-dark:#0A3042; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="mizu"]          { --theme-primary:#81C7D4; --theme-light:#E6F1F3; --theme-accent:#E763D3; --theme-dark:#133A41; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="gunjyo"]        { --theme-primary:#51A8DD; --theme-light:#E6EEF3; --theme-accent:#FA33AF; --theme-dark:#092C41; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="usu"]           { --theme-primary:#B28FCE; --theme-light:#EDE6F3; --theme-accent:#DDAB6E; --theme-dark:#2D183E; --theme-neutral:#E5E3E7; --theme-text:#1C1C1C; }
+    [data-theme="nadeshiko"]     { --theme-primary:#DC9FB4; --theme-light:#F3E6EB; --theme-accent:#92E566; --theme-dark:#471727; --theme-neutral:#E7E3E4; --theme-text:#1C1C1C; }
+    [data-theme="nae"]           { --theme-primary:#86C166; --theme-light:#EBF3E6; --theme-accent:#4C7EDA; --theme-dark:#1F3613; --theme-neutral:#E4E7E3; --theme-text:#1C1C1C; }
+    [data-theme="shironeri"]     { --theme-primary:#FCFAF2; --theme-light:#F3F0E6; --theme-accent:#55F6D5; --theme-dark:#685713; --theme-neutral:#E8E7E2; --theme-text:#1C1C1C; }
+    [data-theme="shironezumi"]   { --theme-primary:#BDC0BA; --theme-light:#EDEDEC; --theme-accent:#93A5B8; --theme-dark:#2F312C; --theme-neutral:#E5E5E5; --theme-text:#1C1C1C; }
+    /* Dark */
+    [data-theme="chigusa"]       { --theme-primary:#3A8FB7; --theme-light:#E6EFF3; --theme-accent:#D51B9A; --theme-dark:#0C242F; --theme-neutral:#E3E6E7; --theme-text:#F5F2EB; }
+    [data-theme="ruri"]          { --theme-primary:#005CAF; --theme-light:#E6EDF3; --theme-accent:#C10065; --theme-dark:#061A2C; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="rurikon"]       { --theme-primary:#0B346E; --theme-light:#E6ECF3; --theme-accent:#C10050; --theme-dark:#06162C; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="kon"]           { --theme-primary:#0F2540; --theme-light:#E6ECF3; --theme-accent:#B70A58; --theme-dark:#08172A; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="hanada"]        { --theme-primary:#006284; --theme-light:#E6F0F3; --theme-accent:#C1008F; --theme-dark:#06222C; --theme-neutral:#E2E6E8; --theme-text:#F5F2EB; }
+    [data-theme="asagi"]         { --theme-primary:#33A6B8; --theme-light:#E6F1F3; --theme-accent:#D614BC; --theme-dark:#0B2A2F; --theme-neutral:#E2E7E8; --theme-text:#F5F2EB; }
+    [data-theme="shinbashi"]     { --theme-primary:#0089A7; --theme-light:#E6F1F3; --theme-accent:#C1009E; --theme-dark:#06252C; --theme-neutral:#E2E7E8; --theme-text:#F5F2EB; }
+    [data-theme="hanaasagi"]     { --theme-primary:#1E88A8; --theme-light:#E6F0F3; --theme-accent:#C40197; --theme-dark:#06232C; --theme-neutral:#E2E6E8; --theme-text:#F5F2EB; }
+    [data-theme="midori"]        { --theme-primary:#227D51; --theme-light:#E6F3ED; --theme-accent:#630FB1; --theme-dark:#09291A; --theme-neutral:#E2E8E5; --theme-text:#F5F2EB; }
+    [data-theme="tokiwa"]        { --theme-primary:#1B813E; --theme-light:#E6F3EB; --theme-accent:#4406BB; --theme-dark:#072B13; --theme-neutral:#E2E8E4; --theme-text:#F5F2EB; }
+    [data-theme="fuji"]          { --theme-primary:#8B81C3; --theme-light:#E8E6F3; --theme-accent:#D77C6C; --theme-dark:#1D1838; --theme-neutral:#E4E3E7; --theme-text:#F5F2EB; }
+    [data-theme="kikyo"]         { --theme-primary:#6A4C9C; --theme-light:#EBE6F3; --theme-accent:#B56332; --theme-dark:#1A1228; --theme-neutral:#E5E3E7; --theme-text:#F5F2EB; }
+    [data-theme="murasaki"]      { --theme-primary:#592C63; --theme-light:#F1E6F3; --theme-accent:#9C8625; --theme-dark:#200E24; --theme-neutral:#E6E3E7; --theme-text:#F5F2EB; }
+    [data-theme="suoh"]          { --theme-primary:#8E354A; --theme-light:#F3E6E9; --theme-accent:#3DA51D; --theme-dark:#260C12; --theme-neutral:#E7E3E4; --theme-text:#F5F2EB; }
+    [data-theme="keshizumi"]     { --theme-primary:#1C1C1C; --theme-light:#E8E8E8; --theme-accent:#6FA8A8; --theme-dark:#090909; --theme-neutral:#E0E0E0; --theme-text:#F5F2EB; }
+    [data-theme="sumi"]          { --theme-primary:#2B2B2B; --theme-light:#EBEBEB; --theme-accent:#7AB8B8; --theme-dark:#111111; --theme-neutral:#E2E2E2; --theme-text:#F5F2EB; }
+    [data-theme="kuro"]          { --theme-primary:#0B0B0B; --theme-light:#E5E5E5; --theme-accent:#5A9A9A; --theme-dark:#050505; --theme-neutral:#DEDEDE; --theme-text:#F5F2EB; }
+    [data-theme="kogecha"]       { --theme-primary:#563F2E; --theme-light:#F2ECE7; --theme-accent:#2F9259; --theme-dark:#221810; --theme-neutral:#E6E5E4; --theme-text:#F5F2EB; }
+    [data-theme="kenpohzome"]    { --theme-primary:#43341B; --theme-light:#F3EEE6; --theme-accent:#20A070; --theme-dark:#251C0D; --theme-neutral:#E7E5E3; --theme-text:#F5F2EB; }
+    [data-theme="fujinezumi"]    { --theme-primary:#6E75A4; --theme-light:#E9EAF1; --theme-accent:#BB5663; --theme-dark:#191B2A; --theme-neutral:#E4E4E6; --theme-text:#F5F2EB; }
+    [data-theme="benimidori"]    { --theme-primary:#7B90D2; --theme-light:#E6E9F3; --theme-accent:#E76383; --theme-dark:#131D40; --theme-neutral:#E3E4E7; --theme-text:#F5F2EB; }
+    [data-theme="karakurenai"]   { --theme-primary:#D0104C; --theme-light:#F3E6EA; --theme-accent:#46E000; --theme-dark:#300714; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+    [data-theme="moegi"]         { --theme-primary:#7BA23F; --theme-light:#EEF3E6; --theme-accent:#2480BC; --theme-dark:#1F290E; --theme-neutral:#E5E7E3; --theme-text:#F5F2EB; }
+    [data-theme="nibi"]          { --theme-primary:#5E615E; --theme-light:#EBEBEB; --theme-accent:#8BB8A8; --theme-dark:#1A1C1A; --theme-neutral:#E4E4E4; --theme-text:#F5F2EB; }
+    [data-theme="hai"]           { --theme-primary:#828282; --theme-light:#ECECEC; --theme-accent:#98B898; --theme-dark:#202020; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+
+    /* === Background layers === */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--p-text);
+      min-height: 100vh;
+    }
+
+    .phyra-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+
+    .phyra-gloss {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 478px;
+      z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none;
+      transition: opacity 2s ease-in;
+    }
+
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative;
+      z-index: 2;
+    }
+
+    main, #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto;
+      padding: 0 20px 40px;
+      box-sizing: border-box;
+      transition: max-width 0.15s ease;
+    }
+
+    .phyra-width-handle {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 60px;
+      background: rgba(128,128,128,0.3);
+      border-radius: 3px;
+      cursor: col-resize;
+      z-index: 99;
+      transition: background 0.2s, opacity 0.3s;
+      opacity: 0.4;
+    }
+    .phyra-width-handle:hover, .phyra-width-handle.dragging {
+      background: var(--p-accent);
+      opacity: 1;
+    }
+
+    .phyra-footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+      color: var(--p-text);
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 2;
+    }
+
+    .phyra-switcher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128,128,128,0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128,128,128,0.2);
+      border-radius: 24px;
+      transition: background 0.3s;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(128,128,128,0.3);
+      border-radius: 12px;
+      color: #1C1C1C;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      max-width: 200px;
+    }
+    .phyra-switcher select option, .phyra-switcher select optgroup {
+      color: #1C1C1C;
+      background: #fff;
+    }
+    .phyra-switcher button {
+      padding: 4px 12px;
+      background: rgba(128,128,128,0.2);
+      border: 1px solid rgba(128,128,128,0.3);
+      border-radius: 12px;
+      color: var(--p-text);
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+    .phyra-switcher button:hover { background: rgba(128,128,128,0.35); }
+
+    /* === Slide card styles === */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 24px;
+      color: var(--p-text);
+      margin-bottom: 20px;
+    }
+
+    h1 { font-size: 1.8rem; color: var(--p-text); margin: 0 0 6px; }
+    h2 { font-size: 1.35rem; color: var(--p-text); border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin: 0 0 16px; }
+    h3 { font-size: 1.05rem; color: var(--p-text); margin: 16px 0 8px; }
+
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88em;
+      margin: 12px 0;
+    }
+    th {
+      background: var(--p-primary);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--p-border);
+      color: var(--p-text);
+    }
+    tr:hover td { background: rgba(128,128,128,0.08); }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: 600;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text);
+      margin: 2px 3px 2px 0;
+    }
+
+    .score-row { display: flex; align-items: center; gap: 12px; margin: 6px 0; }
+    .score-label { width: 160px; font-size: 0.85em; flex-shrink: 0; }
+    .score-bar { flex: 1; height: 8px; border-radius: 4px; background: var(--p-border); }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+    .score-num { font-size: 0.82em; width: 28px; text-align: right; opacity: 0.8; }
+
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .meta-item { font-size: 0.85em; }
+    .meta-item .meta-key { opacity: 0.6; font-size: 0.8em; margin-bottom: 2px; }
+    .meta-item .meta-val { font-weight: 600; }
+
+    .page-header {
+      padding: 48px 0 24px;
+      text-align: left;
+    }
+    .page-header .subtitle {
+      font-size: 0.9em;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
+    .section-label {
+      font-size: 0.72em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-bottom: 12px;
+    }
+
+    .flag-item {
+      padding: 10px 14px;
+      border-left: 3px solid var(--p-accent);
+      background: color-mix(in srgb, var(--p-accent) 8%, transparent);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 8px;
+      font-size: 0.88em;
+    }
+
+    ul { padding-left: 20px; margin: 8px 0; }
+    li { margin-bottom: 4px; font-size: 0.88em; line-height: 1.55; }
+
+    pre {
+      background: var(--p-formula-bg);
+      border: 1px solid var(--p-border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 0.82em;
+      overflow-x: auto;
+      color: var(--p-text);
+      white-space: pre;
+    }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+    .mini-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .mini-card h4 { margin: 0 0 6px; font-size: 0.9em; }
+    .mini-card p { margin: 0; font-size: 0.82em; opacity: 0.85; line-height: 1.5; }
+
+    @media (max-width: 640px) {
+      .two-col, .three-col, .meta-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="phyra-bg"></div>
+<div class="phyra-gloss"></div>
+<div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+<main id="phyra-main">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="section-label">Phyra Read Report &nbsp;|&nbsp; paper-read &nbsp;|&nbsp; 2026-04-19</div>
+    <h1>UniOcc</h1>
+    <div class="subtitle">UniOcc: A Unified Benchmark for Occupancy Forecasting and Prediction in Autonomous Driving</div>
+    <div style="margin-top:10px;">
+      <span class="tag">Occupancy Forecasting</span>
+      <span class="tag">Occupancy Prediction</span>
+      <span class="tag">Unified Benchmark</span>
+      <span class="tag">Voxel-Level Flow</span>
+      <span class="tag">Cooperative Driving</span>
+    </div>
+  </div>
+
+  <!-- Section 1: Basic Info -->
+  <div class="slide-card">
+    <h2>1. Basic Information</h2>
+    <div class="meta-grid">
+      <div class="meta-item"><div class="meta-key">arXiv ID</div><div class="meta-val">arXiv:2503.24381v2</div></div>
+      <div class="meta-item"><div class="meta-key">Release Date</div><div class="meta-val">2025-03 (v2: 2025-08-14)</div></div>
+      <div class="meta-item"><div class="meta-key">Venue</div><div class="meta-val">arXiv preprint [Not provided]</div></div>
+      <div class="meta-item"><div class="meta-key">Project / Code</div><div class="meta-val">uniocc.github.io</div></div>
+    </div>
+    <h3>Authors</h3>
+    <table>
+      <tr><th>Name</th><th>Affiliation</th><th>Role</th></tr>
+      <tr><td>Yuping Wang</td><td>U Michigan / U Wisconsin-Madison</td><td>Lead</td></tr>
+      <tr><td>Xiangyu Huang</td><td>U Michigan</td><td>Equal contribution</td></tr>
+      <tr><td>Xiaokang Sun</td><td>UC Riverside</td><td>Equal contribution</td></tr>
+      <tr><td>Mingxuan Yan</td><td>UC Riverside</td><td>Author</td></tr>
+      <tr><td>Shuo Xing</td><td>Texas A&M</td><td>Author</td></tr>
+      <tr><td>Zhengzhong Tu</td><td>Texas A&M</td><td>Author</td></tr>
+      <tr><td>Jiachen Li</td><td>UC Riverside</td><td>Corresponding author</td></tr>
+    </table>
+  </div>
+
+  <!-- Section 2: Overview -->
+  <div class="slide-card">
+    <h2>2. Research Overview</h2>
+    <p style="font-size:0.9em; line-height:1.65;">
+      UniOcc constructs a unified benchmark and toolkit consolidating occupancy forecasting and prediction under one framework. It integrates nuScenes, Waymo, CARLA, and OpenCOOD; provides 2D/3D occupancy labels with per-voxel forward and backward flow; and introduces evaluation metrics independent of pseudo ground-truth labels. Experiments cover single-ego and cooperative multi-vehicle settings.
+    </p>
+    <h3>Core Architectures</h3>
+    <div class="two-col">
+      <div class="mini-card"><h4>OccWorld [85]</h4><p>Spatial-temporal generative transformer; primary forecasting backbone. Augmented with flow encoder + cross-attention + flow decoder.</p></div>
+      <div class="mini-card"><h4>CVT-Occ [79]</h4><p>Cost-volume temporal fusion; evaluated for camera-based occupancy prediction on nuScenes.</p></div>
+      <div class="mini-card"><h4>Cam4DOcc [41]</h4><p>Camera-only 4D occupancy; evaluated for prediction on nuScenes as weaker baseline.</p></div>
+      <div class="mini-card"><h4>CoHFF [49]</h4><p>Cooperative occupancy prediction via multi-agent feature fusion; evaluated on OpenCOOD.</p></div>
+    </div>
+  </div>
+
+  <!-- Section 3: Evaluation -->
+  <div class="slide-card">
+    <h2>3. Paper Evaluation</h2>
+    <div class="score-row"><div class="score-label">Novelty</div><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><div class="score-num">3/5</div></div>
+    <div class="score-row"><div class="score-label">Technical depth</div><div class="score-bar"><div class="score-bar-fill" style="width:40%"></div></div><div class="score-num">2/5</div></div>
+    <div class="score-row"><div class="score-label">Experiment completeness</div><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><div class="score-num">3/5</div></div>
+    <div class="score-row"><div class="score-label">Writing quality</div><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><div class="score-num">3/5</div></div>
+    <div class="score-row"><div class="score-label">Practical value</div><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div><div class="score-num">4/5</div></div>
+    <div class="score-row" style="margin-top:8px;"><div class="score-label"><strong>Overall</strong></div><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div><div class="score-num"><strong>3/5</strong></div></div>
+
+    <h3>Highlights</h3>
+    <ul>
+      <li>Per-voxel 3D flow annotation (forward + backward) capturing translation and rotation — distinguishes from per-object flow in CarlaSC.</li>
+      <li>Three ground-truth-free metrics (P_n GMM-based dimension prob, IoU_object shape consistency, IoU_bg background consistency) addressing pseudo-label quality ceiling.</li>
+      <li>First benchmark to support cooperative occupancy forecasting via OpenCOOD integration (framework-level).</li>
+      <li>Composite UniOcc Score aggregating seven metric components for single-number leaderboard ranking.</li>
+    </ul>
+
+    <h3>Weaknesses</h3>
+    <ul>
+      <li>Near-verbatim paragraph duplication in Section 4.3 ("Simulation Data" and "Sim-Real Compatibility" paragraphs share near-identical text — copy-paste error).</li>
+      <li>Cooperative forecasting is a claimed contribution but no cooperative forecasting experiment is reported; only cooperative prediction (CoHFF) is evaluated.</li>
+      <li>Cross-dataset prediction experiments are absent; cross-domain evaluation is limited to the forecasting task only.</li>
+      <li>GMM threshold (ρ = 0.5) and RANSAC parameters (τ = 0.01, 100 iterations) are empirically set without sensitivity analysis.</li>
+    </ul>
+  </div>
+
+  <!-- Section 4: Problem and Motivation -->
+  <div class="slide-card">
+    <h2>4. Problem and Motivation</h2>
+    <h3>Four Pain Points Addressed</h3>
+    <div class="two-col">
+      <div class="flag-item"><strong>Suboptimal Labels:</strong> nuScenes/Waymo lack official occupancy annotations; LiDAR pseudo-labels (Occ3D, SurroundOcc) capture only reflective surfaces. Standard IoU measures predictions against flawed labels.</div>
+      <div class="flag-item"><strong>Fragmented Data:</strong> Each dataset uses different formats/loaders; models trained on nuScenes cannot be directly applied to Waymo. No cross-dataset training standard exists.</div>
+      <div class="flag-item"><strong>No Per-Voxel Flows:</strong> CarlaSC provides per-object velocity (misses rotation). No prior 3D occupancy label includes voxel-level motion vectors.</div>
+      <div class="flag-item"><strong>No Cooperative Forecasting:</strong> Cooperative perception datasets exist but none support occupancy forecasting across multiple connected vehicles.</div>
+    </div>
+    <h3>Core Argument</h3>
+    <p style="font-size:0.87em; line-height:1.6;">
+      Standardizing the occupancy representation (voxel grid dimensions, unified semantic label mapping, ego-centric coordinate frame) enables a single training/evaluation command across all four sources. Per-voxel flow is strictly more informative than per-object flow because it encodes rotation. Ground-truth-free metrics are necessary because IoU against pseudo-labels cannot distinguish a more complete prediction from a worse one (Figure 4 in paper).
+    </p>
+  </div>
+
+  <!-- Section 5: Methodology -->
+  <div class="slide-card">
+    <h2>5. Methodology</h2>
+    <h3>Data Schema</h3>
+    <table>
+      <tr><th>Tensor</th><th>Shape</th><th>Description</th></tr>
+      <tr><td>G (semantic occ grid)</td><td>{0,...,C}^{L×W×H}</td><td>Voxel semantic labels; L,W,H along ego heading/lateral/vertical</td></tr>
+      <tr><td>I (camera images)</td><td>{0,...,255}^{Kcam×Imgx×Imgy×3}</td><td>Raw RGB from onboard cameras</td></tr>
+      <tr><td>U (FOV mask)</td><td>{0,1}^{L×W×H}</td><td>Binary mask of camera-observable voxels</td></tr>
+      <tr><td>F (forward flow)</td><td>R^{L×W×H×3}</td><td>Per-voxel displacement vector to next frame</td></tr>
+      <tr><td>B (backward flow)</td><td>R^{L×W×H×3}</td><td>Per-voxel displacement vector to previous frame</td></tr>
+    </table>
+
+    <h3>Framework Data Flow</h3>
+    <pre>[nuScenes / Waymo]         [CARLA / OpenCOOD]
+       |                          |
+[Pseudo-label pipelines]   [Mesh extraction]
+(Occ3D / SurroundOcc /     (ground-truth 3D occ)
+ OpenOccupancy)
+       |                          |
+       +----------+---------------+
+                  |
+       [Unified Data Schema]
+       G, I, U, Int/Ext, T_ew, F, B, obj annotations
+                  |
+       [Unified Training/Testing Pipeline]
+                  |
+        +---------+---------+
+        |                   |
+[Forecasting task]   [Prediction task]
+(OccWorld + flow    (Cam4DOcc, CVT-Occ,
+ encoder/decoder)    CoHFF cooperative)
+        |                   |
+[Evaluation Metrics: IoU_geo, mIoU, P_n, IoU_object, IoU_bg, UniOcc Score]</pre>
+
+    <h3>Per-Voxel Flow Computation</h3>
+    <p style="font-size:0.87em; line-height:1.6;">
+      For dynamic foreground: compute agent-frame transformation from ego and agent poses; apply to each voxel to predict its t+1 position; subtract original position for flow vector. For static background: use ego-motion transform directly. Both dynamic and static flows are merged into F. Key formula:
+    </p>
+    <pre>T_{a,t}^{a,t+1} = (T_{a,t+1}^{e,t+1})^{-1} * T_{e,t}^{e,t+1} * T_{a,t}^{e,t}
+F_{n,d}^t = T_{a,t+1}^{e,t+1} * T_{a,t}^{a,t+1} * M_{a,t}^{a,t+1} * T_{e,t}^{a,t} * V_{n,d}^t  - V_{n,d}^t</pre>
+
+    <h3>Ground-Truth-Free Metrics</h3>
+    <div class="three-col">
+      <div class="mini-card"><h4>P_n — Dimension Probability</h4><p>GMM fitted to bounding box dimensions {l,w,h} per category via EM + BIC search (K up to 20, four covariance types). Query at inference: P_n = max_k p(&lt;l,w,h&gt; | GMM_c^k). Threshold ρ = 0.5.</p></div>
+      <div class="mini-card"><h4>IoU_object — Shape Consistency</h4><p>PCA-align tracked object voxel sets across consecutive frames; compute voxel IoU between aligned sets. High value implies stable object geometry over time.</p></div>
+      <div class="mini-card"><h4>IoU_bg — Background Consistency</h4><p>Project static voxels from t to t+1 using known ego-motion; compute binary IoU with observed background in overlapping FOV. High value implies consistent static scene.</p></div>
+    </div>
+  </div>
+
+  <!-- Section 6: Experiments -->
+  <div class="slide-card">
+    <h2>6. Experiments</h2>
+    <h3>Datasets Used</h3>
+    <table>
+      <tr><th>Source</th><th>Type</th><th>Scale</th><th>Labels</th></tr>
+      <tr><td>nuScenes</td><td>Real</td><td>9.5 hrs, 1110 scenarios</td><td>Occ3D pseudo</td></tr>
+      <tr><td>Waymo</td><td>Real</td><td>4.0 hrs, 998 scenarios</td><td>Occ3D pseudo</td></tr>
+      <tr><td>CARLA (16 scenarios)</td><td>Synthetic</td><td>Variable</td><td>Mesh ground truth</td></tr>
+      <tr><td>OpenCOOD</td><td>Synthetic (multi-agent)</td><td>44 scenarios</td><td>Mesh ground truth</td></tr>
+    </table>
+
+    <h3>Flow Type Ablation — OccWorld on nuScenes (Table 2)</h3>
+    <table>
+      <tr><th>Flow Type</th><th>mIoU_geo 0s</th><th>mIoU_geo 1s</th><th>mIoU_geo 2s</th><th>mIoU_geo 3s</th></tr>
+      <tr><td>None</td><td>21.67</td><td>24.93</td><td>30.23</td><td>18.13</td></tr>
+      <tr><td>Object-level</td><td>20.97</td><td>24.57</td><td>31.09</td><td>18.40</td></tr>
+      <tr><td><strong>Voxel-level</strong></td><td><strong>22.50</strong></td><td><strong>26.03</strong></td><td><strong>32.13</strong></td><td><strong>19.06</strong></td></tr>
+    </table>
+
+    <h3>Occupancy Prediction — nuScenes (Table 4)</h3>
+    <table>
+      <tr><th>Model</th><th>mIoU_geo</th><th>IoU_geo</th><th>IoU_bg</th><th>IoU_car</th><th>P_car</th></tr>
+      <tr><td><strong>CVT-Occ</strong></td><td>31.57</td><td>81.20</td><td>48.93</td><td>80.60</td><td>74.91</td></tr>
+      <tr><td>Cam4DOcc</td><td>13.59</td><td>13.33</td><td>52.46</td><td>56.13</td><td>73.28</td></tr>
+    </table>
+
+    <h3>Cross-Dataset Generalization — Selected rows (Table 3, OccWorld voxel flow)</h3>
+    <table>
+      <tr><th>Train</th><th>Test</th><th>mIoU_geo 0s</th><th>mIoU_geo 3s</th><th>IoU_bg</th><th>P_car</th></tr>
+      <tr><td>nuScenes</td><td>nuScenes</td><td>70.64</td><td>19.06</td><td>59.56</td><td>82.57</td></tr>
+      <tr><td>nuScenes</td><td>Waymo</td><td>64.37</td><td>20.90</td><td>61.25</td><td>72.69</td></tr>
+      <tr><td>Waymo</td><td>nuScenes</td><td>63.22</td><td>15.80</td><td>49.90</td><td>72.54</td></tr>
+      <tr><td>nuScenes + Waymo</td><td>nuScenes</td><td>71.80</td><td>20.15</td><td>60.23</td><td>83.14</td></tr>
+      <tr><td>nuScenes + Waymo</td><td>Waymo</td><td>71.23</td><td>24.99</td><td>59.23</td><td>87.01</td></tr>
+      <tr><td>nuScenes + Waymo + CARLA</td><td>nuScenes</td><td>72.53</td><td>20.18</td><td>57.51</td><td>83.01</td></tr>
+    </table>
+
+    <h3>Cooperative Prediction — OpenCOOD (Table 5)</h3>
+    <table>
+      <tr><th>Model</th><th>mIoU_geo</th><th>IoU_geo</th><th>IoU_bg</th><th>IoU_car</th><th>P_car</th></tr>
+      <tr><td>CoHFF</td><td>34.16</td><td>50.46</td><td>51.90</td><td>87.22</td><td>66.19</td></tr>
+    </table>
+  </div>
+
+  <!-- Section 7: Phyra's Judgment -->
+  <div class="slide-card">
+    <h2>7. Phyra's Judgment</h2>
+
+    <h3>Actual vs. Claimed Contributions</h3>
+    <table>
+      <tr><th>Claimed</th><th>Status</th><th>Notes</th></tr>
+      <tr><td>First unified 2D/3D occupancy benchmark with flow</td><td>Supported</td><td>Data engineering contribution is genuine</td></tr>
+      <tr><td>User-friendly cross-dataset training pipeline</td><td>Supported</td><td>Code released at uniocc.github.io</td></tr>
+      <tr><td>Python toolkit for occupancy processing</td><td>Partially supported</td><td>Details deferred to supplementary/code</td></tr>
+      <tr><td>Validation of flow benefit and cross-domain generalization</td><td>Partially supported</td><td>OccWorld only; prediction models not tested cross-domain</td></tr>
+      <tr><td>First benchmark for cooperative occupancy forecasting</td><td>Partially unsupported</td><td>Framework supports it; no forecasting experiment under cooperative setting is reported</td></tr>
+    </table>
+
+    <h3>Fundamental Limitations</h3>
+    <ul>
+      <li>nuScenes/Waymo forecasting evaluation still depends on pseudo-labels for mIoU_geo; the proposed GT-free metrics are supplementary but standard metrics remain pseudo-label-bounded.</li>
+      <li>UniOcc Score weights are reference values without derivation; method rankings may change under different weight configurations.</li>
+      <li>Flow computation requires per-frame object-level 3D box annotations, limiting extension to unannotated or camera-only data sources.</li>
+    </ul>
+
+    <h3>Citations Worth Tracking</h3>
+    <table>
+      <tr><th>Paper</th><th>Why</th></tr>
+      <tr><td>OccWorld [85] — Zheng et al., ECCV 2025</td><td>Primary forecasting backbone; all benchmark numbers depend on it</td></tr>
+      <tr><td>Occ3D [52] — Tian et al., NeurIPS 2024</td><td>Defines the pseudo-label quality ceiling for nuScenes/Waymo</td></tr>
+      <tr><td>CVT-Occ [79] — Ye et al., ECCV 2024</td><td>Current high-water mark in camera-based prediction within this benchmark</td></tr>
+      <tr><td>UniTraj [9] — Feng et al., ECCV 2025</td><td>Direct methodological precedent for unified multi-dataset benchmarking</td></tr>
+      <tr><td>CoHFF [49] — Song et al., CVPR 2024</td><td>Only cooperative model evaluated; sole data point for multi-agent occupancy</td></tr>
+    </table>
+  </div>
+
+  <!-- Section 8: Open Questions -->
+  <div class="slide-card">
+    <h2>8. Open Questions and Improvement Directions</h2>
+    <div class="two-col">
+      <div>
+        <h3>Open Questions</h3>
+        <ul>
+          <li>Do the GT-free metrics (P_n, IoU_object, IoU_bg) correlate with LiDAR ground-truth quality on held-out data?</li>
+          <li>How sensitive are UniOcc Score rankings to the reference weight configuration?</li>
+          <li>Can the flow annotation pipeline extend to datasets without per-object 3D bounding box annotations?</li>
+          <li>Where do DynamicCity, OccSora, OccLLaMA rank on the cross-dataset UniOcc protocol?</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Improvement Directions</h3>
+        <ul>
+          <li><strong>Cooperative forecasting experiment</strong> — Run flow-augmented OccWorld on OpenCOOD in forecasting mode to substantiate the claimed contribution.</li>
+          <li><strong>Metric calibration study</strong> — Compute Spearman correlation between GT-free metrics and LiDAR ground-truth IoU on CARLA where perfect labels are available.</li>
+          <li><strong>Weight sensitivity report</strong> — Show UniOcc Score rankings under at least three weight configurations (reconstruction-heavy, forecast-heavy, consistency-heavy).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="phyra-switcher">
+  <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+  <button onclick="phyraRandom()">Random</button>
+</div>
+
+<footer class="phyra-footer">
+  Phyra NT Workflow &nbsp;|&nbsp; paper-read &nbsp;|&nbsp; 2026-04-19 &nbsp;|&nbsp; UniOcc
+</footer>
+
+<script>
+const PHYRA_THEMES = [
+  { id:"nadeshiko", label:"撫子 Nadeshiko", mode:"light" },
+  { id:"wakatake", label:"若竹 Wakatake", mode:"light" },
+  { id:"seiji", label:"青磁 Seiji", mode:"light" },
+  { id:"mizu", label:"水 Mizu", mode:"light" },
+  { id:"sora", label:"空 Sora", mode:"light" },
+  { id:"gunjyo", label:"群青 Gunjyo", mode:"light" },
+  { id:"usu", label:"薄 Usu", mode:"light" },
+  { id:"nae", label:"苗 Nae", mode:"light" },
+  { id:"shironeri", label:"白練 Shironeri", mode:"light" },
+  { id:"shironezumi", label:"白鼠 Shironezumi", mode:"light" },
+  { id:"chigusa", label:"千草 Chigusa", mode:"dark" },
+  { id:"ruri", label:"瑠璃 Ruri", mode:"dark" },
+  { id:"rurikon", label:"瑠璃紺 Rurikon", mode:"dark" },
+  { id:"kon", label:"紺 Kon", mode:"dark" },
+  { id:"hanada", label:"縹 Hanada", mode:"dark" },
+  { id:"asagi", label:"浅葱 Asagi", mode:"dark" },
+  { id:"shinbashi", label:"新橋 Shinbashi", mode:"dark" },
+  { id:"hanaasagi", label:"花浅葱 Hanaasagi", mode:"dark" },
+  { id:"midori", label:"緑 Midori", mode:"dark" },
+  { id:"tokiwa", label:"常磐 Tokiwa", mode:"dark" },
+  { id:"fuji", label:"藤 Fuji", mode:"dark" },
+  { id:"kikyo", label:"桔梗 Kikyo", mode:"dark" },
+  { id:"murasaki", label:"紫 Murasaki", mode:"dark" },
+  { id:"suoh", label:"蘇芳 Suoh", mode:"dark" },
+  { id:"keshizumi", label:"消炭 Keshizumi", mode:"dark" },
+  { id:"sumi", label:"墨 Sumi", mode:"dark" },
+  { id:"kuro", label:"黒 Kuro", mode:"dark" },
+  { id:"kogecha", label:"焦茶 Kogecha", mode:"dark" },
+  { id:"kenpohzome", label:"憲法染 Kenpohzome", mode:"dark" },
+  { id:"fujinezumi", label:"藤鼠 Fujinezumi", mode:"dark" },
+  { id:"benimidori", label:"紅碧 Benimidori", mode:"dark" },
+  { id:"karakurenai", label:"韓紅花 Karakurenai", mode:"dark" },
+  { id:"moegi", label:"萌黄 Moegi", mode:"dark" },
+  { id:"nibi", label:"鈍 Nibi", mode:"dark" },
+  { id:"hai", label:"灰 Hai", mode:"dark" }
+];
+
+function phyraApply(id) {
+  const html = document.documentElement;
+  html.setAttribute('data-theme', id);
+  const t = PHYRA_THEMES.find(x => x.id === id);
+  if (t) {
+    html.setAttribute('data-theme-mode', t.mode);
+    const sel = document.getElementById('phyra-select');
+    if (sel) sel.value = id;
+  }
+}
+
+function phyraRandom() {
+  const idx = Math.floor(Math.random() * PHYRA_THEMES.length);
+  phyraApply(PHYRA_THEMES[idx].id);
+}
+
+(function() {
+  const sel = document.getElementById('phyra-select');
+  if (!sel) return;
+  const lg = document.createElement('optgroup'); lg.label = 'Light';
+  const dg = document.createElement('optgroup'); dg.label = 'Dark';
+  PHYRA_THEMES.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t.id; opt.textContent = t.label;
+    (t.mode === 'light' ? lg : dg).appendChild(opt);
+  });
+  sel.appendChild(lg); sel.appendChild(dg);
+  phyraApply(document.documentElement.getAttribute('data-theme') || 'chigusa');
+})();
+
+/* Width drag handle */
+(function() {
+  const handle = document.getElementById('phyra-width-handle');
+  if (!handle) return;
+  let dragging = false;
+  function updateHandlePos(w) {
+    const vw = window.innerWidth;
+    handle.style.right = Math.max(4, (vw - w) / 2 - 16) + 'px';
+  }
+  handle.addEventListener('mousedown', e => { dragging = true; handle.classList.add('dragging'); e.preventDefault(); });
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const vw = window.innerWidth;
+    const newW = Math.max(400, Math.abs(e.clientX - vw / 2) * 2);
+    document.documentElement.style.setProperty('--phyra-content-width', newW + 'px');
+    updateHandlePos(newW);
+  });
+  document.addEventListener('mouseup', () => { if (dragging) { dragging = false; handle.classList.remove('dragging'); } });
+  const initW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width')) || 960;
+  updateHandlePos(initW);
+  window.addEventListener('resize', () => {
+    const w = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width')) || 960;
+    updateHandlePos(w);
+  });
+})();
+</script>
+
+</body>
+</html>

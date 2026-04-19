@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SceneDiffuser++ — Phyra Extraction</title>
+<style>
+  :root {
+    --bg0: #1a1a2e;
+    --bg1: #16213e;
+    --bg2: #0f3460;
+    --accent: #e94560;
+    --accent2: #533483;
+    --text: #e0e0e0;
+    --text-dim: #a0a0b0;
+    --border: #2a2a4a;
+    --tag-bg: #0f3460;
+    --tag-text: #7ecbf7;
+    --green: #4caf7d;
+    --yellow: #f0c040;
+    --red: #e94560;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg0);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 2rem;
+  }
+  .page { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--bg2), var(--accent2));
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+  }
+  .header .label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--tag-text);
+    margin-bottom: 0.5rem;
+  }
+  .header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+  }
+  .badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    color: #fff;
+  }
+  .badge.venue { background: var(--accent2); border-color: var(--accent2); }
+  .badge.year  { background: var(--accent);  border-color: var(--accent); }
+
+  /* Grid layout */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  @media (max-width: 800px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg1);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+  }
+  .card.full { grid-column: 1 / -1; }
+  .card-title {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--tag-text);
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+  .card p, .card li { color: var(--text-dim); font-size: 13px; }
+  .card p { margin-bottom: 0.4rem; }
+  .card ul, .card ol { padding-left: 1.2rem; }
+  .card li { margin-bottom: 0.3rem; }
+  .card .abstract-text {
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* Section list */
+  .section-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .section-item:last-child { border-bottom: none; }
+  .section-item .num {
+    color: var(--accent);
+    font-weight: 600;
+    min-width: 1.4rem;
+    font-size: 12px;
+  }
+  .section-item.sub { padding-left: 1.5rem; color: #7a7a9a; font-size: 12px; }
+
+  /* Figure / Table rows */
+  .item-row {
+    display: flex;
+    gap: 0.8rem;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    align-items: flex-start;
+  }
+  .item-row:last-child { border-bottom: none; }
+  .item-num {
+    background: var(--bg2);
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 11px;
+    color: var(--tag-text);
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .item-desc { font-size: 12px; color: var(--text-dim); }
+  .item-loc { font-size: 11px; color: #6060a0; margin-left: auto; white-space: nowrap; }
+
+  /* References */
+  .ref-list { columns: 2; column-gap: 1.5rem; }
+  @media (max-width: 800px) { .ref-list { columns: 1; } }
+  .ref-item {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+    break-inside: avoid;
+  }
+  .ref-num { color: var(--accent); font-weight: 600; }
+
+  /* Issues */
+  .issue-item {
+    display: flex;
+    gap: 0.6rem;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    align-items: flex-start;
+  }
+  .issue-item:last-child { border-bottom: none; }
+  .issue-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--yellow);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .issue-text { font-size: 12px; color: var(--text-dim); }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: #4a4a6a;
+    font-size: 11px;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="label">Phyra Extraction &mdash; SceneDiffuser++</div>
+    <h1>SceneDiffuser++: City-Scale Traffic Simulation via a Generative World Model</h1>
+    <div class="meta-row">
+      <span class="badge">Shuhan Tan</span>
+      <span class="badge">John Lambert</span>
+      <span class="badge">Hong Jeon</span>
+      <span class="badge">Sakshum Kulshrestha</span>
+      <span class="badge">Yijing Bai</span>
+      <span class="badge">Jing Luo</span>
+      <span class="badge">Dragomir Anguelov</span>
+      <span class="badge">Mingxing Tan</span>
+      <span class="badge">Chiyu Max Jiang</span>
+    </div>
+    <div class="meta-row">
+      <span class="badge">Waymo LLC &amp; UT Austin</span>
+      <span class="badge venue">arXiv preprint</span>
+      <span class="badge year">2025</span>
+      <span class="badge">arXiv:2506.21976v1</span>
+    </div>
+  </div>
+
+  <!-- Abstract -->
+  <div class="card" style="margin-bottom:1.2rem;">
+    <div class="card-title">Abstract</div>
+    <p class="abstract-text">
+      The goal of traffic simulation is to augment a potentially limited amount of manually-driven miles that is available for testing and validation, with a much larger amount of simulated synthetic miles. The culmination of this vision would be a generative simulated city, where given a map of the city and an autonomous vehicle (AV) software stack, the simulator can seamlessly simulate the trip from point A to point B by populating the city around the AV and controlling all aspects of the scene, from animating the dynamic agents (e.g., vehicles, pedestrians) to controlling the traffic light states. We refer to this vision as CitySim, which requires an agglomeration of simulation technologies: scene generation to populate the initial scene, agent behavior modeling to animate the scene, occlusion reasoning, dynamic scene generation to seamlessly spawn and remove agents, and environment simulation for factors such as traffic lights. While some key technologies have been separately studied in various works, others such as dynamic scene generation and environment simulation have received less attention in the research community. We propose SceneDiffuser++, the first end-to-end generative world model trained on a single loss function capable of point A-to-B simulation on a city scale integrating all the requirements above. We demonstrate the city-scale traffic simulation capability of SceneDiffuser++ and study its superior realism under long simulation conditions. We evaluate the simulation quality on an augmented version of the Waymo Open Motion Dataset (WOMD) with larger map regions to support trip-level simulation.
+    </p>
+  </div>
+
+  <!-- Sections + Figures -->
+  <div class="grid-2">
+
+    <!-- Sections -->
+    <div class="card">
+      <div class="card-title">Sections</div>
+      <div class="section-item"><span class="num">&mdash;</span> Abstract</div>
+      <div class="section-item"><span class="num">1</span> Introduction</div>
+      <div class="section-item"><span class="num">2</span> Related Work</div>
+      <div class="section-item sub"><span class="num"></span> World Models</div>
+      <div class="section-item sub"><span class="num"></span> Diffusion-Based Traffic Simulation</div>
+      <div class="section-item sub"><span class="num"></span> Agent Insertion and Deletion for Simulation</div>
+      <div class="section-item sub"><span class="num"></span> Environment Simulation</div>
+      <div class="section-item"><span class="num">3</span> Method</div>
+      <div class="section-item sub"><span class="num"></span> Scene Tensor</div>
+      <div class="section-item sub"><span class="num"></span> Multi-Tensor</div>
+      <div class="section-item sub"><span class="num"></span> Diffusion Preliminaries</div>
+      <div class="section-item sub"><span class="num"></span> Tasks</div>
+      <div class="section-item sub"><span class="num"></span> Architecture</div>
+      <div class="section-item sub"><span class="num"></span> Learning Sparse Tensors</div>
+      <div class="section-item"><span class="num">4</span> Experiment</div>
+      <div class="section-item sub"><span class="num"></span> 4.1 Trip-level Traffic Simulation Setup</div>
+      <div class="section-item sub"><span class="num"></span> 4.2 Main Results</div>
+      <div class="section-item sub"><span class="num"></span> 4.3 Additional Analysis</div>
+      <div class="section-item"><span class="num">5</span> Conclusion</div>
+      <div class="section-item"><span class="num">A</span> Appendix</div>
+      <div class="section-item sub"><span class="num"></span> A.1 Video</div>
+      <div class="section-item sub"><span class="num"></span> A.2 Model Implementation Details</div>
+      <div class="section-item sub"><span class="num"></span> A.3 Additional Results</div>
+      <div class="section-item sub"><span class="num"></span> A.4 Experiment Details</div>
+    </div>
+
+    <!-- Figures + Tables -->
+    <div style="display:flex;flex-direction:column;gap:1.2rem;">
+      <div class="card">
+        <div class="card-title">Figures</div>
+        <div class="item-row">
+          <span class="item-num">Fig. 1</span>
+          <span class="item-desc">Overview of CitySim pipeline: initial scene generation, long simulation rollout, final destination.</span>
+          <span class="item-loc">p.1</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Fig. 2</span>
+          <span class="item-desc">Multi-Tensor Diffusion architecture: agent &amp; lights tensors, projection, concatenation, axial-attention backbone.</span>
+          <span class="item-loc">p.3</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Fig. 3</span>
+          <span class="item-desc">Learning sparse signals: training (imputation + loss mask) vs. inference (soft clipping) for a single agent slice.</span>
+          <span class="item-loc">p.4</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Fig. 4</span>
+          <span class="item-desc">60s rollout: SceneDiffuser++ (dynamic traffic, top) vs. SceneDiffuser (agents stuck, bottom).</span>
+          <span class="item-loc">p.7</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Fig. 5</span>
+          <span class="item-desc">Generated agent behaviors: parking-lot exit (a), far insertion (b), red-light stop (c), green-light proceed (d).</span>
+          <span class="item-loc">p.8</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Fig. 6</span>
+          <span class="item-desc">Predicted validity for 128 agents over 600 steps: SceneDiffuser++ vs. ground-truth log vs. IDM/SceneDiffuser.</span>
+          <span class="item-loc">p.8</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Fig. 7</span>
+          <span class="item-desc">JS-Divergence over simulation steps for # Valid Agent and Exiting Distance.</span>
+          <span class="item-loc">p.8</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Fig. 8</span>
+          <span class="item-desc">Traffic light transition probability matrix: ground-truth log vs. SceneDiffuser++ prediction.</span>
+          <span class="item-loc">p.8</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Fig. 9</span>
+          <span class="item-desc">Additional 60s rollout snapshots at 0, 15, 30, 45, 60 seconds.</span>
+          <span class="item-loc">App. p.11</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Fig. 10</span>
+          <span class="item-desc">Additional 60s rollout snapshots at 0, 10, 15, 20, 60 seconds.</span>
+          <span class="item-loc">App. p.12</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Tables</div>
+        <div class="item-row">
+          <span class="item-num">Table 1</span>
+          <span class="item-desc">Simulation realism under long rollouts (60s) — JS-divergence across 9 planner/world-model combos &times; 11 metrics.</span>
+          <span class="item-loc">p.6</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Table 2</span>
+          <span class="item-desc">Controlled evaluation: varying # rollout steps and # replan steps with SceneDiffuser++ as planner and world model.</span>
+          <span class="item-loc">p.7</span>
+        </div>
+        <div class="item-row">
+          <span class="item-num">Table 3</span>
+          <span class="item-desc">Ablation of inference-time validity decoding strategies: Hard Clipping, Hard-Validity Clipping, No Clipping, Soft Clipping.</span>
+          <span class="item-loc">p.7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- References -->
+  <div class="card" style="margin-bottom:1.2rem;">
+    <div class="card-title">References (59 total)</div>
+    <div class="ref-list">
+      <div class="ref-item"><span class="ref-num">[1]</span> Agha &amp; Palmskog. A survey of statistical model checking. TOMACS, 2018.</div>
+      <div class="ref-item"><span class="ref-num">[2]</span> Bergamini et al. SimNet: Learning reactive self-driving simulations from real-world observations. ICRA, 2021.</div>
+      <div class="ref-item"><span class="ref-num">[3]</span> Brooks et al. Video generation models as world simulators. 2024.</div>
+      <div class="ref-item"><span class="ref-num">[4]</span> Caesar et al. nuScenes: A multimodal dataset for autonomous driving. CVPR, 2020.</div>
+      <div class="ref-item"><span class="ref-num">[5]</span> Chang et al. Argoverse: 3d tracking and forecasting with rich maps. CVPR, 2019.</div>
+      <div class="ref-item"><span class="ref-num">[6]</span> Chang et al. Controllable safety-critical closed-loop traffic simulation via guided diffusion. 2023.</div>
+      <div class="ref-item"><span class="ref-num">[7]</span> Chang et al. Safe-sim: Safety-critical closed-loop traffic simulation. ECCV, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[8]</span> Chitta et al. Sledge: Synthesizing driving environments. ECCV, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[9]</span> Choi et al. Dice: Diverse diffusion model with scoring for trajectory prediction. 2023.</div>
+      <div class="ref-item"><span class="ref-num">[10]</span> Corso et al. A survey of algorithms for black-box safety validation. JAIR, 2021.</div>
+      <div class="ref-item"><span class="ref-num">[11]</span> Dosovitskiy et al. CARLA: An open urban driving simulator. CoRL, 2017.</div>
+      <div class="ref-item"><span class="ref-num">[12]</span> Ettinger et al. Waymo Open Motion Dataset. ICCV, 2021.</div>
+      <div class="ref-item"><span class="ref-num">[13]</span> Feng et al. Trafficgen: Learning to generate diverse and realistic traffic scenarios. ICRA, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[14]</span> Gulino et al. Waymax: An accelerated, data-driven simulator. NeurIPS D&amp;B, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[15]</span> Guo et al. SceneDM: Scene-level multi-agent trajectory generation. 2023.</div>
+      <div class="ref-item"><span class="ref-num">[16]</span> Ha &amp; Schmidhuber. Recurrent world models facilitate policy evolution. NeurIPS, 2018.</div>
+      <div class="ref-item"><span class="ref-num">[17]</span> Hafner et al. Dream to control: Learning behaviors by latent imagination. ICLR, 2020.</div>
+      <div class="ref-item"><span class="ref-num">[18]</span> Hafner et al. Mastering atari with discrete world models. ICLR, 2021.</div>
+      <div class="ref-item"><span class="ref-num">[19]</span> He et al. Vision-based traffic signal control with microscopic simulation. arXiv, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[20]</span> Hoogeboom et al. simple diffusion: End-to-end diffusion for high resolution images. ICML, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[21]</span> Hu et al. Gaia-1: A generative world model for autonomous driving. arXiv, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[22]</span> Huang et al. Versatile scene-consistent traffic scenario generation. 2024.</div>
+      <div class="ref-item"><span class="ref-num">[23]</span> Jiang et al. Motiondiffuser: Controllable multi-agent motion prediction using diffusion. CVPR, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[24]</span> Jiang et al. Scenediffuser: Efficient and controllable driving simulation. NeurIPS, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[25]</span> Karnchanachari et al. Towards learning-based planning: nuplan benchmark. ICRA, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[26]</span> Li et al. Metadrive: Composing diverse driving scenarios. TPAMI, 2022.</div>
+      <div class="ref-item"><span class="ref-num">[27]</span> Liang et al. A deep RL network for traffic light cycle control. IEEE Trans. Vehicular Technology, 2019.</div>
+      <div class="ref-item"><span class="ref-num">[28]</span> Lin. Divergence measures based on the shannon entropy. IEEE Trans. Information Theory, 1991.</div>
+      <div class="ref-item"><span class="ref-num">[29]</span> Lopez et al. Microscopic traffic simulation using sumo. ITSC, 2018.</div>
+      <div class="ref-item"><span class="ref-num">[30]</span> Lu et al. Scenecontrol: Diffusion for controllable traffic scene generation. ICRA, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[31]</span> Mahjourian et al. Unigen: Unified modeling of initial agent states and trajectories. ICRA, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[32]</span> Montali et al. The waymo open sim agents challenge. NeurIPS D&amp;B, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[33]</span> Ngiam et al. Scene transformer: A unified architecture for predicting future trajectories. ICLR, 2022.</div>
+      <div class="ref-item"><span class="ref-num">[34]</span> Niedoba et al. A diffusion-model of joint interactive navigation. NeurIPS, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[35]</span> Peng et al. Improving agent behaviors with rl fine-tuning for autonomous driving. ECCV, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[36]</span> Philion et al. Trajeglish: Learning the language of driving scenarios. ICLR, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[37]</span> Polyak et al. Movie gen: A cast of media foundation models. 2024.</div>
+      <div class="ref-item"><span class="ref-num">[38]</span> Pronovost et al. Scenario diffusion: Controllable driving scenario generation. NeurIPS, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[39]</span> Pronovost et al. Generating driving scenes with diffusion. ICRA Workshop, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[40]</span> Runway ML. Introducing general world models. 2024.</div>
+      <div class="ref-item"><span class="ref-num">[41]</span> Salimans &amp; Ho. Progressive distillation for fast sampling of diffusion models. ICLR, 2022.</div>
+      <div class="ref-item"><span class="ref-num">[42]</span> Shazeer &amp; Stern. Adafactor: Adaptive learning rates with sublinear memory cost. ICML, 2018.</div>
+      <div class="ref-item"><span class="ref-num">[43]</span> Sun et al. Drivescenegen: Generating diverse and realistic driving scenarios. IEEE RA-L, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[44]</span> Suo et al. Trafficsim: Learning to simulate realistic multi-agent behaviors. CVPR, 2021.</div>
+      <div class="ref-item"><span class="ref-num">[45]</span> Tan et al. Scenegen: Learning to generate realistic traffic scenes. CVPR, 2021.</div>
+      <div class="ref-item"><span class="ref-num">[46]</span> Tan et al. Language conditioned traffic generation. CoRL, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[47]</span> Tan et al. Promptable closed-loop traffic simulation. CoRL, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[48]</span> Tancik et al. Block-nerf: Scalable large scene neural view synthesis. CVPR, 2022.</div>
+      <div class="ref-item"><span class="ref-num">[49]</span> Treiber et al. Congested traffic states in empirical observations and microscopic simulations. Physical Review E, 2000.</div>
+      <div class="ref-item"><span class="ref-num">[50]</span> Valevski et al. Diffusion models are real-time game engines. ICLR, 2025.</div>
+      <div class="ref-item"><span class="ref-num">[51]</span> Wei et al. A survey on traffic signal control methods. arXiv, 2019.</div>
+      <div class="ref-item"><span class="ref-num">[52]</span> Wilson et al. Argoverse 2: Next generation datasets for self-driving. NeurIPS D&amp;B, 2021.</div>
+      <div class="ref-item"><span class="ref-num">[53]</span> Wu et al. Smart: Scalable multi-agent real-time motion generation via next-token prediction. NeurIPS, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[54]</span> Yang et al. Wcdt: World-centric diffusion transformer for traffic scene generation. 2024.</div>
+      <div class="ref-item"><span class="ref-num">[55]</span> Yang et al. Unisim: A neural closed-loop sensor simulator. CVPR, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[56]</span> Zhang et al. Learning to drive via asymmetric self-play. ECCV, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[57]</span> Zhang et al. Tedi: Temporally-entangled diffusion for long-term motion synthesis. ACM SIGGRAPH, 2024.</div>
+      <div class="ref-item"><span class="ref-num">[58]</span> Zhong et al. Language-guided traffic simulation via scene-level diffusion. CoRL, 2023.</div>
+      <div class="ref-item"><span class="ref-num">[59]</span> Zhou et al. Drivinggaussian: Composite gaussian splatting for autonomous driving. CVPR, 2024.</div>
+    </div>
+  </div>
+
+  <!-- Detected Issues -->
+  <div class="card">
+    <div class="card-title">Detected Issues</div>
+    <div class="issue-item">
+      <div class="issue-dot"></div>
+      <div class="issue-text">Figure 1 caption references start and end points for routing, but Appendix A.4 states SceneDiffuser++ does not ingest a goal location in any form; the caption may mislead readers about the model's conditioning.</div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-dot"></div>
+      <div class="issue-text">Table 1 contains blank cells for Entering Distance and Exiting Distance in IDM and SceneDiffuser world-model rows; the paper explains these are intentionally omitted, but blank cells rather than explicit "N/A" markers create ambiguity on first reading.</div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-dot"></div>
+      <div class="issue-text">No venue field: the paper carries only an arXiv identifier (arXiv:2506.21976v1, 27 Jun 2025); venue is not provided.</div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-dot"></div>
+      <div class="issue-text">Figure 6 caption describes three panels (SceneDiffuser++, ground-truth log, IDM/SceneDiffuser) but references "top/middle/bottom"; the PDF text extraction does not fully convey the visual panel layout.</div>
+    </div>
+    <div class="issue-item">
+      <div class="issue-dot"></div>
+      <div class="issue-text">No page numbers are embedded in the extracted text stream; section and figure locations above are inferred from document order in the extracted text, not from explicit page number markers.</div>
+    </div>
+  </div>
+
+  <div class="footer">Phyra paper-parser &bull; SceneDiffuser++ &bull; 2506 &bull; Extracted 2026-04-19</div>
+
+</div>
+</body>
+</html>

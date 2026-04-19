@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="asagi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latent-WAM - Paper Read Report</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 900px;
+    }
+
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255, 255, 255, 0.92);
+      --p-formula-bg     : rgba(255, 255, 255, 0.92);
+      --p-border         : rgba(28, 28, 28, 0.12);
+      --p-text-secondary : rgba(28, 28, 28, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+    }
+
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0, 0, 0, 0.35);
+      --p-formula-bg     : rgba(0, 0, 0, 0.35);
+      --p-border         : rgba(245, 242, 235, 0.12);
+      --p-text-secondary : rgba(245, 242, 235, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+    }
+
+    /* === Light Themes === */
+    [data-theme="nadeshiko"] { --theme-primary:#DC9FB4; --theme-light:#F3E6EB; --theme-accent:#92E566; --theme-dark:#471727; --theme-neutral:#E7E3E4; --theme-text:#1C1C1C; }
+    [data-theme="taikoh"] { --theme-primary:#F8C3CD; --theme-light:#F3E6E9; --theme-accent:#6EFE4C; --theme-dark:#600D1D; --theme-neutral:#E8E2E3; --theme-text:#1C1C1C; }
+    [data-theme="momo"] { --theme-primary:#F596AA; --theme-light:#F3E6E9; --theme-accent:#72FE4C; --theme-dark:#560C1B; --theme-neutral:#E8E2E4; --theme-text:#1C1C1C; }
+    [data-theme="toki"] { --theme-primary:#EEA9A9; --theme-light:#F3E6E6; --theme-accent:#50FA50; --theme-dark:#580D0D; --theme-neutral:#E8E2E2; --theme-text:#1C1C1C; }
+    [data-theme="akebono"] { --theme-primary:#F19483; --theme-light:#F3E8E6; --theme-accent:#4CFE68; --theme-dark:#51160B; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+    [data-theme="sangosyu"] { --theme-primary:#F17C67; --theme-light:#F3E8E6; --theme-accent:#4CFE67; --theme-dark:#4B140A; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+    [data-theme="araisyu"] { --theme-primary:#FB966E; --theme-light:#F3EAE6; --theme-accent:#4CFE7F; --theme-dark:#4E1E0B; --theme-neutral:#E8E4E2; --theme-text:#1C1C1C; }
+    [data-theme="kanzo"] { --theme-primary:#FC9F4D; --theme-light:#F3ECE6; --theme-accent:#4AFE9E; --theme-dark:#47270A; --theme-neutral:#E8E5E2; --theme-text:#1C1C1C; }
+    [data-theme="yamabuki"] { --theme-primary:#FFB11B; --theme-light:#F3EFE6; --theme-accent:#1BFFB0; --theme-dark:#3D2B08; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="kariyasu"] { --theme-primary:#E9CD4C; --theme-light:#F3F1E6; --theme-accent:#35FFDB; --theme-dark:#433909; --theme-neutral:#E8E7E2; --theme-text:#1C1C1C; }
+    [data-theme="hiwa"] { --theme-primary:#BEC23F; --theme-light:#F3F3E6; --theme-accent:#1EDCE2; --theme-dark:#31320D; --theme-neutral:#E7E7E3; --theme-text:#1C1C1C; }
+    [data-theme="hiwamoegi"] { --theme-primary:#90B44B; --theme-light:#EFF3E6; --theme-accent:#2D99D1; --theme-dark:#242E11; --theme-neutral:#E6E7E3; --theme-text:#1C1C1C; }
+    [data-theme="yanagizome"] { --theme-primary:#91AD70; --theme-light:#EDF1E8; --theme-accent:#5992C3; --theme-dark:#242E19; --theme-neutral:#E5E6E4; --theme-text:#1C1C1C; }
+    [data-theme="nae"] { --theme-primary:#86C166; --theme-light:#EBF3E6; --theme-accent:#4C7EDA; --theme-dark:#1F3613; --theme-neutral:#E4E7E3; --theme-text:#1C1C1C; }
+    [data-theme="wakatake"] { --theme-primary:#5DAC81; --theme-light:#E7F2EC; --theme-accent:#7E42C6; --theme-dark:#152C20; --theme-neutral:#E4E6E5; --theme-text:#1C1C1C; }
+    [data-theme="seiji"] { --theme-primary:#69B0AC; --theme-light:#E7F2F2; --theme-accent:#C150C8; --theme-dark:#172F2D; --theme-neutral:#E4E6E6; --theme-text:#1C1C1C; }
+    [data-theme="mizu"] { --theme-primary:#81C7D4; --theme-light:#E6F1F3; --theme-accent:#E763D3; --theme-dark:#133A41; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="sora"] { --theme-primary:#58B2DC; --theme-light:#E6EFF3; --theme-accent:#F83BBC; --theme-dark:#0A3042; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="wasurenagusa"] { --theme-primary:#7DB9DE; --theme-light:#E6EEF3; --theme-accent:#F258B8; --theme-dark:#0E3247; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="gunjyo"] { --theme-primary:#51A8DD; --theme-light:#E6EEF3; --theme-accent:#FA33AF; --theme-dark:#092C41; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="usu"] { --theme-primary:#B28FCE; --theme-light:#EDE6F3; --theme-accent:#DDAB6E; --theme-dark:#2D183E; --theme-neutral:#E5E3E7; --theme-text:#1C1C1C; }
+    [data-theme="shironeri"] { --theme-primary:#FCFAF2; --theme-light:#F3F0E6; --theme-accent:#55F6D5; --theme-dark:#685713; --theme-neutral:#E8E7E2; --theme-text:#1C1C1C; }
+    [data-theme="shironezumi"] { --theme-primary:#BDC0BA; --theme-light:#EDEDEC; --theme-accent:#93A5B8; --theme-dark:#2F312C; --theme-neutral:#E5E5E5; --theme-text:#1C1C1C; }
+
+    /* === Dark Themes === */
+    [data-theme="kohbai"] { --theme-primary:#E16B8C; --theme-light:#F3E6EA; --theme-accent:#80FA51; --theme-dark:#470B1C; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+    [data-theme="suoh"] { --theme-primary:#8E354A; --theme-light:#F3E6E9; --theme-accent:#3DA51D; --theme-dark:#260C12; --theme-neutral:#E7E3E4; --theme-text:#F5F2EB; }
+    [data-theme="ichigo"] { --theme-primary:#B5495B; --theme-light:#F3E6E8; --theme-accent:#47D22B; --theme-dark:#2E1015; --theme-neutral:#E7E3E4; --theme-text:#F5F2EB; }
+    [data-theme="benihi"] { --theme-primary:#F75C2F; --theme-light:#F3E9E6; --theme-accent:#26FF57; --theme-dark:#401509; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+    [data-theme="ohni"] { --theme-primary:#F05E1C; --theme-light:#F3EAE6; --theme-accent:#0DFE58; --theme-dark:#3A1808; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+    [data-theme="sohi"] { --theme-primary:#ED784A; --theme-light:#F3EAE6; --theme-accent:#38FF70; --theme-dark:#441A09; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+    [data-theme="taisya"] { --theme-primary:#A36336; --theme-light:#F3ECE6; --theme-accent:#1ABE5E; --theme-dark:#2A180C; --theme-neutral:#E7E5E3; --theme-text:#F5F2EB; }
+    [data-theme="kohaku"] { --theme-primary:#CA7A2C; --theme-light:#F3EDE6; --theme-accent:#09EC79; --theme-dark:#341E09; --theme-neutral:#E8E5E2; --theme-text:#F5F2EB; }
+    [data-theme="koke"] { --theme-primary:#838A2D; --theme-light:#F2F3E6; --theme-accent:#179FAA; --theme-dark:#25270B; --theme-neutral:#E7E7E3; --theme-text:#F5F2EB; }
+    [data-theme="moegi"] { --theme-primary:#7BA23F; --theme-light:#EEF3E6; --theme-accent:#2480BC; --theme-dark:#1F290E; --theme-neutral:#E5E7E3; --theme-text:#F5F2EB; }
+    [data-theme="matsuba"] { --theme-primary:#42602D; --theme-light:#ECF3E6; --theme-accent:#285699; --theme-dark:#17230F; --theme-neutral:#E5E7E3; --theme-text:#F5F2EB; }
+    [data-theme="tokiwa"] { --theme-primary:#1B813E; --theme-light:#E6F3EB; --theme-accent:#4406BB; --theme-dark:#072B13; --theme-neutral:#E2E8E4; --theme-text:#F5F2EB; }
+    [data-theme="aomidori"] { --theme-primary:#00AA90; --theme-light:#E6F3F1; --theme-accent:#A400C1; --theme-dark:#062C26; --theme-neutral:#E2E8E7; --theme-text:#F5F2EB; }
+    [data-theme="asagi"] { --theme-primary:#33A6B8; --theme-light:#E6F1F3; --theme-accent:#D614BC; --theme-dark:#0B2A2F; --theme-neutral:#E2E7E8; --theme-text:#F5F2EB; }
+    [data-theme="shinbashi"] { --theme-primary:#0089A7; --theme-light:#E6F1F3; --theme-accent:#C1009E; --theme-dark:#06252C; --theme-neutral:#E2E7E8; --theme-text:#F5F2EB; }
+    [data-theme="hanaasagi"] { --theme-primary:#1E88A8; --theme-light:#E6F0F3; --theme-accent:#C40197; --theme-dark:#06232C; --theme-neutral:#E2E6E8; --theme-text:#F5F2EB; }
+    [data-theme="chigusa"] { --theme-primary:#3A8FB7; --theme-light:#E6EFF3; --theme-accent:#D51B9A; --theme-dark:#0C242F; --theme-neutral:#E3E6E7; --theme-text:#F5F2EB; }
+    [data-theme="hanada"] { --theme-primary:#006284; --theme-light:#E6F0F3; --theme-accent:#C1008F; --theme-dark:#06222C; --theme-neutral:#E2E6E8; --theme-text:#F5F2EB; }
+    [data-theme="ruri"] { --theme-primary:#005CAF; --theme-light:#E6EDF3; --theme-accent:#C10065; --theme-dark:#061A2C; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="rurikon"] { --theme-primary:#0B346E; --theme-light:#E6ECF3; --theme-accent:#C10050; --theme-dark:#06162C; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="benimidori"] { --theme-primary:#7B90D2; --theme-light:#E6E9F3; --theme-accent:#E76383; --theme-dark:#131D40; --theme-neutral:#E3E4E7; --theme-text:#F5F2EB; }
+    [data-theme="fuji"] { --theme-primary:#8B81C3; --theme-light:#E8E6F3; --theme-accent:#D77C6C; --theme-dark:#1D1838; --theme-neutral:#E4E3E7; --theme-text:#F5F2EB; }
+    [data-theme="kikyo"] { --theme-primary:#6A4C9C; --theme-light:#EBE6F3; --theme-accent:#B56332; --theme-dark:#1A1228; --theme-neutral:#E5E3E7; --theme-text:#F5F2EB; }
+    [data-theme="edomurasaki"] { --theme-primary:#77428D; --theme-light:#EFE6F3; --theme-accent:#A4802A; --theme-dark:#1E0F24; --theme-neutral:#E6E3E7; --theme-text:#F5F2EB; }
+    [data-theme="botan"] { --theme-primary:#C1328E; --theme-light:#F3E6EE; --theme-accent:#97E111; --theme-dark:#320A24; --theme-neutral:#E8E2E6; --theme-text:#F5F2EB; }
+    [data-theme="ginnezumi"] { --theme-primary:#91989F; --theme-light:#EBEDEE; --theme-accent:#AF8098; --theme-dark:#232628; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="keshizumi"] { --theme-primary:#434343; --theme-light:#EDEDED; --theme-accent:#526F52; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="sumi"] { --theme-primary:#1C1C1C; --theme-light:#EDEDED; --theme-accent:#526F52; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+
+    /* === Background === */
+    .phyra-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+    .phyra-gloss {
+      position: fixed; top: 0; left: 0; width: 100%; height: 478px; z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none; transition: opacity 2s ease-in;
+    }
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative; z-index: 2;
+    }
+
+    /* === Base === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif; color: var(--p-text); line-height: 1.7; font-size: 15px; }
+    main, #phyra-main { max-width: var(--phyra-content-width); margin: 0 auto; padding: 40px 20px; box-sizing: border-box; transition: max-width 0.15s ease; }
+
+    .phyra-width-handle {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      width: 6px; height: 60px; background: rgba(128,128,128,0.3);
+      border-radius: 3px; cursor: col-resize; z-index: 99;
+      transition: background 0.2s, opacity 0.3s; opacity: 0.4;
+    }
+    .phyra-width-handle:hover, .phyra-width-handle.dragging { background: var(--p-accent); opacity: 1; }
+
+    /* === Cards === */
+    .slide-card {
+      background: var(--p-bg-card); border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary); border-radius: 8px;
+      padding: 28px 32px; color: var(--p-text); margin-bottom: 24px;
+    }
+    h1, h2, h3 { color: var(--p-text); }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; }
+    h2 { font-size: 1.4rem; border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin-bottom: 16px; }
+    h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    p { margin-bottom: 12px; }
+    ul, ol { padding-left: 1.4em; margin-bottom: 12px; }
+    li { margin-bottom: 4px; }
+    strong { background: var(--p-bold-highlight); padding: 1px 4px; border-radius: 3px; font-weight: 700; }
+
+    /* === Tables === */
+    table { width: 100%; border-collapse: collapse; font-size: 0.88em; margin-bottom: 16px; }
+    th { background: var(--p-primary); padding: 8px 12px; text-align: left; }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+    td { padding: 8px 12px; border-bottom: 1px solid var(--p-border); color: var(--p-text); }
+    tr:hover td { background: rgba(128,128,128,0.08); }
+
+    /* === Tags === */
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75em; font-weight: 600; background: color-mix(in srgb, var(--p-accent) 20%, transparent); color: var(--p-text); margin-right: 6px; margin-bottom: 4px; }
+
+    /* === Score bars === */
+    .score-bar { height: 8px; border-radius: 4px; background: var(--p-border); margin-top: 4px; }
+    .score-bar-fill { height: 100%; border-radius: 4px; background: var(--p-accent); transition: width 0.6s ease; }
+
+    /* === Formulas === */
+    .formula, .katex-display, pre.math {
+      background: var(--p-formula-bg); color: var(--p-text);
+      padding: 12px 16px; border-radius: 6px; border: 1px solid var(--p-border);
+      overflow-x: auto; margin-bottom: 12px;
+    }
+    .katex, code.math { color: var(--p-text); background: transparent; }
+
+    /* === Title === */
+    .title-section { text-align: center; padding: 48px 0 24px; }
+    .title-section h1 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+    .title-section .meta { font-size: 0.85em; color: var(--p-text-secondary); }
+
+    /* === Metric grid === */
+    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+    .metric-item { text-align: center; padding: 16px; background: var(--p-bg-card); border: 1px solid var(--p-border); border-radius: 8px; }
+    .metric-value { font-size: 1.6rem; font-weight: 700; color: var(--p-accent); }
+    .metric-label { font-size: 0.8em; color: var(--p-text-secondary); margin-top: 4px; }
+
+    /* === Switcher === */
+    .phyra-switcher {
+      position: fixed; bottom: 20px; right: 20px; z-index: 100;
+      display: flex; align-items: center; gap: 8px; padding: 6px 12px;
+      background: rgba(128,128,128,0.15); backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(128,128,128,0.2);
+      border-radius: 24px; transition: background 0.3s;
+    }
+    .phyra-switcher select { padding: 4px 8px; background: rgba(255,255,255,0.85); border: 1px solid rgba(128,128,128,0.3); border-radius: 12px; color: #1C1C1C; font-size: 12px; cursor: pointer; outline: none; max-width: 200px; }
+    .phyra-switcher select option { color: #1C1C1C; background: #fff; }
+    .phyra-switcher select optgroup { font-weight: bold; color: #1C1C1C; }
+    .phyra-switcher button { padding: 4px 12px; background: rgba(128,128,128,0.2); border: 1px solid rgba(128,128,128,0.3); border-radius: 12px; color: var(--p-text); cursor: pointer; font-size: 12px; transition: background 0.2s; }
+    .phyra-switcher button:hover { background: rgba(128,128,128,0.35); }
+
+    /* === Footer === */
+    .phyra-footer { text-align: center; padding: 24px 20px; font-size: 12px; color: var(--p-text); opacity: 0.5; letter-spacing: 0.05em; position: relative; z-index: 2; }
+
+    /* === Flow === */
+    .flow-step { display: flex; align-items: flex-start; margin-bottom: 12px; }
+    .flow-num { min-width: 28px; height: 28px; border-radius: 50%; background: var(--p-accent); color: var(--p-dark); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; margin-right: 12px; flex-shrink: 0; }
+    .flow-content { flex: 1; }
+
+    /* === Two-column === */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } .metric-grid { grid-template-columns: 1fr; } }
+
+    /* === Highlight row === */
+    tr.highlight td { background: color-mix(in srgb, var(--p-accent) 10%, transparent); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <div class="phyra-bg"></div>
+  <div class="phyra-gloss"></div>
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <main id="phyra-main">
+
+    <!-- Title -->
+    <div class="title-section">
+      <h1>Latent-WAM</h1>
+      <p style="font-size:1.05em; opacity:0.85;">Latent World Action Modeling for End-to-End Autonomous Driving</p>
+      <p class="meta">Linbo Wang, Yupeng Zheng, Qiang Chen et al. | Institute of Automation CAS; Chongqing Chang'an Technology; Tsinghua University | arXiv: 2603.24581 | 2026-03-25</p>
+    </div>
+
+    <!-- Key Results -->
+    <div class="slide-card">
+      <h2>Key Results at a Glance</h2>
+      <div class="metric-grid">
+        <div class="metric-item">
+          <div class="metric-value">89.3</div>
+          <div class="metric-label">EPDMS on NAVSIM v2<br>(Perception-free SOTA)</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">45.9</div>
+          <div class="metric-label">Road Completion on HUGSIM<br>(Zero-shot, #1 RC)</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">104M</div>
+          <div class="metric-label">Inference parameters<br>107ms on single A100</div>
+        </div>
+      </div>
+      <p>
+        <span class="tag">End-to-End Driving</span>
+        <span class="tag">Latent World Model</span>
+        <span class="tag">Geometric Distillation</span>
+        <span class="tag">Causal Transformer</span>
+        <span class="tag">3D-RoPE</span>
+        <span class="tag">NAVSIM v2</span>
+        <span class="tag">HUGSIM</span>
+      </p>
+    </div>
+
+    <!-- Problem & Motivation -->
+    <div class="slide-card">
+      <h2>Problem: Three Deficiencies of Implicit Latent World Models</h2>
+      <div class="two-col">
+        <div>
+          <h3>Identified Pain Points</h3>
+          <ol>
+            <li><strong>Inadequate compression:</strong> LAW and World4Drive retain large, uncompressed visual token sets, limiting tractable long-horizon world modeling.</li>
+            <li><strong>Weak spatial understanding:</strong> Latent WMs lack 3D geometry; World4Drive requires an external depth estimator at inference time, adding latency.</li>
+            <li><strong>Underutilized temporal dynamics:</strong> Prior methods predict only $T+1$ from frame $T$; historical ego status is not conditioned into the world model.</li>
+          </ol>
+        </div>
+        <div>
+          <h3>Latent-WAM's Response</h3>
+          <ol>
+            <li>Learnable queries compress multi-view images into 16 scene tokens per view via DINO cross-attention — compact by design.</li>
+            <li>WorldMirror geometric features distilled into DINO backbone at training time; no extra module at inference.</li>
+            <li>Causal Transformer conditioned on full historical Scene-Ego status; multi-step prediction with stride-4 horizon.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Architecture -->
+    <div class="slide-card">
+      <h2>Architecture: Three-Module Pipeline</h2>
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h3>Spatial-Aware Compressive World Encoder (SCWE)</h3>
+          <p>Multi-view images $I \in \mathbb{R}^{T \times M \times H \times W \times 3}$ (T=4, M=3, 448×224 px) fed into <strong>DINOv2-Base</strong>. Learnable scene queries $Q_{\text{scene}} \in \mathbb{R}^{T \times M \times 16 \times 768}$ concatenated with image patch tokens; encoder projects to $D_l=256$, yielding 16 compact scene tokens per view per frame.</p>
+          <p>Simultaneously, <strong>frozen WorldMirror</strong> extracts patch-level geometric features $f_g(I) \in \mathbb{R}^{T \times M \times S \times 2048}$ (pre-computed offline). Cosine similarity loss aligns DINO patch tokens with WorldMirror features via geometric projector $\phi$:</p>
+          <p>$$\mathcal{L}_{\text{align}} = 1 - \cos(\text{LN}(\phi(\hat{X})),\; \text{LN}(f_g(I)))$$</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h3>Dynamic Latent World Model (DLWM)</h3>
+          <p>Scene tokens + ego status (command, velocity, acceleration encoded by single-layer MLP) form <strong>Scene-Ego world status</strong> $S_{\text{world}} \in \mathbb{R}^{T \times (M \cdot 16 + 1) \times 256}$. A 4-layer causal Transformer with <strong>3D-RoPE</strong> (temporal freq 50, camera freq 10, token freq 100) predicts future world status $S_{\text{future}}$, supervised by an EMA-updated frozen copy of SCWE. Frame-wise teacher-forcing: intra-frame bidirectional attention; cross-frame strictly causal.</p>
+          <p>Ego status predicted from $S_{\text{future}}$ via three MLPs (command: cross-entropy; velocity/acceleration: MSE). Only used during training.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h3>Trajectory Decoder</h3>
+          <p>Learnable trajectory queries $Q_\tau \in \mathbb{R}^{K \times n_p \times 256}$ attend to current world status $S_{\text{world}}^t$ via 4-layer Transformer decoder. MLP decodes to $K$ candidate trajectories $(x, y, \theta)^{n_p}$ over 4-second horizon. Driving command $C$ selects the final trajectory $\tau$. Only SCWE + Trajectory Decoder run at inference time.</p>
+        </div>
+      </div>
+      <p style="margin-top:8px; font-size:0.85em; color:var(--p-text-secondary);">
+        Total loss: $\mathcal{L} = \mathcal{L}_{\text{traj}} + 0.1\,\mathcal{L}_{\text{align}} + 0.2\,\mathcal{L}_{\text{wm}} + 0.1\,\mathcal{L}_{\text{ego}}$
+      </p>
+    </div>
+
+    <!-- NAVSIM v2 Results -->
+    <div class="slide-card">
+      <h2>NAVSIM v2 Results (Table 1)</h2>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>Type</th><th>NC</th><th>DAC</th><th>EP</th><th>TTC</th><th>EC</th><th>EPDMS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>TransFuser</td><td>P-based</td><td>96.9</td><td>89.9</td><td>92.7</td><td>98.3</td><td>87.1</td><td>87.5</td></tr>
+          <tr><td>DiffusionDrive</td><td>P-based</td><td>98.2</td><td>95.9</td><td>96.8</td><td>98.3</td><td>88.5</td><td>88.4 (87.5)</td></tr>
+          <tr><td>WorldRFT</td><td>P-based</td><td>97.8</td><td>96.5</td><td>97.4</td><td>98.1</td><td>88.5</td><td>88.5</td></tr>
+          <tr><td>Drive-JEPA</td><td>P-based (+annot.)</td><td>98.4</td><td>98.6</td><td>97.6</td><td>97.9</td><td>88.4</td><td>88.4</td></tr>
+          <tr><td>World4Drive</td><td>P-free</td><td>97.8</td><td>96.3</td><td>88.3</td><td>97.1</td><td>53.9</td><td>84.8</td></tr>
+          <tr><td>Epona</td><td>P-free</td><td>97.1</td><td>95.7</td><td>88.6</td><td>96.3</td><td>67.8</td><td>85.1</td></tr>
+          <tr><td>DriveVLA-W0</td><td>P-free</td><td>98.5</td><td>99.1</td><td>86.4</td><td>98.1</td><td>58.9</td><td>86.1</td></tr>
+          <tr class="highlight"><td><strong>Latent-WAM (Ours)</strong></td><td>P-free</td><td>98.1</td><td>97.3</td><td>87.7</td><td>95.4</td><td>98.1</td><td><strong>89.3</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.82em; color:var(--p-text-secondary);">P-based = perception annotation required. Latent-WAM achieves the highest EPDMS overall, driven by strong EC (Extended Comfort) of 98.1 — highest among all methods.</p>
+    </div>
+
+    <!-- HUGSIM Results -->
+    <div class="slide-card">
+      <h2>HUGSIM Zero-Shot Results (Table 2)</h2>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>RC Avg.</th><th>HD-Score Avg.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>UniAD</td><td>40.6</td><td>28.9</td></tr>
+          <tr><td>VAD</td><td>27.9</td><td>12.3</td></tr>
+          <tr><td>LTF</td><td>41.4</td><td>24.8</td></tr>
+          <tr><td>GTRS-Dense</td><td>38.0</td><td>28.6</td></tr>
+          <tr class="highlight"><td><strong>Latent-WAM (Ours)</strong></td><td><strong>45.9</strong></td><td><strong>28.9</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.82em; color:var(--p-text-secondary);">Zero-shot: trained on NAVSIM only, no HUGSIM fine-tuning. Baselines were trained with HUGSIM data — asymmetric comparison.</p>
+    </div>
+
+    <!-- Ablation Studies -->
+    <div class="slide-card">
+      <h2>Ablation Studies</h2>
+      <div class="two-col">
+        <div>
+          <h3>Component Ablation (Table 3)</h3>
+          <table>
+            <thead><tr><th>Compress</th><th>Geom.</th><th>WM</th><th>Ego</th><th>EPDMS</th></tr></thead>
+            <tbody>
+              <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>87.9</td></tr>
+              <tr><td>Y</td><td>-</td><td>-</td><td>-</td><td>87.7</td></tr>
+              <tr><td>Y</td><td>-</td><td>Y</td><td>-</td><td>88.0</td></tr>
+              <tr><td>Y</td><td>-</td><td>Y</td><td>Y</td><td>88.3</td></tr>
+              <tr><td>Y</td><td>Y</td><td>-</td><td>-</td><td>88.6</td></tr>
+              <tr><td>Y</td><td>Y</td><td>Y</td><td>-</td><td>89.0</td></tr>
+              <tr class="highlight"><td>Y</td><td>Y</td><td>Y</td><td>Y</td><td><strong>89.3</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Geometry Injection (Table 4)</h3>
+          <table>
+            <thead><tr><th>Method</th><th>EPDMS</th></tr></thead>
+            <tbody>
+              <tr><td>w/o geometric feature</td><td>88.3</td></tr>
+              <tr><td>Concatenation (frozen)</td><td>88.0</td></tr>
+              <tr class="highlight"><td>Distillation (proposed)</td><td><strong>89.3</strong></td></tr>
+            </tbody>
+          </table>
+          <h3 style="margin-top:16px;">Backbone &amp; Fine-tuning (Table 5)</h3>
+          <table>
+            <thead><tr><th>Backbone</th><th>EPDMS</th></tr></thead>
+            <tbody>
+              <tr><td>DINO-Small (full)</td><td>86.3</td></tr>
+              <tr class="highlight"><td>DINO-Base (full)</td><td><strong>89.3</strong></td></tr>
+              <tr><td>DINO-Small-LoRA</td><td>84.7</td></tr>
+              <tr><td>DINO-Base-LoRA</td><td>68.5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <h3>Temporal Prediction Stride (Table 6)</h3>
+      <table>
+        <thead><tr><th>Prediction Temporal Stride</th><th>EPDMS</th></tr></thead>
+        <tbody>
+          <tr><td>0 → 8 (final frame only)</td><td>88.4</td></tr>
+          <tr class="highlight"><td>-3 → 0 → 4 → 8 (stride 4, proposed)</td><td><strong>89.3</strong></td></tr>
+          <tr><td>-3 → -2 → ... → 8 (stride 2, dense)</td><td>89.1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Score Card -->
+    <div class="slide-card">
+      <h2>Phyra Evaluation</h2>
+      <table>
+        <thead><tr><th>Dimension</th><th>Score</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Novelty</td>
+            <td>3 / 5</td>
+            <td>
+              <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+              Integration of existing components (DINO + WorldMirror distillation + causal WM); no conceptual departure from prior latent WM work.
+            </td>
+          </tr>
+          <tr>
+            <td>Technical Depth</td>
+            <td>3 / 5</td>
+            <td>
+              <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+              3D-RoPE and frame-wise teacher-forcing mask are concretely specified; overall design is straightforward.
+            </td>
+          </tr>
+          <tr>
+            <td>Experiment Completeness</td>
+            <td>4 / 5</td>
+            <td>
+              <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+              NAVSIM v2 + HUGSIM zero-shot; component, geometry, backbone, LoRA, and stride ablations. No failure analysis.
+            </td>
+          </tr>
+          <tr>
+            <td>Writing Quality</td>
+            <td>3 / 5</td>
+            <td>
+              <div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div>
+              Consistent "Latent-WMA" typo throughout experiment sections; dense notation but clear structure.
+            </td>
+          </tr>
+          <tr>
+            <td>Practical Value</td>
+            <td>4 / 5</td>
+            <td>
+              <div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div>
+              104M inference params, 107ms, ~25h training data, zero-shot transfer to HUGSIM. Concrete engineering advantages.
+            </td>
+          </tr>
+          <tr class="highlight">
+            <td><strong>Overall</strong></td>
+            <td><strong>3.4 / 5</strong></td>
+            <td>
+              <div class="score-bar"><div class="score-bar-fill" style="width:68%"></div></div>
+              Solid integration paper with data-efficiency demonstration; novelty is incremental.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Critical Analysis -->
+    <div class="slide-card">
+      <h2>Critical Analysis</h2>
+      <div class="two-col">
+        <div>
+          <h3>Highlights</h3>
+          <ul>
+            <li>Geometric distillation pre-computes WorldMirror features offline — zero inference-time overhead for spatial awareness.</li>
+            <li>~10x training data reduction vs. Drive-JEPA while matching or exceeding EPDMS (Figure 1).</li>
+            <li>LoRA degradation result (DINO-Base-LoRA: 68.5 EPDMS) is a useful negative finding: high-dimensional geometric distillation requires full fine-tuning flexibility.</li>
+            <li>Zero-shot HUGSIM transfer demonstrates cross-distribution generalization without any domain adaptation.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Weaknesses</h3>
+          <ul>
+            <li>DLWM and its outputs are <strong>entirely discarded at inference</strong>; its influence on planning is indirect (backbone co-training only). This design gap is unstated.</li>
+            <li>Consistent "Latent-WMA" vs. "Latent-WAM" naming error throughout experiment tables and figures — unacknowledged in the text.</li>
+            <li>HUGSIM comparison is asymmetric: Latent-WAM is zero-shot; all baselines trained with HUGSIM data.</li>
+            <li>No variance across runs; fine-grained EPDMS differences (89.0 vs. 89.1 vs. 89.3) have no statistical grounding.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Citations to Track -->
+    <div class="slide-card">
+      <h2>Citations Worth Tracking</h2>
+      <table>
+        <thead><tr><th>Paper</th><th>Relation</th></tr></thead>
+        <tbody>
+          <tr><td><strong>LAW</strong> (Li, Fan et al. 2024, Ref 19)</td><td>Direct predecessor; Latent-WAM's DLWM is conceptually built upon it.</td></tr>
+          <tr><td><strong>World4Drive</strong> (Zheng et al. 2025, Ref 47)</td><td>Closest latent WM competitor; intention-aware physical latent world model.</td></tr>
+          <tr><td><strong>WorldMirror</strong> (Liu et al. 2025, Ref 25)</td><td>Frozen geometric teacher model; built on VGGT. What geometric information is actually distilled?</td></tr>
+          <tr><td><strong>DINOv2</strong> (Oquab et al. 2023, Ref 28)</td><td>Vision backbone; self-supervised properties central to why full fine-tuning distillation works.</td></tr>
+          <tr><td><strong>Drive-JEPA</strong> (Wang et al. 2026, Ref 35)</td><td>88.4 EPDMS with perception annotations; direct technical comparator at higher resource cost.</td></tr>
+          <tr><td><strong>NAVSIM v2</strong> (Cao et al. 2025, Ref 2)</td><td>Primary benchmark; EPDMS formula and sub-metric definitions (Supplementary A.1) required for interpreting results.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Inference Module Details -->
+    <div class="slide-card">
+      <h2>Inference Latency (Table 7, Supplementary)</h2>
+      <table>
+        <thead><tr><th>Module</th><th>Parameters</th><th>Memory</th><th>Latency</th></tr></thead>
+        <tbody>
+          <tr><td>World Encoder (SCWE)</td><td>86.6M</td><td>—</td><td>100ms</td></tr>
+          <tr><td>Trajectory Decoder</td><td>8.4M</td><td>—</td><td>6ms</td></tr>
+          <tr class="highlight"><td><strong>All modules</strong></td><td><strong>104M</strong></td><td><strong>1.1GB</strong></td><td><strong>107ms</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.82em; color:var(--p-text-secondary);">Measured on single A100 GPU, single batch, averaged over 10 forward passes after 3 warm-up iterations. DLWM (87.4M parameters during training) is not used at inference.</p>
+    </div>
+
+  </main>
+
+  <div class="phyra-footer">Phyra Paper Read &nbsp;|&nbsp; Latent-WAM &nbsp;|&nbsp; 2026-04-19</div>
+
+  <script>
+    const LIGHT_THEMES = ["nadeshiko","taikoh","momo","toki","akebono","sangosyu","araisyu","kanzo","yamabuki","kariyasu","hiwa","hiwamoegi","yanagizome","nae","wakatake","seiji","mizu","sora","wasurenagusa","gunjyo","usu","shironeri","shironezumi"];
+    const DARK_THEMES  = ["kohbai","suoh","ichigo","benihi","ohni","sohi","taisya","kohaku","koke","moegi","matsuba","tokiwa","aomidori","asagi","shinbashi","hanaasagi","chigusa","hanada","ruri","rurikon","benimidori","fuji","kikyo","edomurasaki","botan","ginnezumi","keshizumi","sumi"];
+    const ALL_THEMES   = LIGHT_THEMES.concat(DARK_THEMES);
+
+    function phyraApply(name) {
+      const el = document.documentElement;
+      el.setAttribute('data-theme', name);
+      el.setAttribute('data-theme-mode', DARK_THEMES.includes(name) ? 'dark' : 'light');
+    }
+
+    function phyraRandom() {
+      const t = ALL_THEMES[Math.floor(Math.random() * ALL_THEMES.length)];
+      document.getElementById('phyra-select').value = t;
+      phyraApply(t);
+    }
+
+    (function buildSelect() {
+      const sel = document.getElementById('phyra-select');
+      const lg = document.createElement('optgroup'); lg.label = 'Light';
+      LIGHT_THEMES.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; lg.appendChild(o); });
+      const dg = document.createElement('optgroup'); dg.label = 'Dark';
+      DARK_THEMES.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; dg.appendChild(o); });
+      sel.appendChild(lg); sel.appendChild(dg);
+      sel.value = document.documentElement.getAttribute('data-theme') || 'asagi';
+    })();
+
+    // Width handle drag
+    (function() {
+      const handle = document.getElementById('phyra-width-handle');
+      const main   = document.getElementById('phyra-main');
+      let dragging = false, startX = 0, startW = 0;
+      handle.addEventListener('mousedown', e => {
+        dragging = true; startX = e.clientX;
+        startW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width'));
+        handle.classList.add('dragging'); e.preventDefault();
+      });
+      document.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        const delta = e.clientX - startX;
+        const nw = Math.max(600, Math.min(1600, startW + delta * 2));
+        document.documentElement.style.setProperty('--phyra-content-width', nw + 'px');
+        handle.style.right = ((window.innerWidth - nw) / 2 - 20) + 'px';
+      });
+      document.addEventListener('mouseup', () => { dragging = false; handle.classList.remove('dragging'); });
+      function positionHandle() {
+        const cw = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--phyra-content-width'));
+        handle.style.right = ((window.innerWidth - Math.min(cw, window.innerWidth)) / 2 + 8) + 'px';
+      }
+      positionHandle();
+      window.addEventListener('resize', positionHandle);
+    })();
+  </script>
+
+</body>
+</html>
