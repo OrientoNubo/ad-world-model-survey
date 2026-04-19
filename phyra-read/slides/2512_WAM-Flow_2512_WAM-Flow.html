@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="keshizumi" data-theme-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAM-Flow: Discrete Flow Matching for E2E AD | Phyra Paper Read</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* === Semantic aliases === */
+    :root {
+      --p-primary : var(--theme-primary);
+      --p-light   : var(--theme-light);
+      --p-accent  : var(--theme-accent);
+      --p-dark    : var(--theme-dark);
+      --p-neutral : var(--theme-neutral);
+      --p-text    : var(--theme-text);
+      --phyra-content-width: 900px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--p-text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* === Layer 1 + Layer 2 === */
+    .phyra-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-color: var(--p-primary);
+      background-image: url('https://nipponcolors.com/images/texture.png');
+      background-repeat: repeat;
+      transition: background-color 2s ease-in;
+      pointer-events: none;
+    }
+
+    /* === Layer 3 === */
+    .phyra-gloss {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 478px;
+      z-index: 1;
+      background: url('https://nipponcolors.com/images/gloss.png') repeat-x;
+      pointer-events: none;
+      transition: opacity 2s ease-in;
+    }
+
+    body > *:not(.phyra-bg):not(.phyra-gloss):not(.phyra-switcher):not(.phyra-width-handle) {
+      position: relative;
+      z-index: 2;
+    }
+
+    main, #phyra-main {
+      max-width: var(--phyra-content-width);
+      margin: 0 auto;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      transition: max-width 0.15s ease;
+    }
+
+    /* === Light / Dark derived === */
+    [data-theme-mode="light"] {
+      --p-bg-card        : rgba(255, 255, 255, 0.92);
+      --p-formula-bg     : rgba(255, 255, 255, 0.92);
+      --p-border         : rgba(28, 28, 28, 0.12);
+      --p-text-secondary : rgba(28, 28, 28, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 15%, transparent);
+      --p-gloss-top      : 0.22;
+      --p-gloss-mid      : 0.06;
+    }
+
+    [data-theme-mode="dark"] {
+      --p-bg-card        : rgba(0, 0, 0, 0.35);
+      --p-formula-bg     : rgba(0, 0, 0, 0.35);
+      --p-border         : rgba(245, 242, 235, 0.12);
+      --p-text-secondary : rgba(245, 242, 235, 0.60);
+      --p-bold-highlight : color-mix(in srgb, var(--p-accent) 20%, transparent);
+      --p-gloss-top      : 0.10;
+      --p-gloss-mid      : 0.03;
+    }
+
+    /* === Slide card === */
+    .slide-card {
+      background: var(--p-bg-card);
+      border: 1px solid var(--p-border);
+      border-left: 4px solid var(--p-primary);
+      border-radius: 8px;
+      padding: 28px 32px;
+      color: var(--p-text);
+      margin-bottom: 28px;
+    }
+
+    h1, h2, h3 { color: var(--p-text); }
+    h1 { font-size: 1.8rem; margin-bottom: 8px; }
+    h2 { font-size: 1.4rem; border-bottom: 2px solid var(--p-border); padding-bottom: 8px; margin-bottom: 16px; }
+    h3 { font-size: 1.1rem; margin-bottom: 10px; }
+
+    strong {
+      background: var(--p-bold-highlight);
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75em;
+      font-weight: 600;
+      background: color-mix(in srgb, var(--p-accent) 20%, transparent);
+      color: var(--p-text);
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9em;
+      margin: 12px 0;
+    }
+
+    th {
+      background: var(--p-primary);
+      color: var(--p-text);
+      padding: 8px 12px;
+      text-align: left;
+    }
+    [data-theme-mode="light"] th { color: #1C1C1C; }
+    [data-theme-mode="dark"] th { color: #F5F2EB; }
+
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--p-border);
+      color: var(--p-text);
+    }
+    tr:hover td { background: rgba(128, 128, 128, 0.08); }
+
+    .formula, .katex-display, pre.math {
+      background: var(--p-formula-bg);
+      color: var(--p-text);
+      padding: 12px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--p-border);
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+    .katex, code.math { color: var(--p-text); background: transparent; }
+
+    .score-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: var(--p-border);
+      margin: 4px 0;
+    }
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--p-accent);
+      transition: width 0.6s ease;
+    }
+
+    ul { padding-left: 20px; margin: 8px 0; }
+    li { margin-bottom: 6px; }
+    p { margin-bottom: 10px; }
+
+    .meta-line {
+      font-size: 0.85em;
+      color: var(--p-text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .flow-diagram {
+      background: var(--p-formula-bg);
+      border: 1px solid var(--p-border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85em;
+      line-height: 1.5;
+      overflow-x: auto;
+      white-space: pre;
+      margin: 12px 0;
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .score-label { width: 180px; font-size: 0.9em; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; }
+    .score-num { width: 28px; text-align: right; font-size: 0.9em; font-weight: 700; color: var(--p-accent); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* === Width handle === */
+    .phyra-width-handle {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 60px;
+      background: rgba(128, 128, 128, 0.3);
+      border-radius: 3px;
+      cursor: col-resize;
+      z-index: 99;
+      transition: background 0.2s, opacity 0.3s;
+      opacity: 0.4;
+    }
+    .phyra-width-handle:hover, .phyra-width-handle.dragging {
+      background: var(--p-accent);
+      opacity: 1;
+    }
+
+    /* === Footer === */
+    .phyra-footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 12px;
+      color: var(--p-text);
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* === Switcher === */
+    .phyra-switcher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(128, 128, 128, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(128, 128, 128, 0.2);
+      border-radius: 24px;
+      transition: background 0.3s;
+    }
+    .phyra-switcher select {
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(128, 128, 128, 0.3);
+      border-radius: 12px;
+      color: #1C1C1C;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+      max-width: 200px;
+    }
+    .phyra-switcher select option { color: #1C1C1C; background: #fff; }
+    .phyra-switcher select optgroup { font-weight: bold; color: #1C1C1C; }
+    .phyra-switcher button {
+      padding: 4px 12px;
+      background: rgba(128, 128, 128, 0.2);
+      border: 1px solid rgba(128, 128, 128, 0.3);
+      border-radius: 12px;
+      color: var(--p-text);
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.2s;
+    }
+    .phyra-switcher button:hover { background: rgba(128, 128, 128, 0.35); }
+
+    /* === All 100 themes === */
+    /* Light Themes (42) */
+    [data-theme="nadeshiko"] { --theme-primary:#DC9FB4; --theme-light:#F3E6EB; --theme-accent:#92E566; --theme-dark:#471727; --theme-neutral:#E7E3E4; --theme-text:#1C1C1C; }
+    [data-theme="taikoh"] { --theme-primary:#F8C3CD; --theme-light:#F3E6E9; --theme-accent:#6EFE4C; --theme-dark:#600D1D; --theme-neutral:#E8E2E3; --theme-text:#1C1C1C; }
+    [data-theme="momo"] { --theme-primary:#F596AA; --theme-light:#F3E6E9; --theme-accent:#72FE4C; --theme-dark:#560C1B; --theme-neutral:#E8E2E4; --theme-text:#1C1C1C; }
+    [data-theme="toki"] { --theme-primary:#EEA9A9; --theme-light:#F3E6E6; --theme-accent:#50FA50; --theme-dark:#580D0D; --theme-neutral:#E8E2E2; --theme-text:#1C1C1C; }
+    [data-theme="jinzamomi"] { --theme-primary:#EB7A77; --theme-light:#F3E7E6; --theme-accent:#4CFE51; --theme-dark:#4D0C0B; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+    [data-theme="haizakura"] { --theme-primary:#D7C4BB; --theme-light:#F1EBE8; --theme-accent:#7CCE97; --theme-dark:#402D23; --theme-neutral:#E6E5E4; --theme-text:#1C1C1C; }
+    [data-theme="akebono"] { --theme-primary:#F19483; --theme-light:#F3E8E6; --theme-accent:#4CFE68; --theme-dark:#51160B; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+    [data-theme="sangosyu"] { --theme-primary:#F17C67; --theme-light:#F3E8E6; --theme-accent:#4CFE67; --theme-dark:#4B140A; --theme-neutral:#E8E3E2; --theme-text:#1C1C1C; }
+    [data-theme="araisyu"] { --theme-primary:#FB966E; --theme-light:#F3EAE6; --theme-accent:#4CFE7F; --theme-dark:#4E1E0B; --theme-neutral:#E8E4E2; --theme-text:#1C1C1C; }
+    [data-theme="akakoh"] { --theme-primary:#E3916E; --theme-light:#F3EAE6; --theme-accent:#4FFB83; --theme-dark:#491D0A; --theme-neutral:#E8E4E2; --theme-text:#1C1C1C; }
+    [data-theme="kokikuchinashi"] { --theme-primary:#FB9966; --theme-light:#F3EBE6; --theme-accent:#4CFE89; --theme-dark:#4D210B; --theme-neutral:#E8E4E2; --theme-text:#1C1C1C; }
+    [data-theme="kanzo"] { --theme-primary:#FC9F4D; --theme-light:#F3ECE6; --theme-accent:#4AFE9E; --theme-dark:#47270A; --theme-neutral:#E8E5E2; --theme-text:#1C1C1C; }
+    [data-theme="beniukon"] { --theme-primary:#E98B2A; --theme-light:#F3EDE6; --theme-accent:#14FE8B; --theme-dark:#3C2208; --theme-neutral:#E8E5E2; --theme-text:#1C1C1C; }
+    [data-theme="kuchiba"] { --theme-primary:#E2943B; --theme-light:#F3EDE6; --theme-accent:#1EFF95; --theme-dark:#3E2508; --theme-neutral:#E8E5E2; --theme-text:#1C1C1C; }
+    [data-theme="yamabuki"] { --theme-primary:#FFB11B; --theme-light:#F3EFE6; --theme-accent:#1BFFB0; --theme-dark:#3D2B08; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="hajizome"] { --theme-primary:#DDA52D; --theme-light:#F3EFE6; --theme-accent:#0BFEB1; --theme-dark:#3A2A08; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="tamago"] { --theme-primary:#F9BF45; --theme-light:#F3EFE6; --theme-accent:#3FFFC1; --theme-dark:#453209; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="tamamorokoshi"] { --theme-primary:#E8B647; --theme-light:#F3EFE6; --theme-accent:#30FFBE; --theme-dark:#423009; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="usuki"] { --theme-primary:#FAD689; --theme-light:#F3EFE6; --theme-accent:#4CFEC6; --theme-dark:#543D0C; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="kuchinashi"] { --theme-primary:#F6C555; --theme-light:#F3EFE6; --theme-accent:#4CFEC8; --theme-dark:#48350A; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="tohoh"] { --theme-primary:#FFC408; --theme-light:#F3F0E6; --theme-accent:#07FFC4; --theme-dark:#392D08; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="ukon"] { --theme-primary:#EFBB24; --theme-light:#F3F0E6; --theme-accent:#14FEC2; --theme-dark:#3C2E08; --theme-neutral:#E8E6E2; --theme-text:#1C1C1C; }
+    [data-theme="tonoko"] { --theme-primary:#D7B98E; --theme-light:#F3EEE6; --theme-accent:#65E6B1; --theme-dark:#443015; --theme-neutral:#E7E5E3; --theme-text:#1C1C1C; }
+    [data-theme="kariyasu"] { --theme-primary:#E9CD4C; --theme-light:#F3F1E6; --theme-accent:#35FFDB; --theme-dark:#433909; --theme-neutral:#E8E7E2; --theme-text:#1C1C1C; }
+    [data-theme="hiwa"] { --theme-primary:#BEC23F; --theme-light:#F3F3E6; --theme-accent:#1EDCE2; --theme-dark:#31320D; --theme-neutral:#E7E7E3; --theme-text:#1C1C1C; }
+    [data-theme="hiwamoegi"] { --theme-primary:#90B44B; --theme-light:#EFF3E6; --theme-accent:#2D99D1; --theme-dark:#242E11; --theme-neutral:#E6E7E3; --theme-text:#1C1C1C; }
+    [data-theme="yanagizome"] { --theme-primary:#91AD70; --theme-light:#EDF1E8; --theme-accent:#5992C3; --theme-dark:#242E19; --theme-neutral:#E5E6E4; --theme-text:#1C1C1C; }
+    [data-theme="nae"] { --theme-primary:#86C166; --theme-light:#EBF3E6; --theme-accent:#4C7EDA; --theme-dark:#1F3613; --theme-neutral:#E4E7E3; --theme-text:#1C1C1C; }
+    [data-theme="wakatake"] { --theme-primary:#5DAC81; --theme-light:#E7F2EC; --theme-accent:#7E42C6; --theme-dark:#152C20; --theme-neutral:#E4E6E5; --theme-text:#1C1C1C; }
+    [data-theme="byakuroku"] { --theme-primary:#A8D8B9; --theme-light:#E6F3EB; --theme-accent:#956FDB; --theme-dark:#1B442A; --theme-neutral:#E3E7E4; --theme-text:#1C1C1C; }
+    [data-theme="seiji"] { --theme-primary:#69B0AC; --theme-light:#E7F2F2; --theme-accent:#C150C8; --theme-dark:#172F2D; --theme-neutral:#E4E6E6; --theme-text:#1C1C1C; }
+    [data-theme="mizuasagi"] { --theme-primary:#66BAB7; --theme-light:#E6F3F2; --theme-accent:#CE4CD3; --theme-dark:#153231; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="byakugun"] { --theme-primary:#78C2C4; --theme-light:#E6F3F3; --theme-accent:#DA61D6; --theme-dark:#163738; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="kamenozoki"] { --theme-primary:#A5DEE4; --theme-light:#E6F2F3; --theme-accent:#EC5EDF; --theme-dark:#14484E; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="mizu"] { --theme-primary:#81C7D4; --theme-light:#E6F1F3; --theme-accent:#E763D3; --theme-dark:#133A41; --theme-neutral:#E3E7E7; --theme-text:#1C1C1C; }
+    [data-theme="sora"] { --theme-primary:#58B2DC; --theme-light:#E6EFF3; --theme-accent:#F83BBC; --theme-dark:#0A3042; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="wasurenagusa"] { --theme-primary:#7DB9DE; --theme-light:#E6EEF3; --theme-accent:#F258B8; --theme-dark:#0E3247; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="tsuyukusa"] { --theme-primary:#2EA9DF; --theme-light:#E6EFF3; --theme-accent:#FE0EB5; --theme-dark:#082B3A; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="gunjyo"] { --theme-primary:#51A8DD; --theme-light:#E6EEF3; --theme-accent:#FA33AF; --theme-dark:#092C41; --theme-neutral:#E2E6E8; --theme-text:#1C1C1C; }
+    [data-theme="usu"] { --theme-primary:#B28FCE; --theme-light:#EDE6F3; --theme-accent:#DDAB6E; --theme-dark:#2D183E; --theme-neutral:#E5E3E7; --theme-text:#1C1C1C; }
+    [data-theme="shironeri"] { --theme-primary:#FCFAF2; --theme-light:#F3F0E6; --theme-accent:#55F6D5; --theme-dark:#685713; --theme-neutral:#E8E7E2; --theme-text:#1C1C1C; }
+    [data-theme="shironezumi"] { --theme-primary:#BDC0BA; --theme-light:#EDEDEC; --theme-accent:#93A5B8; --theme-dark:#2F312C; --theme-neutral:#E5E5E5; --theme-text:#1C1C1C; }
+    /* Dark Themes (58) */
+    [data-theme="kohbai"] { --theme-primary:#E16B8C; --theme-light:#F3E6EA; --theme-accent:#80FA51; --theme-dark:#470B1C; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+    [data-theme="suoh"] { --theme-primary:#8E354A; --theme-light:#F3E6E9; --theme-accent:#3DA51D; --theme-dark:#260C12; --theme-neutral:#E7E3E4; --theme-text:#F5F2EB; }
+    [data-theme="ichigo"] { --theme-primary:#B5495B; --theme-light:#F3E6E8; --theme-accent:#47D22B; --theme-dark:#2E1015; --theme-neutral:#E7E3E4; --theme-text:#F5F2EB; }
+    [data-theme="karakurenai"] { --theme-primary:#D0104C; --theme-light:#F3E6EA; --theme-accent:#46E000; --theme-dark:#300714; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+    [data-theme="kurenai"] { --theme-primary:#CB1B45; --theme-light:#F3E6E9; --theme-accent:#36E500; --theme-dark:#320711; --theme-neutral:#E8E2E4; --theme-text:#F5F2EB; }
+    [data-theme="kokiake"] { --theme-primary:#86473F; --theme-light:#F3E8E6; --theme-accent:#299B36; --theme-dark:#23110F; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+    [data-theme="azuki"] { --theme-primary:#954A45; --theme-light:#F3E7E6; --theme-accent:#2CAD34; --theme-dark:#261110; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+    [data-theme="akabeni"] { --theme-primary:#CB4042; --theme-light:#F3E6E7; --theme-accent:#22EB1F; --theme-dark:#360C0C; --theme-neutral:#E8E2E3; --theme-text:#F5F2EB; }
+    [data-theme="syojyohi"] { --theme-primary:#E83015; --theme-light:#F3E8E6; --theme-accent:#00FD20; --theme-dark:#370D07; --theme-neutral:#E8E3E2; --theme-text:#F5F2EB; }
+    [data-theme="entan"] { --theme-primary:#D75455; --theme-light:#F3E6E6; --theme-accent:#38F337; --theme-dark:#3E0B0C; --theme-neutral:#E8E2E2; --theme-text:#F5F2EB; }
+    [data-theme="benihi"] { --theme-primary:#F75C2F; --theme-light:#F3E9E6; --theme-accent:#26FF57; --theme-dark:#401509; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+    [data-theme="terigaki"] { --theme-primary:#C46243; --theme-light:#F3E9E6; --theme-accent:#23E351; --theme-dark:#33170D; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+    [data-theme="ohni"] { --theme-primary:#F05E1C; --theme-light:#F3EAE6; --theme-accent:#0DFE58; --theme-dark:#3A1808; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+    [data-theme="sohi"] { --theme-primary:#ED784A; --theme-light:#F3EAE6; --theme-accent:#38FF70; --theme-dark:#441A09; --theme-neutral:#E8E4E2; --theme-text:#F5F2EB; }
+    [data-theme="ensyucha"] { --theme-primary:#CA7853; --theme-light:#F3EAE6; --theme-accent:#36E66D; --theme-dark:#381B0E; --theme-neutral:#E7E4E3; --theme-text:#F5F2EB; }
+    [data-theme="kogecha"] { --theme-primary:#563F2E; --theme-light:#F2ECE7; --theme-accent:#2F9259; --theme-dark:#221810; --theme-neutral:#E6E5E4; --theme-text:#F5F2EB; }
+    [data-theme="taisya"] { --theme-primary:#A36336; --theme-light:#F3ECE6; --theme-accent:#1ABE5E; --theme-dark:#2A180C; --theme-neutral:#E7E5E3; --theme-text:#F5F2EB; }
+    [data-theme="kohaku"] { --theme-primary:#CA7A2C; --theme-light:#F3EDE6; --theme-accent:#09EC79; --theme-dark:#341E09; --theme-neutral:#E8E5E2; --theme-text:#F5F2EB; }
+    [data-theme="kenpohzome"] { --theme-primary:#43341B; --theme-light:#F3EEE6; --theme-accent:#20A070; --theme-dark:#251C0D; --theme-neutral:#E7E5E3; --theme-text:#F5F2EB; }
+    [data-theme="koke"] { --theme-primary:#838A2D; --theme-light:#F2F3E6; --theme-accent:#179FAA; --theme-dark:#25270B; --theme-neutral:#E7E7E3; --theme-text:#F5F2EB; }
+    [data-theme="moegi"] { --theme-primary:#7BA23F; --theme-light:#EEF3E6; --theme-accent:#2480BC; --theme-dark:#1F290E; --theme-neutral:#E5E7E3; --theme-text:#F5F2EB; }
+    [data-theme="matsuba"] { --theme-primary:#42602D; --theme-light:#ECF3E6; --theme-accent:#285699; --theme-dark:#17230F; --theme-neutral:#E5E7E3; --theme-text:#F5F2EB; }
+    [data-theme="tokiwa"] { --theme-primary:#1B813E; --theme-light:#E6F3EB; --theme-accent:#4406BB; --theme-dark:#072B13; --theme-neutral:#E2E8E4; --theme-text:#F5F2EB; }
+    [data-theme="midori"] { --theme-primary:#227D51; --theme-light:#E6F3ED; --theme-accent:#630FB1; --theme-dark:#09291A; --theme-neutral:#E2E8E5; --theme-text:#F5F2EB; }
+    [data-theme="tokusa"] { --theme-primary:#2D6D4B; --theme-light:#E6F3EC; --theme-accent:#5C229F; --theme-dark:#0D2518; --theme-neutral:#E3E7E5; --theme-text:#F5F2EB; }
+    [data-theme="rokusyoh"] { --theme-primary:#24936E; --theme-light:#E6F3EF; --theme-accent:#7D0BB5; --theme-dark:#082A1F; --theme-neutral:#E2E8E6; --theme-text:#F5F2EB; }
+    [data-theme="aomidori"] { --theme-primary:#00AA90; --theme-light:#E6F3F1; --theme-accent:#A400C1; --theme-dark:#062C26; --theme-neutral:#E2E8E7; --theme-text:#F5F2EB; }
+    [data-theme="asagi"] { --theme-primary:#33A6B8; --theme-light:#E6F1F3; --theme-accent:#D614BC; --theme-dark:#0B2A2F; --theme-neutral:#E2E7E8; --theme-text:#F5F2EB; }
+    [data-theme="shinbashi"] { --theme-primary:#0089A7; --theme-light:#E6F1F3; --theme-accent:#C1009E; --theme-dark:#06252C; --theme-neutral:#E2E7E8; --theme-text:#F5F2EB; }
+    [data-theme="hanaasagi"] { --theme-primary:#1E88A8; --theme-light:#E6F0F3; --theme-accent:#C40197; --theme-dark:#06232C; --theme-neutral:#E2E6E8; --theme-text:#F5F2EB; }
+    [data-theme="chigusa"] { --theme-primary:#3A8FB7; --theme-light:#E6EFF3; --theme-accent:#D51B9A; --theme-dark:#0C242F; --theme-neutral:#E3E6E7; --theme-text:#F5F2EB; }
+    [data-theme="hanada"] { --theme-primary:#006284; --theme-light:#E6F0F3; --theme-accent:#C1008F; --theme-dark:#06222C; --theme-neutral:#E2E6E8; --theme-text:#F5F2EB; }
+    [data-theme="ruri"] { --theme-primary:#005CAF; --theme-light:#E6EDF3; --theme-accent:#C10065; --theme-dark:#061A2C; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="rurikon"] { --theme-primary:#0B346E; --theme-light:#E6ECF3; --theme-accent:#C10050; --theme-dark:#06162C; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="benimidori"] { --theme-primary:#7B90D2; --theme-light:#E6E9F3; --theme-accent:#E76383; --theme-dark:#131D40; --theme-neutral:#E3E4E7; --theme-text:#F5F2EB; }
+    [data-theme="fujinezumi"] { --theme-primary:#6E75A4; --theme-light:#E9EAF1; --theme-accent:#BB5663; --theme-dark:#191B2A; --theme-neutral:#E4E4E6; --theme-text:#F5F2EB; }
+    [data-theme="benikakehana"] { --theme-primary:#4E4F97; --theme-light:#E7E7F2; --theme-accent:#AF3537; --theme-dark:#121226; --theme-neutral:#E4E4E6; --theme-text:#F5F2EB; }
+    [data-theme="konjyo"] { --theme-primary:#113285; --theme-light:#E6EAF3; --theme-accent:#C10037; --theme-dark:#06112C; --theme-neutral:#E2E4E8; --theme-text:#F5F2EB; }
+    [data-theme="kon"] { --theme-primary:#0F2540; --theme-light:#E6ECF3; --theme-accent:#B70A58; --theme-dark:#08172A; --theme-neutral:#E2E5E8; --theme-text:#F5F2EB; }
+    [data-theme="konkikyo"] { --theme-primary:#211E55; --theme-light:#E7E6F3; --theme-accent:#A7221A; --theme-dark:#0D0C26; --theme-neutral:#E3E3E7; --theme-text:#F5F2EB; }
+    [data-theme="kurotsurubami"] { --theme-primary:#0B1013; --theme-light:#E8EEF1; --theme-accent:#8E336C; --theme-dark:#121B20; --theme-neutral:#E4E5E6; --theme-text:#F5F2EB; }
+    [data-theme="fuji"] { --theme-primary:#8B81C3; --theme-light:#E8E6F3; --theme-accent:#D77C6C; --theme-dark:#1D1838; --theme-neutral:#E4E3E7; --theme-text:#F5F2EB; }
+    [data-theme="fujimurasaki"] { --theme-primary:#8A6BBE; --theme-light:#EBE6F3; --theme-accent:#D68352; --theme-dark:#211535; --theme-neutral:#E5E3E7; --theme-text:#F5F2EB; }
+    [data-theme="kikyo"] { --theme-primary:#6A4C9C; --theme-light:#EBE6F3; --theme-accent:#B56332; --theme-dark:#1A1228; --theme-neutral:#E5E3E7; --theme-text:#F5F2EB; }
+    [data-theme="shion"] { --theme-primary:#8F77B5; --theme-light:#EBE7F2; --theme-accent:#CA8A61; --theme-dark:#221931; --theme-neutral:#E5E4E6; --theme-text:#F5F2EB; }
+    [data-theme="edomurasaki"] { --theme-primary:#77428D; --theme-light:#EFE6F3; --theme-accent:#A4802A; --theme-dark:#1E0F24; --theme-neutral:#E6E3E7; --theme-text:#F5F2EB; }
+    [data-theme="murasaki"] { --theme-primary:#592C63; --theme-light:#F1E6F3; --theme-accent:#9C8625; --theme-dark:#200E24; --theme-neutral:#E6E3E7; --theme-text:#F5F2EB; }
+    [data-theme="benifuji"] { --theme-primary:#B481BB; --theme-light:#F1E7F2; --theme-accent:#CFC36C; --theme-dark:#311A34; --theme-neutral:#E6E4E6; --theme-text:#F5F2EB; }
+    [data-theme="botan"] { --theme-primary:#C1328E; --theme-light:#F3E6EE; --theme-accent:#97E111; --theme-dark:#320A24; --theme-neutral:#E8E2E6; --theme-text:#F5F2EB; }
+    [data-theme="tsutsuji"] { --theme-primary:#E03C8A; --theme-light:#F3E6EC; --theme-accent:#88FF1D; --theme-dark:#3E0822; --theme-neutral:#E8E2E5; --theme-text:#F5F2EB; }
+    [data-theme="ginnezumi"] { --theme-primary:#91989F; --theme-light:#EBEDEE; --theme-accent:#AF8098; --theme-dark:#232628; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="namari"] { --theme-primary:#787878; --theme-light:#EDEDED; --theme-accent:#668966; --theme-dark:#1D1D1D; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="hai"] { --theme-primary:#828282; --theme-light:#EDEDED; --theme-accent:#6F946F; --theme-dark:#202020; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="nibi"] { --theme-primary:#656765; --theme-light:#ECEDEC; --theme-accent:#555576; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="aonibi"] { --theme-primary:#535953; --theme-light:#ECEDEC; --theme-accent:#4E4E73; --theme-dark:#181A18; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="keshizumi"] { --theme-primary:#434343; --theme-light:#EDEDED; --theme-accent:#526F52; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="sumi"] { --theme-primary:#1C1C1C; --theme-light:#EDEDED; --theme-accent:#526F52; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+    [data-theme="kuro"] { --theme-primary:#080808; --theme-light:#EDEDED; --theme-accent:#526F52; --theme-dark:#191919; --theme-neutral:#E5E5E5; --theme-text:#F5F2EB; }
+  </style>
+</head>
+<body>
+  <div class="phyra-bg"></div>
+  <div class="phyra-gloss"></div>
+  <div class="phyra-width-handle" id="phyra-width-handle"></div>
+
+  <div class="phyra-switcher">
+    <select id="phyra-select" onchange="phyraApply(this.value)"></select>
+    <button onclick="phyraRandom()">Random</button>
+  </div>
+
+  <main id="phyra-main">
+
+    <!-- 1. Header -->
+    <div class="slide-card">
+      <h1>WAM-Flow</h1>
+      <p class="meta-line">Parallel Coarse-to-Fine Motion Planning via Discrete Flow Matching for Autonomous Driving</p>
+      <p class="meta-line">arXiv:2512.06112v2 &nbsp;|&nbsp; 2025-12-11 &nbsp;|&nbsp; Fudan University &amp; Yinwang Intelligent Technology</p>
+      <div style="margin-top: 12px;">
+        <span class="tag">Discrete Flow Matching</span>
+        <span class="tag">VLA</span>
+        <span class="tag">End-to-End AD</span>
+        <span class="tag">GRPO</span>
+        <span class="tag">NAVSIM</span>
+        <span class="tag">Numerical Tokenizer</span>
+        <span class="tag">Coarse-to-Fine</span>
+      </div>
+    </div>
+
+    <!-- 2. Scores -->
+    <div class="slide-card">
+      <h2>Paper Evaluation</h2>
+      <div class="score-row">
+        <span class="score-label">Novelty</span>
+        <div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div></div>
+        <span class="score-num">4</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Technical depth</span>
+        <div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div></div>
+        <span class="score-num">3</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Experiment completeness</span>
+        <div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div></div>
+        <span class="score-num">4</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Writing quality</span>
+        <div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:60%"></div></div></div>
+        <span class="score-num">3</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Practical value</span>
+        <div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div></div>
+        <span class="score-num">4</span>
+      </div>
+      <div class="score-row" style="margin-top:14px;">
+        <span class="score-label"><strong>Overall</strong></span>
+        <div class="score-bar-wrap"><div class="score-bar"><div class="score-bar-fill" style="width:80%"></div></div></div>
+        <span class="score-num">4</span>
+      </div>
+    </div>
+
+    <!-- 3. Research Topic -->
+    <div class="slide-card">
+      <h2>Research Overview</h2>
+      <p>WAM-Flow formulates ego-trajectory planning as <strong>discrete flow matching</strong> over a structured token space, enabling fully parallel bidirectional denoising rather than sequential autoregressive decoding. Built on a converted Janus-1.5B backbone, it introduces a <strong>metric-aligned numerical tokenizer</strong> to preserve scalar geometry, a geometry-aware flow objective, and <strong>simulator-guided GRPO</strong> to enforce safety and comfort alignment. The model achieves <strong>90.3 PDMS</strong> on NAVSIM-v1 with 5-step inference and <strong>89.1 PDMS</strong> with 1-step at 0.09s latency (Table 6, p.8).</p>
+      <div class="two-col" style="margin-top:16px;">
+        <div>
+          <h3>Domain</h3>
+          <ul>
+            <li>End-to-End Autonomous Driving</li>
+            <li>Vision-Language-Action Model</li>
+            <li>Discrete Generative Modeling</li>
+            <li>Reinforcement Learning from Simulation</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Core Components</h3>
+          <ul>
+            <li>Janus-1.5B (VLM backbone)</li>
+            <li>SigLIP (vision encoder, 576 tokens)</li>
+            <li>Metric-aligned numerical tokenizer (N=20,001)</li>
+            <li>Discrete flow matching (CTMC)</li>
+            <li>Simulator-guided GRPO (NAVSIM rewards)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Problem and Motivation -->
+    <div class="slide-card">
+      <h2>Problem and Motivation</h2>
+      <h3>The Three Obstacles for Discrete Flow Matching in VLA</h3>
+      <table>
+        <thead><tr><th>Obstacle</th><th>Specific Description</th><th>WAM-Flow Solution</th></tr></thead>
+        <tbody>
+          <tr><td>Training data/compute cost</td><td>DFM models cannot be trained from scratch efficiently; generic VLM backbones lack road-scene competence (p.3)</td><td>Multi-stage adaptation: domain VQA pretraining on 6.5M data (+3.3 PDMS, Fig. 6)</td></tr>
+          <tr><td>Text token metric blindness</td><td>Standard vocabulary embeddings do not preserve distance/ordering among scalar trajectory values (p.3-4)</td><td>Metric-aligned numerical tokenizer with triplet-margin ranking loss (+4.9+2.3 PDMS, Table 5)</td></tr>
+          <tr><td>Likelihood-only training</td><td>Supervised flow matching does not enforce safety, ego-progress, comfort in closed-loop (p.5)</td><td>Simulator-guided GRPO with composite safety-performance reward (+3.4 PDMS, Table 5)</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px;">The authors argue that prior VLA planners fail to combine efficiency, accuracy, and safety because they face both a <strong>token representation gap</strong> (text tokens cannot encode metric relationships) and a <strong>training objective gap</strong> (likelihood maximization does not align with closed-loop constraints). Addressing both simultaneously within the discrete flow matching framework enables coarse-to-fine trajectory planning with a tunable compute-accuracy trade-off.</p>
+    </div>
+
+    <!-- 5. Architecture -->
+    <div class="slide-card">
+      <h2>Method Architecture</h2>
+      <div class="flow-diagram">Front-view Image (384x384)
+  |
+  v
+[SigLIP Encoder] --> 576 visual tokens (2048-dim via MLP)
+  |
+  +--------------- Navigation cmd + Ego-state ---------------+
+  |                (position, heading, v, a)                  |
+  |                          |                                |
+  |                 [Numerical Tokenizer]                     |
+  |                 N=20,001 codebook + triplet loss          |
+  |                          |                                |
+  +-------------- [Janus-1.5B Backbone (DFM mode)] ----------+
+                             |
+                   [Discrete Flow Matching Decoder]
+                   x_0 (uniform prior)
+                        |
+                   CTMC denoising x n steps
+                        |
+                   x_1 (trajectory tokens)
+                        |
+                   8 waypoints (4 seconds)
+                        |  (training only)
+                   [NAVSIM Simulator]
+                        |
+                   R(tau) = safety x performance reward
+                        |
+                   [GRPO update]</div>
+    </div>
+
+    <!-- 6. Key Modules -->
+    <div class="slide-card">
+      <h2>Key Module: Metric-Aligned Numerical Tokenizer</h2>
+      <p>Standard text token embeddings do not preserve metric structure among scalar values. WAM-Flow introduces a codebook of N = 20,001 tokens covering [-100, 100] with 0.01 resolution. Each scalar v is projected to a d-dimensional embedding and L2-normalized: $z = E(v)/\|E(v)\|_2$. A triplet-margin ranking loss enforces that embedding distances reflect scalar proximity.</p>
+      <div class="formula">
+        $$\mathcal{L}_{num} = \mathbb{E}_{(i,j,k)\sim\mathcal{T}}\left[\max\left(0,\, d_{ij} - d_{ik} + \alpha\right)\right]$$
+        <p style="font-size:0.85em; margin-top:6px; color: var(--p-text-secondary);">where $|v_i - v_j| &lt; |v_i - v_k|$ &nbsp; Triplet margin $\alpha = 0.05$ &nbsp; (p.4, Eq. 5)</p>
+      </div>
+      <p>Ablation (Table 5, p.7): numerical tokenizer +4.9 PDMS; metric-aligned embeddings +2.3 PDMS, totaling +7.2 PDMS over standard Janus text tokenizer.</p>
+    </div>
+
+    <div class="slide-card">
+      <h2>Key Module: Geometry-Aware Discrete Flow Matching</h2>
+      <p>The probability path is a Gibbs distribution induced by the tokenizer-specific metric $d(x, x_1)$, with inverse temperature $\beta_t$ increasing from 0 to $\infty$:</p>
+      <div class="formula">
+        $$p_t(x|x_1) = \text{softmax}\!\left(-\beta_t\, d(x, x_1)\right), \quad \beta_0 = 0,\; \beta_1 \to \infty$$
+      </div>
+      <p>The conditional CTMC rate steers transitions toward the target by assigning higher rates to states closer to $x_1$:</p>
+      <div class="formula">
+        $$u_t(x, z \mid x_1) = p_t(x|x_1)\,\dot{\beta}_t\,\bigl[d(z, x_1) - d(x, x_1)\bigr]_+$$
+      </div>
+      <p style="margin-top:8px;">Inference timestep schedule: $\beta_t = 3 \times \left(\frac{t}{1-t}\right)^{0.9}$ &nbsp; (p.6). Parallel decoding over all trajectory tokens enables the coarse-to-fine speed-accuracy trade-off.</p>
+    </div>
+
+    <div class="slide-card">
+      <h2>Key Module: Simulator-Guided GRPO</h2>
+      <p>The composite NAVSIM reward decomposes into a multiplicative safety penalty and a weighted performance average:</p>
+      <div class="formula">
+        $$R(\tau) = \prod_{m\in\{NC,DAC\}} s_m(\tau) \cdot \frac{\sum_{w\in\{EP,TTC,C\}}\lambda_w s_w(\tau)}{\sum_{w}\lambda_w}$$
+        <p style="font-size:0.85em; margin-top:6px; color: var(--p-text-secondary);">Default weights EP:TTC:Comfort = 5:5:2 &nbsp; (Table 3, p.8)</p>
+      </div>
+      <p>G = 3 candidate trajectories per context (Table 2, p.7). Group baseline reduces variance; KL term anchors updates to supervised reference. GRPO trained 0.5 epoch on 103K NAVSIM scenes, gaining +3.4 PDMS over SFT-only (Table 5, p.7).</p>
+    </div>
+
+    <!-- 7. Training Curriculum -->
+    <div class="slide-card">
+      <h2>Four-Stage Training Curriculum</h2>
+      <table>
+        <thead><tr><th>Stage</th><th>Data</th><th>Objective</th><th>LR / Epochs</th></tr></thead>
+        <tbody>
+          <tr><td>1. Numerical embedding warm-up</td><td>668K nuPlan</td><td>$\mathcal{L}_{CE}$ + $\mathcal{L}_{num}$, backbone frozen</td><td>1e-5 / 4 ep</td></tr>
+          <tr><td>2. VQA domain pretraining</td><td>6.5M (3.4M LLaVA + 3.1M RecogDrive VQA)</td><td>$\mathcal{L}_{CE}$</td><td>1e-5 / 3 ep</td></tr>
+          <tr><td>3. Supervised flow fine-tuning</td><td>668K nuPlan</td><td>$\mathcal{L}_{CE}$, cosine annealing</td><td>5e-6 / 2 ep</td></tr>
+          <tr><td>4. Simulator-guided GRPO</td><td>103K NAVSIM</td><td>$\mathcal{L}_{GRPO}$ + KL toward SFT reference</td><td>1e-6 / 0.5 ep</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;">Hardware: 4×8 Ascend 910B NPUs (p.6). VQA pretraining contributes the largest single gain: +3.3 PDMS (Figure 6, p.7).</p>
+    </div>
+
+    <!-- 8. Experiments -->
+    <div class="slide-card">
+      <h2>NAVSIM-v1 Results (Table 1, p.7)</h2>
+      <table>
+        <thead><tr><th>Method</th><th>Paradigm</th><th>Input</th><th>NC</th><th>DAC</th><th>TTC</th><th>Comf.</th><th>EP</th><th>PDMS</th></tr></thead>
+        <tbody>
+          <tr><td>VADv2</td><td>Diff.</td><td>6xCam</td><td>97.2</td><td>89.1</td><td>91.6</td><td>100</td><td>76.0</td><td>80.9</td></tr>
+          <tr><td>DiffusionDrive</td><td>Diff.</td><td>3xCam+L</td><td>98.2</td><td>96.0</td><td>94.8</td><td>100</td><td>82.2</td><td>88.1</td></tr>
+          <tr><td>DrivingGPT</td><td>AR</td><td>LLaMA2-7B, 1xCam</td><td>98.1</td><td>90.7</td><td>94.9</td><td>95.6</td><td>79.7</td><td>82.4</td></tr>
+          <tr><td>AutoVLA</td><td>AR</td><td>Qwen2.5-3B, 3xCam</td><td>98.4</td><td>95.6</td><td>98.0</td><td>99.9</td><td>81.9</td><td>89.1</td></tr>
+          <tr><td>ReCogDrive</td><td>AR+Diff.</td><td>InternVL3-8B, 3xCam</td><td>98.2</td><td>97.5</td><td>95.2</td><td>99.9</td><td>83.5</td><td>89.6</td></tr>
+          <tr><td><strong>WAM-Flow (ours)</strong></td><td><strong>DFM</strong></td><td><strong>Janus-1.5B, 1xCam</strong></td><td><strong>99.2</strong></td><td><strong>98.3</strong></td><td><strong>97.0</strong></td><td>99.7</td><td>82.3</td><td><strong>90.3</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px; font-size:0.9em; color: var(--p-text-secondary);">Note: WAM-Flow uses only 1 front-view camera vs. multi-camera/LiDAR baselines; ReCogDrive uses InternVL3-8B (5x larger backbone).</p>
+    </div>
+
+    <div class="slide-card">
+      <h2>Coarse-to-Fine Efficiency (Table 6, p.8)</h2>
+      <table>
+        <thead><tr><th>Inference Steps</th><th>PDMS</th><th>Inference Time</th><th>vs. ReCogDrive (0.42s)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>89.1</td><td>0.09s</td><td><strong>4.67x faster</strong></td></tr>
+          <tr><td>2</td><td>89.7</td><td>0.19s</td><td>2.2x faster</td></tr>
+          <tr><td>3</td><td>90.0</td><td>0.29s</td><td>1.4x faster</td></tr>
+          <tr><td><strong>5</strong></td><td><strong>90.3</strong></td><td>0.48s</td><td>matches ReCogDrive latency</td></tr>
+          <tr><td>10</td><td>90.2</td><td>0.94s</td><td>2.2x slower</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;">Performance peaks at 5 steps; 10-step inference yields no further gain, indicating model convergence by step 5. Monotonic improvement from 1 to 5 steps validates the coarse-to-fine hypothesis.</p>
+    </div>
+
+    <div class="slide-card">
+      <h2>Ablation Studies</h2>
+      <h3>Component Ablation (Table 5, p.7)</h3>
+      <table>
+        <thead><tr><th>Num. Tokenizer</th><th>Metric-Aligned</th><th>Pretraining</th><th>SG-GRPO</th><th>PDMS</th><th>Delta</th></tr></thead>
+        <tbody>
+          <tr><td>text (Janus)</td><td>-</td><td>-</td><td>-</td><td>76.2</td><td>baseline</td></tr>
+          <tr><td>numerical</td><td>-</td><td>-</td><td>-</td><td>81.1</td><td>+4.9</td></tr>
+          <tr><td>numerical</td><td>yes</td><td>-</td><td>-</td><td>83.4</td><td>+2.3</td></tr>
+          <tr><td>numerical</td><td>yes</td><td>yes</td><td>-</td><td>86.7</td><td>+3.3</td></tr>
+          <tr><td>numerical</td><td>yes</td><td>no</td><td>yes</td><td>86.9</td><td>+0.2</td></tr>
+          <tr><td><strong>numerical</strong></td><td><strong>yes</strong></td><td><strong>yes</strong></td><td><strong>yes</strong></td><td><strong>90.3</strong></td><td><strong>+3.4</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px; font-size:0.9em; color: var(--p-text-secondary);">Row 5 vs. Row 6: GRPO without pretraining gains only +0.2; GRPO with pretraining gains +3.4. The synergy suggests pretraining provides the domain prior that GRPO can effectively refine.</p>
+    </div>
+
+    <!-- 9. Phyra Judgment -->
+    <div class="slide-card">
+      <h2>Phyra Highlights</h2>
+      <ul>
+        <li>The metric-aligned tokenizer directly addresses a known deficiency of text-token-based trajectory prediction; the +4.9 PDMS ablation (Table 5) is a concrete, isolated measurement of this component's contribution (p.6-7)</li>
+        <li>The coarse-to-fine property is quantified with explicit inference times: 1-step at 0.09s achieves 89.1 PDMS, 5-step at 0.48s achieves 90.3, giving users a practical speed-accuracy knob (Table 6, p.8)</li>
+        <li>Simulator-guided GRPO adds +3.4 PDMS over the SFT baseline when combined with pretraining (Table 5), demonstrating that closed-loop reward alignment provides gains that supervised training alone cannot capture</li>
+      </ul>
+    </div>
+
+    <div class="slide-card">
+      <h2>Phyra Weaknesses</h2>
+      <ul>
+        <li>The GRPO reward directly encodes NAVSIM PDMS sub-metrics, creating a structural benchmark-overfitting concern; generalization to other closed-loop simulators is unverified</li>
+        <li>Only single front-view camera is used, making comparisons with multi-camera/LiDAR baselines in Table 1 partially a sensor-modality comparison rather than a paradigm comparison</li>
+        <li>No open-loop L2/FDE metrics are reported; all evaluation is closed-loop NAVSIM, preventing comparison with open-loop literature</li>
+        <li>The speedup claim (4.67x over ReCogDrive) conflates paradigm advantage with backbone-size advantage (1.5B vs. 8B)</li>
+      </ul>
+    </div>
+
+    <!-- 10. Contribution Claims -->
+    <div class="slide-card">
+      <h2>Contribution Claims vs. Evidence</h2>
+      <table>
+        <thead><tr><th>Claim</th><th>Verdict</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr><td>First GRPO within DFM for AD VLA</td><td>Supported</td><td>Related work survey; no prior art cited combining DFM + GRPO for AD (p.3)</td></tr>
+          <tr><td>Metric tokenizer enables coarse-to-fine refinement</td><td>Partially supported</td><td>Table 5 shows +7.2 PDMS from tokenizer; coarse-to-fine curves without metric alignment not ablated directly</td></tr>
+          <tr><td>4.67x speedup over ReCogDrive at 1-step</td><td>Conditionally supported</td><td>0.09s vs. 0.42s measured (Table 6); confounded by 1.5B vs. 8B backbone size</td></tr>
+          <tr><td>SOTA on NAVSIM v1 and v2</td><td>Supported</td><td>Tables 1 and 4: 90.3 PDMS (v1) and 84.7 EPDMS (v2) lead all listed baselines</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 11. Fundamental Limitations -->
+    <div class="slide-card">
+      <h2>Fundamental Limitations</h2>
+      <div class="two-col">
+        <div>
+          <h3>Structural</h3>
+          <ul>
+            <li>GRPO reward is derived from the same NAVSIM metrics used for evaluation, creating test-set leakage that cannot be eliminated without a held-out simulator</li>
+            <li>Fixed N=20,001 codebook over [-100, 100] cannot represent trajectories outside this range or requiring sub-centimeter precision</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Experimental</h3>
+          <ul>
+            <li>4-stage curriculum on 4x8 Ascend 910B NPUs limits reproducibility for most researchers</li>
+            <li>Single-camera constraint prevents fair comparison with multi-view baselines; effect on safety in lateral scenarios is unknown</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Citations Worth Tracking -->
+    <div class="slide-card">
+      <h2>Citations Worth Tracking</h2>
+      <table>
+        <thead><tr><th>Paper</th><th>Why Track</th></tr></thead>
+        <tbody>
+          <tr><td>ReCogDrive (Li et al., 2025, arXiv:2506.08052)</td><td>Strongest direct baseline; AR+Diff with same VQA pretraining source; comparing DFM vs. AR+Diff at matched scale requires reading this</td></tr>
+          <tr><td>Discrete Flow Matching (Gat et al., NeurIPS 2024)</td><td>Theoretical foundation of the CTMC framework used in WAM-Flow; necessary to evaluate the geometry-aware extension</td></tr>
+          <tr><td>AutoVLA (Zhou et al., 2025, arXiv:2506.13757)</td><td>Concurrent GRPO+AR VLA for AD; direct comparison of GRPO's benefit in AR vs. DFM settings</td></tr>
+          <tr><td>FUDOKI (Wang et al., 2025, arXiv:2505.20147)</td><td>DFM for multimodal VLM reasoning; provides context for the broader DFM-VLM landscape</td></tr>
+          <tr><td>AlphaDrive (Jiang et al., 2025, arXiv:2503.07608)</td><td>Pioneers GRPO-based RL with planning reasoning for AD; directly precedes WAM-Flow's RL component</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 13. Open Questions -->
+    <div class="slide-card">
+      <h2>Open Questions and Improvement Directions</h2>
+      <h3>Outstanding Questions</h3>
+      <ul>
+        <li>Does the metric-aligned tokenizer improve coarse-to-fine refinement curves specifically, or does the PDMS gain come primarily from better SFT initialization?</li>
+        <li>What is the GRPO policy's behavior on out-of-distribution scenarios not covered by NAVSIM test scenes?</li>
+        <li>How does performance degrade when the front-view camera faces adverse illumination, given the single-camera constraint?</li>
+        <li>Would a data-driven codebook (k-means on trajectory statistics) improve quantization efficiency over the uniform [-100, 100] grid?</li>
+      </ul>
+      <h3 style="margin-top:16px;">Improvement Directions</h3>
+      <ul>
+        <li><strong>Controlled sensor parity:</strong> Extend to multi-view input (3-6 cameras) to separate DFM paradigm contribution from sensor-modality difference. Feasibility: moderate.</li>
+        <li><strong>Adaptive step selection:</strong> Use posterior distribution confidence to trigger early stopping for simple scenes, avoiding the fixed n-step overhead. Feasibility: high; consistent with coarse-to-fine design.</li>
+        <li><strong>Cross-simulator GRPO evaluation:</strong> Evaluate zero-shot on nuPlan reactive simulation after NAVSIM-GRPO training to test safety alignment generalization. Feasibility: moderate.</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="phyra-footer">
+    Phyra NT Workflow | Paper Read Report | 2026-04-16
+  </footer>
+
+  <script>
+    /* phyra-switcher.js -- Dropdown theme switcher */
+    const PHYRA_THEMES = [
+      { id: "nadeshiko", label: "撫子 Nadeshiko", mode: "light" },
+      { id: "taikoh", label: "退紅 Taikoh", mode: "light" },
+      { id: "momo", label: "桃 Momo", mode: "light" },
+      { id: "toki", label: "鴇 Toki", mode: "light" },
+      { id: "jinzamomi", label: "甚三紅 Jinzamomi", mode: "light" },
+      { id: "haizakura", label: "灰桜 Haizakura", mode: "light" },
+      { id: "akebono", label: "曙 Akebono", mode: "light" },
+      { id: "sangosyu", label: "珊瑚朱 Sangosyu", mode: "light" },
+      { id: "araisyu", label: "洗朱 Araisyu", mode: "light" },
+      { id: "akakoh", label: "赤香 Akakoh", mode: "light" },
+      { id: "kokikuchinashi", label: "深支子 Kokikuchinashi", mode: "light" },
+      { id: "kanzo", label: "萱草 Kanzo", mode: "light" },
+      { id: "beniukon", label: "紅鬱金 Beniukon", mode: "light" },
+      { id: "kuchiba", label: "朽葉 Kuchiba", mode: "light" },
+      { id: "yamabuki", label: "山吹 Yamabuki", mode: "light" },
+      { id: "hajizome", label: "櫨染 Hajizome", mode: "light" },
+      { id: "tamago", label: "玉子 Tamago", mode: "light" },
+      { id: "tamamorokoshi", label: "玉蜀黍 Tamamorokoshi", mode: "light" },
+      { id: "usuki", label: "浅黄 Usuki", mode: "light" },
+      { id: "kuchinashi", label: "梔子 Kuchinashi", mode: "light" },
+      { id: "tohoh", label: "籐黄 Tohoh", mode: "light" },
+      { id: "ukon", label: "鬱金 Ukon", mode: "light" },
+      { id: "tonoko", label: "砥粉 Tonoko", mode: "light" },
+      { id: "kariyasu", label: "刈安 Kariyasu", mode: "light" },
+      { id: "hiwa", label: "鶸 Hiwa", mode: "light" },
+      { id: "hiwamoegi", label: "鶸萌黄 Hiwamoegi", mode: "light" },
+      { id: "yanagizome", label: "柳染 Yanagizome", mode: "light" },
+      { id: "nae", label: "苗 Nae", mode: "light" },
+      { id: "wakatake", label: "若竹 Wakatake", mode: "light" },
+      { id: "byakuroku", label: "白緑 Byakuroku", mode: "light" },
+      { id: "seiji", label: "青磁 Seiji", mode: "light" },
+      { id: "mizuasagi", label: "水浅葱 Mizuasagi", mode: "light" },
+      { id: "byakugun", label: "白群 Byakugun", mode: "light" },
+      { id: "kamenozoki", label: "瓶覗 Kamenozoki", mode: "light" },
+      { id: "mizu", label: "水 Mizu", mode: "light" },
+      { id: "sora", label: "空 Sora", mode: "light" },
+      { id: "wasurenagusa", label: "勿忘草 Wasurenagusa", mode: "light" },
+      { id: "tsuyukusa", label: "露草 Tsuyukusa", mode: "light" },
+      { id: "gunjyo", label: "群青 Gunjyo", mode: "light" },
+      { id: "usu", label: "薄 Usu", mode: "light" },
+      { id: "shironeri", label: "白練 Shironeri", mode: "light" },
+      { id: "shironezumi", label: "白鼠 Shironezumi", mode: "light" },
+      { id: "kohbai", label: "紅梅 Kohbai", mode: "dark" },
+      { id: "suoh", label: "蘇芳 Suoh", mode: "dark" },
+      { id: "ichigo", label: "苺 Ichigo", mode: "dark" },
+      { id: "karakurenai", label: "韓紅花 Karakurenai", mode: "dark" },
+      { id: "kurenai", label: "紅 Kurenai", mode: "dark" },
+      { id: "kokiake", label: "深緋 Kokiake", mode: "dark" },
+      { id: "azuki", label: "小豆 Azuki", mode: "dark" },
+      { id: "akabeni", label: "赤紅 Akabeni", mode: "dark" },
+      { id: "syojyohi", label: "猩猩緋 Syojyohi", mode: "dark" },
+      { id: "entan", label: "鉛丹 Entan", mode: "dark" },
+      { id: "benihi", label: "紅緋 Benihi", mode: "dark" },
+      { id: "terigaki", label: "照柿 Terigaki", mode: "dark" },
+      { id: "ohni", label: "黄丹 Ohni", mode: "dark" },
+      { id: "sohi", label: "纁 Sohi", mode: "dark" },
+      { id: "ensyucha", label: "遠州茶 Ensyucha", mode: "dark" },
+      { id: "kogecha", label: "焦茶 Kogecha", mode: "dark" },
+      { id: "taisya", label: "代赭 Taisya", mode: "dark" },
+      { id: "kohaku", label: "琥珀 Kohaku", mode: "dark" },
+      { id: "kenpohzome", label: "憲法染 Kenpohzome", mode: "dark" },
+      { id: "koke", label: "苔 Koke", mode: "dark" },
+      { id: "moegi", label: "萌黄 Moegi", mode: "dark" },
+      { id: "matsuba", label: "松葉 Matsuba", mode: "dark" },
+      { id: "tokiwa", label: "常磐 Tokiwa", mode: "dark" },
+      { id: "midori", label: "緑 Midori", mode: "dark" },
+      { id: "tokusa", label: "木賊 Tokusa", mode: "dark" },
+      { id: "rokusyoh", label: "緑青 Rokusyoh", mode: "dark" },
+      { id: "aomidori", label: "青緑 Aomidori", mode: "dark" },
+      { id: "asagi", label: "浅葱 Asagi", mode: "dark" },
+      { id: "shinbashi", label: "新橋 Shinbashi", mode: "dark" },
+      { id: "hanaasagi", label: "花浅葱 Hanaasagi", mode: "dark" },
+      { id: "chigusa", label: "千草 Chigusa", mode: "dark" },
+      { id: "hanada", label: "縹 Hanada", mode: "dark" },
+      { id: "ruri", label: "瑠璃 Ruri", mode: "dark" },
+      { id: "rurikon", label: "瑠璃紺 Rurikon", mode: "dark" },
+      { id: "benimidori", label: "紅碧 Benimidori", mode: "dark" },
+      { id: "fujinezumi", label: "藤鼠 Fujinezumi", mode: "dark" },
+      { id: "benikakehana", label: "紅掛花 Benikakehana", mode: "dark" },
+      { id: "konjyo", label: "紺青 Konjyo", mode: "dark" },
+      { id: "kon", label: "紺 Kon", mode: "dark" },
+      { id: "konkikyo", label: "紺桔梗 Konkikyo", mode: "dark" },
+      { id: "kurotsurubami", label: "黒橡 Kurotsurubami", mode: "dark" },
+      { id: "fuji", label: "藤 Fuji", mode: "dark" },
+      { id: "fujimurasaki", label: "藤紫 Fujimurasaki", mode: "dark" },
+      { id: "kikyo", label: "桔梗 Kikyo", mode: "dark" },
+      { id: "shion", label: "紫苑 Shion", mode: "dark" },
+      { id: "edomurasaki", label: "江戸紫 Edomurasaki", mode: "dark" },
+      { id: "murasaki", label: "紫 Murasaki", mode: "dark" },
+      { id: "benifuji", label: "紅藤 Benifuji", mode: "dark" },
+      { id: "botan", label: "牡丹 Botan", mode: "dark" },
+      { id: "tsutsuji", label: "躑躅 Tsutsuji", mode: "dark" },
+      { id: "ginnezumi", label: "銀鼠 Ginnezumi", mode: "dark" },
+      { id: "namari", label: "鉛 Namari", mode: "dark" },
+      { id: "hai", label: "灰 Hai", mode: "dark" },
+      { id: "nibi", label: "鈍 Nibi", mode: "dark" },
+      { id: "aonibi", label: "青鈍 Aonibi", mode: "dark" },
+      { id: "keshizumi", label: "消炭 Keshizumi", mode: "dark" },
+      { id: "sumi", label: "墨 Sumi", mode: "dark" },
+      { id: "kuro", label: "黒 Kuro", mode: "dark" }
+    ];
+
+    function phyraApply(id) {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', id);
+      const t = PHYRA_THEMES.find(x => x.id === id);
+      if (t) {
+        html.setAttribute('data-theme-mode', t.mode);
+        const select = document.getElementById('phyra-select');
+        if (select) select.value = id;
+      }
+    }
+
+    function phyraRandom() {
+      const idx = Math.floor(Math.random() * PHYRA_THEMES.length);
+      phyraApply(PHYRA_THEMES[idx].id);
+    }
+
+    function phyraBuildSelect() {
+      const select = document.getElementById('phyra-select');
+      if (!select) return;
+      const lightGroup = document.createElement('optgroup');
+      lightGroup.label = 'Light (42)';
+      const darkGroup = document.createElement('optgroup');
+      darkGroup.label = 'Dark (58)';
+      PHYRA_THEMES.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.label;
+        if (t.mode === 'light') lightGroup.appendChild(opt);
+        else darkGroup.appendChild(opt);
+      });
+      select.appendChild(lightGroup);
+      select.appendChild(darkGroup);
+    }
+
+    (function() {
+      phyraBuildSelect();
+      const current = document.documentElement.getAttribute('data-theme') || 'keshizumi';
+      phyraApply(current);
+    })();
+
+    /* Content width drag control */
+    (function() {
+      const handle = document.getElementById('phyra-width-handle');
+      if (!handle) return;
+      let dragging = false;
+
+      function updateHandlePos(contentWidth) {
+        const vw = window.innerWidth;
+        const gap = (vw - contentWidth) / 2;
+        handle.style.right = Math.max(4, gap - 16) + 'px';
+      }
+
+      handle.addEventListener('mousedown', (e) => {
+        dragging = true;
+        handle.classList.add('dragging');
+        e.preventDefault();
+      });
+
+      document.addEventListener('mousemove', (e) => {
+        if (!dragging) return;
+        const vw = window.innerWidth;
+        const distFromCenter = Math.abs(e.clientX - vw / 2);
+        const newWidth = Math.max(400, distFromCenter * 2);
+        document.documentElement.style.setProperty('--phyra-content-width', newWidth + 'px');
+        updateHandlePos(newWidth);
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (dragging) {
+          dragging = false;
+          handle.classList.remove('dragging');
+        }
+      });
+
+      const initWidth = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--phyra-content-width')) || 900;
+      updateHandlePos(initWidth);
+
+      window.addEventListener('resize', () => {
+        const w = parseInt(getComputedStyle(document.documentElement)
+          .getPropertyValue('--phyra-content-width')) || 900;
+        updateHandlePos(w);
+      });
+    })();
+  </script>
+</body>
+</html>

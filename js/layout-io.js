@@ -74,9 +74,10 @@ function importLayout() {
   }
 }
 
-/** Decode a base64 layout code and apply it to the whiteboard. Throws on invalid input. */
+/** Decode a layout code (base64 or raw JSON) and apply it to the whiteboard. Throws on invalid input. */
 export function applyLayoutFromCode(code) {
-  const json = lzDecode(code);
+  const trimmed = code.trim();
+  const json = trimmed.startsWith('{') ? trimmed : lzDecode(trimmed);
   const data = JSON.parse(json);
 
   // Clear current state
@@ -117,12 +118,14 @@ export async function tryLoadDefaultLayout() {
     const res = await fetch('data/default-layout.txt', { cache: 'no-store' });
     if (!res.ok) return false;
     const raw = await res.text();
-    // Strip comment lines and whitespace
-    const code = raw
-      .split('\n')
-      .map(l => l.trim())
-      .filter(l => l && !l.startsWith('#'))
-      .join('');
+    // Strip comment lines; keep internal whitespace for JSON, but join base64 lines
+    const lines = raw.split('\n').filter(l => {
+      const t = l.trim();
+      return t && !t.startsWith('#');
+    });
+    if (!lines.length) return false;
+    const first = lines.find(l => l.trim())?.trim() || '';
+    const code = first.startsWith('{') ? lines.join('\n') : lines.map(l => l.trim()).join('');
     if (!code) return false;
     applyLayoutFromCode(code);
     return true;

@@ -199,7 +199,7 @@
  },
  {
   "id": 7,
-  "short_name": "AGIC",
+  "short_name": "MagicDrive",
   "title": "MagicDrive: Street View Generation with Diverse 3D Geometry Control",
   "date": "2023-10",
   "year": "2310",
@@ -224,8 +224,8 @@
   "arxiv_id": "2310.02601",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_notes": "",
-  "phyra_slides": ""
+  "phyra_notes": "phyra-read/notes/2310_MagicDrive_2310_MagicDrive.html",
+  "phyra_slides": "phyra-read/slides/2310_MagicDrive_2310_MagicDrive.html"
  },
  {
   "id": 8,
@@ -790,7 +790,7 @@
  },
  {
   "id": 26,
-  "short_name": "PALM",
+  "short_name": "3D-VLA",
   "title": "3D-VLA: A 3D Vision-Language-Action Generative World Model",
   "date": "2024-03",
   "year": "2403",
@@ -818,8 +818,8 @@
   "arxiv_id": "2403.09631",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_notes": "",
-  "phyra_slides": ""
+  "phyra_notes": "phyra-read/notes/2403_3D-VLA_2403_3D-VLA.html",
+  "phyra_slides": "phyra-read/slides/2403_3D-VLA_2403_3D-VLA.html"
  },
  {
   "id": 27,
@@ -1242,8 +1242,8 @@
   "arxiv_id": "2407.05679",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_notes": "phyra-read/notes/2407_BEVW_2407_BEVW.html",
-  "phyra_slides": "phyra-read/slides/2407_BEVW_2407_BEVW.html"
+  "phyra_notes": "phyra-read/notes/2407_BEVWorld_2407_BEVWorld.html",
+  "phyra_slides": "phyra-read/slides/2407_BEVWorld_2407_BEVWorld.html"
  },
  {
   "id": 40,
@@ -1405,8 +1405,8 @@
   "arxiv_id": "2408.00415",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_notes": "phyra-read/notes/2408_RIVE_2408_RIVE.html",
-  "phyra_slides": "phyra-read/slides/2408_RIVE_2408_RIVE.html"
+  "phyra_notes": "phyra-read/notes/2408_DriveArena_2408_DriveArena.html",
+  "phyra_slides": "phyra-read/slides/2408_DriveArena_2408_DriveArena.html"
  },
  {
   "id": 45,
@@ -2409,8 +2409,8 @@
   "arxiv_id": "2503.13587",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_notes": "phyra-read/notes/2503_Seeing_2503_Seeing.html",
-  "phyra_slides": "phyra-read/slides/2503_Seeing_2503_Seeing.html"
+  "phyra_notes": "phyra-read/notes/2503_UniFuture_2503_UniFuture.html",
+  "phyra_slides": "phyra-read/slides/2503_UniFuture_2503_UniFuture.html"
  },
  {
   "id": 74,
@@ -3752,8 +3752,8 @@
   "arxiv_id": "2601.00844",
   "has_notes": true,
   "relevance": "World Model Core",
-  "phyra_notes": "phyra-read/notes/2601_JEPA_2601_JEPA.html",
-  "phyra_slides": "phyra-read/slides/2601_JEPA_2601_JEPA.html"
+  "phyra_notes": "phyra-read/notes/2601_AD-L-JEPA_2601_AD-L-JEPA.html",
+  "phyra_slides": "phyra-read/slides/2601_AD-L-JEPA_2601_AD-L-JEPA.html"
  },
  {
   "id": 112,
