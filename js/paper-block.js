@@ -455,43 +455,26 @@ function openBlockNoteEdit(shortName, clientX, clientY) {
     });
   });
 
-  // Font size control
+  // Font size slider
   let fontRow = popup.querySelector('.tb-font-row');
   if (!fontRow) {
     fontRow = document.createElement('div');
     fontRow.className = 'tb-font-row';
     fontRow.innerHTML = `
       <span style="font-size:11px;color:var(--text-secondary);margin-right:6px">Size</span>
-      <button class="tb-font-dec" type="button" style="width:26px;height:26px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);font-size:14px;font-weight:700;cursor:pointer">−</button>
-      <span class="tb-font-val" style="display:inline-block;width:36px;text-align:center;font-size:12px;font-weight:600"></span>
-      <button class="tb-font-inc" type="button" style="width:26px;height:26px;border:1px solid var(--border);border-radius:4px;background:var(--surface);color:var(--text);font-size:14px;font-weight:700;cursor:pointer">+</button>
+      <input class="tb-font-slider" type="range" min="8" max="500" step="1" style="flex:1;min-width:120px;accent-color:var(--accent)">
+      <span class="tb-font-val" style="display:inline-block;width:52px;text-align:right;font-size:12px;font-weight:600;color:var(--text-secondary);margin-left:6px"></span>
     `;
-    fontRow.style.cssText = 'display:flex;align-items:center;margin-bottom:8px';
+    fontRow.style.cssText = 'display:flex;align-items:center;gap:4px;margin-bottom:8px';
     popup.insertBefore(fontRow, popup.querySelector('.popup-actions'));
   }
 
   const currentFontSize = note.fontSize || 14;
+  const slider = fontRow.querySelector('.tb-font-slider');
   const valSpan = fontRow.querySelector('.tb-font-val');
-  valSpan.textContent = currentFontSize + 'px';
-
-  // Replace buttons to remove old listeners
-  const decBtn = fontRow.querySelector('.tb-font-dec');
-  const incBtn = fontRow.querySelector('.tb-font-inc');
-  const newDec = decBtn.cloneNode(true);
-  const newInc = incBtn.cloneNode(true);
-  decBtn.replaceWith(newDec);
-  incBtn.replaceWith(newInc);
-
-  newDec.addEventListener('click', () => {
-    let v = parseInt(valSpan.textContent) || 14;
-    v = Math.max(8, v - 2);
-    valSpan.textContent = v + 'px';
-  });
-  newInc.addEventListener('click', () => {
-    let v = parseInt(valSpan.textContent) || 14;
-    v = Math.min(72, v + 2);
-    valSpan.textContent = v + 'px';
-  });
+  slider.value = Math.min(500, Math.max(8, currentFontSize));
+  valSpan.textContent = slider.value + 'px';
+  slider.oninput = () => { valSpan.textContent = slider.value + 'px'; };
 
   // Set popup handler for block note save/delete
   setPopupHandler({
@@ -502,8 +485,8 @@ function openBlockNoteEdit(shortName, clientX, clientY) {
       const activeSwatch = popup.querySelector('.tb-color-swatch.active');
       if (activeSwatch) note.colorIdx = parseInt(activeSwatch.dataset.colorIdx) || 0;
 
-      const fontVal = popup.querySelector('.tb-font-val');
-      if (fontVal) note.fontSize = parseInt(fontVal.textContent) || 14;
+      const fontSlider = popup.querySelector('.tb-font-slider');
+      if (fontSlider) note.fontSize = parseInt(fontSlider.value) || 14;
 
       popup.style.display = 'none';
       renderBlockNote(shortName);

@@ -38,13 +38,13 @@
 
 .connections-svg path {
   fill: none;
-  stroke-width: calc(2px * var(--content-scale, 1));
+  stroke-width: calc(var(--block-font-size, 16px) * 0.125);
   pointer-events: stroke;
   cursor: pointer;
 }
 
 .connections-svg path:hover {
-  stroke-width: calc(3.5px * var(--content-scale, 1));
+  stroke-width: calc(var(--block-font-size, 16px) * 0.21875);
 }
 
 .conn-control-point {
@@ -65,7 +65,7 @@
   border: none;
   border-radius: var(--radius-sm);
   padding: 2px 8px;
-  font-size: calc(10px * var(--content-scale, 1));
+  font-size: calc(var(--block-font-size, 16px) * 0.625);
   cursor: move;
   z-index: 201;
   white-space: nowrap;
@@ -155,7 +155,7 @@
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
   padding: 8px 10px;
-  font-size: calc(14px * var(--content-scale, 1));
+  font-size: 14px;
   line-height: 1.4;
   cursor: move;
   z-index: 8;

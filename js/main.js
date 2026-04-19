@@ -9,7 +9,7 @@ import { initWhiteboard, placeAllPapers } from './whiteboard.js';
 import { initConnections } from './connections.js';
 import { initAnnotations } from './annotations.js';
 import { initDetailModal } from './detail-modal.js';
-import { initLayoutIO } from './layout-io.js';
+import { initLayoutIO, tryLoadDefaultLayout } from './layout-io.js';
 import { initTheme } from './theme.js';
 
 async function init() {
@@ -35,6 +35,9 @@ async function init() {
   initAnnotations();
   initDetailModal();
   initLayoutIO();
+
+  // Auto-apply default layout if data/default-layout.txt is populated
+  await tryLoadDefaultLayout();
 
   // Wire header buttons
   document.getElementById('placeAllBtn').addEventListener('click', placeAllPapers);
@@ -66,6 +69,7 @@ async function init() {
     fontSizeVal.textContent = blockFontSize + 'px';
     requestAnimationFrame(() => {
       import('./paper-block.js').then(m => m.repositionAllNotes());
+      import('./connections.js').then(m => m.renderConnections());
     });
   }
   document.getElementById('fontDecBtn').addEventListener('click', () => {
@@ -97,8 +101,6 @@ async function init() {
     scaleVal.textContent = contentScale + '%';
     requestAnimationFrame(() => {
       import('./paper-block.js').then(m => m.repositionAllNotes());
-      import('./annotations.js').then(m => m.renderAnnotations());
-      import('./connections.js').then(m => m.renderConnections());
     });
   }
   document.getElementById('scaleDecBtn').addEventListener('click', () => {

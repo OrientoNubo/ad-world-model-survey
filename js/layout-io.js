@@ -66,46 +66,67 @@ function exportLayout() {
 function importLayout() {
   const code = document.getElementById('layoutCode').value.trim();
   if (!code) return;
-
   try {
-    const json = lzDecode(code);
-    const data = JSON.parse(json);
-
-    // Clear current state
-    document.querySelectorAll('.paper-block').forEach(el => el.remove());
-    document.querySelectorAll('.text-box').forEach(el => el.remove());
-    document.querySelectorAll('.conn-label').forEach(el => el.remove());
-    document.querySelectorAll('.block-note').forEach(el => el.remove());
-    state.placedPapers.clear();
-    state.positions = {};
-    state.connections = [];
-    state.annotations = [];
-    state.blockNotes = {};
-    state.selectedBlocks.clear();
-
-    // Restore
-    if (data.vp) state.viewport = data.vp;
-    if (data.conn) state.connections = data.conn;
-    if (data.ann) state.annotations = data.ann;
-    if (data.p) state.positions = data.p;
-    state.blockNotes = data.bn || {};
-
-    // Place papers
-    const papersToPlace = data.placed || Object.keys(data.p || {});
-    for (const name of papersToPlace) {
-      const pos = state.positions[name];
-      if (pos) {
-        placePaper(name, pos.x, pos.y);
-      }
-    }
-
-    applyViewport();
-    renderConnections();
-    renderAnnotations();
-    resizeBoard();
-
+    applyLayoutFromCode(code);
     document.getElementById('ioOverlay').classList.remove('open');
   } catch (e) {
     alert('Invalid layout code: ' + e.message);
+  }
+}
+
+/** Decode a base64 layout code and apply it to the whiteboard. Throws on invalid input. */
+export function applyLayoutFromCode(code) {
+  const json = lzDecode(code);
+  const data = JSON.parse(json);
+
+  // Clear current state
+  document.querySelectorAll('.paper-block').forEach(el => el.remove());
+  document.querySelectorAll('.text-box').forEach(el => el.remove());
+  document.querySelectorAll('.conn-label').forEach(el => el.remove());
+  document.querySelectorAll('.block-note').forEach(el => el.remove());
+  state.placedPapers.clear();
+  state.positions = {};
+  state.connections = [];
+  state.annotations = [];
+  state.blockNotes = {};
+  state.selectedBlocks.clear();
+
+  // Restore
+  if (data.vp) state.viewport = data.vp;
+  if (data.conn) state.connections = data.conn;
+  if (data.ann) state.annotations = data.ann;
+  if (data.p) state.positions = data.p;
+  state.blockNotes = data.bn || {};
+
+  // Place papers
+  const papersToPlace = data.placed || Object.keys(data.p || {});
+  for (const name of papersToPlace) {
+    const pos = state.positions[name];
+    if (pos) placePaper(name, pos.x, pos.y);
+  }
+
+  applyViewport();
+  renderConnections();
+  renderAnnotations();
+  resizeBoard();
+}
+
+/** Fetch data/default-layout.txt and apply if it contains a valid layout code. Silent on any error. */
+export async function tryLoadDefaultLayout() {
+  try {
+    const res = await fetch('data/default-layout.txt', { cache: 'no-store' });
+    if (!res.ok) return false;
+    const raw = await res.text();
+    // Strip comment lines and whitespace
+    const code = raw
+      .split('\n')
+      .map(l => l.trim())
+      .filter(l => l && !l.startsWith('#'))
+      .join('');
+    if (!code) return false;
+    applyLayoutFromCode(code);
+    return true;
+  } catch {
+    return false;
   }
 }

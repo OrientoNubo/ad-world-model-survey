@@ -282,6 +282,14 @@
   transition: border-color var(--transition);
 }
 
+.edit-popup input[type="range"] {
+  width: auto;
+  padding: 0;
+  margin-bottom: 0;
+  border: none;
+  background: transparent;
+}
+
 .edit-popup input:focus,
 .edit-popup textarea:focus {
   border-color: var(--accent);
