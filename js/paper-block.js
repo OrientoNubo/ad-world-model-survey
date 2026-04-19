@@ -62,7 +62,6 @@ export function placePaper(shortName, x, y) {
       <span class="badge badge-year">${paper.year || ''}</span>
       ${paper.venue ? `<span class="badge badge-venue">${paper.venue}</span>` : ''}
     </div>
-    <div class="block-category">${cat}</div>
     <div class="block-resize"></div>
   `;
 

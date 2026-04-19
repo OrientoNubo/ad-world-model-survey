@@ -132,14 +132,14 @@
 .paper-block {
   position: absolute;
   width: max-content;
-  min-width: 160px;
-  min-height: 60px;
+  min-width: 10em;
+  min-height: 3.75em;
   background: var(--surface);
-  border-radius: var(--radius);
-  border-left: 5px solid var(--accent);
-  padding: 10px 14px;
+  border-radius: 0.375em;
+  border-left: 0.3125em solid var(--accent);
+  padding: 0.625em 0.875em;
   cursor: pointer;
-  box-shadow: 0 0 0 2px var(--accent), var(--shadow);
+  box-shadow: 0 0 0 0.125em var(--accent), var(--shadow);
   transition: box-shadow var(--transition), opacity var(--transition);
   z-index: 10;
   user-select: none;
@@ -150,8 +150,8 @@
 .paper-block .block-resize {
   position: absolute;
   top: 0;
-  right: -3px;
-  width: 6px;
+  right: -0.1875em;
+  width: 0.375em;
   height: 100%;
   cursor: ew-resize;
   opacity: 0;
@@ -167,21 +167,21 @@
   content: '';
   position: absolute;
   top: 50%;
-  right: 1px;
+  right: 0.0625em;
   transform: translateY(-50%);
-  width: 3px;
-  height: 20px;
-  border-radius: 2px;
+  width: 0.1875em;
+  height: 1.25em;
+  border-radius: 0.125em;
   background: var(--text-muted);
 }
 
 .paper-block:hover {
-  box-shadow: 0 0 0 2px var(--accent), var(--shadow-hover);
+  box-shadow: 0 0 0 0.125em var(--accent), var(--shadow-hover);
   z-index: 20;
 }
 
 .paper-block.selected {
-  box-shadow: 0 0 0 3px var(--accent-light), 0 0 8px var(--accent-light), var(--shadow-hover);
+  box-shadow: 0 0 0 0.1875em var(--accent-light), 0 0 0.5em var(--accent-light), var(--shadow-hover);
   z-index: 25;
 }
 
@@ -192,28 +192,26 @@
 
 .paper-block .block-name {
   font-weight: 700;
-  font-size: var(--block-font-size, 16px);
-  margin-bottom: 4px;
-  letter-spacing: -0.3px;
+  font-size: 1em;
+  margin-bottom: 0.25em;
+  letter-spacing: -0.02em;
   white-space: nowrap;
 }
 
 .paper-block .block-meta {
-  font-size: calc(var(--block-font-size, 16px) * 0.8125);
+  font-size: 0.8125em;
   color: var(--text-secondary);
   display: flex;
-  gap: 4px;
+  gap: 0.3em;
 }
 
 .paper-block .badge {
-  font-size: calc(var(--block-font-size, 16px) * 0.5625);
-}
-
-.paper-block .block-category {
-  font-size: calc(var(--block-font-size, 16px) * 0.75);
-  color: var(--text-muted);
-  margin-top: 4px;
-  white-space: nowrap;
+  display: inline-block;
+  padding: 0.111em 0.667em;
+  border-radius: 0.444em;
+  font-size: 0.6923em;
+  font-weight: 600;
+  line-height: 1.78;
 }
 
 /* Category border colors for blocks */
@@ -229,17 +227,17 @@
 /* === "+" Add Note Button on Paper Blocks === */
 .paper-block .block-add-note {
   position: absolute;
-  top: -8px;
-  left: -8px;
-  width: 20px;
-  height: 20px;
+  top: -0.5em;
+  left: -0.5em;
+  width: 1.25em;
+  height: 1.25em;
   border-radius: 50%;
-  border: 1.5px solid var(--border);
+  border: 0.094em solid var(--border);
   background: var(--surface);
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 0.875em;
   font-weight: 700;
-  line-height: 16px;
+  line-height: 1.14;
   text-align: center;
   cursor: pointer;
   opacity: 0;
